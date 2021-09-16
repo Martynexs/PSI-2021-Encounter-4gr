@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Encounter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="571" Width="897">
     <Grid>
+        <StackPanel Background="#FFFFCF4D" HorizontalAlignment="Left" Width="125">
+            <Button Content="☰" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+            <Button Content="New route" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+            <Button Content="Load route" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+        </StackPanel>
+        <StackPanel Margin="0,0,797,0"/>
+        <DockPanel LastChildFill="False" Background="White" Margin="125,0,0,0">
+            <StackPanel DockPanel.Dock="Top" Height="39" Background="#FFD8D8D8" Orientation="Horizontal">
+                <Button Content="Save route" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+                <Button Content="New waypoint" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top" Background="#FFE6E6E6" Orientation="Horizontal" Height="60">
+                <Label Content="0." FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                <Ellipse Height="60" Stroke="Black" StrokeThickness="4" Width="60" Fill="Yellow" Cursor="Hand"/>
+                <Label Content="Example (0.00, 0.00)" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Width="175"/>
+            </StackPanel>
+        </DockPanel>
 
     </Grid>
 </Window>
