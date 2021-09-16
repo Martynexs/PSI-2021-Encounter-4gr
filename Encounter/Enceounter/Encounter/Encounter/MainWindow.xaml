@@ -1,0 +1,56 @@
+﻿<Window x:Class="Encounter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Encounter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="571" Width="897">
+    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Background="#FFFFCF4D" HorizontalAlignment="Left" Width="125">
+                <Button Content="☰" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+                <Button Content="New route" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+                <Button Content="Load route" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+            </StackPanel>
+            <StackPanel Margin="0,0,303,0"/>
+            <DockPanel LastChildFill="False" Background="White" Margin="125,0,0,0">
+                <StackPanel DockPanel.Dock="Top" Height="39" Background="#FFD8D8D8" Orientation="Horizontal">
+                    <Button Content="Save route" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+                    <Button Content="New waypoint" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Top" Background="#FFE6E6E6" Orientation="Horizontal" Height="60">
+                    <Label Content="0." FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <Button Width="76" Background="#FFE8E4E4" Click="Button_Click_1" Foreground="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderBrush="#FFE8E4E4">
+                        <Ellipse Height="50" Stroke="Black" StrokeThickness="4" Width="66" Fill="Yellow" Cursor="Hand" StrokeDashCap="Round"/>
+                    </Button>
+                    <Label Content="Example (0.00, 0.00)" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Width="175"/>
+                </StackPanel>
+            </DockPanel>
+            <Grid x:Name="editGrid" Margin="574,0,0,0" IsEnabled="False" Visibility="Hidden" HorizontalAlignment="Stretch" Width="323" Height="555" VerticalAlignment="Stretch" UseLayoutRounding="False" ShowGridLines="True" Panel.ZIndex="2" Background="#FFDEDDD9">
+                <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Height="35" FontSize="18" FontFamily="Segoe UI" FontStyle="Normal" FontStretch="Normal" FontWeight="Normal" Foreground="Black" Margin="2,5,0,0"/>
+                <Label Content="Coordinates:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Margin="0,40,0,0" FontSize="18" Foreground="Black"/>
+                <Label Content="Type:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Margin="0,75,0,0" FontSize="18" Foreground="Black"/>
+                <Label HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Margin="0,110,0,0" Content="Price:" FontSize="18" Foreground="Black"/>
+                <Label Content="Opening hours:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="35" Margin="0,145,0,0" FontSize="18" Foreground="Black"/>
+                <Label Content="Closing hours:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Margin="0,180,0,0" FontSize="18" Foreground="Black"/>
+                <TextBox Text="Desciption" TextWrapping="Wrap" Margin="38,229,0,0" Height="126" VerticalAlignment="Top" HorizontalAlignment="Left" Width="215" FontSize="18"/>
+                <Label Content="Number: EXAMPLE" HorizontalAlignment="Left" Margin="10,381,0,0" VerticalAlignment="Top" Height="36" Width="185" FontSize="18" Foreground="Black"/>
+                <Button Content="SAVE" HorizontalAlignment="Center" Margin="0,479,0,0" VerticalAlignment="Top" Width="65" Foreground="Black" FontSize="18"/>
+                <Button Content="EXIT" HorizontalAlignment="Left" Margin="32,479,0,0" VerticalAlignment="Top" Width="66" FontSize="18" Foreground="Black"/>
+                <Button Content="DELETE" HorizontalAlignment="Left" Margin="226,479,0,0" VerticalAlignment="Top" Width="66" Foreground="Black" FontSize="18"/>
+                <TextBox HorizontalAlignment="Center" Margin="130,5,0,0" Text="EXAMPLE" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" HorizontalContentAlignment="Center" FontSize="18" VerticalContentAlignment="Center"/>
+                <TextBox HorizontalAlignment="Center" Margin="130,40,0,0" Text="EXAMPLE" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" VerticalContentAlignment="Center" FontSize="18" HorizontalContentAlignment="Center"/>
+                <TextBox HorizontalAlignment="Center" Margin="130,75,0,0" Text="EXAMPLE" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <TextBox HorizontalAlignment="Center" Margin="130,110,0,0" Text="EXAMPLE" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
+                <TextBox HorizontalAlignment="Center" Margin="130,145,0,0" Text="EXAMPLE" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
+                <TextBox HorizontalAlignment="Left" Margin="132,180,0,0" Text="EXAMPLE" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
+            </Grid>
+
+        </Grid>
+    </Viewbox>
+</Window>
