@@ -24,5 +24,10 @@ namespace Encounter
         {
             InitializeComponent();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            editGrid.Visibility = Visibility.Visible;
+        }
     }
 }
