@@ -30,21 +30,9 @@ namespace Encounter
             Price = price;
             OpeningHours = openingHours;
             ClosingTime = closingTime;
-            Description = description;
-
-            
-        }
-        /*
-        public string GetName()
-        {
-            return Name;
-        }
-        public void SetName(string name)
-        {
-            Name = name;
+            Description = description;            
         }
 
-       */
 
         public string Output()
         {
