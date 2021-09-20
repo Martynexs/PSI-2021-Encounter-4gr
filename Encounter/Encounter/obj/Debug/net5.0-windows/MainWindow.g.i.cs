@@ -82,7 +82,7 @@ namespace Encounter {
             case 1:
             
             #line 23 "..\..\..\MainWindow.xaml"
-            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.Button_Click_1);
+            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.LoadWaypointEditor);
             
             #line default
             #line hidden
