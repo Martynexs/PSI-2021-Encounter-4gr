@@ -6,13 +6,14 @@ namespace Test
 {
     public class WayPoint
     {
+
         public string name;
-        public string coordinates;
-        public string type;
-        public string price;
-        public string openingHours;
-        public string closingTime;
-        public string description;
+        public string Coordinates { get; set; }
+        public string Type { get; set; }
+        public string Price { get; set; }
+        public string OpeningHours { get; set; }
+        public string ClosingTime { get; set; }
+        public string Description { get; set; }
 
         public WayPoint()
         {
@@ -42,12 +43,7 @@ namespace Test
             this.name = name;
         }
 
-        public string Coordinates { get; set; }
-        public string Type { get; set; }
-        public string Price { get; set; }
-        public string OpeningHours { get; set; }
-        public string ClosingTime { get; set; }
-        public string Description { get; set; }
+       
 
         public string Output()
         {
