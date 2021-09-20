@@ -6,7 +6,7 @@ namespace Encounter
 {
     public class Waypoint
     {
-
+        public int Number { get; set; }
         public string Name;
         public string Coordinates { get; set; }
         public string Type { get; set; }
@@ -20,10 +20,11 @@ namespace Encounter
 
         }
 
-        public Waypoint(string name, string coordinates, string type, string price,
+        public Waypoint(int number, string name, string coordinates, string type, string price,
                         string openingHours, string closingTime, string description)
         {
-            this.Name = name;
+            Number = number;
+            Name = name;
             Coordinates = coordinates;
             Type = type;
             Price = price;
@@ -33,27 +34,27 @@ namespace Encounter
 
             
         }
-
+        /*
         public string GetName()
         {
             return Name;
         }
         public void SetName(string name)
         {
-            this.Name = name;
+            Name = name;
         }
 
-       
+       */
 
         public string Output()
         {
-            return ("Name:" + this.GetName() + "\n" +
+            return  "Name:" + Name + "\n" +
                     "Coordinates:" + Coordinates + "\n" +
                     "Type:" + Type + "\n" + 
                     "Price:" + Price + "\n" +
                     "Opening hours:" + OpeningHours + "\n" +
                     "Closing hours:" + ClosingTime + "\n" +
-                    "Description:" + Description + "\n");
+                    "Description:" + Description + "\n";
         }
 
     }
