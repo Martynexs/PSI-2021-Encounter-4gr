@@ -7,7 +7,7 @@ namespace Test
     public class WayPoint
     {
 
-        public string name;
+        public string Name;
         public string Coordinates { get; set; }
         public string Type { get; set; }
         public string Price { get; set; }
@@ -23,7 +23,7 @@ namespace Test
         public WayPoint(string name, string coordinates, string type, string price,
                         string openingHours, string closingTime, string description)
         {
-            this.name = name;
+            this.Name = name;
             Coordinates = coordinates;
             Type = type;
             Price = price;
@@ -36,11 +36,11 @@ namespace Test
 
         public string GetName()
         {
-            return name;
+            return Name;
         }
         public void SetName(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
 
        
