@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Test
 {
-    public class WayPoint
+    public class Waypoint
     {
 
         public string Name;
@@ -15,12 +15,12 @@ namespace Test
         public string ClosingTime { get; set; }
         public string Description { get; set; }
 
-        public WayPoint()
+        public Waypoint()
         {
 
         }
 
-        public WayPoint(string name, string coordinates, string type, string price,
+        public Waypoint(string name, string coordinates, string type, string price,
                         string openingHours, string closingTime, string description)
         {
             this.Name = name;
