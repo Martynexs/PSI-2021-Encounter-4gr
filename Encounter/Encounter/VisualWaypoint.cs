@@ -15,8 +15,9 @@ using System.Windows.Navigation;
 
 namespace Encounter
 {
-    class VisualWaypoint
+    class VisualWaypoint : IComparable<VisualWaypoint>
     {
+        private int Number;
         private StackPanel stackPanel;
         private Ellipse ellipse;
         public Button button;
@@ -28,6 +29,8 @@ namespace Encounter
         {
             this.waypoint = waypoint;
             waypoint.Number = 3;
+
+            Number = waypoint.Number;
 
             stackPanel = new StackPanel();
             stackPanel.Orientation = Orientation.Horizontal;
@@ -78,7 +81,6 @@ namespace Encounter
             };
             infoLabel.Content = info;
             stackPanel.Children.Add(infoLabel);
-
         }
 
         public StackPanel getVisualWaypoint()
@@ -86,5 +88,12 @@ namespace Encounter
             return stackPanel;
         }
 
+        public int CompareTo(VisualWaypoint w)
+        {
+            if (w == null) return 1;
+            if (w.Number > this.Number) return 1;
+            if (w.Number < this.Number) return -1;
+            return 0;
+        }
     }
 }
