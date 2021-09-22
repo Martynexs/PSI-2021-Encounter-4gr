@@ -13,6 +13,7 @@
             <Button Content="Load route" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
         </StackPanel>
         <StackPanel Margin="0,0,797,0"/>
+        <ScrollViewer VerticalScrollBarVisibility="Hidden">
         <DockPanel x:Name="waypointsPanel" LastChildFill="False" Background="White" Margin="125,39,0,0">
             <StackPanel DockPanel.Dock="Top" Background="#FFE6E6E6" Orientation="Horizontal" Height="60">
                 <Label Content="0." FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
@@ -22,7 +23,8 @@
                 <Label Content="Example (0.00, 0.00)" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Width="175"/>
             </StackPanel>
         </DockPanel>
-        <Grid x:Name="editGrid" Margin="574,0,0,0" Visibility="Visible" HorizontalAlignment="Right" VerticalAlignment="Stretch" UseLayoutRounding="False" ShowGridLines="True" Panel.ZIndex="2" Background="#FFDEDDD9">
+        </ScrollViewer>
+        <Grid x:Name="editGrid" Margin="574,0,0,0" Visibility="Hidden" HorizontalAlignment="Right" VerticalAlignment="Stretch" UseLayoutRounding="False" ShowGridLines="True" Panel.ZIndex="2" Background="#FFDEDDD9">
             <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Height="35" FontSize="18" FontFamily="Segoe UI" FontStyle="Normal" FontStretch="Normal" FontWeight="Normal" Foreground="Black" Margin="2,5,0,0"/>
             <Label Content="Coordinates:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Margin="0,40,0,0" FontSize="18" Foreground="Black"/>
             <Label Content="Type:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Margin="0,75,0,0" FontSize="18" Foreground="Black"/>
