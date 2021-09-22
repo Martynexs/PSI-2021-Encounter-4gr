@@ -7,7 +7,7 @@ namespace Encounter
     public class Waypoint
     {
         public int Number { get; set; }
-        public string Name;
+        public string Name { get; set; }
         public string Coordinates { get; set; }
         public string Type { get; set; }
         public string Price { get; set; }
@@ -30,9 +30,8 @@ namespace Encounter
             Price = price;
             OpeningHours = openingHours;
             ClosingTime = closingTime;
-            Description = description;            
+            Description = description;   
         }
-
 
         public string Output()
         {
