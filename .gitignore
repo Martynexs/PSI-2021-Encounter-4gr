@@ -1,6 +1,4 @@
 .vs/
 CMakeSettings.json
-*~
-*.dll
 *.dll
 *.cache
