@@ -28,6 +28,34 @@ namespace Encounter
         private void LoadWaypointEditor(object sender, RoutedEventArgs e)
         {
             editGrid.Visibility = Visibility.Visible;
+            Button button = (Button)sender;
+            Waypoint waypoint = (Waypoint)button.Tag;
+            var nr = waypoint.Number;
+            //button.Content = nr.ToString();
         }
+
+        private void ExitWaypointEditor(object sender, RoutedEventArgs e)
+        {
+            editGrid.Visibility = Visibility.Hidden;
+        }
+
+        private void CreateNewWaypoint(object sender, RoutedEventArgs e)
+        {
+            VisualWaypoint visualWaypoint = new VisualWaypoint(new Waypoint());
+            var waypointPanel = visualWaypoint.getVisualWaypoint();
+
+            //Add an action to the button click that opens and loads Waypoint editor
+            visualWaypoint.button.Click += LoadWaypointEditor;
+
+            DockPanel.SetDock(waypointPanel, Dock.Top);
+            waypointsPanel.Children.Add(waypointPanel);
+        }
+   
     }
+
+
+
+
+
+
 }
