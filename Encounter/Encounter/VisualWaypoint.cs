@@ -91,8 +91,8 @@ namespace Encounter
         public int CompareTo(VisualWaypoint w)
         {
             if (w == null) return 1;
-            if (w.Number > this.Number) return 1;
-            if (w.Number < this.Number) return -1;
+            if (w.Number > this.Number) return -1;
+            if (w.Number < this.Number) return 1;
             return 0;
         }
     }
