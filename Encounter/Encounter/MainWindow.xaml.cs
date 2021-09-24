@@ -20,8 +20,10 @@ namespace Encounter
     /// </summary>
     public partial class MainWindow : Window
     {
+        WaypointController WaypointController;
         public MainWindow()
         {
+            WaypointController = new WaypointController();   
             InitializeComponent();
         }
 
@@ -41,12 +43,12 @@ namespace Encounter
 
         private void CreateNewWaypoint(object sender, RoutedEventArgs e)
         {
-            VisualWaypoint visualWaypoint = new VisualWaypoint(new Waypoint());
-            var waypointPanel = visualWaypoint.getVisualWaypoint();
+            var waypointID = WaypointController.CreateNewWaypoint();
+            var visualWaypoint = WaypointController.GetVisualWaypoint(waypointID);
+            var waypointPanel = visualWaypoint.GetVisualWaypointPanel();
 
             //Add an action to the button click that opens and loads Waypoint editor
             visualWaypoint.button.Click += LoadWaypointEditor;
-
             DockPanel.SetDock(waypointPanel, Dock.Top);
             waypointsPanel.Children.Add(waypointPanel);
         }
