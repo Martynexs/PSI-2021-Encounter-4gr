@@ -60,6 +60,7 @@ namespace Encounter
         {
             return waypoints.Count < 100;
         }
+
        public void Insert(int index, Waypoint w)
         {
             waypoints.Insert(index, w);
@@ -69,17 +70,16 @@ namespace Encounter
         /// Adds given waypoint to the end of waypoints list.
         /// </summary>
         /// <param name="w">Waypoint to append</param>
-        public void Append(Waypoint w)
+        public void Append(Waypoint w) //?????
         {
             waypoints.Add(w);
         }
-        public void RemoveAt(int index)
+        public void RemoveWaypoint(int index)
         {
             waypoints.RemoveAt(index);
         }
         public void RemoveByName(string name)
         {    
-            
             int index = FindByName(name); ;
             waypoints.RemoveAt(index);
         }
@@ -92,7 +92,7 @@ namespace Encounter
         {
            return waypoints.Count;
         }
-       public Boolean Exists(string name)
+        public Boolean Exists(string name)
         {
             for (int i = 0; i < waypoints.Count; i++)
             {
@@ -116,6 +116,21 @@ namespace Encounter
             }
              return -1; 
         }
-    
+
+        public Waypoint CreateNewWaypoint()
+        {
+            var wp = new Waypoint();
+            waypoints.Add(wp);
+            wp.Number = waypoints.Count;
+            wp.Name = "Name";
+            wp.Coordinates = "0.00, 0.00";
+            return wp;
+        }
+
+        public Waypoint GetWaypoint(int index)
+        {
+            return index <= waypoints.Count ? waypoints[index] : null;
+        }
+
     }
 }
