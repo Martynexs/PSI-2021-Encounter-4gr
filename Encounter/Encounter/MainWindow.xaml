@@ -14,15 +14,7 @@
         </StackPanel>
         <StackPanel Margin="0,0,797,0"/>
         <ScrollViewer VerticalScrollBarVisibility="Hidden">
-        <DockPanel x:Name="waypointsPanel" LastChildFill="False" Background="White" Margin="125,39,0,0">
-            <StackPanel DockPanel.Dock="Top" Background="#FFE6E6E6" Orientation="Horizontal" Height="60">
-                <Label Content="0." FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-                <Button Width="57" Background="#FFE8E4E4" Click="LoadWaypointEditor" Foreground="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderBrush="#FFE8E4E4">
-                    <Ellipse Height="50" Stroke="Black" StrokeThickness="4" Width="52" Fill="Yellow" Cursor="Hand" StrokeDashCap="Round"/>
-                </Button>
-                <Label Content="Example (0.00, 0.00)" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Width="175"/>
-            </StackPanel>
-        </DockPanel>
+        <DockPanel x:Name="waypointsPanel" LastChildFill="False" Background="White" Margin="125,39,0,0"/>
         </ScrollViewer>
         <Grid x:Name="editGrid" Margin="574,0,0,0" Visibility="Hidden" HorizontalAlignment="Right" VerticalAlignment="Stretch" UseLayoutRounding="False" ShowGridLines="True" Panel.ZIndex="2" Background="#FFDEDDD9">
             <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Height="35" FontSize="18" FontFamily="Segoe UI" FontStyle="Normal" FontStretch="Normal" FontWeight="Normal" Foreground="Black" Margin="2,5,0,0"/>
