@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Test
+namespace Encounter
 {
     public class Route 
     {
-        public List<WayPoint> waypoints = new List<WayPoint>();
+        public List<Waypoint> waypoints = new List<Waypoint>();
         public double firstX;
         public double firstY;
         public double lastX;
@@ -16,7 +16,7 @@ namespace Test
 
         }
 
-        public Route(List<WayPoint> wp)
+        public Route(List<Waypoint> wp)
         {
             waypoints = wp;
         }
@@ -25,7 +25,7 @@ namespace Test
         {
             for (int i = 0; i < waypoints.Count; i++)
             {
-                WayPoint w = waypoints[i];
+                Waypoint w = waypoints[i];
                 if (i == 0)
                 {
                     first_coordinate = w.Coordinates;
@@ -60,7 +60,7 @@ namespace Test
         {
             return waypoints.Count < 100;
         }
-       public void Insert(int index, WayPoint w)
+       public void Insert(int index, Waypoint w)
         {
             waypoints.Insert(index, w);
 
@@ -69,7 +69,7 @@ namespace Test
         /// Adds given waypoint to the end of waypoints list.
         /// </summary>
         /// <param name="w">Waypoint to append</param>
-        public void Append(WayPoint w)
+        public void Append(Waypoint w)
         {
             waypoints.Add(w);
         }
@@ -96,7 +96,7 @@ namespace Test
         {
             for (int i = 0; i < waypoints.Count; i++)
             {
-                if (waypoints[i].GetName() == name)
+                if (waypoints[i].Name == name)
                 {
                     return true;
 
@@ -109,7 +109,7 @@ namespace Test
 
             for (int i = 0; i < waypoints.Count; i++)
             {
-                if (waypoints[i].GetName() == name)
+                if (waypoints[i].Name == name)
                 {
                     return i;
                 }   
