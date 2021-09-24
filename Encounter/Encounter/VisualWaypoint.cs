@@ -28,8 +28,6 @@ namespace Encounter
         public VisualWaypoint(Waypoint waypoint)
         {
             this.waypoint = waypoint;
-            waypoint.Number = 3;
-
             Number = waypoint.Number;
 
             stackPanel = new StackPanel();
@@ -40,7 +38,9 @@ namespace Encounter
             var number = waypoint.Number;
             numberLabel = new Label
             {
-                Content = number.ToString(),
+                Width = 50,
+                HorizontalContentAlignment = HorizontalAlignment.Right,
+                Content =  number.ToString() + ".",
                 FontSize = 18,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
@@ -83,7 +83,7 @@ namespace Encounter
             stackPanel.Children.Add(infoLabel);
         }
 
-        public StackPanel getVisualWaypoint()
+        public StackPanel GetVisualWaypointPanel()
         {
             return stackPanel;
         }
@@ -94,6 +94,13 @@ namespace Encounter
             if (w.Number > this.Number) return -1;
             if (w.Number < this.Number) return 1;
             return 0;
+        }
+
+        public void Update()
+        {
+            numberLabel.Content = waypoint.Number.ToString();
+            infoLabel.Content = waypoint.Name + " (" + waypoint.Coordinates + ")";
+            Number = waypoint.Number;
         }
     }
 }
