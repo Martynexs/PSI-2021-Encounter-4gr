@@ -5,7 +5,7 @@ namespace Encounter
 {
     public class Route 
     {
-        public List<Waypoint> waypoints = new List<Waypoint>();
+        public List<Waypoint> waypoints;
         public double firstX;
         public double firstY;
         public double lastX;
@@ -13,7 +13,7 @@ namespace Encounter
 
         public Route()
         {
-
+            waypoints = new List<Waypoint>();
         }
 
         public Route(List<Waypoint> wp)
@@ -115,7 +115,6 @@ namespace Encounter
                 }   
             }
              return -1; 
-            
         }
     
     }
