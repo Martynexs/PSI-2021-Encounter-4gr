@@ -28,8 +28,11 @@ namespace Encounter
 
         public void DeleteWaypoint(int index)
         {
-            visualWaypoints.RemoveAt(index);
-            route.RemoveWaypoint(index);
+            if (index < visualWaypoints.Count)
+            {
+                visualWaypoints.RemoveAt(index);
+                route.RemoveWaypoint(index);
+            }
         }
 
         public void UpdateWaypoint()
@@ -44,7 +47,8 @@ namespace Encounter
 
         public VisualWaypoint GetVisualWaypoint(int index)
         {
-            return visualWaypoints[index-1];
+            if(visualWaypoints.Count < index) return visualWaypoints[index-1];
+            return null;
         }
 
 
