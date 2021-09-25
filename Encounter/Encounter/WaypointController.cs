@@ -47,7 +47,7 @@ namespace Encounter
 
         public VisualWaypoint GetVisualWaypoint(int index)
         {
-            if(visualWaypoints.Count < index) return visualWaypoints[index-1];
+            if(visualWaypoints.Count >= index) return visualWaypoints[index-1];
             return null;
         }
 
