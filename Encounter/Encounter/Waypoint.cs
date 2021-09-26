@@ -14,6 +14,7 @@ namespace Encounter
         public string OpeningHours { get; set; }
         public string ClosingTime { get; set; }
         public string Description { get; set; }
+        public int Index { get; set; }
 
         public Waypoint()
         {
@@ -21,7 +22,7 @@ namespace Encounter
         }
 
         public Waypoint(int number, string name, string coordinates, string type, string price,
-                        string openingHours, string closingTime, string description)
+                        string openingHours, string closingTime, string description, int index)
         {
             Number = number;
             Name = name;
@@ -30,7 +31,8 @@ namespace Encounter
             Price = price;
             OpeningHours = openingHours;
             ClosingTime = closingTime;
-            Description = description;   
+            Description = description;
+            Index = index;
         }
 
         public string Output()
