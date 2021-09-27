@@ -76,7 +76,14 @@ namespace Encounter
         }
         public void RemoveWaypoint(int index)
         {
-            waypoints.RemoveAt(index);
+            if (index < waypoints.Count)
+            {
+                for (int i = index; i <= waypoints.Count; i++)
+                {
+                    waypoints[i].Number = i - 1;
+                }
+                waypoints.RemoveAt(index);
+            }
         }
         public void RemoveByName(string name)
         {    
@@ -134,7 +141,24 @@ namespace Encounter
 
         public void ChangeWaypointIndex(int index, int newIndex)
         {
-            waypoints[index].Number = newIndex;
+            if (newIndex < index)
+            {
+                for (int i = newIndex; i <= index; i++)
+                {
+                    waypoints[i].Number += 1;
+                }
+            }
+            else
+            {
+                for (int i = index+1; i <= newIndex; i++)
+                {
+                    waypoints[i].Number -= 1;
+                }
+            }
+            var tempW = waypoints[index];
+            tempW.Number = newIndex+1;
+            waypoints.RemoveAt(index);
+            waypoints.Insert(newIndex, tempW);
         }
 
     }

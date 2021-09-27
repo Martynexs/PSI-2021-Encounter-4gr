@@ -30,24 +30,49 @@ namespace Encounter
         {
             if (index <= visualWaypoints.Count)
             {
-                for (int i = index; i <= visualWaypoints.Count; i++)
+                route.RemoveWaypoint(index - 1);
+                for (int i = index; i < visualWaypoints.Count; i++)
                 {
-                    route.ChangeWaypointIndex(i-1, i-1);
-                    visualWaypoints[i-1].Update();
+                    visualWaypoints[i].Update();
                 }
                 visualWaypoints.RemoveAt(index-1);
-                route.RemoveWaypoint(index-1);
             }
         }
 
         public void UpdateWaypoint(int number, string name, string coordinates, string type, string price, string opening, string closing, string descriptions, int index)
         {
+            route.GetWaypoint(number - 1).Update(number, name, coordinates, type, price, opening, closing, descriptions, index);
+            visualWaypoints[number - 1].Update();
+            
             if (index != number)
             {
-
+                ChnageWaypointPossition(number - 1, index - 1);
             }
-            route.GetWaypoint(index - 1).Update(number, name, coordinates, type, price, opening, closing, descriptions, index);
-            visualWaypoints[index - 1].Update();
+            
+        }
+
+        public void ChnageWaypointPossition(int index, int newIndex)
+        {
+            route.ChangeWaypointIndex(index, newIndex);
+            
+            if (newIndex < index)
+            {
+                for(int i=newIndex; i<=index; i++)
+                {
+                    visualWaypoints[i].Update();
+                }
+            }
+            else
+            {
+                for(int i=index; i<=newIndex; i++)
+                {
+                    visualWaypoints[i].Update();
+                }
+            }
+            
+            var tempVW = visualWaypoints[index];
+            visualWaypoints.RemoveAt(index);
+            visualWaypoints.Insert(newIndex, tempVW);
         }
 
         public Waypoint GetWaypoint(int index)
@@ -60,12 +85,6 @@ namespace Encounter
             if(visualWaypoints.Count >= index) return visualWaypoints[index-1];
             return null;
         }
-
-
-
-
-
-
 
     }
 }
