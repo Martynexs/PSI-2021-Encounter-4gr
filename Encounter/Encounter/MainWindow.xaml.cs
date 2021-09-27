@@ -27,29 +27,25 @@ namespace Encounter
             InitializeComponent();
         }
 
-        Editor AddwayPoint = new Editor();
+       // Editor AddwayPoint = new Editor();
 
         private void LoadWaypointEditor(object sender, RoutedEventArgs e)
         {
             editGrid.Visibility = Visibility.Visible;
             Button button = (Button)sender;
-            Waypoint waypoint = (Waypoint)button.Tag;
-            var nr = waypoint.Number;
-            button.Content = nr.ToString();
-            string str_myobject = button.Content.ToString();
-            int int_myobject = int.Parse(str_myobject);
-            if (AddwayPoint.list.Count > int_myobject - 1)
+            int waypointID = (int)button.Tag;
+            Waypoint selectedWaypoint = WaypointController.GetWaypoint(waypointID);
+            if (selectedWaypoint != null)
             {
-                Waypoint rightobject = AddwayPoint.list[int_myobject - 1];
-                Number.Text = int_myobject.ToString();
-                IndexBox.Text = int_myobject.ToString();
-                Name.Text = rightobject.Name;
-                Coordinates.Text = rightobject.Coordinates;
-                Type.Text = rightobject.Type;
-                Price.Text = rightobject.Price;
-                Opening.Text = rightobject.OpeningHours;
-                Closing.Text = rightobject.ClosingTime;
-                Description.Text = rightobject.Description;
+                Number.Text = waypointID.ToString();
+                IndexBox.Text = waypointID.ToString();
+                Name.Text = selectedWaypoint.Name;
+                Coordinates.Text = selectedWaypoint.Coordinates;
+                Type.Text = selectedWaypoint.Type;
+                Price.Text = selectedWaypoint.Price;
+                Opening.Text = selectedWaypoint.OpeningHours;
+                Closing.Text = selectedWaypoint.ClosingTime;
+                Description.Text = selectedWaypoint.Description;
             }
         }
 
@@ -68,12 +64,10 @@ namespace Encounter
             visualWaypoint.button.Click += LoadWaypointEditor;
             DockPanel.SetDock(waypointPanel, Dock.Top);
             waypointsPanel.Children.Add(waypointPanel);
-            AddwayPoint.AddWayPoint();
         }
 
         private void SaveButton(object sender, RoutedEventArgs e)
         {
-
             var Names = Name.Text;
             var Coordinate = Coordinates.Text;
             var Types = Type.Text;
@@ -83,15 +77,15 @@ namespace Encounter
             var Descriptions = Description.Text;
             var Numbers = Int32.Parse(Number.Text);
             var Index = Int32.Parse(IndexBox.Text);
-            AddwayPoint.EditWayPoint(Numbers, Names, Coordinate, Types, Prices, Open, Close, Descriptions, Index);
+            WaypointController.UpdateWaypoint(Numbers, Names, Coordinate, Types, Prices, Open, Close, Descriptions, Index);
             editGrid.Visibility = Visibility.Hidden;
         }
 
         private void DeleteButton(object sender, RoutedEventArgs e)
         {
             var Index = Int32.Parse(Number.Text);
-            AddwayPoint.RemoveWayPoint(Index);
             WaypointController.DeleteWaypoint(Index);
+            waypointsPanel.Children.RemoveAt(Index-1);
             editGrid.Visibility = Visibility.Hidden;
         }
     }

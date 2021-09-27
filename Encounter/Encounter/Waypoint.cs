@@ -46,5 +46,17 @@ namespace Encounter
                     "Description:" + Description + "\n";
         }
 
+        public void Update(int number, string name, string coordinates, string type, string price, string opening, string closing, string descriptions, int index)
+        {
+            this.Number = number;
+            this.Name = name;
+            this.Coordinates = coordinates;
+            this.Type = type;
+            this.Price = price;
+            this.OpeningHours = opening;
+            this.ClosingTime = closing;
+            this.Description = descriptions;
+        }
+
     }
 }

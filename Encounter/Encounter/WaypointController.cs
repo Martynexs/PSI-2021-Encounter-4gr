@@ -35,9 +35,18 @@ namespace Encounter
             }
         }
 
-        public void UpdateWaypoint()
+        public void UpdateWaypoint(int number, string name, string coordinates, string type, string price, string opening, string closing, string descriptions, int index)
         {
-
+            /*
+            if (index != number)
+            {
+                Waypoint temp = list[index - 1];
+                list[index - 1] = list[number - 1];
+                list[number - 1] = temp;
+            }
+            */
+            route.GetWaypoint(index - 1).Update(number, name, coordinates, type, price, opening, closing, descriptions, index);
+            visualWaypoints[index - 1].Update();
         }
 
         public Waypoint GetWaypoint(int index)

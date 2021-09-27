@@ -66,7 +66,7 @@ namespace Encounter
                 Background = Brushes.Transparent,
                 BorderBrush = Brushes.Transparent
             };
-            button.Tag = waypoint;
+            button.Tag = number;
             button.Content = ellipse;
             stackPanel.Children.Add(button);
 
@@ -76,8 +76,7 @@ namespace Encounter
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                FontSize = 18,
-                Width = 175
+                FontSize = 18
             };
             infoLabel.Content = info;
             stackPanel.Children.Add(infoLabel);
@@ -98,9 +97,10 @@ namespace Encounter
 
         public void Update()
         {
-            numberLabel.Content = waypoint.Number.ToString();
+            numberLabel.Content = waypoint.Number.ToString() + ".";
             infoLabel.Content = waypoint.Name + " (" + waypoint.Coordinates + ")";
             Number = waypoint.Number;
+            button.Tag = Number;
         }
     }
 }
