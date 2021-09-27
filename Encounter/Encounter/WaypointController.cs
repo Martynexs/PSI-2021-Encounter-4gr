@@ -28,23 +28,24 @@ namespace Encounter
 
         public void DeleteWaypoint(int index)
         {
-            if (index < visualWaypoints.Count)
+            if (index <= visualWaypoints.Count)
             {
-                visualWaypoints.RemoveAt(index);
-                route.RemoveWaypoint(index);
+                for (int i = index; i <= visualWaypoints.Count; i++)
+                {
+                    route.ChangeWaypointIndex(i-1, i-1);
+                    visualWaypoints[i-1].Update();
+                }
+                visualWaypoints.RemoveAt(index-1);
+                route.RemoveWaypoint(index-1);
             }
         }
 
         public void UpdateWaypoint(int number, string name, string coordinates, string type, string price, string opening, string closing, string descriptions, int index)
         {
-            /*
             if (index != number)
             {
-                Waypoint temp = list[index - 1];
-                list[index - 1] = list[number - 1];
-                list[number - 1] = temp;
+
             }
-            */
             route.GetWaypoint(index - 1).Update(number, name, coordinates, type, price, opening, closing, descriptions, index);
             visualWaypoints[index - 1].Update();
         }

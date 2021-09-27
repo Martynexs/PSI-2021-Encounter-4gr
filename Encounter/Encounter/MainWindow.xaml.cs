@@ -27,8 +27,6 @@ namespace Encounter
             InitializeComponent();
         }
 
-       // Editor AddwayPoint = new Editor();
-
         private void LoadWaypointEditor(object sender, RoutedEventArgs e)
         {
             editGrid.Visibility = Visibility.Visible;

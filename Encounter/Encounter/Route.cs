@@ -132,5 +132,10 @@ namespace Encounter
             return index <= waypoints.Count ? waypoints[index] : null;
         }
 
+        public void ChangeWaypointIndex(int index, int newIndex)
+        {
+            waypoints[index].Number = newIndex;
+        }
+
     }
 }
