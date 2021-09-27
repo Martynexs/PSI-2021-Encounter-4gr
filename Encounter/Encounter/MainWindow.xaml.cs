@@ -27,8 +27,6 @@ namespace Encounter
             InitializeComponent();
         }
 
-       // Editor AddwayPoint = new Editor();
-
         private void LoadWaypointEditor(object sender, RoutedEventArgs e)
         {
             editGrid.Visibility = Visibility.Visible;
@@ -77,7 +75,15 @@ namespace Encounter
             var Descriptions = Description.Text;
             var Numbers = Int32.Parse(Number.Text);
             var Index = Int32.Parse(IndexBox.Text);
-            WaypointController.UpdateWaypoint(Numbers, Names, Coordinate, Types, Prices, Open, Close, Descriptions, Index);
+            
+            if (Numbers != Index)
+            {
+                var tempPanel = waypointsPanel.Children[Index - 1];
+                waypointsPanel.Children.RemoveAt(Index - 1);
+                waypointsPanel.Children.Insert(Numbers - 1, tempPanel);
+            }
+
+            WaypointController.UpdateWaypoint(Index, Names, Coordinate, Types, Prices, Open, Close, Descriptions, Numbers);
             editGrid.Visibility = Visibility.Hidden;
         }
 
