@@ -78,9 +78,9 @@ namespace Encounter
         {
             if (index < waypoints.Count)
             {
-                for (int i = index; i <= waypoints.Count; i++)
+                for (int i = index; i < waypoints.Count; i++)
                 {
-                    waypoints[i].Number = i - 1;
+                    waypoints[i].Number -= 1;
                 }
                 waypoints.RemoveAt(index);
             }
@@ -106,7 +106,6 @@ namespace Encounter
                 if (waypoints[i].Name == name)
                 {
                     return true;
-
                 }
             }
             return false;
