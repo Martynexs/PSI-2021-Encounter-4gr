@@ -6,10 +6,6 @@ namespace Encounter
     public class Route 
     {
         public List<Waypoint> waypoints;
-        public double firstX;
-        public double firstY;
-        public double lastX;
-        public double lastY;
 
         public Route()
         {
