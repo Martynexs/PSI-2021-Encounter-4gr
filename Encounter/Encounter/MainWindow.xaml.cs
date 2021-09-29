@@ -73,8 +73,8 @@ namespace Encounter
             var Open = Opening.Text;
             var Close = Closing.Text;
             var Descriptions = Description.Text;
-            var Numbers = Int32.Parse(Number.Text);
-            var Index = Int32.Parse(IndexBox.Text);
+            var Numbers = int.Parse(Number.Text);
+            var Index = int.Parse(IndexBox.Text);
             
             if (Numbers != Index)
             {

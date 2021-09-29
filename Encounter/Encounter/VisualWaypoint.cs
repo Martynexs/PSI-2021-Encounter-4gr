@@ -58,7 +58,6 @@ namespace Encounter
                 Cursor = Cursors.Hand,
                 StrokeDashCap = PenLineCap.Round
             };
-            //stackPanel.Children.Add(ellipse);
 
             button = new Button
             {
@@ -70,8 +69,7 @@ namespace Encounter
             button.Content = ellipse;
             stackPanel.Children.Add(button);
 
-
-            string info = waypoint.Name + " (" + waypoint.Coordinates + ") ";
+            var info = waypoint.Name + " (" + waypoint.Coordinates + ") ";
             infoLabel = new Label
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
