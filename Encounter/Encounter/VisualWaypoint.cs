@@ -15,32 +15,51 @@ using System.Windows.Navigation;
 
 namespace Encounter
 {
-    class VisualWaypoint : IComparable<VisualWaypoint>
+    public class VisualWaypoint
     {
-        private int Number;
+        private int _Index;
+        public int Index
+        {
+            get => _Index;
+            set { _Index = value; numberLabel.Content = Index.ToString(); button.Tag = value; }
+        }
+
+        private string _Name;
+        public string Name
+        {
+            get => _Name;
+            set { _Name = value; SetInfoLabel(); }
+        }
+
+        private (double, double) _Coordinates;
+        public (double, double) Coordinates
+        {
+            get => _Coordinates;
+            set { _Coordinates = value; SetInfoLabel(); }
+        }
+
+        private void SetInfoLabel()
+        {
+            infoLabel.Content = Name + " (" + Coordinates.Item1.ToString() + ", " + Coordinates.Item2.ToString() + ")";
+        }
+
         private StackPanel stackPanel;
         private Ellipse ellipse;
         public Button button;
         private Label numberLabel;
         private Label infoLabel;
-        public Waypoint waypoint;
 
-        public VisualWaypoint(Waypoint waypoint)
+        public VisualWaypoint()
         {
-            this.waypoint = waypoint;
-            Number = waypoint.Number;
-
             stackPanel = new StackPanel();
             stackPanel.Orientation = Orientation.Horizontal;
             stackPanel.Height = 60;
             stackPanel.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFE6E6E6");
 
-            var number = waypoint.Number;
             numberLabel = new Label
             {
                 Width = 50,
                 HorizontalContentAlignment = HorizontalAlignment.Right,
-                Content =  number.ToString() + ".",
                 FontSize = 18,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
@@ -65,40 +84,22 @@ namespace Encounter
                 Background = Brushes.Transparent,
                 BorderBrush = Brushes.Transparent
             };
-            button.Tag = number;
+            button.Tag = _Index;
             button.Content = ellipse;
             stackPanel.Children.Add(button);
 
-            var info = waypoint.Name + " (" + waypoint.Coordinates + ") ";
             infoLabel = new Label
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 FontSize = 18
             };
-            infoLabel.Content = info;
             stackPanel.Children.Add(infoLabel);
         }
 
         public StackPanel GetVisualWaypointPanel()
         {
             return stackPanel;
-        }
-
-        public int CompareTo(VisualWaypoint w)
-        {
-            if (w == null) return 1;
-            if (w.Number > this.Number) return -1;
-            if (w.Number < this.Number) return 1;
-            return 0;
-        }
-
-        public void Update()
-        {
-            numberLabel.Content = waypoint.Number.ToString() + ".";
-            infoLabel.Content = waypoint.Name + " (" + waypoint.Coordinates + ")";
-            Number = waypoint.Number;
-            button.Tag = Number;
         }
     }
 }
