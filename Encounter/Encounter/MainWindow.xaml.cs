@@ -55,7 +55,7 @@ namespace Encounter
         private void CreateNewWaypoint(object sender, RoutedEventArgs e)
         {
             var waypoint = _route.CreateNewWaypoint();
-            waypoint.GetVisualWaypoint().button.Click += LoadWaypointEditor;
+            waypoint.GetVisualWaypoint().Button.Click += LoadWaypointEditor;
             var waypointPanel = waypoint.GetWaypointPanel();
 
             DockPanel.SetDock(waypointPanel, Dock.Top);

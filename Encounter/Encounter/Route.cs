@@ -16,9 +16,11 @@ namespace Encounter
         {
             var waypoint = new WaypointViewModel();
             _waypoints.Add(waypoint);
+
             waypoint.Index = _waypoints.Count;
             waypoint.Name = "Name";
             waypoint.Coordinates = (0.00, 0.00);
+
             return waypoint;
         }
 
