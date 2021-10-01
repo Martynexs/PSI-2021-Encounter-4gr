@@ -15,40 +15,59 @@ using System.Windows.Navigation;
 
 namespace Encounter
 {
-    class VisualWaypoint : IComparable<VisualWaypoint>
+    public class VisualWaypoint
     {
-        private int Number;
-        private StackPanel stackPanel;
-        private Ellipse ellipse;
-        public Button button;
-        private Label numberLabel;
-        private Label infoLabel;
-        public Waypoint waypoint;
-
-        public VisualWaypoint(Waypoint waypoint)
+        private int _index;
+        public int Index
         {
-            this.waypoint = waypoint;
-            Number = waypoint.Number;
+            get => _index;
+            set { _index = value; _numberLabel.Content = Index.ToString() + "."; Button.Tag = value; }
+        }
 
-            stackPanel = new StackPanel();
-            stackPanel.Orientation = Orientation.Horizontal;
-            stackPanel.Height = 60;
-            stackPanel.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFE6E6E6");
+        private string _name;
+        public string Name
+        {
+            get => _name;
+            set { _name = value; SetInfoLabel(); }
+        }
 
-            var number = waypoint.Number;
-            numberLabel = new Label
+        private (double, double) _coordinates;
+        public (double, double) Coordinates
+        {
+            get => _coordinates;
+            set { _coordinates = value; SetInfoLabel(); }
+        }
+
+        private void SetInfoLabel()
+        {
+            _infoLabel.Content = Name + " (" + Coordinates.Item1.ToString() + ", " + Coordinates.Item2.ToString() + ")";
+        }
+
+        private StackPanel _stackPanel;
+        private Ellipse _ellipse;
+        public Button Button;
+        private Label _numberLabel;
+        private Label _infoLabel;
+
+        public VisualWaypoint()
+        {
+            _stackPanel = new StackPanel();
+            _stackPanel.Orientation = Orientation.Horizontal;
+            _stackPanel.Height = 60;
+            _stackPanel.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFE6E6E6");
+
+            _numberLabel = new Label
             {
                 Width = 50,
                 HorizontalContentAlignment = HorizontalAlignment.Right,
-                Content =  number.ToString() + ".",
                 FontSize = 18,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 FontWeight = FontWeights.Bold
             };
-            stackPanel.Children.Add(numberLabel);
+            _stackPanel.Children.Add(_numberLabel);
 
-            ellipse = new Ellipse
+            _ellipse = new Ellipse
             {
                 Height = 50,
                 Stroke = Brushes.Black,
@@ -59,46 +78,28 @@ namespace Encounter
                 StrokeDashCap = PenLineCap.Round
             };
 
-            button = new Button
+            Button = new Button
             {
                 Width = 57,
                 Background = Brushes.Transparent,
                 BorderBrush = Brushes.Transparent
             };
-            button.Tag = number;
-            button.Content = ellipse;
-            stackPanel.Children.Add(button);
+            Button.Tag = _index;
+            Button.Content = _ellipse;
+            _stackPanel.Children.Add(Button);
 
-            var info = waypoint.Name + " (" + waypoint.Coordinates + ") ";
-            infoLabel = new Label
+            _infoLabel = new Label
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 FontSize = 18
             };
-            infoLabel.Content = info;
-            stackPanel.Children.Add(infoLabel);
+            _stackPanel.Children.Add(_infoLabel);
         }
 
         public StackPanel GetVisualWaypointPanel()
         {
-            return stackPanel;
-        }
-
-        public int CompareTo(VisualWaypoint w)
-        {
-            if (w == null) return 1;
-            if (w.Number > this.Number) return -1;
-            if (w.Number < this.Number) return 1;
-            return 0;
-        }
-
-        public void Update()
-        {
-            numberLabel.Content = waypoint.Number.ToString() + ".";
-            infoLabel.Content = waypoint.Name + " (" + waypoint.Coordinates + ")";
-            Number = waypoint.Number;
-            button.Tag = Number;
+            return _stackPanel;
         }
     }
 }

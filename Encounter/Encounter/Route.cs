@@ -5,43 +5,45 @@ namespace Encounter
 {
     public class Route 
     {
-        public List<Waypoint> waypoints;
+        private List<WaypointViewModel> _waypoints;
 
         public Route()
         {
-            waypoints = new List<Waypoint>();
+            _waypoints = new List<WaypointViewModel>();
+        }
+
+        public WaypointViewModel CreateNewWaypoint()
+        {
+            var waypoint = new WaypointViewModel();
+            _waypoints.Add(waypoint);
+
+            waypoint.Index = _waypoints.Count;
+            waypoint.Name = "Name";
+            waypoint.Coordinates = (0.00, 0.00);
+
+            return waypoint;
         }
 
         public void RemoveWaypoint(int index)
         {
-            if (index < waypoints.Count)
+            if (index < _waypoints.Count)
             {
-                for (int i = index; i < waypoints.Count; i++)
+                for (int i = index; i < _waypoints.Count; i++)
                 {
-                    waypoints[i].Number -= 1;
+                    _waypoints[i].Index -= 1;
                 }
-                waypoints.RemoveAt(index);
+                _waypoints.RemoveAt(index);
             }
         }
 
         public int GetWaypointsCount()
         {
-           return waypoints.Count;
+           return _waypoints.Count;
         }
 
-        public Waypoint CreateNewWaypoint()
+        public WaypointViewModel GetWaypoint(int index)
         {
-            var wp = new Waypoint();
-            waypoints.Add(wp);
-            wp.Number = waypoints.Count;
-            wp.Name = "Name";
-            wp.Coordinates = "0.00, 0.00";
-            return wp;
-        }
-
-        public Waypoint GetWaypoint(int index)
-        {
-            return index <= waypoints.Count ? waypoints[index] : null;
+            return index <= _waypoints.Count ? _waypoints[index] : null;
         }
 
         public void ChangeWaypointIndex(int index, int newIndex)
@@ -50,21 +52,20 @@ namespace Encounter
             {
                 for (int i = newIndex; i <= index; i++)
                 {
-                    waypoints[i].Number += 1;
+                    _waypoints[i].Index += 1;
                 }
             }
             else
             {
                 for (int i = index+1; i <= newIndex; i++)
                 {
-                    waypoints[i].Number -= 1;
+                    _waypoints[i].Index -= 1;
                 }
             }
-            var tempW = waypoints[index];
-            tempW.Number = newIndex+1;
-            waypoints.RemoveAt(index);
-            waypoints.Insert(newIndex, tempW);
+            var tempW = _waypoints[index];
+            tempW.Index = newIndex+1;
+            _waypoints.RemoveAt(index);
+            _waypoints.Insert(newIndex, tempW);
         }
-
     }
 }

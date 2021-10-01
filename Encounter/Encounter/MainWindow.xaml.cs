@@ -20,10 +20,10 @@ namespace Encounter
     /// </summary>
     public partial class MainWindow : Window
     {
-        WaypointController WaypointController;
+        private Route _route;
         public MainWindow()
         {
-            WaypointController = new WaypointController();
+            _route = new Route();
             InitializeComponent();
         }
 
@@ -32,17 +32,17 @@ namespace Encounter
             editGrid.Visibility = Visibility.Visible;
             Button button = (Button)sender;
             int waypointID = (int)button.Tag;
-            Waypoint selectedWaypoint = WaypointController.GetWaypoint(waypointID);
+            var selectedWaypoint = _route.GetWaypoint(waypointID-1);
             if (selectedWaypoint != null)
             {
                 Number.Text = waypointID.ToString();
                 IndexBox.Text = waypointID.ToString();
                 Name.Text = selectedWaypoint.Name;
-                Coordinates.Text = selectedWaypoint.Coordinates;
-                Type.Text = selectedWaypoint.Type;
-                Price.Text = selectedWaypoint.Price;
-                Opening.Text = selectedWaypoint.OpeningHours;
-                Closing.Text = selectedWaypoint.ClosingTime;
+                Coordinates.Text = selectedWaypoint.Coordinates.ToString();
+                //Type.Text = selectedWaypoint.Type;
+                Price.Text = selectedWaypoint.Price.ToString();
+                Opening.Text = selectedWaypoint.OpeningHours.ToString();
+                Closing.Text = selectedWaypoint.ClosingTime.ToString();
                 Description.Text = selectedWaypoint.Description;
             }
         }
@@ -54,44 +54,51 @@ namespace Encounter
 
         private void CreateNewWaypoint(object sender, RoutedEventArgs e)
         {
-            var waypointID = WaypointController.CreateNewWaypoint();
-            var visualWaypoint = WaypointController.GetVisualWaypoint(waypointID);
-            var waypointPanel = visualWaypoint.GetVisualWaypointPanel();
+            var waypoint = _route.CreateNewWaypoint();
+            waypoint.GetVisualWaypoint().Button.Click += LoadWaypointEditor;
+            var waypointPanel = waypoint.GetWaypointPanel();
 
-            //Add an action to the button click that opens and loads Waypoint editor
-            visualWaypoint.button.Click += LoadWaypointEditor;
             DockPanel.SetDock(waypointPanel, Dock.Top);
             waypointsPanel.Children.Add(waypointPanel);
         }
 
         private void SaveButton(object sender, RoutedEventArgs e)
         {
-            var Names = Name.Text;
-            var Coordinate = Coordinates.Text;
-            var Types = Type.Text;
-            var Prices = Price.Text;
-            var Open = Opening.Text;
-            var Close = Closing.Text;
-            var Descriptions = Description.Text;
-            var Numbers = int.Parse(Number.Text);
-            var Index = int.Parse(IndexBox.Text);
-            
-            if (Numbers != Index)
+            var name = Name.Text;
+            var coordinates = Coordinates.Text;
+            var type = Type.Text;
+            var price = Price.Text;
+            var open = Opening.Text;
+            var close = Closing.Text;
+            var description = Description.Text;
+            var number = int.Parse(Number.Text);
+            var index = int.Parse(IndexBox.Text);
+
+            var waypoint = _route.GetWaypoint(index-1);
+            waypoint.Name = name;
+           // waypoint.Coordinates = coordinates;
+           // waypoint.Type = type;
+           // waypoint.Price = price;
+           // waypoint.OpeningHours = open;
+           // waypoint.ClosingTime = close;
+            waypoint.Description = description;
+
+            if (number != index)
             {
-                var tempPanel = waypointsPanel.Children[Index - 1];
-                waypointsPanel.Children.RemoveAt(Index - 1);
-                waypointsPanel.Children.Insert(Numbers - 1, tempPanel);
+                var tempPanel = waypointsPanel.Children[index - 1];
+                waypointsPanel.Children.RemoveAt(index - 1);
+                waypointsPanel.Children.Insert(number - 1, tempPanel);
+                _route.ChangeWaypointIndex(index - 1, number - 1);
             }
 
-            WaypointController.UpdateWaypoint(Index, Names, Coordinate, Types, Prices, Open, Close, Descriptions, Numbers);
             editGrid.Visibility = Visibility.Hidden;
         }
 
         private void DeleteButton(object sender, RoutedEventArgs e)
         {
-            var Index = Int32.Parse(Number.Text);
-            WaypointController.DeleteWaypoint(Index);
-            waypointsPanel.Children.RemoveAt(Index-1);
+            int index = int.Parse(Number.Text);
+            _route.RemoveWaypoint(index-1);
+            waypointsPanel.Children.RemoveAt(index-1);
             editGrid.Visibility = Visibility.Hidden;
         }
     }
