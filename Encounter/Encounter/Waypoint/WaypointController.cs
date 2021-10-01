@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Encounter
 {
-    public class Route 
+    public class WaypointController 
     {
         private List<WaypointViewModel> _waypoints;
 
-        public Route()
+        public WaypointController()
         {
             _waypoints = new List<WaypointViewModel>();
         }

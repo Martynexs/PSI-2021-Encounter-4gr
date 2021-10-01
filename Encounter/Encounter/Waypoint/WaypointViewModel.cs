@@ -11,30 +11,30 @@ namespace Encounter
     public class WaypointViewModel : IComparable<WaypointViewModel>
     {
         private Waypoint _waypoint;
-        private VisualWaypoint _visualWaypoint;
+        private WaypointView _waypointView;
 
         public WaypointViewModel()
         {
             _waypoint = new Waypoint();
-            _visualWaypoint = new VisualWaypoint();
+            _waypointView = new WaypointView();
         }
 
         public int Index
         {
             get => _waypoint.Index;
-            set { _waypoint.Index = value; _visualWaypoint.Index = value; }
+            set { _waypoint.Index = value; _waypointView.Index = value; }
         }
 
         public string Name
         {
             get => _waypoint.Name;
-            set { _waypoint.Name = value; _visualWaypoint.Name = value; }
+            set { _waypoint.Name = value; _waypointView.Name = value; }
         }
 
         public (double, double) Coordinates
         {
             get => _waypoint.Coordinates;
-            set { _waypoint.Coordinates = value; _visualWaypoint.Coordinates = value; }
+            set { _waypoint.Coordinates = value; _waypointView.Coordinates = value; }
         }
 
         //public string Type { get; set; }
@@ -65,7 +65,7 @@ namespace Encounter
 
         public StackPanel GetWaypointPanel()
         {
-            return _visualWaypoint.GetVisualWaypointPanel();
+            return _waypointView.GetWaypointViewPanel();
         }
 
         public Waypoint GetWaypoint()
@@ -73,9 +73,9 @@ namespace Encounter
             return _waypoint;
         }
 
-        public VisualWaypoint GetVisualWaypoint()
+        public WaypointView GetWaypointView()
         {
-            return _visualWaypoint;
+            return _waypointView;
         }
 
         public int CompareTo(WaypointViewModel other)

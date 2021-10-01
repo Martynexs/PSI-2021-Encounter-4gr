@@ -20,10 +20,10 @@ namespace Encounter
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Route _route;
+        private WaypointController _waypointController;
         public MainWindow()
         {
-            _route = new Route();
+            _waypointController = new WaypointController();
             InitializeComponent();
         }
 
@@ -32,7 +32,7 @@ namespace Encounter
             editGrid.Visibility = Visibility.Visible;
             Button button = (Button)sender;
             int waypointID = (int)button.Tag;
-            var selectedWaypoint = _route.GetWaypoint(waypointID-1);
+            var selectedWaypoint = _waypointController.GetWaypoint(waypointID-1);
             if (selectedWaypoint != null)
             {
                 Number.Text = waypointID.ToString();
@@ -54,8 +54,8 @@ namespace Encounter
 
         private void CreateNewWaypoint(object sender, RoutedEventArgs e)
         {
-            var waypoint = _route.CreateNewWaypoint();
-            waypoint.GetVisualWaypoint().Button.Click += LoadWaypointEditor;
+            var waypoint = _waypointController.CreateNewWaypoint();
+            waypoint.GetWaypointView().Button.Click += LoadWaypointEditor;
             var waypointPanel = waypoint.GetWaypointPanel();
 
             DockPanel.SetDock(waypointPanel, Dock.Top);
@@ -74,7 +74,7 @@ namespace Encounter
             var number = int.Parse(Number.Text);
             var index = int.Parse(IndexBox.Text);
 
-            var waypoint = _route.GetWaypoint(index-1);
+            var waypoint = _waypointController.GetWaypoint(index-1);
             waypoint.Name = name;
            // waypoint.Coordinates = coordinates;
            // waypoint.Type = type;
@@ -88,7 +88,7 @@ namespace Encounter
                 var tempPanel = waypointsPanel.Children[index - 1];
                 waypointsPanel.Children.RemoveAt(index - 1);
                 waypointsPanel.Children.Insert(number - 1, tempPanel);
-                _route.ChangeWaypointIndex(index - 1, number - 1);
+                _waypointController.ChangeWaypointIndex(index - 1, number - 1);
             }
 
             editGrid.Visibility = Visibility.Hidden;
@@ -97,7 +97,7 @@ namespace Encounter
         private void DeleteButton(object sender, RoutedEventArgs e)
         {
             int index = int.Parse(Number.Text);
-            _route.RemoveWaypoint(index-1);
+            _waypointController.RemoveWaypoint(index-1);
             waypointsPanel.Children.RemoveAt(index-1);
             editGrid.Visibility = Visibility.Hidden;
         }
