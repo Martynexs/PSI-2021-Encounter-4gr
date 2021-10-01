@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 namespace Encounter
 {
-    public class Route
-    {
+    public class WaypointController     {
         private List<WaypointViewModel> _waypoints;
         private double x1;
         private double x2;
         private double y1;
         private double y2;
 
-        public Route()
+        public WaypointController()
         {
             _waypoints = new List<WaypointViewModel>();
         }

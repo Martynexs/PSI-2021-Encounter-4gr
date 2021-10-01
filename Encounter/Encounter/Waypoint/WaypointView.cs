@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 
 namespace Encounter
 {
-    public class VisualWaypoint
+    public class WaypointView
     {
         private int _index;
         public int Index
@@ -49,7 +49,7 @@ namespace Encounter
         private Label _numberLabel;
         private Label _infoLabel;
 
-        public VisualWaypoint()
+        public WaypointView()
         {
             _stackPanel = new StackPanel();
             _stackPanel.Orientation = Orientation.Horizontal;
@@ -97,7 +97,7 @@ namespace Encounter
             _stackPanel.Children.Add(_infoLabel);
         }
 
-        public StackPanel GetVisualWaypointPanel()
+        public StackPanel GetWaypointViewPanel()
         {
             return _stackPanel;
         }
