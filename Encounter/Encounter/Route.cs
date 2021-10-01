@@ -3,9 +3,13 @@ using System.Collections.Generic;
 
 namespace Encounter
 {
-    public class Route 
+    public class Route
     {
         private List<WaypointViewModel> _waypoints;
+        private double x1;
+        private double x2;
+        private double y1;
+        private double y2;
 
         public Route()
         {
@@ -22,6 +26,24 @@ namespace Encounter
             waypoint.Coordinates = (0.00, 0.00);
 
             return waypoint;
+        }
+
+        public double Distance()
+        {
+            double DistanceValue = 0;
+
+            for (int i = 0; i < _waypoints.Count - 1; i++)
+            {
+
+                x1 = _waypoints[i].Coordinates.Item1;
+                y1 = _waypoints[i].Coordinates.Item2;
+                x2 = _waypoints[i+1].Coordinates.Item1;
+                y2 = _waypoints[i+1].Coordinates.Item2;
+               
+                DistanceValue += Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));             
+                 
+            }
+            return DistanceValue;
         }
 
         public void RemoveWaypoint(int index)
