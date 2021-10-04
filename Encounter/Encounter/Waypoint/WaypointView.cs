@@ -17,6 +17,7 @@ using Encounter.Stores;
 
 namespace Encounter
 {
+
     public class WaypointView
     {
         ICommand SelectWaypoint { get; }
@@ -35,8 +36,8 @@ namespace Encounter
             set { _name = value; SetInfoLabel(); }
         }
 
-        private (double, double) _coordinates;
-        public (double, double) Coordinates
+        private Coordinates _coordinates;
+        public Coordinates Coordinates
         {
             get => _coordinates;
             set { _coordinates = value; SetInfoLabel(); }
@@ -44,7 +45,7 @@ namespace Encounter
 
         private void SetInfoLabel()
         {
-            _infoLabel.Content = Name + " (" + Coordinates.Item1.ToString() + ", " + Coordinates.Item2.ToString() + ")";
+            _infoLabel.Content = Name + " (" + Coordinates.longitude.ToString() + ", " + Coordinates.latitude.ToString() + ")";
         }
 
         private StackPanel _stackPanel;

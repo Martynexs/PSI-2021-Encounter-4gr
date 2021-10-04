@@ -23,7 +23,7 @@ namespace Encounter
 
             waypoint.Index = _waypoints.Count;
             waypoint.Name = "Name";
-            waypoint.Coordinates = (0.00, 0.00);
+            waypoint.Coord = new Coordinates(0.00, 0.00);
 
             return waypoint;  
         }
@@ -33,13 +33,16 @@ namespace Encounter
         {
             double DistanceValue = 0;
 
+            
+            
+
             for (int i = 0; i < _waypoints.Count - 1; i++)
             {
 
-                x1 = _waypoints[i].Coordinates.Item1;
-                y1 = _waypoints[i].Coordinates.Item2;
-                x2 = _waypoints[i+1].Coordinates.Item1;
-                y2 = _waypoints[i+1].Coordinates.Item2;
+                x1 = _waypoints[i].Coord.longitude;
+                y1 = _waypoints[i].Coord.latitude;
+                x2 = _waypoints[i + 1].Coord.longitude;
+                y2 = _waypoints[i + 1].Coord.latitude;
                
                 DistanceValue += Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));             
                  

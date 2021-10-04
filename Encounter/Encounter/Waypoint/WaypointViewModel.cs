@@ -39,10 +39,10 @@ namespace Encounter
             set { _waypoint.Name = value; _waypointView.Name = value; }
         }
 
-        public (double, double) Coordinates
+        public Coordinates Coord
         {
-            get => _waypoint.Coordinates;
-            set { _waypoint.Coordinates = value; _waypointView.Coordinates = value; }
+            get => _waypoint.Coord;
+            set { _waypoint.Coord = value; _waypointView.Coordinates = value; }
         }
 
         public WaypointType Type

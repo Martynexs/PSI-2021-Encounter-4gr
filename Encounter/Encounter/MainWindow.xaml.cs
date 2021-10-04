@@ -39,7 +39,7 @@ namespace Encounter
                 Number.Text = waypointID.ToString();
                 IndexBox.Text = waypointID.ToString();
                 Name.Text = selectedWaypoint.Name;
-                Coordinates.Text = selectedWaypoint.Coordinates.ToString();
+                Coordinates.Text = selectedWaypoint.Coord.ToString();
                 //Type.Text = selectedWaypoint.Type;
                 Price.Text = selectedWaypoint.Price.ToString();
                 Opening.Text = selectedWaypoint.OpeningHours.ToString();
