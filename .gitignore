@@ -2,3 +2,4 @@ Encounter\.vs\
 CMakeSettings.json
 *.dll
 *.cache
+/Encounter/Encounter/obj
