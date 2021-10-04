@@ -4,3 +4,4 @@ CMakeSettings.json
 *.cache
 /Encounter/Encounter/obj
 /Encounter/Encounter/bin
+/.vs/Swashbucklers-Project/v16
