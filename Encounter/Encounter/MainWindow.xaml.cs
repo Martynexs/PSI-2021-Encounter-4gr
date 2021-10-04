@@ -20,13 +20,14 @@ namespace Encounter
     /// </summary>
     public partial class MainWindow : Window
     {
-        private WaypointController _waypointController;
+        //private WaypointController _waypointController;
         public MainWindow()
         {
-            _waypointController = new WaypointController();
+           // _waypointController = new WaypointController();
             InitializeComponent();
         }
 
+        /*
         private void LoadWaypointEditor(object sender, RoutedEventArgs e)
         {
             editGrid.Visibility = Visibility.Visible;
@@ -101,8 +102,9 @@ namespace Encounter
             waypointsPanel.Children.RemoveAt(index-1);
             editGrid.Visibility = Visibility.Hidden;
         }
+        */
     }
-
+        
 
 
 

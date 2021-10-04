@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Juste\source\repos\Swashbucklers-Project\Encounter\Encounter\obj\Debug\net5.0-windows\
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Encounter\Encounter\obj\Debug\net5.0-windows\
 Encounter
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-C:\Users\Juste\source\repos\Swashbucklers-Project\Encounter\Encounter\App.xaml
-11407045341
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Encounter\Encounter\App.xaml
+3-1570776815
 
-11-582981250
+252111831366
 193-1891726104
-MainWindow.xaml;
+MainWindow.xaml;Views\HomeView.xaml;Views\RouteView.xaml;
 
-False
+True
 

@@ -1,22 +1,30 @@
-﻿using System;
+﻿using Encounter.Commands;
+using Encounter.Stores;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Encounter
 {
     public class WaypointViewModel : IComparable<WaypointViewModel>
     {
+        private WaypointStore _waypointStore;
         private Waypoint _waypoint;
         private WaypointView _waypointView;
 
-        public WaypointViewModel()
+        ICommand SelectWaypointCommand;
+
+        public WaypointViewModel(WaypointStore waypointStore)
         {
+            _waypointStore = waypointStore;
+            SelectWaypointCommand = new SelectWaypointCommand(waypointStore, this);
             _waypoint = new Waypoint();
-            _waypointView = new WaypointView();
+            _waypointView = new WaypointView(SelectWaypointCommand);
         }
 
         public int Index
@@ -37,7 +45,11 @@ namespace Encounter
             set { _waypoint.Coordinates = value; _waypointView.Coordinates = value; }
         }
 
-        //public string Type { get; set; }
+        public WaypointType Type
+        {
+            get => _waypoint.Type;
+            set => _waypoint.Type = value;
+        }
 
         public decimal Price
         {

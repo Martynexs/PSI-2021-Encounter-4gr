@@ -15,6 +15,7 @@ namespace Encounter
             _waypoints = new List<WaypointViewModel>();
         }
 
+        /*
         public WaypointViewModel CreateNewWaypoint()
         {
             var waypoint = new WaypointViewModel();
@@ -24,8 +25,9 @@ namespace Encounter
             waypoint.Name = "Name";
             waypoint.Coordinates = (0.00, 0.00);
 
-            return waypoint;
+            return waypoint;  
         }
+        */
 
         public double Distance()
         {

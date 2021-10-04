@@ -12,16 +12,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using Encounter.Commands;
+using Encounter.Stores;
 
 namespace Encounter
 {
     public class WaypointView
     {
+        ICommand SelectWaypoint { get; }
+
         private int _index;
         public int Index
         {
             get => _index;
-            set { _index = value; _numberLabel.Content = Index.ToString() + "."; Button.Tag = value; }
+            set { _index = value; _numberLabel.Content = Index.ToString() + "."; _button.Tag = value; }
         }
 
         private string _name;
@@ -45,12 +49,14 @@ namespace Encounter
 
         private StackPanel _stackPanel;
         private Ellipse _ellipse;
-        public Button Button;
+        private Button _button;
         private Label _numberLabel;
         private Label _infoLabel;
 
-        public WaypointView()
+        public WaypointView(ICommand buttonCommand)
         {
+            SelectWaypoint = buttonCommand;
+
             _stackPanel = new StackPanel();
             _stackPanel.Orientation = Orientation.Horizontal;
             _stackPanel.Height = 60;
@@ -78,15 +84,15 @@ namespace Encounter
                 StrokeDashCap = PenLineCap.Round
             };
 
-            Button = new Button
+            _button = new Button
             {
                 Width = 57,
                 Background = Brushes.Transparent,
                 BorderBrush = Brushes.Transparent
             };
-            Button.Tag = _index;
-            Button.Content = _ellipse;
-            _stackPanel.Children.Add(Button);
+            _button.Content = _ellipse;
+            _button.Command = SelectWaypoint;
+            _stackPanel.Children.Add(_button);
 
             _infoLabel = new Label
             {
@@ -95,11 +101,13 @@ namespace Encounter
                 FontSize = 18
             };
             _stackPanel.Children.Add(_infoLabel);
+            DockPanel.SetDock(_stackPanel, Dock.Top);
         }
 
         public StackPanel GetWaypointViewPanel()
         {
             return _stackPanel;
         }
+
     }
 }

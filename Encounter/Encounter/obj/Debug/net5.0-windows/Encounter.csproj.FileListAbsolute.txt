@@ -64,3 +64,8 @@ C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Encounter\Encounter\obj\D
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Encounter\Encounter\obj\Debug\net5.0-windows\ref\Encounter.dll
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Encounter\Encounter\obj\Debug\net5.0-windows\Encounter.pdb
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Encounter\Encounter\obj\Debug\net5.0-windows\Encounter.genruntimeconfig.cache
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Encounter\Encounter\obj\Debug\net5.0-windows\Views\HomeView.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Encounter\Encounter\obj\Debug\net5.0-windows\Views\RouteView.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Encounter\Encounter\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Encounter\Encounter\obj\Debug\net5.0-windows\Views\HomeView.baml
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Encounter\Encounter\obj\Debug\net5.0-windows\Views\RouteView.baml

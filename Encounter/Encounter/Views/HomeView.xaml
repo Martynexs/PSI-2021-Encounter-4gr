@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Encounter.Views.HomeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Encounter.Views"
+        mc:Ignorable="d"
+        Height="450" Width="800">
+    <Grid>
+        <Button Content="New route" Command="{Binding NavigateRouteCommand}" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" FontSize="24" Width="120" Background="#FFFFCF4D"/>
+        <Button Content="Load route" HorizontalAlignment="Center" Margin="0,270,0,0" VerticalAlignment="Top" FontSize="24" Width="120" Background="#FFFFCF4D"/>
+    </Grid>
+</UserControl>
