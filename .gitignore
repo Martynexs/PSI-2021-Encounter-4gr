@@ -3,3 +3,4 @@ CMakeSettings.json
 *.dll
 *.cache
 /Encounter/Encounter/obj
+/Encounter/Encounter/bin

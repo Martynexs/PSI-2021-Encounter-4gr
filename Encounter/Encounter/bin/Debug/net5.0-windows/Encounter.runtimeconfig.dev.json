@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\valat\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\valat\\.nuget\\packages"
-    ]
-  }
-}
