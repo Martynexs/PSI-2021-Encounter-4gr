@@ -16,7 +16,7 @@ namespace Encounter
             longitude = p2;
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return longitude + "," + latitude;
         }
