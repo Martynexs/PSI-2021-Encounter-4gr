@@ -39,10 +39,10 @@ namespace Encounter
             for (int i = 0; i < _waypoints.Count - 1; i++)
             {
 
-                x1 = _waypoints[i].Coord.longitude;
-                y1 = _waypoints[i].Coord.latitude;
-                x2 = _waypoints[i + 1].Coord.longitude;
-                y2 = _waypoints[i + 1].Coord.latitude;
+                x1 = _waypoints[i].Coordinates.longitude;
+                y1 = _waypoints[i].Coordinates.latitude;
+                x2 = _waypoints[i + 1].Coordinates.longitude;
+                y2 = _waypoints[i + 1].Coordinates.latitude;
                
                 DistanceValue += Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));             
                  

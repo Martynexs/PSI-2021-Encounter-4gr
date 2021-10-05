@@ -51,8 +51,8 @@ namespace Encounter.ViewModels
             }
         }
 
-        private (double, double) _coordinates;
-        public (double, double) Coordinates
+        private Coordinates _coordinates;
+        public Coordinates Coordinates
         {
             get => _coordinates;
             set
@@ -133,6 +133,7 @@ namespace Encounter.ViewModels
 
             Index = waypoint.Index;
             Name = waypoint.Name;
+            Coordinates = waypoint.Coordinates;
             Type = waypoint.Type;
             Price = waypoint.Price;
             OpeningHours = waypoint.OpeningHours;

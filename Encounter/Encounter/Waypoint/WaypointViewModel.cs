@@ -39,7 +39,7 @@ namespace Encounter
             set { _waypoint.Name = value; _waypointView.Name = value; }
         }
 
-        public Coordinates Coord
+        public Coordinates Coordinates
         {
             get => _waypoint.Coord;
             set { _waypoint.Coord = value; _waypointView.Coordinates = value; }
