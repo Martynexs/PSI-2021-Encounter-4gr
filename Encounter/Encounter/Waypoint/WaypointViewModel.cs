@@ -68,6 +68,11 @@ namespace Encounter
             get => _waypoint.ClosingTime;
             set => _waypoint.ClosingTime = value;
         }
+        public string PhoneNumber
+        {
+            get => _waypoint.PhoneNumber;
+            set => _waypoint.PhoneNumber = value;
+        }
 
         public string Description
         {

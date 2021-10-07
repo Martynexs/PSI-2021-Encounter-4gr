@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
+
 
 namespace Encounter.ViewModels
 {
@@ -15,6 +17,8 @@ namespace Encounter.ViewModels
     {
         private WaypointStore _waypointStore;
         public WaypointViewModel SelectedWaypoint => _waypointStore.SelectedWaypoint;
+
+        public List<LabelValueItem<WaypointType>> AllWaypointTypes { get; }
 
         public ICommand CloseEditor { get; }
 
@@ -62,8 +66,8 @@ namespace Encounter.ViewModels
             }
         }
 
-        private WaypointType _type;
-        public WaypointType Type
+        private LabelValueItem<WaypointType> _type;
+        public LabelValueItem<WaypointType> Type
         {
             get => _type;
             set
@@ -105,6 +109,16 @@ namespace Encounter.ViewModels
                 OnPropertyChnaged();
             }
         }
+        private string _phoneNumber;
+        public string PhoneNumber
+        {
+            get => _phoneNumber;
+            set
+            {
+                _phoneNumber = value;
+                OnPropertyChnaged();
+            }
+        }
 
         private string _description;
         public string Description
@@ -121,6 +135,7 @@ namespace Encounter.ViewModels
         {
             _waypointStore = waypointStore;
             EditorVisibility = Visibility.Hidden;
+            AllWaypointTypes = WayPointTypeExtensions.GetAllTypes();
             _waypointStore.SelectedWaypointChanged += OnSelectedWaypointChanged;
             CloseEditor = new CloseEditorCommand(this);
         }
@@ -134,11 +149,19 @@ namespace Encounter.ViewModels
             Index = waypoint.Index;
             Name = waypoint.Name;
             Coordinates = waypoint.Coordinates;
-            Type = waypoint.Type;
+            Type = AllWaypointTypes.Find(t => t.value == waypoint.Type);
             Price = waypoint.Price;
             OpeningHours = waypoint.OpeningHours;
             ClosingTime = waypoint.ClosingTime;
+            PhoneNumber= waypoint.PhoneNumber;
             Description = waypoint.Description;
+        }
+
+        private bool PhoneNumberMatches ()
+        {
+            Regex reg = new Regex("^(([+][3][7][0][0-9]{8})|([8][0-9]{8}))$");
+            bool result = reg.IsMatch(PhoneNumber);
+            return result;
         }
     }
 }

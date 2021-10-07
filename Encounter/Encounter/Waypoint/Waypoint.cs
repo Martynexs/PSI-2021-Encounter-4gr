@@ -14,6 +14,7 @@ namespace Encounter
         public decimal Price { get; set; }
         public DateTime OpeningHours { get; set; }
         public DateTime ClosingTime { get; set; }
+        public String PhoneNumber { get; set; }
         public string Description { get; set; }
 
         public Waypoint()
