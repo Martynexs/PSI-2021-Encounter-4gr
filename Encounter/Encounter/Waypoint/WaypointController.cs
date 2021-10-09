@@ -47,7 +47,8 @@ namespace Encounter
                 DistanceValue += Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));             
                  
             }
-            return DistanceValue;
+            //casting to integer km narroving type conversion
+            return (int)DistanceValue;
         }
 
         public void RemoveWaypoint(int index)
@@ -93,5 +94,33 @@ namespace Encounter
             _waypoints.RemoveAt(index);
             _waypoints.Insert(newIndex, tempW);
         }
+        //Widening type conversion from decimal to double
+        public double ConvertCurrency(decimal price, string currencyFrom, string currencyTo)
+        {
+            double rate;
+            if (currencyFrom == "USD" && currencyTo == "EUR")
+            {
+                rate = 1 / 1.569;
+            }
+            else if (currencyFrom == "EUR" && currencyTo == "USD")
+            {
+                rate = 1.569;
+            }
+            else if (currencyFrom == "GBP" && currencyTo == "EUR")
+            {
+                rate = 1/ 0.84890;
+            }
+            else if (currencyFrom == "EUR" && currencyTo == "GBP")
+            {
+                rate = 0.84890;
+            }
+            else
+            {
+                throw new ArgumentException("Can't convert from " + currencyFrom + " to " + currencyTo);
+            }
+            return ((double)price) * rate;
+        }
+
+        
     }
 }
