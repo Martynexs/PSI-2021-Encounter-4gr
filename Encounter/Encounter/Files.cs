@@ -16,8 +16,8 @@ namespace Encounter
     {
         static public void Write(RouteViewModel routeViewModel)
         {
-            var csvPath = Path.Combine(Environment.CurrentDirectory, "D:\\Trees\\krv.csv");
-            using (var streamWriter = new StreamWriter(csvPath))
+            var path = FileController.CreateFile();
+            using (var streamWriter = new StreamWriter(path))
             {
                 var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
                 {
@@ -35,7 +35,9 @@ namespace Encounter
         static public IEnumerable<Waypoint> Read()
         {
             IEnumerable<Waypoint> waypoints;
-            using (var streamReader = new StreamReader("D:\\Trees\\krv.csv"))
+            var path = FileController.SelectFile();
+
+            using (var streamReader = new StreamReader(path))
             {
                 var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
                 {
