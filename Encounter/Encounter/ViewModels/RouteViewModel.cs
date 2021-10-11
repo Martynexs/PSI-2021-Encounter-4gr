@@ -29,7 +29,7 @@ namespace Encounter.ViewModels
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
-            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore);
+            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this);
             _waypoints = new List<WaypointViewModel>();
             _waypointPanels = new ObservableCollection<FrameworkElement>();
         }
@@ -45,5 +45,47 @@ namespace Encounter.ViewModels
             return _waypoints.Count;
         }
 
+        public void HideEditor()
+        {
+            WaypointEditorViewModel.EditorVisibility = Visibility.Hidden;
+        }
+
+        public void DeleteWaypoint(int index)
+        {
+            if (index < _waypoints.Count)
+            {
+                _waypoints.RemoveAt(index);
+                _waypointPanels.RemoveAt(index);
+
+                MatchIndexes();
+            }
+        }
+
+        public void ChangeWaypointIndex(int index, int newIndex)
+        {
+            var tempW = _waypoints[index];
+            var tempWV = _waypointPanels[index];
+
+            _waypoints.RemoveAt(index);
+            _waypointPanels.RemoveAt(index);
+
+            _waypoints.Insert(newIndex, tempW);
+            _waypointPanels.Insert(newIndex, tempWV);
+
+            MatchIndexes();
+        }
+
+        private void MatchIndexes()
+        {
+            int i = 0;
+            foreach (var waypoint in _waypoints)
+            {
+                waypoint.Index = i + 1;
+                i++;
+            }
+        }
+
     }
+
+
 }
