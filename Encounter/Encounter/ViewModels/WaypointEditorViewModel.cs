@@ -22,6 +22,8 @@ namespace Encounter.ViewModels
 
         public ICommand CloseEditor { get; }
 
+        public ICommand SaveEditor { get; }
+
         private Visibility _editorVisibility;
         public Visibility EditorVisibility
         {
@@ -138,6 +140,7 @@ namespace Encounter.ViewModels
             AllWaypointTypes = WayPointTypeExtensions.GetAllTypes();
             _waypointStore.SelectedWaypointChanged += OnSelectedWaypointChanged;
             CloseEditor = new CloseEditorCommand(this);
+            SaveEditor = new SaveEditorCommand(this);
         }
 
         public void OnSelectedWaypointChanged()

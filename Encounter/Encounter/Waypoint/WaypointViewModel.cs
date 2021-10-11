@@ -11,6 +11,7 @@ using System.Windows.Input;
 
 namespace Encounter
 {
+    [Serializable]
     public class WaypointViewModel : IComparable<WaypointViewModel>
     {
         private WaypointStore _waypointStore;

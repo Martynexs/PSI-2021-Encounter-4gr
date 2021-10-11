@@ -2,8 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\Encounter",
-    "\\Encounter\\Encounter"
+    "\\Encounter\\Encounter",
+    "\\Encounter\\Encounter\\Commands",
+    "\\Encounter\\Encounter\\Converters",
+    "\\Encounter\\Encounter\\Player",
+    "\\Encounter\\Encounter\\Stores",
+    "\\Encounter\\Encounter\\ViewModels"
   ],
-  "SelectedNode": "\\Encounter\\Encounter\\MainWindow.xaml",
+  "SelectedNode": "\\Encounter\\Encounter\\Commands\\CreateNewWaypointCommand.cs",
   "PreviewInSolutionExplorer": false
 }

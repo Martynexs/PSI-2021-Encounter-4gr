@@ -32,7 +32,7 @@
             <Label Content="Closing hours:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Margin="0,180,0,0" FontSize="18" Foreground="Black"/>
             <TextBox x:Name="Description" Text="" TextWrapping="Wrap" Margin="46,250,0,0" Height="126" VerticalAlignment="Top" HorizontalAlignment="Left" Width="214" FontSize="18"/>
             <Label Content="Current number :&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,381,0,0" VerticalAlignment="Top" Height="36" Width="185" FontSize="18" Foreground="Black"/>
-            <Button Content="SAVE" HorizontalAlignment="Center" Margin="0,493,0,0" VerticalAlignment="Top" Width="64" Foreground="Black" FontSize="18"/>
+            <Button Content="SAVE" Command="{Binding SaveEditor}" HorizontalAlignment="Center" Margin="0,493,0,0" VerticalAlignment="Top" Width="64" Foreground="Black" FontSize="18"/>
             <Button Content="EXIT" Command="{Binding CloseEditor}" HorizontalAlignment="Left" Margin="30,493,0,0" VerticalAlignment="Top" Width="66" FontSize="18" Foreground="Black"/>
             <Button Content="DELETE" HorizontalAlignment="Left" Margin="227,493,0,0" VerticalAlignment="Top" Width="66" Foreground="Black" FontSize="18"/>
             <TextBox x:Name="Name" HorizontalAlignment="Center" Margin="130,5,0,0" Text="{Binding Name}" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" HorizontalContentAlignment="Center" FontSize="18" VerticalContentAlignment="Center"/>
@@ -51,7 +51,7 @@
 
         <StackPanel Background="#FFD8D8D8" Orientation="Horizontal"  VerticalAlignment="Top" Height="39">
             <Button Content="Home" Command="{Binding NavigateHomeCommand}" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
-            <Button Content="Save route" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+            <Button Content="Save route" Command="{Binding SaveRoute}" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
             <Button Content="New waypoint" Command="{Binding CreateNewWaypoint}" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
         </StackPanel>
     </Grid>

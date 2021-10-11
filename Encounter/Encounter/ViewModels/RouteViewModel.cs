@@ -11,15 +11,18 @@ using System.Windows.Input;
 
 namespace Encounter.ViewModels
 {
+    [Serializable]
     class RouteViewModel : ViewModelBase
     {
         public ICommand NavigateHomeCommand { get; }
         public ICommand CreateNewWaypoint { get; }
 
+        public ICommand SaveRoute { get; }
+
         private ObservableCollection<FrameworkElement> _waypointPanels;
         public ObservableCollection<FrameworkElement> WaypointPanels => _waypointPanels;
 
-        private readonly List<WaypointViewModel> _waypoints;
+        public List<WaypointViewModel> _waypoints;
 
         public WaypointEditorViewModel WaypointEditorViewModel { get; }
 
@@ -30,6 +33,7 @@ namespace Encounter.ViewModels
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
             WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore);
+            SaveRoute = new SaveRoute(this);
             _waypoints = new List<WaypointViewModel>();
             _waypointPanels = new ObservableCollection<FrameworkElement>();
         }
