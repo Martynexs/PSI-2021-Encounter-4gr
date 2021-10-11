@@ -26,6 +26,7 @@ namespace Encounter.Commands
             waypoint.Index = _routeViewModel.GetWaypointsCount();
             waypoint.Name = "Name";
             waypoint.Coordinates = new Coordinates(0.00, 0.00);
+            _routeViewModel.HideEditor();
         }
     }
 }

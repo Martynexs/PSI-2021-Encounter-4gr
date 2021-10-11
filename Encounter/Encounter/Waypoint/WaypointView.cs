@@ -17,7 +17,6 @@ using Encounter.Stores;
 
 namespace Encounter
 {
-
     public class WaypointView
     {
         ICommand SelectWaypoint { get; }
@@ -26,7 +25,7 @@ namespace Encounter
         public int Index
         {
             get => _index;
-            set { _index = value; _numberLabel.Content = Index.ToString() + "."; _button.Tag = value; }
+            set { _index = value; _numberLabel.Content = Index.ToString() + "."; }
         }
 
         private string _name;
