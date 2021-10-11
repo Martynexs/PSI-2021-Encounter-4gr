@@ -20,7 +20,7 @@ namespace Encounter
             {
                 using (var csvWriter = new CsvWriter(streamWriter, CultureInfo.InvariantCulture))
                 {
-                    var waypoints = routeViewModel._waypoints;
+                    var waypoints = routeViewModel.GetWaypoints();
                     csvWriter.WriteRecord(waypoints);
                 }
             }

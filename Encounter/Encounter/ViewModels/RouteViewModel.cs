@@ -49,5 +49,17 @@ namespace Encounter.ViewModels
             return _waypoints.Count;
         }
 
+        public List<Waypoint> GetWaypoints()
+        {
+            var listOfWaypoints = new List<Waypoint>();
+            foreach(var waypoint in _waypoints)
+            {
+                listOfWaypoints.Add(waypoint.GetWaypoint());
+            }
+            return listOfWaypoints;
+        }
+
+
+
     }
 }
