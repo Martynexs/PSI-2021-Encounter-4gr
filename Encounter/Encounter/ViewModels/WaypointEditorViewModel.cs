@@ -9,19 +9,34 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
-
+using System.Collections.ObjectModel;
 
 namespace Encounter.ViewModels
 {
     class WaypointEditorViewModel : ViewModelBase
     {
+        private RouteViewModel _routeViewModel;
         private WaypointStore _waypointStore;
         public WaypointViewModel SelectedWaypoint => _waypointStore.SelectedWaypoint;
-
         public List<LabelValueItem<WaypointType>> AllWaypointTypes { get; }
 
-        public ICommand CloseEditor { get; }
+        public ObservableCollection<int> _indexes;
+        public ObservableCollection<int> Indexes
+        {
+            get => _indexes;
+            set
+            {
+                _indexes = value;
+                OnPropertyChnaged();
+            }
+        }
 
+        //Commands
+        public ICommand CloseEditor { get; }
+        public ICommand SaveWaypoint { get; }
+        public ICommand DeleteWaypoint { get; }
+
+        //Properties
         private Visibility _editorVisibility;
         public Visibility EditorVisibility
         {
@@ -66,13 +81,24 @@ namespace Encounter.ViewModels
             }
         }
 
-        private LabelValueItem<WaypointType> _type;
-        public LabelValueItem<WaypointType> Type
+        private WaypointType _type;
+        public WaypointType Type
         {
             get => _type;
             set
             {
                 _type = value;
+            }
+        }
+
+        private LabelValueItem<WaypointType> _typeItem;
+        public LabelValueItem<WaypointType> TypeItem
+        {
+            get => _typeItem;
+            set
+            {
+                Type = value.value;
+                _typeItem = value;
                 OnPropertyChnaged();
             }
         }
@@ -109,6 +135,7 @@ namespace Encounter.ViewModels
                 OnPropertyChnaged();
             }
         }
+
         private string _phoneNumber;
         public string PhoneNumber
         {
@@ -131,30 +158,41 @@ namespace Encounter.ViewModels
             }
         }
 
-        public WaypointEditorViewModel(WaypointStore waypointStore)
+        //Builder
+        public WaypointEditorViewModel(WaypointStore waypointStore, RouteViewModel routeViewModel)
         {
             _waypointStore = waypointStore;
+            _routeViewModel = routeViewModel;
+
             EditorVisibility = Visibility.Hidden;
             AllWaypointTypes = WayPointTypeExtensions.GetAllTypes();
             _waypointStore.SelectedWaypointChanged += OnSelectedWaypointChanged;
+
             CloseEditor = new CloseEditorCommand(this);
+            SaveWaypoint = new SaveWaypointCommand(routeViewModel, this, waypointStore);
+            DeleteWaypoint = new DeleteWaypointCommand(waypointStore, routeViewModel, this);
         }
 
+        //Functions
         public void OnSelectedWaypointChanged()
         {
-            OnPropertyChnaged(nameof(SelectedWaypoint));
-            EditorVisibility = System.Windows.Visibility.Visible;
+            EditorVisibility = Visibility.Visible;
+
             var waypoint = SelectedWaypoint;
 
             Index = waypoint.Index;
             Name = waypoint.Name;
             Coordinates = waypoint.Coordinates;
-            Type = AllWaypointTypes.Find(t => t.value == waypoint.Type);
+            TypeItem = new LabelValueItem<WaypointType>(waypoint.Type.ToString(), waypoint.Type);
             Price = waypoint.Price;
             OpeningHours = waypoint.OpeningHours;
             ClosingTime = waypoint.ClosingTime;
             PhoneNumber= waypoint.PhoneNumber;
             Description = waypoint.Description;
+
+            Indexes = new(Enumerable.Range(1, _routeViewModel.GetWaypointsCount()));
+
+            OnPropertyChnaged(nameof(SelectedWaypoint));
         }
 
         private bool PhoneNumberMatches ()

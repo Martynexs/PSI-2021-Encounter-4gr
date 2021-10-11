@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Encounter.Views"
         xmlns:viewmodels="clr-namespace:Encounter.ViewModels"
         xmlns:converters="clr-namespace:Encounter.Converters"
-        mc:Ignorable="d">
+        mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
     <UserControl.Resources>
         <converters:CoordinatesConverter x:Key="CoordinatesConverter"/>
     </UserControl.Resources>
@@ -30,23 +30,124 @@
             <Label HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Margin="0,110,0,0" Content="Price:" FontSize="18" Foreground="Black"/>
             <Label Content="Opening hours:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="35" Margin="0,145,0,0" FontSize="18" Foreground="Black"/>
             <Label Content="Closing hours:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Margin="0,180,0,0" FontSize="18" Foreground="Black"/>
-            <TextBox x:Name="Description" Text="" TextWrapping="Wrap" Margin="46,250,0,0" Height="126" VerticalAlignment="Top" HorizontalAlignment="Left" Width="214" FontSize="18"/>
-            <Label Content="Current number :&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,381,0,0" VerticalAlignment="Top" Height="36" Width="185" FontSize="18" Foreground="Black"/>
-            <Button Content="SAVE" HorizontalAlignment="Center" Margin="0,493,0,0" VerticalAlignment="Top" Width="64" Foreground="Black" FontSize="18"/>
+            
+            <TextBox x:Name="Description" 
+                     Text="" TextWrapping="Wrap" 
+                     Margin="46,260,0,0" 
+                     Width="214" Height="126" 
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Left" 
+                     FontSize="18"/>
+            
+            
+            <Button Content="SAVE" Command="{Binding SaveWaypoint}" HorizontalAlignment="Center" Margin="0,493,0,0" VerticalAlignment="Top" Width="64" Foreground="Black" FontSize="18"/>
             <Button Content="EXIT" Command="{Binding CloseEditor}" HorizontalAlignment="Left" Margin="30,493,0,0" VerticalAlignment="Top" Width="66" FontSize="18" Foreground="Black"/>
-            <Button Content="DELETE" HorizontalAlignment="Left" Margin="227,493,0,0" VerticalAlignment="Top" Width="66" Foreground="Black" FontSize="18"/>
-            <TextBox x:Name="Name" HorizontalAlignment="Center" Margin="130,5,0,0" Text="{Binding Name}" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" HorizontalContentAlignment="Center" FontSize="18" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="Coordinates" HorizontalAlignment="Center" Margin="130,40,0,0" Text="{Binding Coordinates, Converter={StaticResource CoordinatesConverter}}" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" VerticalContentAlignment="Center" FontSize="18" HorizontalContentAlignment="Center"/>
-            <ComboBox x:Name="Type" HorizontalAlignment="Center" Margin="130,75,0,0" VerticalAlignment="Top" Width="190" Height="35" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                ItemsSource="{Binding AllWaypointTypes}" DisplayMemberPath="label" SelectedItem="{Binding Type}"/>
-            <TextBox x:Name="Price" HorizontalAlignment="Center" Margin="130,110,0,0" Text="{Binding Price}" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
-            <TextBox x:Name="Opening" HorizontalAlignment="Center" Margin="130,145,0,0" Text="{Binding OpeningHours}" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
-            <TextBox x:Name="Closing" HorizontalAlignment="Left" Margin="130,180,0,0" Text="{Binding ClosingTime}" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
-            <TextBox x:Name="Number" HorizontalAlignment="Left" Margin="161,439,0,0" Text="{Binding Index}" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
-            <TextBox x:Name="IndexBox" IsReadOnly="True" HorizontalAlignment="Left" Margin="161,382,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
-            <Label Content="Change to :" HorizontalAlignment="Left" Margin="52,439,0,0" VerticalAlignment="Top" Height="35" Width="104" FontSize="18" Foreground="Black"/>
+            <Button Content="DELETE" Command="{Binding DeleteWaypoint}" HorizontalAlignment="Left" Margin="227,493,0,0" VerticalAlignment="Top" Width="66" Foreground="Black" FontSize="18"/>
+            
+            <TextBox x:Name="Name" 
+                     HorizontalAlignment="Left"
+                     Margin="130,5,5,0" 
+                     Text="{Binding Name}" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="180" Height="35" 
+                     HorizontalContentAlignment="Center" 
+                     FontSize="18" 
+                     VerticalContentAlignment="Center"/>
+            
+            <TextBox x:Name="Coordinates" 
+                     HorizontalAlignment="Center" 
+                     Margin="130,40,5,0" 
+                     Text="{Binding Coordinates, 
+                     Converter={StaticResource CoordinatesConverter}}" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="180" Height="35" 
+                     VerticalContentAlignment="Center" 
+                     FontSize="18" 
+                     HorizontalContentAlignment="Center"/>
+            
+            <ComboBox x:Name="Type" 
+                      HorizontalAlignment="Center" 
+                      Margin="130,75,5,0" 
+                      VerticalAlignment="Top" 
+                      Width="180" Height="35" 
+                      FontSize="18" 
+                      HorizontalContentAlignment="Center" 
+                      VerticalContentAlignment="Center"
+                      ItemsSource="{Binding AllWaypointTypes}" 
+                      DisplayMemberPath="label" 
+                      SelectedItem="{Binding TypeItem}"/>
+            
+            <TextBox x:Name="Price" 
+                     HorizontalAlignment="Center" 
+                     Margin="130,110,5,0" 
+                     Text="{Binding Price,
+                     UpdateSourceTrigger=PropertyChanged,
+                     StringFormat={}{0:C}}" 
+                     TextWrapping="Wrap" VerticalAlignment="Top" 
+                     Width="180" Height="35" 
+                     HorizontalContentAlignment="Center" 
+                     VerticalContentAlignment="Center" 
+                     FontSize="18"/>
+            
+            <TextBox x:Name="Opening" 
+                     HorizontalAlignment="Center" 
+                     Margin="130,145,5,0" 
+                     Text="{Binding OpeningHours,
+                     StringFormat={}{0:HH:mm}}"
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="180" Height="35" 
+                     HorizontalContentAlignment="Center" 
+                     VerticalContentAlignment="Center" 
+                     FontSize="18"/>
+            
+            <TextBox x:Name="Closing" 
+                     HorizontalAlignment="Left" 
+                     Margin="130,180,5,0" 
+                     Text="{Binding ClosingTime,
+                     StringFormat={}{0:HH:mm}}" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="180" Height="35" 
+                     HorizontalContentAlignment="Center" 
+                     VerticalContentAlignment="Center" 
+                     FontSize="18"/>
+
+            <TextBox x:Name="PhoneNumber" 
+                     HorizontalAlignment="Right" 
+                     Margin="130,215,5,0" 
+                     Text="{Binding PhoneNumber}" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="180" Height="35" 
+                     HorizontalContentAlignment="Center" 
+                     VerticalContentAlignment="Center" 
+                     FontSize="18"/>
+
+            <Label Content="Index:" 
+                   HorizontalAlignment="Left" 
+                   Margin="100,400,0,0" 
+                   VerticalAlignment="Top"
+                   Height="35" Width="104" 
+                   FontSize="18" 
+                   Foreground="Black"/>
+            
+            <ComboBox x:Name="Index" 
+                      HorizontalAlignment="Center" 
+                      Margin="100,400,0,0" 
+                      VerticalAlignment="Top" 
+                      Width="75" Height="35" 
+                      FontSize="18" 
+                      HorizontalContentAlignment="Center" 
+                      VerticalContentAlignment="Center"
+                      ItemsSource="{Binding Indexes}"
+                      SelectedValue="{Binding Index}"/>
+            
             <Label Content="Phone number:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="35" Margin="0,215,0,0" FontSize="18" Foreground="Black"/>
-            <TextBox x:Name="Closing_Copy" HorizontalAlignment="Right" Margin="0,215,0,0" Text="{Binding ClosingTime}" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
+            
+            
         </Grid>
 
         <StackPanel Background="#FFD8D8D8" Orientation="Horizontal"  VerticalAlignment="Top" Height="39">
