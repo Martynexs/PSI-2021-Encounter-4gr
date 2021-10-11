@@ -16,18 +16,27 @@ namespace Encounter
         static public void Write(RouteViewModel routeViewModel)
         {
             var path = FileController.CreateFile();
-            using (var streamWriter = new StreamWriter(path))
+            try
             {
-                var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
+                using (var streamWriter = new StreamWriter(path))
                 {
-                    Delimiter = ";"
-                };
-                using (var csvWriter = new CsvWriter(streamWriter, csvConfig))
-                {
-                    var waypoints = routeViewModel.GetWaypoints();
-                    csvWriter.Context.RegisterClassMap<WaypointClassMap>();
-                    csvWriter.WriteRecords(waypoints);
+                    var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
+                    {
+                        Delimiter = ";"
+                    };
+                    using (var csvWriter = new CsvWriter(streamWriter, csvConfig))
+                    {
+                        var waypoints = routeViewModel.GetWaypoints();
+                        csvWriter.Context.RegisterClassMap<WaypointClassMap>();
+                        csvWriter.WriteRecords(waypoints);
+                    }
                 }
+            }
+            catch (System.NullReferenceException)
+            {
+            }
+            catch (System.ArgumentNullException)
+            {
             }
         }
 
