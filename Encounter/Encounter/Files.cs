@@ -23,7 +23,7 @@ namespace Encounter
                 {
                     Delimiter = ";"
                 };
-                using (var csvWriter = new CsvWriter(streamWriter, CultureInfo.InvariantCulture))
+                using (var csvWriter = new CsvWriter(streamWriter, csvConfig))
                 {
                     var waypoints = routeViewModel.GetWaypoints();
                     csvWriter.Context.RegisterClassMap<WaypointClassMap>();

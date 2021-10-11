@@ -34,6 +34,10 @@ namespace Encounter
             SelectWaypointCommand = new SelectWaypointCommand(waypointStore, this);
             _waypoint = waypoint;
             _waypointView = new WaypointView(SelectWaypointCommand);
+
+            _waypointView.Index  = waypoint.Index;
+            _waypointView.Name = waypoint.Name;
+            _waypointView.Coordinates = waypoint.Coord;
         }
 
 

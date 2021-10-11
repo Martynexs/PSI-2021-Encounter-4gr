@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
+using Encounter.Converters;
 
 namespace Encounter
 {
@@ -12,7 +13,7 @@ namespace Encounter
         {
             Map(w => w.Index).Name("Index");
             Map(w => w.Name).Name("Name");
-            Map(w => w.Coord).Name("Coordinates");
+            Map(w => w.Coord).Name("Coordinates").TypeConverter<CsvCoordinatesConverter>();
             Map(w => w.Type).Name("Type");
             Map(w => w.Price).Name("Price");
             Map(w => w.OpeningHours).Name("Opening");
