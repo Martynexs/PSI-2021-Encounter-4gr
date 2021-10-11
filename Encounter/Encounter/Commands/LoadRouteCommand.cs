@@ -8,22 +8,19 @@ using System.Threading.Tasks;
 
 namespace Encounter.Commands
 {
-    class LoadRouteCommand<TViewModel> : CommandBase
-        where TViewModel : ViewModelBase
+    public class LoadRouteCommand : CommandBase
     {
-        private RouteViewModel _routeViewModel;
-        private readonly NavigationStore _navigationStore;
-        private readonly Func<TViewModel> _createViewModel;
+        NavigationStore _navigationStore;
 
-        public LoadRouteCommand(NavigationStore navigationStore, Func<TViewModel> createViewModel)
+        public LoadRouteCommand(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
-            _createViewModel = createViewModel;
         }
+
         public override void Execute(object parameter)
         {
-            _navigationStore.CurrentViewModel = _createViewModel();
-            Files.Read(_routeViewModel);
+            var waypoints = Files.Read();
+            _navigationStore.CurrentViewModel = new RouteViewModel(_navigationStore, waypoints);
         }
     }
 }

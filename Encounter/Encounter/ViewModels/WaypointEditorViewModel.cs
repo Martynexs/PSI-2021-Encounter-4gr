@@ -13,7 +13,7 @@ using System.Text.RegularExpressions;
 
 namespace Encounter.ViewModels
 {
-    class WaypointEditorViewModel : ViewModelBase
+    public class WaypointEditorViewModel : ViewModelBase
     {
         private WaypointStore _waypointStore;
         public WaypointViewModel SelectedWaypoint => _waypointStore.SelectedWaypoint;

@@ -16,7 +16,7 @@ namespace Encounter
     {
         static public void Write(RouteViewModel routeViewModel)
         {
-            var csvPath = Path.Combine(Environment.CurrentDirectory, "C:\\Users\\Vartotojas\\Desktop\\Swashbucklers-Project\\CSV.csv");
+            var csvPath = Path.Combine(Environment.CurrentDirectory, "D:\\Trees\\krv.csv");
             using (var streamWriter = new StreamWriter(csvPath))
             {
                 var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -32,9 +32,10 @@ namespace Encounter
             }
         }
 
-        static public void Read(RouteViewModel routeViewModel)
+        static public IEnumerable<Waypoint> Read()
         {
-            using (var streamReader = new StreamReader("C:\\Users\\Vartotojas\\Desktop\\Swashbucklers-Project\\CSV.csv"))
+            IEnumerable<Waypoint> waypoints;
+            using (var streamReader = new StreamReader("D:\\Trees\\krv.csv"))
             {
                 var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
                 {
@@ -44,8 +45,10 @@ namespace Encounter
                 {
                     csvReader.Context.RegisterClassMap<WaypointClassMap>();
                     var records = csvReader.GetRecords<Waypoint>();
+                    waypoints = records.ToList();
                 }
             }
+            return waypoints;
         }
     }
 }

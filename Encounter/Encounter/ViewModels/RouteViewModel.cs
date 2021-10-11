@@ -12,11 +12,10 @@ using System.Windows.Input;
 namespace Encounter.ViewModels
 {
     [Serializable]
-    class RouteViewModel : ViewModelBase
+    public class RouteViewModel : ViewModelBase
     {
         public ICommand NavigateHomeCommand { get; }
         public ICommand CreateNewWaypoint { get; }
-        public ICommand LoadRoute { get; }
         public ICommand SaveRoute { get; }
 
         private ObservableCollection<FrameworkElement> _waypointPanels;
@@ -30,13 +29,23 @@ namespace Encounter.ViewModels
 
         public RouteViewModel(NavigationStore navigationStore)
         {
-            LoadRoute = new LoadRouteCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
             WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore);
             SaveRoute = new SaveRoute(this);
             _waypoints = new List<WaypointViewModel>();
             _waypointPanels = new ObservableCollection<FrameworkElement>();
+        }
+
+        public RouteViewModel(NavigationStore navigationStore, IEnumerable<Waypoint> waypoints)
+        {
+            NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
+            CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
+            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore);
+            SaveRoute = new SaveRoute(this);
+            _waypoints = new List<WaypointViewModel>();
+            _waypointPanels = new ObservableCollection<FrameworkElement>();
+            LoadRoute(waypoints);
         }
 
         public void AddWaypoint(WaypointViewModel waypoint)
@@ -58,6 +67,16 @@ namespace Encounter.ViewModels
                 listOfWaypoints.Add(waypoint.GetWaypoint());
             }
             return listOfWaypoints;
+        }
+
+        public void LoadRoute(IEnumerable<Waypoint> waypoints)
+        {
+            foreach(var waypoint in waypoints)
+            {
+                var waypointVM = new WaypointViewModel(_waypointStore, waypoint);
+                _waypoints.Add(waypointVM);
+                _waypointPanels.Add(waypointVM.GetWaypointPanel());
+            }
         }
 
 
