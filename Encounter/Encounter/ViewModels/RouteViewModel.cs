@@ -110,12 +110,25 @@ namespace Encounter.ViewModels
 
         public void LoadRoute(IEnumerable<Waypoint> waypoints)
         {
-            foreach (var waypoint in waypoints)
-            {
-                var waypointVM = new WaypointViewModel(_waypointStore, waypoint);
-                _waypoints.Add(waypointVM);
-                _waypointPanels.Add(waypointVM.GetWaypointPanel());
-            }
+
+                try
+                {
+                    foreach (var waypointVM in from waypoint in waypoints
+                                           let waypointVM = new WaypointViewModel(_waypointStore, waypoint)
+                                           select waypointVM)
+                    {
+                    _waypoints.Add(waypointVM);
+                    _waypointPanels.Add(waypointVM.GetWaypointPanel());
+                     }
+                }
+                catch(System.NullReferenceException)
+                {
+                
+                }
+                catch (System.Exception )
+                {
+
+                }
         }
 
     }

@@ -11,7 +11,6 @@ using CsvHelper.Configuration;
 
 namespace Encounter
 {
-    [Serializable]
     static class Files
     {
         static public void Write(RouteViewModel routeViewModel)
@@ -57,7 +56,7 @@ namespace Encounter
             {
                 return null;
             }
-            catch(System.ArgumentNullException)
+            catch (System.ArgumentNullException)
             {
                 return null;
             }
