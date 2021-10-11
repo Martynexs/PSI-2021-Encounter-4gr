@@ -6,4 +6,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Views\globe.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\globe.png" />
+  </ItemGroup>
+
 </Project>

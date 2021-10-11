@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Encounter.Views"
         xmlns:viewmodels="clr-namespace:Encounter.ViewModels"
         xmlns:converters="clr-namespace:Encounter.Converters"
-        mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="800">
     <UserControl.Resources>
         <converters:CoordinatesConverter x:Key="CoordinatesConverter"/>
     </UserControl.Resources>
@@ -23,7 +23,16 @@
             </ItemsControl>
         </ScrollViewer>
 
-        <Grid x:Name="editGrid" DataContext="{Binding WaypointEditorViewModel}" Margin="574,0,0,0" Visibility="{Binding EditorVisibility}" HorizontalAlignment="Right" VerticalAlignment="Stretch" UseLayoutRounding="False" ShowGridLines="True" Panel.ZIndex="2" Background="#FFDEDDD9">
+        <Grid x:Name="editGrid" 
+              DataContext="{Binding WaypointEditorViewModel}" 
+              Visibility="{Binding EditorVisibility}" 
+              HorizontalAlignment="Right" 
+              VerticalAlignment="Stretch" 
+              UseLayoutRounding="False" 
+              ShowGridLines="True" 
+              Panel.ZIndex="2" 
+              Background="#FFD8D8D8">
+
             <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Height="35" FontSize="18" FontFamily="Segoe UI" FontStyle="Normal" FontStretch="Normal" FontWeight="Normal" Foreground="Black" Margin="2,5,0,0"/>
             <Label Content="Coordinates:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Margin="0,40,0,0" FontSize="18" Foreground="Black"/>
             <Label Content="Type:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Margin="0,75,0,0" FontSize="18" Foreground="Black"/>
@@ -38,11 +47,41 @@
                      VerticalAlignment="Top"
                      HorizontalAlignment="Left" 
                      FontSize="18"/>
+
+
+            <Button Content="Save" 
+                    Command="{Binding SaveWaypoint}" 
+                    HorizontalAlignment="Center" 
+                    Margin="0,490,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="64" 
+                    Foreground="Black" 
+                    FontSize="18" 
+                    BorderBrush="{x:Null}" 
+                    Background="#FFFFCF4D"/>
             
+            <Button Content="Cancel" 
+                    Command="{Binding CloseEditor}" 
+                    HorizontalAlignment="Center" 
+                    Margin="0,490,200,0" 
+                    VerticalAlignment="Top" 
+                    Width="66" 
+                    FontSize="18" 
+                    Foreground="Black" 
+                    BorderBrush="{x:Null}" 
+                    Background="White"/>
             
-            <Button Content="SAVE" Command="{Binding SaveWaypoint}" HorizontalAlignment="Center" Margin="0,493,0,0" VerticalAlignment="Top" Width="64" Foreground="Black" FontSize="18"/>
-            <Button Content="EXIT" Command="{Binding CloseEditor}" HorizontalAlignment="Left" Margin="30,493,0,0" VerticalAlignment="Top" Width="66" FontSize="18" Foreground="Black"/>
-            <Button Content="DELETE" Command="{Binding DeleteWaypoint}" HorizontalAlignment="Left" Margin="227,493,0,0" VerticalAlignment="Top" Width="66" Foreground="Black" FontSize="18"/>
+            <Button Content="Delete" 
+                    Command="{Binding DeleteWaypoint}" 
+                    HorizontalAlignment="Center" 
+                    Margin="200,490,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="66" 
+                    Foreground="Black" 
+                    FontSize="18" 
+                    BorderBrush="{x:Null}" 
+                    Background="White"/>
+            
             
             <TextBox x:Name="Name" 
                      HorizontalAlignment="Left"
