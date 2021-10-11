@@ -24,6 +24,7 @@
         </Button>
 
         <Button Content="Load route" 
+                Command="{Binding LoadRouteCommand}"
                 HorizontalAlignment="Center" 
                 Margin="0,200,0,0" 
                 VerticalAlignment="Center" 

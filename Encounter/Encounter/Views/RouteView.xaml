@@ -191,7 +191,7 @@
 
         <StackPanel Background="#FFD8D8D8" Orientation="Horizontal"  VerticalAlignment="Top" Height="39">
             <Button Content="Home" Command="{Binding NavigateHomeCommand}" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
-            <Button Content="Save route" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+            <Button Content="Save route" Command="{Binding SaveRoute}" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
             <Button Content="New waypoint" Command="{Binding CreateNewWaypoint}" Width="118" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
         </StackPanel>
     </Grid>

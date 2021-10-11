@@ -27,6 +27,18 @@ namespace Encounter
             _waypointView = new WaypointView(SelectWaypointCommand);
         }
 
+        public WaypointViewModel(WaypointStore waypointStore, Waypoint waypoint)
+        {
+            _waypointStore = waypointStore;
+            SelectWaypointCommand = new SelectWaypointCommand(waypointStore, this);
+            _waypoint = waypoint;
+            _waypointView = new WaypointView(SelectWaypointCommand);
+
+            _waypointView.Index = waypoint.Index;
+            _waypointView.Name = waypoint.Name;
+            _waypointView.Coordinates = waypoint.Coord;
+        }
+
         public int Index
         {
             get => _waypoint.Index;
