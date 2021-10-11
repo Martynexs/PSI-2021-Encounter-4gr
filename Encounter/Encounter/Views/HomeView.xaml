@@ -4,10 +4,44 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Encounter.Views"
-        mc:Ignorable="d"
-        Height="450" Width="800">
+        mc:Ignorable="d" VerticalAlignment="Stretch" d:DesignHeight="468.776" d:DesignWidth="500.0">
     <Grid>
-        <Button Content="New route" Command="{Binding NavigateRouteCommand}" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" FontSize="24" Width="120" Background="#FFFFCF4D"/>
-        <Button Content="Load route" HorizontalAlignment="Center" Margin="0,270,0,0" VerticalAlignment="Top" FontSize="24" Width="120" Background="#FFFFCF4D"/>
+
+
+        <Button Content="New route" 
+                Command="{Binding NavigateRouteCommand}" 
+                HorizontalAlignment="Center" 
+                Margin="0,100,0,0" 
+                VerticalAlignment="Center" 
+                FontSize="24" 
+                Width="150" 
+                Background="#FFFFCF4D" Foreground="Black" BorderBrush="{x:Null}" FontWeight="Bold">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button Content="Load route" 
+                HorizontalAlignment="Center" 
+                Margin="0,200,0,0" 
+                VerticalAlignment="Center" 
+                FontSize="24" 
+                Width="150" 
+                Background="#FFFFCF4D" Foreground="Black" BorderBrush="{x:Null}" FontWeight="Bold">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Image HorizontalAlignment="Center" 
+               Height="221" 
+               VerticalAlignment="Center" 
+               Width="216" 
+               Source="/Resources/globe.png" 
+               Margin="0,0,0,200"/>
     </Grid>
 </UserControl>
