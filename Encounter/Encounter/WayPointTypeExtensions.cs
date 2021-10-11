@@ -15,21 +15,20 @@ namespace Encounter
         {
             switch(t1)
             {
-                case WaypointType.SHOP:
+                case WaypointType.Shop:
                     return "Shop";
-                case WaypointType.CAFE:
+                case WaypointType.Cafe:
                     return "Cafe";
-                case WaypointType.MUSEUM:
+                case WaypointType.Museum:
                     return "Museum";
-                case WaypointType.CHURCH:
+                case WaypointType.Church:
                     return "Church";
-                case WaypointType.SCULPTURE:
+                case WaypointType.Sculpture:
                     return "Sculpture";
-                case WaypointType.PARK:
+                case WaypointType.Park:
                     return "Park";
                 default:
-                    return "Others";
-
+                    return "Other";
             }
         }
 
@@ -37,31 +36,29 @@ namespace Encounter
         {
             switch (t1)
             {
-                case WaypointType.SHOP:
+                case WaypointType.Shop:
                     return "Nice place to buy goods";
-                case WaypointType.CAFE:
+                case WaypointType.Cafe:
                     return "Local drinks and snacks";
-                case WaypointType.MUSEUM:
+                case WaypointType.Museum:
                     return "Arts and science house";
-                case WaypointType.CHURCH:
+                case WaypointType.Church:
                     return "House of prayers";
-                case WaypointType.SCULPTURE:
+                case WaypointType.Sculpture:
                     return "Masterpiece of local sculptor";
-                case WaypointType.PARK:
+                case WaypointType.Park:
                     return "Nature oasis";
                 default:
-                    return "Others";
-
+                    return "Other";
             }
         }
 
         public static List<LabelValueItem<WaypointType>> GetAllTypes()
         {
-         
            List<LabelValueItem<WaypointType>> result = new List<LabelValueItem<WaypointType>>();
            foreach (WaypointType t in Enum.GetValues(typeof(WaypointType)))
             {
-                String label = WayPointTypeExtensions.GetTypeString(t);
+                string label = GetTypeString(t);
                 result.Add(new LabelValueItem<WaypointType>(label, t));
             }
            return result;

@@ -8,11 +8,12 @@ namespace Encounter
 {
     public enum WaypointType
         {
-            SHOP,
-            CAFE,
-            MUSEUM,
-            CHURCH,
-            SCULPTURE,
-            PARK            
+            Other,
+            Shop,
+            Cafe,
+            Museum,
+            Church,
+            Sculpture,
+            Park            
         }
 }
