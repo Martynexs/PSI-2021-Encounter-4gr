@@ -8,9 +8,9 @@ namespace Encounter
     public class PlayerUtils 
     {
         
-        public static List<Player> GetAllPlayers()
+        public static List<User> GetAllPlayers()
         {
-            List<Player> listPlayers = new List<Player>();
+            List<User> listPlayers = new List<User>();
 
             foreach (var player in listPlayers)
             {
@@ -20,7 +20,7 @@ namespace Encounter
             return listPlayers;
         }
 
-        public static IEnumerable<Player> GetPlayersFemales()
+        public static IEnumerable<User> GetPlayersFemales()
         {
             var queryResult =  from student in GetAllPlayers()
                                where student.Gender == "female"
@@ -28,7 +28,7 @@ namespace Encounter
             return queryResult;
         }
 
-        public static IEnumerable<IGrouping<string,Player>> GetPlayersGroupedByNationality()
+        public static IEnumerable<IGrouping<string,User>> GetPlayersGroupedByNationality()
         {
             var queryResult1 = from player in GetAllPlayers()
                                group player by player.Nationality;
