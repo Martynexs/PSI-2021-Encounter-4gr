@@ -21,7 +21,6 @@ namespace Encounter.Commands
         }
         public override void Execute(object parameter)
         {
-            Fileee.WriteToBinaryFile<List<WaypointViewModel>>("C:\\Users\\Vartotojas\\Desktop\\Swashbucklers-Project\\Binary.csv",_routeViewModel._waypoints, false);
             Files.Write(_routeViewModel);
         }
     }

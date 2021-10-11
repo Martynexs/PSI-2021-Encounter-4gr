@@ -16,7 +16,7 @@ namespace Encounter.ViewModels
     {
         public ICommand NavigateHomeCommand { get; }
         public ICommand CreateNewWaypoint { get; }
-
+        public ICommand LoadRoute { get; }
         public ICommand SaveRoute { get; }
 
         private ObservableCollection<FrameworkElement> _waypointPanels;
@@ -30,6 +30,7 @@ namespace Encounter.ViewModels
 
         public RouteViewModel(NavigationStore navigationStore)
         {
+            LoadRoute = new LoadRouteCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
             WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore);

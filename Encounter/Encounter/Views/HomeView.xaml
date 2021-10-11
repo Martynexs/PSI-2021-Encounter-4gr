@@ -8,6 +8,6 @@
         Height="450" Width="800">
     <Grid>
         <Button Content="New route" Command="{Binding NavigateRouteCommand}" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" FontSize="24" Width="120" Background="#FFFFCF4D"/>
-        <Button Content="Load route" HorizontalAlignment="Center" Margin="0,270,0,0" VerticalAlignment="Top" FontSize="24" Width="120" Background="#FFFFCF4D"/>
+        <Button Content="Load route" Command="{Binding LoadRoute}" HorizontalAlignment="Center" Margin="0,270,0,0" VerticalAlignment="Top" FontSize="24" Width="120" Background="#FFFFCF4D"/>
     </Grid>
 </UserControl>
