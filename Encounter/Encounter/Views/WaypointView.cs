@@ -108,7 +108,7 @@ namespace Encounter
         }
         private void SetInfoLabel()
         {
-            _infoLabel.Content = Name + " (" + Coordinates.Longitude.ToString() + ", " + Coordinates.Latitude.ToString() + ")";
+            _infoLabel.Content = Name + " (" + Coordinates.Latitude.ToString() + ", " + Coordinates.Longitude.ToString() + ")";
         }
     }
 }
