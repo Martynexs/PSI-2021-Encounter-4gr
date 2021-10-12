@@ -110,5 +110,10 @@ namespace Encounter
         {
             _infoLabel.Content = Name + " (" + Coordinates.Latitude.ToString() + ", " + Coordinates.Longitude.ToString() + ")";
         }
+
+        public void ChangeColor(string hexColor)
+        {
+            _ellipse.Fill = (SolidColorBrush)new BrushConverter().ConvertFrom(hexColor);
+        }
     }
 }

@@ -29,6 +29,7 @@ namespace Encounter
             _waypointView.Index = waypoint.Index;
             _waypointView.Name = waypoint.Name;
             _waypointView.Coordinates = waypoint.Coordinates;
+            _waypointView.ChangeColor(waypoint.Type.GetColor());
         }
 
         public int Index
@@ -52,7 +53,7 @@ namespace Encounter
         public WaypointType Type
         {
             get => _waypoint.Type;
-            set => _waypoint.Type = value;
+            set { _waypoint.Type = value; _waypointView.ChangeColor(value.GetColor()); }
         }
 
         public decimal Price

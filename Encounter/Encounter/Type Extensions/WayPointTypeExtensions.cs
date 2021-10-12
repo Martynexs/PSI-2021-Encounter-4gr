@@ -20,6 +20,21 @@ namespace Encounter
             };
         }
 
+        public static string GetColor(this WaypointType type)
+        {
+            return type switch
+            {
+                WaypointType.Shop => "#0392cf",      //Blue
+                WaypointType.Cafe => "#f37736",      //Orange
+                WaypointType.Museum => "#ee4035",    //Red
+                WaypointType.Church => "#a64ca6",    //Purple 
+                WaypointType.Sculpture => "00e5e5",  //Cyan 
+                WaypointType.Park => "#7bc043",      //Green
+                WaypointType.Other => "#fdf498",     //Yellow
+                _ => "#fdf498",
+            };
+        }
+
         public static string GetTypeInitialDescription(this WaypointType t1)
         {
             return t1 switch
