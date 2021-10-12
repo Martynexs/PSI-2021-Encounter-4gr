@@ -95,11 +95,10 @@ namespace Encounter.ViewModels
 
         public List<Waypoint> GetWaypoints()
         {
-            var listOfWaypoints = new List<Waypoint>();
-            foreach (var waypoint in _waypoints)
-            {
-                listOfWaypoints.Add(waypoint.GetWaypoint());
-            }
+            var listOfWaypoints = _waypoints.Select(x => x.GetWaypoint()).ToList();
+
+
+
             return listOfWaypoints;
         }
 

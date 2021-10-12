@@ -37,7 +37,7 @@ namespace Encounter
             get => _waypoint.Index;
             set { _waypoint.Index = value; _waypointView.Index = value; }
         }
-
+        
         public string Name
         {
             get => _waypoint.Name;
