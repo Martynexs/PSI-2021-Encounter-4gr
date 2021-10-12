@@ -2,10 +2,7 @@
 using Encounter.Stores;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
@@ -27,7 +24,7 @@ namespace Encounter.ViewModels
             set
             {
                 _indexes = value;
-                OnPropertyChnaged();
+                OnPropertyChanged();
             }
         }
 
@@ -44,7 +41,7 @@ namespace Encounter.ViewModels
             set
             {
                 _editorVisibility = value;
-                OnPropertyChnaged();
+                OnPropertyChanged();
             }
         }
 
@@ -55,7 +52,7 @@ namespace Encounter.ViewModels
             set
             {
                 _index = value;
-                OnPropertyChnaged();
+                OnPropertyChanged();
             }
         }
 
@@ -66,7 +63,7 @@ namespace Encounter.ViewModels
             set
             {
                 _name = value;
-                OnPropertyChnaged();
+                OnPropertyChanged();
             }
         }
 
@@ -77,7 +74,7 @@ namespace Encounter.ViewModels
             set
             {
                 _coordinates = value;
-                OnPropertyChnaged();
+                OnPropertyChanged();
             }
         }
 
@@ -97,9 +94,9 @@ namespace Encounter.ViewModels
             get => _typeItem;
             set
             {
-                Type = value.value;
+                Type = value.Value;
                 _typeItem = value;
-                OnPropertyChnaged();
+                OnPropertyChanged();
             }
         }
 
@@ -110,7 +107,7 @@ namespace Encounter.ViewModels
             set
             {
                 _price = value;
-                OnPropertyChnaged();
+                OnPropertyChanged();
             }
         }
 
@@ -121,7 +118,7 @@ namespace Encounter.ViewModels
             set
             {
                 _openingHours = value;
-                OnPropertyChnaged();
+                OnPropertyChanged();
             }
         }
 
@@ -132,7 +129,7 @@ namespace Encounter.ViewModels
             set
             {
                 _closingTime = value;
-                OnPropertyChnaged();
+                OnPropertyChanged();
             }
         }
 
@@ -143,7 +140,7 @@ namespace Encounter.ViewModels
             set
             {
                 _phoneNumber = value;
-                OnPropertyChnaged();
+                OnPropertyChanged();
             }
         }
 
@@ -154,7 +151,7 @@ namespace Encounter.ViewModels
             set
             {
                 _description = value;
-                OnPropertyChnaged();
+                OnPropertyChanged();
             }
         }
 
@@ -165,7 +162,8 @@ namespace Encounter.ViewModels
             _routeViewModel = routeViewModel;
 
             EditorVisibility = Visibility.Hidden;
-            AllWaypointTypes = WayPointTypeExtensions.GetAllTypes();
+            AllWaypointTypes = WayPointTypeExtensions.GetLabelValueItems();
+
             _waypointStore.SelectedWaypointChanged += OnSelectedWaypointChanged;
 
             CloseEditor = new CloseEditorCommand(this);
@@ -192,12 +190,12 @@ namespace Encounter.ViewModels
 
             Indexes = new(Enumerable.Range(1, _routeViewModel.GetWaypointsCount()));
 
-            OnPropertyChnaged(nameof(SelectedWaypoint));
+            OnPropertyChanged(nameof(SelectedWaypoint));
         }
 
         private bool PhoneNumberMatches ()
         {
-            Regex reg = new Regex("^(([+][3][7][0][0-9]{8})|([8][0-9]{8}))$");
+            var reg = new Regex("^(([+][3][7][0][0-9]{8})|([8][0-9]{8}))$");
             bool result = reg.IsMatch(PhoneNumber);
             return result;
         }

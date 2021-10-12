@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Globalization;
 using CsvHelper;
 using System.IO;
@@ -13,7 +10,7 @@ namespace Encounter
 {
     static class Files
     {
-        static public void Write(RouteViewModel routeViewModel)
+        public static void Write(RouteViewModel routeViewModel)
         {
             var path = FileController.CreateFile();
             try
@@ -40,7 +37,7 @@ namespace Encounter
             }
         }
 
-        static public IEnumerable<Waypoint> Read()
+        public static IEnumerable<Waypoint> Read()
         {
             IEnumerable<Waypoint> waypoints;
             var path = FileController.SelectFile();

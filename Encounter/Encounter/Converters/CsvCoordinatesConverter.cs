@@ -2,10 +2,6 @@
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Encounter.Converters
 {
@@ -13,7 +9,6 @@ namespace Encounter.Converters
     {
         public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-
             var coords = text.Split(',');
 
             try
@@ -30,8 +25,8 @@ namespace Encounter.Converters
 
         public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
         {
-            Coordinates coordinates = (Coordinates)value;
-            return coordinates.latitude.ToString() + ", " + coordinates.longitude.ToString();
+            var coordinates = (Coordinates)value;
+            return coordinates.Latitude.ToString() + ", " + coordinates.Longitude.ToString();
         }
     }
 }

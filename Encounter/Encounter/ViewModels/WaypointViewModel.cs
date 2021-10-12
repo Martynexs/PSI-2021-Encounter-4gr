@@ -1,11 +1,6 @@
 ﻿using Encounter.Commands;
 using Encounter.Stores;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -13,7 +8,6 @@ namespace Encounter
 {
     public class WaypointViewModel : IComparable<WaypointViewModel>
     {
-        private WaypointStore _waypointStore;
         private Waypoint _waypoint;
         private WaypointView _waypointView;
 
@@ -21,7 +15,6 @@ namespace Encounter
 
         public WaypointViewModel(WaypointStore waypointStore)
         {
-            _waypointStore = waypointStore;
             SelectWaypointCommand = new SelectWaypointCommand(waypointStore, this);
             _waypoint = new Waypoint();
             _waypointView = new WaypointView(SelectWaypointCommand);
@@ -29,7 +22,6 @@ namespace Encounter
 
         public WaypointViewModel(WaypointStore waypointStore, Waypoint waypoint)
         {
-            _waypointStore = waypointStore;
             SelectWaypointCommand = new SelectWaypointCommand(waypointStore, this);
             _waypoint = waypoint;
             _waypointView = new WaypointView(SelectWaypointCommand);

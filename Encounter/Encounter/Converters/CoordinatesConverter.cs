@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
@@ -14,20 +10,19 @@ namespace Encounter.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Coordinates coordinates = (Coordinates)value;
-            return coordinates.latitude.ToString() + ", " + coordinates.longitude .ToString();
+            var coordinates = (Coordinates)value;
+            return coordinates.Latitude.ToString() + ", " + coordinates.Longitude .ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string stringValue = (string)value;
-
-            var coords = stringValue.Split(',');
+            var stringValue = (string)value;
+            var coordinates = stringValue.Split(',');
 
             try
             {
-                var latitude = Double.Parse(coords[0]);
-                var longitude = Double.Parse(coords[1]);
+                var latitude = Double.Parse(coordinates[0]);
+                var longitude = Double.Parse(coordinates[1]);
                 return new Coordinates(latitude, longitude);
             }
             catch

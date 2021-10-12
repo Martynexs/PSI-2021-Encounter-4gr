@@ -1,66 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Shapes;
 using System.Windows;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using Encounter.Commands;
-using Encounter.Stores;
 
 namespace Encounter
 {
     public class WaypointView
     {
-        ICommand SelectWaypoint { get; }
+        private readonly ICommand _selectWaypointCommand;
 
         private int _index;
         public int Index
         {
             get => _index;
-            set { _index = value; _numberLabel.Content = Index.ToString() + "."; }
+            set
+            {
+                _index = value;
+                _numberLabel.Content = Index.ToString() + ".";
+            }
         }
 
         private string _name;
         public string Name
         {
             get => _name;
-            set { _name = value; SetInfoLabel(); }
+            set
+            {
+                _name = value;
+                SetInfoLabel();
+            }
         }
 
         private Coordinates _coordinates;
         public Coordinates Coordinates
         {
             get => _coordinates;
-            set { _coordinates = value; SetInfoLabel(); }
+            set
+            {
+                _coordinates = value;
+                SetInfoLabel();
+            }
         }
 
-        private void SetInfoLabel()
-        {
-            _infoLabel.Content = Name + " (" + Coordinates.longitude.ToString() + ", " + Coordinates.latitude.ToString() + ")";
-        }
-
-        private StackPanel _stackPanel;
-        private Ellipse _ellipse;
-        private Button _button;
-        private Label _numberLabel;
-        private Label _infoLabel;
+        private readonly StackPanel _stackPanel;
+        private readonly Ellipse _ellipse;
+        private readonly Button _button;
+        private readonly Label _numberLabel;
+        private readonly Label _infoLabel;
 
         public WaypointView(ICommand buttonCommand)
         {
-            SelectWaypoint = buttonCommand;
+            _selectWaypointCommand = buttonCommand;
 
-            _stackPanel = new StackPanel();
-            _stackPanel.Orientation = Orientation.Horizontal;
-            _stackPanel.Height = 60;
-            _stackPanel.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFE6E6E6");
+            _stackPanel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                Height = 60,
+                Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFE6E6E6")
+            };
+            DockPanel.SetDock(_stackPanel, Dock.Top);
 
             _numberLabel = new Label
             {
@@ -91,7 +90,7 @@ namespace Encounter
                 BorderBrush = Brushes.Transparent
             };
             _button.Content = _ellipse;
-            _button.Command = SelectWaypoint;
+            _button.Command = _selectWaypointCommand;
             _stackPanel.Children.Add(_button);
 
             _infoLabel = new Label
@@ -101,13 +100,15 @@ namespace Encounter
                 FontSize = 18
             };
             _stackPanel.Children.Add(_infoLabel);
-            DockPanel.SetDock(_stackPanel, Dock.Top);
         }
 
         public StackPanel GetWaypointViewPanel()
         {
             return _stackPanel;
         }
-
+        private void SetInfoLabel()
+        {
+            _infoLabel.Content = Name + " (" + Coordinates.Longitude.ToString() + ", " + Coordinates.Latitude.ToString() + ")";
+        }
     }
 }

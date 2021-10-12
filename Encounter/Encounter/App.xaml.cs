@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using Encounter.Stores;
 using Encounter.ViewModels;
 
@@ -17,8 +11,7 @@ namespace Encounter
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            NavigationStore navigationStore = new NavigationStore();
-            WaypointStore waypointStore = new WaypointStore();
+            var navigationStore = new NavigationStore();
 
             navigationStore.CurrentViewModel = new HomeViewModel(navigationStore);
 
@@ -28,10 +21,7 @@ namespace Encounter
             };
             MainWindow.Show();
 
-
             base.OnStartup(e);
         }
-
-
     }
 }

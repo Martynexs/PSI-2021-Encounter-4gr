@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -16,15 +14,12 @@ namespace Encounter.ViewModels
         public ICommand NavigateHomeCommand { get; }
         public ICommand CreateNewWaypoint { get; }
         public ICommand SaveRoute { get; }
-
-        private ObservableCollection<FrameworkElement> _waypointPanels;
-        public ObservableCollection<FrameworkElement> WaypointPanels => _waypointPanels;
+        public ObservableCollection<FrameworkElement> WaypointPanels { get; }
 
         private readonly List<WaypointViewModel> _waypoints;
-
         public WaypointEditorViewModel WaypointEditorViewModel { get; }
 
-        private WaypointStore _waypointStore = new WaypointStore();
+        private readonly WaypointStore _waypointStore = new WaypointStore();
 
         public RouteViewModel(NavigationStore navigationStore)
         {
@@ -33,7 +28,7 @@ namespace Encounter.ViewModels
             WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this);
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
-            _waypointPanels = new ObservableCollection<FrameworkElement>();
+            WaypointPanels = new ObservableCollection<FrameworkElement>();
         }
 
         public RouteViewModel(NavigationStore navigationStore, IEnumerable<Waypoint> waypoints)
@@ -43,7 +38,7 @@ namespace Encounter.ViewModels
             WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this);
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
-            _waypointPanels = new ObservableCollection<FrameworkElement>();
+            WaypointPanels = new ObservableCollection<FrameworkElement>();
             LoadRoute(waypoints);
         }
 
@@ -68,7 +63,7 @@ namespace Encounter.ViewModels
             if (index < _waypoints.Count)
             {
                 _waypoints.RemoveAt(index);
-                _waypointPanels.RemoveAt(index);
+                WaypointPanels.RemoveAt(index);
 
                 MatchIndexes();
             }
@@ -77,20 +72,20 @@ namespace Encounter.ViewModels
         public void ChangeWaypointIndex(int index, int newIndex)
         {
             var tempW = _waypoints[index];
-            var tempWV = _waypointPanels[index];
+            var tempWV = WaypointPanels[index];
 
             _waypoints.RemoveAt(index);
-            _waypointPanels.RemoveAt(index);
+            WaypointPanels.RemoveAt(index);
 
             _waypoints.Insert(newIndex, tempW);
-            _waypointPanels.Insert(newIndex, tempWV);
+            WaypointPanels.Insert(newIndex, tempWV);
 
             MatchIndexes();
         }
 
         private void MatchIndexes()
         {
-            int i = 0;
+            var i = 0;
             foreach (var waypoint in _waypoints)
             {
                 waypoint.Index = i + 1;
@@ -110,25 +105,41 @@ namespace Encounter.ViewModels
 
         public void LoadRoute(IEnumerable<Waypoint> waypoints)
         {
-
-                try
-                {
-                    foreach (var waypointVM in from waypoint in waypoints
+            try
+            {
+                foreach (var waypointVM in from waypoint in waypoints
                                            let waypointVM = new WaypointViewModel(_waypointStore, waypoint)
                                            select waypointVM)
-                    {
+                {
                     _waypoints.Add(waypointVM);
-                    _waypointPanels.Add(waypointVM.GetWaypointPanel());
-                     }
+                    WaypointPanels.Add(waypointVM.GetWaypointPanel());
                 }
-                catch(System.NullReferenceException)
-                {
+            }
+            catch(NullReferenceException)
+            {
                 
-                }
-                catch (System.Exception )
-                {
+            }
+            catch (Exception)
+            {
 
-                }
+            }
+        }
+
+        public double Distance()
+        {
+            double DistanceValue = 0;
+
+            for (int i = 0; i < _waypoints.Count - 1; i++)
+            {
+                var x1 = _waypoints[i].Coordinates.Longitude;
+                var y1 = _waypoints[i].Coordinates.Latitude;
+                var x2 = _waypoints[i + 1].Coordinates.Longitude;
+                var y2 = _waypoints[i + 1].Coordinates.Latitude;
+
+                DistanceValue += Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+            }
+            //casting to integer km narroving type conversion
+            return (int)DistanceValue;
         }
 
     }

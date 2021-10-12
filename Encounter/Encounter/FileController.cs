@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Encounter
+﻿namespace Encounter
 {
     public static class FileController
     {
@@ -13,11 +7,8 @@ namespace Encounter
             Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog();
             fileDialog.DefaultExt = ".csv";
             fileDialog.Filter = "CSV files(*.csv)|*.csv";
-            if (fileDialog.ShowDialog() == true)
-            {
-                return fileDialog.FileName;
-            }
-            return null;
+
+            return fileDialog.ShowDialog() == true ? fileDialog.FileName : null;
         }
 
         public static string CreateFile()
@@ -25,11 +16,8 @@ namespace Encounter
             Microsoft.Win32.SaveFileDialog fileDialog = new Microsoft.Win32.SaveFileDialog();
             fileDialog.DefaultExt = ".csv";
             fileDialog.Filter = "CSV files(*.csv)|*.csv";
-            if (fileDialog.ShowDialog() == true)
-            {
-                return fileDialog.FileName;
-            }
-            return null;
+
+            return fileDialog.ShowDialog() == true ? fileDialog.FileName : null;
         }
 
     }

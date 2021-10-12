@@ -1,27 +1,24 @@
 ﻿using Encounter.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Encounter
 {
     class HypotheticalGroupJoinExample
     {
-        List<Route> Routes;
-        List<User> Users;
+        private readonly List<Route> _routes;
+        private readonly List<User> _users;
 
         public HypotheticalGroupJoinExample(List<Route> routes, List<User> users)
         {
-            Routes = routes;
-            Users = users;
+            _routes = routes;
+            _users = users;
         }
 
         public IEnumerable<Route> GetUserRoutes(int userID)
         {
             var groupJoin =
-                Users.GroupJoin(Routes,
+                _users.GroupJoin(_routes,
                                 user => user.ID,
                                 route => route.UserID,
                                 (user, routes) => new
@@ -30,12 +27,11 @@ namespace Encounter
                                     Routes = routes
                                 });
 
-            var query = from i in groupJoin
-                   where i.Creator.ID == userID
-                   select i.Routes;
+            var query = from item in groupJoin
+                        where item.Creator.ID == userID
+                        select item.Routes;
 
             return query.Single();
         }
-
     }
 }

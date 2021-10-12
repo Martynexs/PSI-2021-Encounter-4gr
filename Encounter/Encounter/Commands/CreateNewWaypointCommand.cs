@@ -1,10 +1,5 @@
 ﻿using Encounter.Stores;
 using Encounter.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Encounter.Commands
 {
@@ -23,9 +18,11 @@ namespace Encounter.Commands
         {
             var waypoint = new WaypointViewModel(_waypointStore);
             _routeViewModel.AddWaypoint(waypoint);
+
             waypoint.Index = _routeViewModel.GetWaypointsCount();
             waypoint.Name = "Name";
             waypoint.Coordinates = new Coordinates(0.00, 0.00);
+
             _routeViewModel.HideEditor();
         }
     }

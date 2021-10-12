@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Encounter.Models
+﻿namespace Encounter.Models
 {
     class Route
     {
@@ -16,7 +10,5 @@ namespace Encounter.Models
         {
 
         }
-
-
     }
 }

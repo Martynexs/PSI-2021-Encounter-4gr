@@ -6,8 +6,6 @@
         xmlns:local="clr-namespace:Encounter.Views"
         mc:Ignorable="d" VerticalAlignment="Stretch" d:DesignHeight="468.776" d:DesignWidth="500.0">
     <Grid>
-
-
         <Button Content="New route" 
                 Command="{Binding NavigateRouteCommand}" 
                 HorizontalAlignment="Center" 

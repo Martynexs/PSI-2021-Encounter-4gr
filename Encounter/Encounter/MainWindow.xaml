@@ -10,7 +10,10 @@
         Title="MainWindow" 
         Height="571" 
         Width="897">
-    <ContentControl Content="{Binding CurrentViewModel}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <ContentControl Content="{Binding CurrentViewModel}" 
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch">
+        
         <ContentControl.Resources>
             <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
                 <views:HomeView/>
@@ -20,5 +23,4 @@
             </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
-    
 </Window>

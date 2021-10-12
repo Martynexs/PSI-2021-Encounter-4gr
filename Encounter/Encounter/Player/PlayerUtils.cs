@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Encounter
 {
     public class PlayerUtils 
     {
-        
         public static List<User> GetAllPlayers()
         {
             List<User> listPlayers = new List<User>();
