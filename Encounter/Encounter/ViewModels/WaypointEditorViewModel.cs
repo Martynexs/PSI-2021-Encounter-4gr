@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using System.Text.RegularExpressions;
 using System.Collections.ObjectModel;
 
 namespace Encounter.ViewModels
@@ -191,13 +190,6 @@ namespace Encounter.ViewModels
             Indexes = new(Enumerable.Range(1, _routeViewModel.GetWaypointsCount()));
 
             OnPropertyChanged(nameof(SelectedWaypoint));
-        }
-
-        private bool PhoneNumberMatches ()
-        {
-            var reg = new Regex("^(([+][3][7][0][0-9]{8})|([8][0-9]{8}))$");
-            bool result = reg.IsMatch(PhoneNumber);
-            return result;
         }
     }
 }
