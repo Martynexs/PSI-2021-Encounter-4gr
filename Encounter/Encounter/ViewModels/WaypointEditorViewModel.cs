@@ -56,7 +56,7 @@ namespace Encounter.ViewModels
         }
 
         private string _name;
-        public String Name
+        public string Name
         {
             get => _name;
             set
