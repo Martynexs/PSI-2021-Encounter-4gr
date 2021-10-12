@@ -89,7 +89,8 @@
                    Foreground="Black"/>
             
             <TextBox x:Name="Description" 
-                     Text="" TextWrapping="Wrap" 
+                     Text="{Binding Description}" 
+                     TextWrapping="Wrap" 
                      Margin="46,260,0,0" 
                      Width="214" Height="126" 
                      VerticalAlignment="Top"
