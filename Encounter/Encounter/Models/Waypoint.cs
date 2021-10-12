@@ -11,7 +11,7 @@ namespace Encounter
         {
             Map(w => w.Index).Name("Index");
             Map(w => w.Name).Name("Name");
-            Map(w => w.Coord).Name("Coordinates").TypeConverter<CsvCoordinatesConverter>();
+            Map(w => w.Coordinates).Name("Coordinates").TypeConverter<CsvCoordinatesConverter>();
             Map(w => w.Type).Name("Type");
             Map(w => w.Price).Name("Price");
             Map(w => w.OpeningHours).Name("Opening");
@@ -28,7 +28,7 @@ namespace Encounter
         [Name("Name")]
         public string Name { get; set; }
         [Name("Coordinates")]
-        public Coordinates Coord { get; set; }
+        public Coordinates Coordinates { get; set; }
         [Name("Type")]
         public WaypointType Type { get; set; }
         [Name("Price")]

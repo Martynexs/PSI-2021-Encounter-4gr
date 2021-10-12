@@ -28,7 +28,7 @@ namespace Encounter
 
             _waypointView.Index = waypoint.Index;
             _waypointView.Name = waypoint.Name;
-            _waypointView.Coordinates = waypoint.Coord;
+            _waypointView.Coordinates = waypoint.Coordinates;
         }
 
         public int Index
@@ -45,8 +45,8 @@ namespace Encounter
 
         public Coordinates Coordinates
         {
-            get => _waypoint.Coord;
-            set { _waypoint.Coord = value; _waypointView.Coordinates = value; }
+            get => _waypoint.Coordinates;
+            set { _waypoint.Coordinates = value; _waypointView.Coordinates = value; }
         }
 
         public WaypointType Type
