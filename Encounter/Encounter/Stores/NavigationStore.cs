@@ -3,7 +3,7 @@ using System;
 
 namespace Encounter.Stores
 {
-    class NavigationStore
+    public class NavigationStore
     {
         public event Action CurrentViewModelChanged;
         public ViewModelBase _currentViewModel;

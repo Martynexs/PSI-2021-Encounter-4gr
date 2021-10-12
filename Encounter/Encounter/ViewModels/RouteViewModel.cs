@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Encounter.ViewModels
 {
-    class RouteViewModel : ViewModelBase
+    public class RouteViewModel : ViewModelBase
     {
         public ICommand NavigateHomeCommand { get; }
         public ICommand CreateNewWaypoint { get; }

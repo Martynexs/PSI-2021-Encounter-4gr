@@ -8,7 +8,7 @@ using CsvHelper.Configuration;
 
 namespace Encounter
 {
-    static class Files
+    public static class CsvIO
     {
         public static void Write(RouteViewModel routeViewModel)
         {

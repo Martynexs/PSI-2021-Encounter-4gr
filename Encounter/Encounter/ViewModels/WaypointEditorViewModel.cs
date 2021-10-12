@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 
 namespace Encounter.ViewModels
 {
-    class WaypointEditorViewModel : ViewModelBase
+    public class WaypointEditorViewModel : ViewModelBase
     {
         private RouteViewModel _routeViewModel;
         private WaypointStore _waypointStore;
@@ -94,7 +94,7 @@ namespace Encounter.ViewModels
             get => _typeItem;
             set
             {
-                Type = value.Value;
+                Type = value.value;
                 _typeItem = value;
                 OnPropertyChanged();
             }

@@ -14,7 +14,7 @@ namespace Encounter.Commands
 
         public override void Execute(object parameter)
         {
-            var waypoints = Files.Read();
+            var waypoints = CsvIO.Read();
             _navigationStore.CurrentViewModel = new RouteViewModel(_navigationStore, waypoints);
         }
     }

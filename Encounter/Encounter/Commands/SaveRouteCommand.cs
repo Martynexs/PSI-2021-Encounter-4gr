@@ -13,7 +13,7 @@ namespace Encounter.Commands
         }
         public override void Execute(object parameter)
         {
-            Files.Write(_routeViewModel);
+            CsvIO.Write(_routeViewModel);
         }
     }
 }

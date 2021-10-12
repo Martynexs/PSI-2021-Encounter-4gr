@@ -5,13 +5,13 @@ namespace Encounter
 {
     public class LabelValueItem<T> : IEquatable<LabelValueItem<T>>
     {
-        public string Label {get; set;}
-        public T Value { get; set; }
+        public string label {get; set;}
+        public T value { get; set; }
 
         public LabelValueItem(string label, T value)
         {
-            Label = label;
-            Value = value;
+            this.label = label;
+            this.value = value;
         }
 
         public override bool Equals(object obj)
@@ -22,12 +22,12 @@ namespace Encounter
         public bool Equals(LabelValueItem<T> other)
         {
             return other != null &&
-                   EqualityComparer<T>.Default.Equals(Value, other.Value);
+                   EqualityComparer<T>.Default.Equals(value, other.value);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Value);
+            return HashCode.Combine(value);
         }
     }
 }

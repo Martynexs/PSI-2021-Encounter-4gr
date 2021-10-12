@@ -129,8 +129,7 @@
                     BorderBrush="{x:Null}" 
                     Background="White"/>
             
-            <TextBox x:Name="Name" 
-                     HorizontalAlignment="Left"
+            <TextBox HorizontalAlignment="Left"
                      Margin="130,5,5,0" 
                      Text="{Binding Name}" 
                      TextWrapping="Wrap" 
