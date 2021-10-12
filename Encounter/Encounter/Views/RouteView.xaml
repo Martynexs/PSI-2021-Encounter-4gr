@@ -6,13 +6,22 @@
         xmlns:local="clr-namespace:Encounter.Views"
         xmlns:viewmodels="clr-namespace:Encounter.ViewModels"
         xmlns:converters="clr-namespace:Encounter.Converters"
+        xmlns:validation="clr-namespace:Encounter.Validation"
         mc:Ignorable="d" 
         HorizontalAlignment="Stretch" 
         VerticalAlignment="Stretch" 
         d:DesignWidth="800">
     <UserControl.Resources>
         <converters:CoordinatesConverter x:Key="CoordinatesConverter"/>
+        <validation:PhoneNumberValidation x:Key="PhoneNumberValidation"/>
+        <ControlTemplate x:Key="validationTemplate">
+            <DockPanel>
+                <TextBlock Foreground="Red" FontSize="20">!</TextBlock>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
     </UserControl.Resources>
+
 
     <Grid>
         <StackPanel/>
@@ -187,12 +196,12 @@
                      HorizontalContentAlignment="Center" 
                      VerticalContentAlignment="Center" 
                      FontSize="18"/>
-            
-            <TextBox x:Name="Closing" 
-                     HorizontalAlignment="Left" 
-                     Margin="130,180,5,0" 
+
+            <TextBox x:Name="Closing"
                      Text="{Binding ClosingTime,
-                     StringFormat={}{0:HH:mm}}" 
+                       StringFormat={}{0:HH:mm}}"
+                     HorizontalAlignment="Left" 
+                     Margin="130,180,5,0"  
                      TextWrapping="Wrap" 
                      VerticalAlignment="Top" 
                      Width="180" Height="35" 
@@ -201,15 +210,23 @@
                      FontSize="18"/>
 
             <TextBox x:Name="PhoneNumber" 
+                     Validation.ErrorTemplate="{StaticResource validationTemplate}"
                      HorizontalAlignment="Right" 
                      Margin="130,215,5,0" 
-                     Text="{Binding PhoneNumber}" 
                      TextWrapping="Wrap" 
                      VerticalAlignment="Top" 
                      Width="180" Height="35" 
                      HorizontalContentAlignment="Center" 
                      VerticalContentAlignment="Center" 
-                     FontSize="18"/>
+                     FontSize="18">
+                <TextBox.Text>
+                    <Binding Path="PhoneNumber">
+                        <Binding.ValidationRules>
+                            <validation:PhoneNumberValidation/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
 
             <Label Content="Index:" 
                    HorizontalAlignment="Left" 
@@ -265,5 +282,6 @@
                     BorderBrush="{x:Null}" 
                     FontSize="18"/>
         </StackPanel>
+    
     </Grid>
 </UserControl>
