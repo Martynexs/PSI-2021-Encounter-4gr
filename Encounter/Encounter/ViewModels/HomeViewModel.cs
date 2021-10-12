@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace Encounter.ViewModels
 {
-    class HomeViewModel : ViewModelBase
+    public class HomeViewModel : ViewModelBase
     {
         public ICommand NavigateRouteCommand { get; }
         public ICommand LoadRouteCommand { get; }

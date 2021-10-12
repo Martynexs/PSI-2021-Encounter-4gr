@@ -3,9 +3,9 @@ using Encounter.ViewModels;
 
 namespace Encounter.Commands
 {
-    class LoadRouteCommand : CommandBase
+    public class LoadRouteCommand : CommandBase
     {
-        NavigationStore _navigationStore;
+        private NavigationStore _navigationStore;
 
         public LoadRouteCommand(NavigationStore navigationStore)
         {

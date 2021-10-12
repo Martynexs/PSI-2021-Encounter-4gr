@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Encounter
 {
-    class HypotheticalGroupJoinExample
+    public class HypotheticalGroupJoinExample
     {
         private readonly List<Route> _routes;
         private readonly List<User> _users;

@@ -3,7 +3,7 @@ using Encounter.ViewModels;
 
 namespace Encounter.Commands
 {
-    class CreateNewWaypointCommand : CommandBase
+    public class CreateNewWaypointCommand : CommandBase
     {
         private RouteViewModel _routeViewModel;
         private WaypointStore _waypointStore;

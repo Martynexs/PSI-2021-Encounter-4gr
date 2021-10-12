@@ -4,7 +4,7 @@ namespace Encounter.Converters
 {
     public static class CurrencyConverter
     {
-        public static double ConvertCurrency(decimal price, string currencyFrom, string currencyTo)
+        public static decimal ConvertCurrency(double price, string currencyFrom, string currencyTo)
         {
             double rate;
             if (currencyFrom == "USD" && currencyTo == "EUR")
@@ -27,7 +27,7 @@ namespace Encounter.Converters
             {
                 throw new ArgumentException("Can't convert from " + currencyFrom + " to " + currencyTo);
             }
-            return ((double)price) * rate;
+            return ((decimal)price) * (decimal)rate;
         }
     }
 }

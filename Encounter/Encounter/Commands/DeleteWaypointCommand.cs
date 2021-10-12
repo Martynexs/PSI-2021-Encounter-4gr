@@ -3,7 +3,7 @@ using Encounter.ViewModels;
 
 namespace Encounter.Commands
 {
-    class DeleteWaypointCommand : CommandBase
+    public class DeleteWaypointCommand : CommandBase
     {
         private WaypointStore _waypointStore;
         private RouteViewModel _routeViewModel;

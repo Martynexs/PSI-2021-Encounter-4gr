@@ -4,7 +4,7 @@ using System;
 
 namespace Encounter.Commands
 {
-    class NavigateCommand<TViewModel> : CommandBase
+    public class NavigateCommand<TViewModel> : CommandBase
         where TViewModel : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;

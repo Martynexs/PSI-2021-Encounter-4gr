@@ -2,7 +2,7 @@
 
 namespace Encounter.Commands
 {
-    class CloseEditorCommand : CommandBase
+    public class CloseEditorCommand : CommandBase
     {
         private WaypointEditorViewModel _waypointEditorViewModel;
 

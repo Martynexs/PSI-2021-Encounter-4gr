@@ -1,10 +1,8 @@
 ﻿using Encounter.ViewModels;
-using System;
 
 namespace Encounter.Commands
 {
-    [Serializable]
-    class SaveRouteCommand : CommandBase
+    public class SaveRouteCommand : CommandBase
     {
         private RouteViewModel _routeViewModel;
         public SaveRouteCommand(RouteViewModel routeViewModel)
