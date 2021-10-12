@@ -14,9 +14,12 @@
     <UserControl.Resources>
         <converters:CoordinatesConverter x:Key="CoordinatesConverter"/>
         <validation:PhoneNumberValidation x:Key="PhoneNumberValidation"/>
+        
         <ControlTemplate x:Key="validationTemplate">
             <DockPanel>
-                <TextBlock Foreground="Red" FontSize="20">!</TextBlock>
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <AdornedElementPlaceholder />
+                </Border>
                 <AdornedElementPlaceholder/>
             </DockPanel>
         </ControlTemplate>
