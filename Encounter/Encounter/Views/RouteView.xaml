@@ -284,6 +284,17 @@
                     Background="{x:Null}" 
                     BorderBrush="{x:Null}" 
                     FontSize="18"/>
+
+            <Button Content="Delete route" 
+                    Command="{Binding DeleteRoute}" 
+                    Width="118" 
+                    Background="#FFFF8585" 
+                    BorderBrush="{x:Null}" 
+                    FontSize="18"/>
+
+
+
+
         </StackPanel>
     
     </Grid>

@@ -10,6 +10,12 @@
     <Compile Update="Views\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\LoadRouteView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\NewRouteView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\RouteView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -19,6 +25,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\LoadRouteView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\NewRouteView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\RouteView.xaml">

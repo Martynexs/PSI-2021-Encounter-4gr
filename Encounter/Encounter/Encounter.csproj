@@ -19,4 +19,8 @@
     <Resource Include="Views\globe.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\LoadRouteVM\" />
+  </ItemGroup>
+
 </Project>

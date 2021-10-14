@@ -38,7 +38,7 @@ namespace Encounter
         [Name("Closing")]
         public DateTime ClosingTime { get; set; }
         [Name("Phone")]
-        public String PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         [Name("Description")]
         public string Description { get; set; }
 

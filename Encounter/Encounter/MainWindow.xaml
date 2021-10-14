@@ -21,6 +21,12 @@
             <DataTemplate DataType="{x:Type viewmodels:RouteViewModel}">
                 <views:RouteView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:NewRouteViewModel}">
+                <views:NewRouteView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:LoadRouteViewModel}">
+                <views:LoadRouteView/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
 </Window>

@@ -9,17 +9,12 @@ using System.Windows;
 
 namespace Encounter.IO
 {
-    class DatabaseIO
+    public static class DatabaseIO
     {
-        private string _connectionPath = @"Database.db";
-        private SQLiteConnection _connection;
+        private static string _connectionPath = @"Database.db";
+        private static SQLiteConnection _connection = new SQLiteConnection("Data source=" + _connectionPath + ";version=3;");
 
-        public DatabaseIO()
-        {
-            _connection = new SQLiteConnection("Data source=" + _connectionPath + ";version=3;");
-        }
-
-        private void OpenConnection()
+        public static void OpenConnection()
         {
             try
             {
@@ -28,10 +23,11 @@ namespace Encounter.IO
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                throw new Exception();
             }
         }
 
-        private void CloseConnection()
+        public static void CloseConnection()
         {
             try
             {
@@ -40,10 +36,11 @@ namespace Encounter.IO
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                throw new Exception();
             }
         }
 
-        public DataSet GetDataSet(string query, string table)
+        public static DataSet GetDataSet(string query, string table)
         {
             try
             {
@@ -63,25 +60,37 @@ namespace Encounter.IO
             }
         }
 
-        public void ExecuteNonQuery(string query)
+        public static SQLiteDataReader GetDataReader(string query)
         {
             try
             {
-                OpenConnection();
+                var cmd = new SQLiteCommand(query, _connection);
+                return cmd.ExecuteReader();
+            }
+            catch
+            {
+                throw new Exception();
+            }
+            finally
+            {
+            }
+        }
+
+        public static void ExecuteNonQuery(string query)
+        {
+            try
+            {
                 var command = new SQLiteCommand(query, _connection);
                 command.ExecuteNonQuery();
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                throw new Exception();
             }
             finally
             {
-                CloseConnection();
             }
         }
-
-
-
     }
 }

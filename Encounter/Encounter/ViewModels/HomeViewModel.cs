@@ -1,18 +1,22 @@
 ﻿using Encounter.Commands;
 using Encounter.Stores;
+using Encounter.Models;
 using System.Windows.Input;
 
 namespace Encounter.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-        public ICommand NavigateRouteCommand { get; }
-        public ICommand LoadRouteCommand { get; }
+        public ICommand NavigateNewRouteCommand { get; }
+
+        public ICommand NavigateLoadRouteCommand { get; }
+
+        public ICommand CreateNewRouteCommand { get; }
 
         public HomeViewModel(NavigationStore navigationStore)
         {
-            NavigateRouteCommand = new NavigateCommand<RouteViewModel>(navigationStore, () => new RouteViewModel(navigationStore));
-            LoadRouteCommand = new LoadRouteCommand(navigationStore);
+            NavigateNewRouteCommand = new NavigateCommand<NewRouteViewModel>(navigationStore, () => new NewRouteViewModel(navigationStore));
+            NavigateLoadRouteCommand = new NavigateCommand<LoadRouteViewModel>(navigationStore, () => new LoadRouteViewModel(navigationStore));
         }
 
     }

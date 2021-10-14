@@ -1,4 +1,6 @@
 ﻿using Encounter.Commands;
+using Encounter.Commands.RouteVM;
+using Encounter.Models;
 using Encounter.Stores;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,8 @@ namespace Encounter.ViewModels
         public ICommand NavigateHomeCommand { get; }
         public ICommand CreateNewWaypoint { get; }
         public ICommand SaveRoute { get; }
+        public ICommand DeleteRoute { get; }
+
         public ObservableCollection<FrameworkElement> WaypointPanels { get; }
 
         private readonly List<WaypointViewModel> _waypoints;
@@ -21,7 +25,9 @@ namespace Encounter.ViewModels
 
         private readonly WaypointStore _waypointStore = new WaypointStore();
 
-        public RouteViewModel(NavigationStore navigationStore)
+        public Route Route { get; }
+
+        public RouteViewModel(NavigationStore navigationStore, Route route)
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
@@ -29,9 +35,11 @@ namespace Encounter.ViewModels
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
             WaypointPanels = new ObservableCollection<FrameworkElement>();
+            DeleteRoute = new DeleteRouteCommand(this, navigationStore);
+            Route = route;
         }
 
-        public RouteViewModel(NavigationStore navigationStore, IEnumerable<Waypoint> waypoints)
+        public RouteViewModel(NavigationStore navigationStore, Route route , IEnumerable<Waypoint> waypoints)
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
@@ -39,6 +47,8 @@ namespace Encounter.ViewModels
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
             WaypointPanels = new ObservableCollection<FrameworkElement>();
+            DeleteRoute = new DeleteRouteCommand(this, navigationStore);
+            Route =  route;
             LoadRoute(waypoints);
         }
 
