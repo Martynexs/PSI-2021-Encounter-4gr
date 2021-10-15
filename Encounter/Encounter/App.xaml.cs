@@ -16,7 +16,7 @@ namespace Encounter
         {
             var navigationStore = new NavigationStore();
 
-            navigationStore.CurrentViewModel = new HomeViewModel(navigationStore);
+            navigationStore.CurrentViewModel = new LogInViewModel(navigationStore);
 
             /*
             var db = new DatabaseFunctions();
