@@ -18,6 +18,8 @@ namespace Encounter.ViewModels
 
         public ICommand LoadRouteCommand { get; }
 
+        public ICommand NavigateHomeCommand { get; }
+
         public ObservableCollection<Route> Routes { get; }
 
         public Route SelectedRoute { get; set; }
@@ -27,6 +29,7 @@ namespace Encounter.ViewModels
             _navigationStore = navigationStore;
             Routes = DatabaseFunctions.GetRoutes();
             LoadRouteCommand = new LoadRouteCommand(navigationStore, this);
+            NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
         }
 
 
