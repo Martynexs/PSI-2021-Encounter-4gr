@@ -13,7 +13,7 @@ namespace Encounter
         {
             var navigationStore = new NavigationStore();
 
-            navigationStore.CurrentViewModel = new HomeViewModel(navigationStore);
+            navigationStore.CurrentViewModel = new LogInViewModel(navigationStore);
 
             MainWindow = new MainWindow()
             {

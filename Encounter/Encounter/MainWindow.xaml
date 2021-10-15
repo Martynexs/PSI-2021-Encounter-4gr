@@ -15,6 +15,9 @@
                     VerticalAlignment="Stretch">
         
         <ContentControl.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:LogInViewModel}">
+                <views:LoginWindow/>
+            </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
                 <views:HomeView/>
             </DataTemplate>
