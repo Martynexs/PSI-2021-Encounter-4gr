@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\compass.jpg" />
+    <None Remove="Views\EncounterMe.jpg" />
     <None Remove="Views\globe.png" />
   </ItemGroup>
 
@@ -16,7 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Views\compass.jpg" />
     <Resource Include="Views\globe.png" />
+    <Resource Include="Views\EncounterMe.jpg" />
   </ItemGroup>
 
   <ItemGroup>
