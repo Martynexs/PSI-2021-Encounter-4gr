@@ -16,7 +16,7 @@
         
         <ContentControl.Resources>
             <DataTemplate DataType="{x:Type viewmodels:LogInViewModel}">
-                <views:LoginWindow/>
+                <views:LoginView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
                 <views:HomeView/>

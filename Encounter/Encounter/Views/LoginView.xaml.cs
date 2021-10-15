@@ -5,9 +5,9 @@ namespace Encounter.Views
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class LoginWindow : UserControl
+    public partial class LoginView : UserControl
     {
-        public LoginWindow() 
+        public LoginView() 
         {
             InitializeComponent();
         }
