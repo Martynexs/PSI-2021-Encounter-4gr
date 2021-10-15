@@ -11,12 +11,19 @@ namespace Encounter.ViewModels
 {
     public class LogInViewModel : ViewModelBase
     {
-        public ICommand LoadHomePage { get; }
-      
-        public LogInViewModel(NavigationStore navigationStore)
+        public ICommand DoLoginCommand { get; }
+        private readonly User _User;
+
+        public string Username
         {
-            LoadHomePage = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
-           
+            get => _User.Nickname;
+            set => _User.Nickname = value;
+        }
+
+    public LogInViewModel(NavigationStore navigationStore)
+        {
+            _User = new User();
+            DoLoginCommand = new LoginCommand(navigationStore, _User);
         }
     }
 }

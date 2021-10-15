@@ -9,9 +9,9 @@
     <Grid Margin="-38,0,0,-52">
         <Image Source="/Views/EncounterMe.jpg" Margin="292,-1,86,245"/>
         <Image HorizontalAlignment="Left" Height="298" Margin="55,243,0,0" VerticalAlignment="Top" Width="247" Source="/Views/compass.jpg"/>
-        <Button x:Name="LoginButton" Content="Log in" Command="{Binding LoadHomePage}" HorizontalAlignment="Left" Height="37" Margin="589,325,0,0" VerticalAlignment="Top" Width="163" FontSize="24"/>
+        <Button x:Name="LoginButton" Content="Log in" Command="{Binding DoLoginCommand}" HorizontalAlignment="Left" Height="37" Margin="589,325,0,0" VerticalAlignment="Top" Width="163" FontSize="24"/>
         <Label x:Name="UsernameLabel" Content="Username:" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="137" Margin="380,272,0,0" FontSize="24" FontWeight="Bold" Background="White"/>
-        <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Height="39" Margin="522,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Background="#FFFF8303" FontSize="24"/>
+        <TextBox x:Name="UsernameTextBox" Text="{Binding Username}"  HorizontalAlignment="Left" Height="39" Margin="522,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Background="#FFFF8303" FontSize="24"/>
 
     </Grid>
 </UserControl>
