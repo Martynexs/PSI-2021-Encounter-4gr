@@ -11,5 +11,10 @@
         {
 
         }
+
+        public override string ToString()
+        {
+            return ID + CreatorID + Name + Location;
+        }
     }
 }

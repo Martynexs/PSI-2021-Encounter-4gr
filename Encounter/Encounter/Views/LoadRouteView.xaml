@@ -7,12 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
+        
         <DataGrid Background="#FFCFCFCF" 
                   Margin="0,67,0,48"
                   ItemsSource="{Binding Routes}"
                   SelectedItem="{Binding SelectedRoute}"
                   IsReadOnly="True" FontSize="20">
         </DataGrid>
+        
         <Button Content="Load"
                 Command="{Binding LoadRouteCommand}"
                 HorizontalAlignment="Center" 
@@ -30,8 +32,14 @@
                 Margin="10,0,0,10" 
                 FontSize="18" 
                 Background="#FFC7C7C7"/>
-
-
+        
+        <TextBox HorizontalAlignment="Left" 
+                 Text="{Binding SearchText, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 FontSize="18"
+                 Width="500" 
+                 Margin="30,30,0,0"/>
 
     </Grid>
 </UserControl>
