@@ -26,13 +26,10 @@ namespace Encounter.ViewModels
 
         public NewRouteViewModel(NavigationStore navigation)
         {
-            _route = new Route();
+            _route = new Route(new Random(Guid.NewGuid().GetHashCode()).Next(10000, 99999));
             _navigationStore = navigation;
             NewRouteCommand = new CreateNewRouteCommand(_route, navigation);
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(_navigationStore, () => new HomeViewModel(_navigationStore));
         }
-
-
-
     }
 }

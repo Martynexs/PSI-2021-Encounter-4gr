@@ -18,12 +18,46 @@ namespace Encounter.ViewModels
         public ICommand SaveRoute { get; }
         public ICommand DeleteRoute { get; }
 
-        public ObservableCollection<FrameworkElement> WaypointPanels { get; }
+        public ObservableCollection<FrameworkElement> WaypointPanels { get; set; }
+        public List<WaypointType> AllWaypointTypes { get; set; } = WayPointTypeExtensions.GetAllTypes();
 
         private readonly List<WaypointViewModel> _waypoints;
         public WaypointEditorViewModel WaypointEditorViewModel { get; }
 
         private readonly WaypointStore _waypointStore = new WaypointStore();
+
+        private bool _filteringEnabled;
+        public bool FilteringEnabled 
+        {
+            get => _filteringEnabled; 
+            set
+            {
+                _filteringEnabled = value;
+
+                if (!value)
+                {
+                    WaypointPanels = new ObservableCollection<FrameworkElement>(_waypoints.Select(x => x.GetWaypointPanel()).ToList());
+                }
+                else
+                {
+                    FilterWaypoints();
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private WaypointType _selectedFilter;
+        public WaypointType SelectedFilter 
+        {
+            get => _selectedFilter;
+            set
+            {
+                _selectedFilter = value;
+                FilterWaypoints();
+                OnPropertyChanged();
+            }
+        }
 
         public Route Route { get; }
 
@@ -39,7 +73,7 @@ namespace Encounter.ViewModels
             Route = route;
         }
 
-        public RouteViewModel(NavigationStore navigationStore, Route route , IEnumerable<Waypoint> waypoints)
+        public RouteViewModel(NavigationStore navigationStore, Route route, IEnumerable<Waypoint> waypoints)
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
@@ -48,7 +82,7 @@ namespace Encounter.ViewModels
             _waypoints = new List<WaypointViewModel>();
             WaypointPanels = new ObservableCollection<FrameworkElement>();
             DeleteRoute = new DeleteRouteCommand(this, navigationStore);
-            Route =  route;
+            Route = route;
             LoadRoute(waypoints);
         }
 
@@ -106,9 +140,6 @@ namespace Encounter.ViewModels
         public List<Waypoint> GetWaypoints()
         {
             var listOfWaypoints = _waypoints.Select(x => x.GetWaypoint()).ToList();
-
-
-
             return listOfWaypoints;
         }
 
@@ -149,6 +180,11 @@ namespace Encounter.ViewModels
             }
             //casting to integer km narroving type conversion
             return (int)DistanceValue;
+        }
+
+        private void FilterWaypoints()
+        {
+            WaypointPanels = new ObservableCollection<FrameworkElement>( _waypoints.Where(x => x.Type == SelectedFilter).Select(x => x.GetWaypointPanel()).ToList());
         }
 
     }

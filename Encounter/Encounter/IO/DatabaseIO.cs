@@ -80,6 +80,9 @@ namespace Encounter.IO
         {
             try
             {
+                var pragma = new SQLiteCommand("PRAGMA foreign_keys = true;", _connection);
+                pragma.ExecuteNonQuery();
+
                 var command = new SQLiteCommand(query, _connection);
                 command.ExecuteNonQuery();
             }

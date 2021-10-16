@@ -28,7 +28,7 @@
 
     <Grid>
         <StackPanel/>
-        <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="0,39,0,0">
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="0,79,0,0">
             <ItemsControl ItemsSource="{Binding WaypointPanels}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -46,7 +46,8 @@
               UseLayoutRounding="False" 
               ShowGridLines="True" 
               Panel.ZIndex="2" 
-              Background="#FFD8D8D8">
+              Background="#FFD8D8D8"
+              d:Visibility="Hidden">
 
             <Label Content="Name:" 
                    HorizontalAlignment="Left" 
@@ -291,9 +292,27 @@
                     Background="#FFFF8585" 
                     BorderBrush="{x:Null}" 
                     FontSize="18"/>
+        </StackPanel>
 
+        <StackPanel Background="#FFF1F1F1"
+                    Orientation="Horizontal"
+                    Height="39"
+                    Margin="0,39,0,442">
 
+            <CheckBox VerticalAlignment="Center"
+                      IsChecked="{Binding FilteringEnabled}"/>
 
+            <Label Height="39" 
+                   FontSize="18" 
+                   Content="Type filter:"/>
+
+            <ComboBox Width="180" Height="39" 
+                      FontSize="18"
+                      VerticalContentAlignment="Center"
+                      ItemsSource="{Binding AllWaypointTypes}" 
+                      IsEnabled="{Binding FilteringEnabled}"
+                      SelectedItem="{Binding SelectedFilter}"/>
+            
 
         </StackPanel>
     

@@ -18,7 +18,7 @@ namespace Encounter.Validation
 
         private bool PhoneNumberMatches(string phoneNumber)
         {
-            var reg = new Regex("^(([+][3][7][0][0-9]{8}) | ([8][0-9]{8}))$");
+            var reg = new Regex("^(([+][3][7][0][0-9]{8})|([8][0-9]{8}))$");
             bool result = reg.IsMatch(phoneNumber);
             return result;
         }

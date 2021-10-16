@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Encounter
 {
@@ -48,6 +49,11 @@ namespace Encounter
                 WaypointType.Other => "Other",
                 _ => "Other",
             };
+        }
+
+        public static List<WaypointType> GetAllTypes()
+        {
+            return Enum.GetValues(typeof(WaypointType)).Cast<WaypointType>().ToList();
         }
 
         public static List<LabelValueItem<WaypointType>> GetLabelValueItems()
