@@ -27,9 +27,9 @@ namespace Encounter.Commands
             {
                 MessageBox.Show("Please Enter login");
                 return;
-            } 
-            
-            Session.CreateNewSession(_user.Nickname);
+            }
+
+            Session.CreateNewSession(_user);
             _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore);
         }
     }

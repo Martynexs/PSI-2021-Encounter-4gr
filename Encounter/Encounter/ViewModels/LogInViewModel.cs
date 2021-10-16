@@ -12,18 +12,18 @@ namespace Encounter.ViewModels
     public class LogInViewModel : ViewModelBase
     {
         public ICommand DoLoginCommand { get; }
-        private readonly User _User;
+        private readonly User _user;
 
         public string Username
         {
-            get => _User.Nickname;
-            set => _User.Nickname = value;
+            get => _user.Nickname;
+            set => _user.Nickname = value;
         }
 
-    public LogInViewModel(NavigationStore navigationStore)
+        public LogInViewModel(NavigationStore navigationStore)
         {
-            _User = new User();
-            DoLoginCommand = new LoginCommand(navigationStore, _User);
+            _user = new User();
+            DoLoginCommand = new LoginCommand(navigationStore, _user);
         }
     }
 }
