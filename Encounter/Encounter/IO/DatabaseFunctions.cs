@@ -22,7 +22,7 @@ namespace Encounter.IO
                 DatabaseIO.ExecuteNonQuery(sql);
 
                 sql = "INSERT INTO Routes(ID, Name, CreatorID) " +
-                      "VALUES('" + id + "', '" + route.Name + "', 'me')";
+                      "VALUES('" + id + "', '" + route.Name + "', '" + route.CreatorID + "')";
                 DatabaseIO.ExecuteNonQuery(sql);
             }
             catch

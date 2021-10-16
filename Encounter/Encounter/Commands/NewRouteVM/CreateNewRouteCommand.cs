@@ -27,6 +27,7 @@ namespace Encounter.Commands
             {
                 try
                 {
+                    _route.CreatorID = Session.Get_Username();
                     DatabaseFunctions.CreateRoute(_route);
                     _navigationStore.CurrentViewModel = new RouteViewModel(_navigationStore, _route);
                 }
