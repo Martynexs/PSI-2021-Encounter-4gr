@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using Encounter.Commands.AboutRoute;
 
 namespace Encounter.ViewModels
 {
@@ -40,6 +41,17 @@ namespace Encounter.ViewModels
             set
             {
                 _editorVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _aboutVisibility;
+        public Visibility AboutVisibility
+        {
+            get => _aboutVisibility;
+            set
+            {
+                _aboutVisibility = value;
                 OnPropertyChanged();
             }
         }

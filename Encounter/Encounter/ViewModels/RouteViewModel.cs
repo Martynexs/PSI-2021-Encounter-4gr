@@ -1,4 +1,5 @@
 ﻿using Encounter.Commands;
+using Encounter.Commands.AboutRoute;
 using Encounter.Commands.RouteVM;
 using Encounter.Models;
 using Encounter.Stores;
@@ -17,6 +18,7 @@ namespace Encounter.ViewModels
         public ICommand CreateNewWaypoint { get; }
         public ICommand SaveRoute { get; }
         public ICommand DeleteRoute { get; }
+        public ICommand AboutRoute { get; }
 
         public ObservableCollection<FrameworkElement> WaypointPanels { get; set; }
         public List<WaypointType> AllWaypointTypes { get; set; } = WayPointTypeExtensions.GetAllTypes();
@@ -68,6 +70,7 @@ namespace Encounter.ViewModels
             WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this);
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
+            AboutRoute = new AboutButtonCommand(WaypointEditorViewModel, this);
             WaypointPanels = new ObservableCollection<FrameworkElement>();
             DeleteRoute = new DeleteRouteCommand(this, navigationStore);
             Route = route;
@@ -81,6 +84,7 @@ namespace Encounter.ViewModels
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
             WaypointPanels = new ObservableCollection<FrameworkElement>();
+            AboutRoute = new AboutButtonCommand(WaypointEditorViewModel, this);
             DeleteRoute = new DeleteRouteCommand(this, navigationStore);
             Route = route;
             LoadRoute(waypoints);
@@ -188,6 +192,5 @@ namespace Encounter.ViewModels
         }
 
     }
-
 
 }

@@ -4,7 +4,7 @@ using System.Windows.Controls.Primitives;
 
 namespace Encounter.Views
 {
-    public partial class RouteView : UserControl
+    public partial class RouteViewReadOnly : UserControl
     {
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Rating", typeof(int), typeof(RouteView),
@@ -65,7 +65,7 @@ namespace Encounter.Views
             int newvalue = int.Parse(button.Tag.ToString());
             Value = newvalue;
         }
-        public RouteView()
+        public RouteViewReadOnly()
         {
             InitializeComponent();
         }
