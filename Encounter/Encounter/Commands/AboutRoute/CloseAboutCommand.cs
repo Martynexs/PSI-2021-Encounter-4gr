@@ -18,7 +18,7 @@ namespace Encounter.Commands.AboutRoute
 
             public override void Execute(object parameter)
             {
-                _waypointEditorViewModel.EditorVisibility = System.Windows.Visibility.Hidden;
+                _waypointEditorViewModel.AboutVisibility = System.Windows.Visibility.Hidden;
             }
     }
 }

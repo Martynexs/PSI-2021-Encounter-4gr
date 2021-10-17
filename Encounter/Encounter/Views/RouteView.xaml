@@ -268,7 +268,7 @@
               UseLayoutRounding="False" 
               Panel.ZIndex="2" 
               Background="#FFD8D8D8"
-              d:Visibility="Visible" Margin="485,0,0,0" Width="315">
+              d:Visibility="hidden" Margin="485,0,0,0" Width="315">
 
             <Grid.Resources>
                 <ControlTemplate x:Key="ratingtemplate" TargetType="{x:Type ToggleButton}">
@@ -307,7 +307,7 @@
                                   HorizontalAlignment="Center" Height="39" Grid.Column="3" />
 
             <Button Content="Cancel" 
-        Command="{Binding CloseEditor}" 
+        Command="{Binding CloseAbout}" 
         HorizontalAlignment="Right"
         Margin="0,456,0,25"  
         Width="64" 
@@ -325,7 +325,7 @@
                    FontSize="18" 
                    Foreground="Black" Grid.ColumnSpan="3"/>
 
-            <TextBox x:Name="Discription"
+            <TextBox x:Name="AboutDiscription"
                      HorizontalAlignment="Left" 
                      Margin="14,98,0,0"  
                      TextWrapping="Wrap" 
@@ -335,7 +335,7 @@
                      VerticalContentAlignment="Center" 
                      FontSize="18" Grid.ColumnSpan="5"/>
 
-            <TextBox x:Name="Name"
+            <TextBox x:Name="RouteName"
                      HorizontalAlignment="Left" 
                      Margin="14,10,0,0"  
                      TextWrapping="Wrap" 
@@ -360,7 +360,7 @@
                 Margin="14,388,0,0" 
                 FontSize="18" 
                 Foreground="Black" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="Name_Copy"
+            <TextBox x:Name="Rate"
                 HorizontalAlignment="Left" 
                 Margin="8,388,0,0"  
                 TextWrapping="Wrap" 
