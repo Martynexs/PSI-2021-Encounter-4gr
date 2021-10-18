@@ -107,7 +107,8 @@
                      Margin="46,260,0,0" 
                      Width="214" Height="126" 
                      VerticalAlignment="Top"
-                     HorizontalAlignment="Left" 
+                     HorizontalAlignment="Left"
+                     IsEnabled="{Binding ViewOnly}"
                      FontSize="18"/>
 
             <Button Content="Save" 
@@ -119,6 +120,8 @@
                     Foreground="Black" 
                     FontSize="18" 
                     BorderBrush="{x:Null}" 
+                    IsEnabled="{Binding ViewOnly}"
+                    Visibility="{Binding ViewOnlyVisibility}"
                     Background="#FFFFCF4D"/>
 
             <Button Content="Cancel" 
@@ -141,6 +144,8 @@
                     Foreground="Black" 
                     FontSize="18" 
                     BorderBrush="{x:Null}" 
+                    IsEnabled="{Binding ViewOnly}"
+                    Visibility="{Binding ViewOnlyVisibility}"
                     Background="White"/>
 
             <TextBox HorizontalAlignment="Left"
@@ -151,6 +156,7 @@
                      Width="180" Height="35" 
                      HorizontalContentAlignment="Center" 
                      FontSize="18" 
+                     IsEnabled="{Binding ViewOnly}"
                      VerticalContentAlignment="Center"/>
 
             <TextBox x:Name="Coordinates" 
@@ -163,6 +169,7 @@
                      Width="180" Height="35" 
                      VerticalContentAlignment="Center" 
                      FontSize="18" 
+                     IsEnabled="{Binding ViewOnly}"
                      HorizontalContentAlignment="Center"/>
 
             <ComboBox x:Name="Type" 
@@ -175,6 +182,7 @@
                       VerticalContentAlignment="Center"
                       ItemsSource="{Binding AllWaypointTypes}" 
                       DisplayMemberPath="label" 
+                      IsEnabled="{Binding ViewOnly}"
                       SelectedItem="{Binding TypeItem}"/>
 
             <TextBox x:Name="Price" 
@@ -187,6 +195,7 @@
                      Width="180" Height="35" 
                      HorizontalContentAlignment="Center" 
                      VerticalContentAlignment="Center" 
+                     IsEnabled="{Binding ViewOnly}"
                      FontSize="18"/>
 
             <TextBox x:Name="Opening" 
@@ -199,6 +208,7 @@
                      Width="180" Height="35" 
                      HorizontalContentAlignment="Center" 
                      VerticalContentAlignment="Center" 
+                     IsEnabled="{Binding ViewOnly}"
                      FontSize="18"/>
 
             <TextBox x:Name="Closing"
@@ -211,6 +221,7 @@
                      Width="180" Height="35" 
                      HorizontalContentAlignment="Center" 
                      VerticalContentAlignment="Center" 
+                     IsEnabled="{Binding ViewOnly}"
                      FontSize="18"/>
 
             <TextBox x:Name="PhoneNumber" 
@@ -222,6 +233,7 @@
                      Width="180" Height="35" 
                      HorizontalContentAlignment="Center" 
                      VerticalContentAlignment="Center" 
+                     IsEnabled="{Binding ViewOnly}"
                      FontSize="18">
                 <TextBox.Text>
                     <Binding Path="PhoneNumber">
@@ -248,6 +260,7 @@
                       FontSize="18" 
                       HorizontalContentAlignment="Center" 
                       VerticalContentAlignment="Center"
+                      IsEnabled="{Binding ViewOnly}"
                       ItemsSource="{Binding Indexes}"
                       SelectedValue="{Binding Index}"/>
 
@@ -268,10 +281,12 @@
               UseLayoutRounding="False" 
               Panel.ZIndex="2" 
               Background="#FFD8D8D8"
-              Margin="485,0,0,0" Width="315">
+              Margin="485,0,0,0" Width="315"
+              d:Visibility="Hidden">
 
             <Button Content="Save" 
-                    Command="{Binding SaveRoute}"  
+                    Command="{Binding SaveRoute}"
+                    Visibility="{Binding ViewOnlyVisibility}"
                     Margin="0,456,0,25" 
                     Width="64" 
                     Foreground="Black" 
@@ -301,6 +316,7 @@
 
             <TextBox x:Name="AboutDiscription"
                      Text="{Binding Description}"
+                     IsEnabled="{Binding ViewOnly}"
                      HorizontalAlignment="Left" 
                      Margin="14,98,0,0"  
                      TextWrapping="Wrap" 
@@ -312,6 +328,7 @@
 
             <TextBox x:Name="RouteName"
                      Text="{Binding Name}"
+                     IsEnabled="{Binding ViewOnly}"
                      HorizontalAlignment="Left" 
                      Margin="14,10,0,0"  
                      TextWrapping="Wrap" 
@@ -341,6 +358,7 @@
 
             <TextBox x:Name="Rate"
                 Text="{Binding Rating}"
+                IsEnabled="False"
                 HorizontalAlignment="Left" 
                 Margin="68,304,0,0"  
                 TextWrapping="Wrap" 
@@ -356,7 +374,7 @@
                     Margin="103,366,0,0" 
                     VerticalAlignment="Top"
                     Value="{Binding UserRating}"
-                    Width="120" Maximum="5"/>
+                    Width="120" Maximum="5" Minimum="1"/>
 
             <Label Content="{Binding UserRating}" 
                    HorizontalAlignment="Center" 
@@ -367,13 +385,27 @@
             <TextBox HorizontalAlignment="Left" 
                      Margin="18,256,0,0" 
                      Text="{Binding Location}" 
+                     IsEnabled="{Binding ViewOnly}"
                      TextWrapping="Wrap" 
                      VerticalAlignment="Top" 
                      Width="290" 
                      Height="43" FontSize="16"/>
 
-            <Label Content="Location:" HorizontalAlignment="Left" Margin="12,225,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Button Content="Vote" HorizontalAlignment="Left" Width="50" Margin="228,365,0,0" VerticalAlignment="Top" Background="#FFFFCE4B" FontSize="16" BorderBrush="{x:Null}"/>
+            <Label Content="Location:" 
+                   HorizontalAlignment="Left" 
+                   Margin="12,225,0,0" 
+                   VerticalAlignment="Top" 
+                   FontSize="16"/>
+            
+            <Button Content="Vote"
+                    Command="{Binding Vote}"
+                    HorizontalAlignment="Left" 
+                    Width="50" 
+                    Margin="228,365,0,0" 
+                    VerticalAlignment="Top" 
+                    Background="#FFFFCE4B" 
+                    FontSize="16" 
+                    BorderBrush="{x:Null}"/>
 
         </Grid>
 
@@ -393,7 +425,8 @@
                     Command="{Binding SaveRoute}" 
                     Width="118" 
                     Background="{x:Null}" 
-                    BorderBrush="{x:Null}" 
+                    BorderBrush="{x:Null}"
+                    Visibility="{Binding ViewOnlyVisibility}"
                     FontSize="18"/>
 
             <Button Content="New waypoint" 
@@ -401,6 +434,7 @@
                     Width="118" 
                     Background="{x:Null}" 
                     BorderBrush="{x:Null}" 
+                    Visibility="{Binding ViewOnlyVisibility}"
                     FontSize="18"/>
 
             <Button Content="Delete route" 
@@ -408,19 +442,21 @@
                     Width="118" 
                     Background="#FFFF8585" 
                     BorderBrush="{x:Null}" 
+                    Visibility="{Binding ViewOnlyVisibility}"
                     FontSize="18"/>
+            
             <Button Content="About route" 
-                Command="{Binding AboutRoute}" 
-                Width="118" 
-                Background="{x:Null}" 
-                BorderBrush="{x:Null}" 
-                FontSize="18"/>
+                    Command="{Binding AboutRoute}" 
+                    Width="118" 
+                    Background="{x:Null}" 
+                    BorderBrush="{x:Null}" 
+                    FontSize="18"/>
         </StackPanel>
 
         <StackPanel Background="#FFF1F1F1"
                     Orientation="Horizontal"
                     Height="39"
-                    Margin="0,39,0,442">
+                    Margin="0,39,0,442" VerticalAlignment="Top">
 
             <CheckBox VerticalAlignment="Center"
                       IsChecked="{Binding FilteringEnabled}"/>

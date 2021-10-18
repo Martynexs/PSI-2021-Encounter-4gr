@@ -1,4 +1,5 @@
 ﻿using Encounter.Commands.AboutRoute;
+using Encounter.IO;
 using Encounter.Models;
 using Encounter.Views;
 using System;
@@ -21,9 +22,11 @@ namespace Encounter.ViewModels
         User _user;
 
         public ICommand Close { get; set; }
-
         public ICommand SaveRoute { get; set; }
+        public ICommand Vote { get; set; }
 
+        public bool ViewOnly { get; set; }
+        public Visibility ViewOnlyVisibility => ViewOnly ? Visibility.Visible : Visibility.Hidden;
 
         private string _name;
 
@@ -64,6 +67,9 @@ namespace Encounter.ViewModels
             set { _userRating = value; OnPropertyChanged(); }
         }
 
+        public int OldUserRating { get; set; }
+
+
         private Visibility _visibility;
 
         public Visibility Visibility
@@ -77,11 +83,12 @@ namespace Encounter.ViewModels
             }
         }
 
-        public AboutRouteViewModel(RouteViewModel routeViewModel, Route route)
+        public AboutRouteViewModel(RouteViewModel routeViewModel, Route route, bool viewOnly)
         {
             _routeViewModel = routeViewModel;
             _route = route;
             _user = Session.GetUser();
+            ViewOnly = viewOnly;
 
             Visibility = Visibility.Hidden;
 
@@ -91,13 +98,17 @@ namespace Encounter.ViewModels
 
             Close = new CloseAboutCommand(this);
             SaveRoute = new SaveRouteInfoCommand(this, _route);
+            Vote = new VoteCommand(this, _user, _route);
         }
 
-        private void ReloadRoute()
+        public void ReloadRoute()
         {
             Name = _route.Name;
             Description = _route.Description;
             Location = _route.Location;
+            Rating = _route.Rating;
+            OldUserRating = DatabaseFunctions.GetRating(_route, _user);
+            UserRating = OldUserRating;
         }
 
 

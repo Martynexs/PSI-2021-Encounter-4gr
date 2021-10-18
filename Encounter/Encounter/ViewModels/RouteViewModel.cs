@@ -17,6 +17,9 @@ namespace Encounter.ViewModels
 {
     public class RouteViewModel : ViewModelBase
     {
+        public bool ViewOnly { get; set; }
+        public Visibility ViewOnlyVisibility => ViewOnly ? Visibility.Visible : Visibility.Hidden;
+
         public ICommand NavigateHomeCommand { get; }
         public ICommand CreateNewWaypoint { get; }
         public ICommand SaveRoute { get; }
@@ -74,24 +77,25 @@ namespace Encounter.ViewModels
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
 
-            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this);
-            AboutRouteViewModel = new AboutRouteViewModel(this, route);
+            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this, false);
+            AboutRouteViewModel = new AboutRouteViewModel(this, route, false);
 
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
             AboutRoute = new AboutButtonCommand(AboutRouteViewModel);
             WaypointPanels = new ObservableCollection<FrameworkElement>();
             DeleteRoute = new DeleteRouteCommand(this, navigationStore);
+            ViewOnly = false;
             Route = route;
         }
 
-        public RouteViewModel(NavigationStore navigationStore, Route route, IEnumerable<Waypoint> waypoints)
+        public RouteViewModel(NavigationStore navigationStore, Route route, bool viewOnly ,IEnumerable<Waypoint> waypoints)
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
 
-            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this);
-            AboutRouteViewModel = new AboutRouteViewModel(this, route);
+            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this, viewOnly);
+            AboutRouteViewModel = new AboutRouteViewModel(this, route, viewOnly);
 
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
@@ -99,6 +103,7 @@ namespace Encounter.ViewModels
             AboutRoute = new AboutButtonCommand(AboutRouteViewModel);
             DeleteRoute = new DeleteRouteCommand(this, navigationStore);
             Route = route;
+            ViewOnly = viewOnly;
             LoadRoute(waypoints);
         }
 
@@ -117,6 +122,11 @@ namespace Encounter.ViewModels
         public void HideEditor()
         {
             WaypointEditorViewModel.EditorVisibility = Visibility.Hidden;
+        }
+
+        public void HideAbout()
+        {
+            AboutRouteViewModel.Visibility = Visibility.Hidden;
         }
 
         public void DeleteWaypoint(int index)

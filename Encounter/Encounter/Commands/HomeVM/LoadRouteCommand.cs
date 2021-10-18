@@ -1,4 +1,5 @@
 ﻿using Encounter.IO;
+using Encounter.Models;
 using Encounter.Stores;
 using Encounter.ViewModels;
 
@@ -20,7 +21,10 @@ namespace Encounter.Commands
             if (_loadRouteViewModel.SelectedRoute != null)
             {
                 var waypoints = DatabaseFunctions.GetWaypoints(_loadRouteViewModel.SelectedRoute);
-                _navigationStore.CurrentViewModel = new RouteViewModel(_navigationStore, _loadRouteViewModel.SelectedRoute, waypoints);
+
+                var viewOnly = _loadRouteViewModel.SelectedRoute.CreatorID.Equals(Session.Get_Username());
+
+                _navigationStore.CurrentViewModel = new RouteViewModel(_navigationStore, _loadRouteViewModel.SelectedRoute, viewOnly, waypoints);
             }
         }
     }

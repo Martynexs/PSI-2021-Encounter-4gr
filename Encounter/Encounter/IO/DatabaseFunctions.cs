@@ -40,6 +40,7 @@ namespace Encounter.IO
             try
             {
                 var sql = "DELETE FROM Waypoints WHERE RouteID='" + route.ID + "';\n";
+                sql += "UPDATE Routes SET Name='" + route.Name +"', Location='" + route.Location + "', Description='" + route.Description + "' WHERE ID='" + route.ID + "';";
                 foreach (var waypoint in waypoints)
                 {
                     sql += "INSERT INTO Waypoints (RouteID, Position, Name, Longitude, Latitude, Type, Price, OpeningHours, ClosingTime, PhoneNumber, Description) " +
@@ -70,6 +71,9 @@ namespace Encounter.IO
                     route.CreatorID = reader["CreatorID"].ToString();
                     route.ID = (int)reader["ID"];
                     route.Rating = (double)reader["Rating"];
+                    route.Description = reader["Description"].ToString();
+                    route.Location = reader["Location"].ToString();
+                    route.Raters = (int)reader["Raters"];
 
                     routeList.Add(route);
                 }
@@ -101,8 +105,6 @@ namespace Encounter.IO
                     var longitude = (double)reader["Longitude"];
                     waypoint.Coordinates = new Coordinates(latitude, longitude);
                     waypoint.Type = (WaypointType)Enum.Parse(typeof(WaypointType), reader["Type"].ToString());
-
-
                     waypoint.OpeningHours = DateTime.ParseExact(reader["OpeningHours"].ToString(), "HH:mm", null);
                     waypoint.ClosingTime = DateTime.ParseExact(reader["ClosingTime"].ToString(), "HH:mm", null);
                     waypoint.PhoneNumber = reader["PhoneNumber"].ToString();
@@ -120,25 +122,25 @@ namespace Encounter.IO
             }
         }
 
-        public static double GetRating(Route route, User user)
+        public static int GetRating(Route route, User user)
         {
             try
             {
-                var sql = "SELECT Value FROM Star WHERE ID='" + route.ID + user.Nickname + "';";
+                var sql = "SELECT Value FROM Stars WHERE ID='" + route.ID + user.Nickname + "';";
                 var reader = DatabaseIO.GetDataReader(sql);
 
-                var rating = 0d;
+                var rating = 0;
                 if (reader.Read())
                 {
-                    rating = (double)reader["Value"];
+                    rating = (int)reader["Value"];
                 }
 
                 return rating;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                throw new Exception();
+                return 0;
             }
         }
 
@@ -149,7 +151,7 @@ namespace Encounter.IO
                 var sql = "INSERT INTO Stars(ID, RouteID, UserID, Value) " +
                           "VALUES('"+ route.ID + user.Nickname + "', '" + route.ID + "', '" + user.Nickname + "', '" + rating + "');";
 
-                sql += "UPDATE Routes SET Rating='" + route.Rating + "' WHERE ID='" + route.ID + "';";
+                sql += "UPDATE Routes SET Rating='" + route.Rating + "', Raters='" + route.Raters + "' WHERE ID='" + route.ID + "';";
                 DatabaseIO.ExecuteNonQuery(sql);
             }
             catch(Exception ex)

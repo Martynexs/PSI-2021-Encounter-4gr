@@ -67,12 +67,10 @@ namespace Encounter.IO
                 var cmd = new SQLiteCommand(query, _connection);
                 return cmd.ExecuteReader();
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 throw new Exception();
-            }
-            finally
-            {
             }
         }
 
