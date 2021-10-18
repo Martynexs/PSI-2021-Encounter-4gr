@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Encounter",
+    "\\Encounter\\Encounter",
+    "\\Encounter\\Encounter\\Views"
   ],
-  "SelectedNode": "\\Encounter.sln",
+  "SelectedNode": "\\Encounter\\Encounter.sln",
   "PreviewInSolutionExplorer": false
 }
