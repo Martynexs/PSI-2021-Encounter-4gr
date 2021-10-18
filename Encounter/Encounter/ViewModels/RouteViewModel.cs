@@ -68,6 +68,7 @@ namespace Encounter.ViewModels
 
         public Route Route { get; }
 
+        //Builders
         public RouteViewModel(NavigationStore navigationStore, Route route)
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
@@ -101,6 +102,7 @@ namespace Encounter.ViewModels
             LoadRoute(waypoints);
         }
 
+        //Functions
         public void AddWaypoint(WaypointViewModel waypoint)
         {
             _waypoints.Add(waypoint);

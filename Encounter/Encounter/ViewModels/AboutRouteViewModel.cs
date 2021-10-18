@@ -73,9 +73,9 @@ namespace Encounter.ViewModels
             {
                 _visibility = value;
                 OnPropertyChanged();
+                ReloadRoute();
             }
         }
-
 
         public AboutRouteViewModel(RouteViewModel routeViewModel, Route route)
         {
@@ -90,7 +90,14 @@ namespace Encounter.ViewModels
             Location = _route.Location;
 
             Close = new CloseAboutCommand(this);
-            SaveRoute = new SaveRouteInfoCommand();
+            SaveRoute = new SaveRouteInfoCommand(this, _route);
+        }
+
+        private void ReloadRoute()
+        {
+            Name = _route.Name;
+            Description = _route.Description;
+            Location = _route.Location;
         }
 
 
