@@ -85,11 +85,11 @@ namespace Encounter.ViewModels
             AboutRoute = new AboutButtonCommand(AboutRouteViewModel);
             WaypointPanels = new ObservableCollection<FrameworkElement>();
             DeleteRoute = new DeleteRouteCommand(this, navigationStore);
-            ViewOnly = false;
+            ViewOnly = true;
             Route = route;
         }
 
-        public RouteViewModel(NavigationStore navigationStore, Route route, bool viewOnly ,IEnumerable<Waypoint> waypoints)
+        public RouteViewModel(NavigationStore navigationStore, Route route, bool viewOnly, IEnumerable<Waypoint> waypoints)
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
