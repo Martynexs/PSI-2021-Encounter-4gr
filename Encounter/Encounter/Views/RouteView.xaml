@@ -406,11 +406,10 @@
                     Background="#FFFFCE4B" 
                     FontSize="16" 
                     BorderBrush="{x:Null}"/>
-
+            
             <Image  Margin="165,314,110,176" 
                     Stretch="Fill"  
                     Source="/Views/Astar.png"/>
-
 
         </Grid>
 
@@ -476,7 +475,6 @@
                       ItemsSource="{Binding AllWaypointTypes}" 
                       IsEnabled="{Binding FilteringEnabled}"
                       SelectedItem="{Binding SelectedFilter}"/>
-
 
         </StackPanel>
 
