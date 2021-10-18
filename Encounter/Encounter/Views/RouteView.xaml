@@ -282,7 +282,7 @@
               Panel.ZIndex="2" 
               Background="#FFD8D8D8"
               Margin="485,0,0,0" Width="315"
-              d:Visibility="Visible">
+              d:Visibility="Hidden">
 
             <Image  Margin="165,312,110,178" 
                     Stretch="Fill"  
@@ -340,9 +340,10 @@
                      Width="291" Height="43" 
                      HorizontalContentAlignment="Center" 
                      VerticalContentAlignment="Center" 
-                     FontSize="18" Grid.ColumnSpan="5"
+                     FontSize="24" Grid.ColumnSpan="5"
                      Foreground="Black"
-                     Background="#FFD8D8D8"/>
+                     Background="#FFD8D8D8"
+                     BorderBrush="#FFD8D8D8" FontFamily="Times New Roman" FontWeight="Bold"/>
 
             <Label Content="Your rating:" 
                 HorizontalAlignment="Left" 
@@ -370,9 +371,9 @@
                 Width="64" Height="43" 
                 HorizontalContentAlignment="Center" 
                 VerticalContentAlignment="Center" 
-                FontSize="18"
+                FontSize="24"
                 Foreground="Black"
-                Background="#FFD8D8D8"/>
+                Background="#FFD8D8D8" FontFamily="Times New Roman" FontWeight="Bold"/>
 
             <Slider HorizontalAlignment="Left" 
                     Margin="118,400,0,0" 
@@ -384,7 +385,7 @@
                    HorizontalAlignment="Left" 
                    Margin="160,369,0,0" 
                    d:Content="5 ★"
-                   VerticalAlignment="Top" FontSize="16"/>
+                   VerticalAlignment="Top" FontSize="20" FontFamily="Times New Roman" FontWeight="Bold"/>
 
             <TextBox HorizontalAlignment="Left" 
                      Margin="18,256,0,0" 
@@ -410,6 +411,21 @@
                     Background="#FFFFCE4B" 
                     FontSize="16" 
                     BorderBrush="{x:Null}"/>
+
+            <TextBox x:Name="Star"
+                Text="★"
+                IsEnabled="False"
+                HorizontalAlignment="Left" 
+                Margin="158,364,0,0"  
+                TextWrapping="Wrap" 
+                VerticalAlignment="Top" 
+                Width="64" Height="43" 
+                HorizontalContentAlignment="Center" 
+                VerticalContentAlignment="Center" 
+                FontSize="20"
+                Foreground="Black"
+                Background="#FFD8D8D8" 
+                BorderBrush="#FFD8D8D8" FontFamily="Times New Roman" FontWeight="Bold"/>
 
         </Grid>
 
