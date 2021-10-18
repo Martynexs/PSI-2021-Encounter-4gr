@@ -10,6 +10,7 @@ namespace Encounter.Models
         public string Location { get; set; }
         public double Rating { get; set; }
         public int Raters { get; set; }
+        public int RatingSum { get; set; }
         public string Description { get; set; }
 
         public Route()

@@ -74,6 +74,7 @@ namespace Encounter.IO
                     route.Description = reader["Description"].ToString();
                     route.Location = reader["Location"].ToString();
                     route.Raters = (int)reader["Raters"];
+                    route.RatingSum = (int)reader["RatingSum"];
 
                     routeList.Add(route);
                 }
@@ -151,7 +152,7 @@ namespace Encounter.IO
                 var sql = "INSERT INTO Stars(ID, RouteID, UserID, Value) " +
                           "VALUES('"+ route.ID + user.Nickname + "', '" + route.ID + "', '" + user.Nickname + "', '" + rating + "');";
 
-                sql += "UPDATE Routes SET Rating='" + route.Rating + "', Raters='" + route.Raters + "' WHERE ID='" + route.ID + "';";
+                sql += "UPDATE Routes SET Rating='" + route.Rating + "', Raters='" + route.Raters + "', RatingSum='" + route.RatingSum + "' WHERE ID='" + route.ID + "';";
                 DatabaseIO.ExecuteNonQuery(sql);
             }
             catch(Exception ex)

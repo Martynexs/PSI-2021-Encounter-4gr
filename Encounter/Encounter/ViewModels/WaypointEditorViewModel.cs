@@ -184,6 +184,7 @@ namespace Encounter.ViewModels
         public void OnSelectedWaypointChanged()
         {
             EditorVisibility = Visibility.Visible;
+            _routeViewModel.HideAbout();
 
             var waypoint = SelectedWaypoint;
 

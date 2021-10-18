@@ -82,7 +82,7 @@ namespace Encounter.ViewModels
 
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
-            AboutRoute = new AboutButtonCommand(AboutRouteViewModel);
+            AboutRoute = new AboutButtonCommand(AboutRouteViewModel, this);
             WaypointPanels = new ObservableCollection<FrameworkElement>();
             DeleteRoute = new DeleteRouteCommand(this, navigationStore);
             ViewOnly = true;
@@ -100,7 +100,7 @@ namespace Encounter.ViewModels
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
             WaypointPanels = new ObservableCollection<FrameworkElement>();
-            AboutRoute = new AboutButtonCommand(AboutRouteViewModel);
+            AboutRoute = new AboutButtonCommand(AboutRouteViewModel, this);
             DeleteRoute = new DeleteRouteCommand(this, navigationStore);
             Route = route;
             ViewOnly = viewOnly;
