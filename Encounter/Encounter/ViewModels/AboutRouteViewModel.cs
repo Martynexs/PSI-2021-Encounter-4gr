@@ -16,10 +16,9 @@ namespace Encounter.ViewModels
 {
     public class AboutRouteViewModel : ViewModelBase
     {
-
-        RouteViewModel _routeViewModel;
-        Route _route;
-        User _user;
+        private RouteViewModel _routeViewModel;
+        private Route _route;
+        private User _user;
 
         public ICommand Close { get; set; }
         public ICommand SaveRoute { get; set; }
@@ -48,7 +47,7 @@ namespace Encounter.ViewModels
         public string Description
         {
             get { return _description; }
-            set { _description = value; }
+            set { _description = value; OnPropertyChanged(); }
         }
 
         private double _rating;
@@ -60,7 +59,6 @@ namespace Encounter.ViewModels
         }
 
         private int _userRating;
-
         public int UserRating
         {
             get { return _userRating; }
@@ -68,7 +66,6 @@ namespace Encounter.ViewModels
         }
 
         public int OldUserRating { get; set; }
-
 
         private Visibility _visibility;
 

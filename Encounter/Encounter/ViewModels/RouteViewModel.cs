@@ -77,8 +77,8 @@ namespace Encounter.ViewModels
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
 
-            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this, false);
-            AboutRouteViewModel = new AboutRouteViewModel(this, route, false);
+            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this, true);
+            AboutRouteViewModel = new AboutRouteViewModel(this, route, true);
 
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
