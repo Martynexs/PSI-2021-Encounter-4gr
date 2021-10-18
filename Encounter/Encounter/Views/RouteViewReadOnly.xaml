@@ -46,7 +46,7 @@
               Panel.ZIndex="2" 
               Background="#FFD8D8D8"
               Margin="485,0,0,0" Width="315"
-              d:Visibility="Visible">
+              d:Visibility="Hidden">
 
             <Button Content="Save" 
                     Command="{Binding SaveRoute}"

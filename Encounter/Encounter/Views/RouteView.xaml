@@ -284,6 +284,10 @@
               Margin="485,0,0,0" Width="315"
               d:Visibility="Visible">
 
+            <Image  Margin="165,312,110,178" 
+                    Stretch="Fill"  
+                    Source="/Views/Astar.png"/>
+
             <Button Content="Save" 
                     Command="{Binding SaveRoute}"
                     Visibility="{Binding ViewOnlyVisibility}"
@@ -376,7 +380,7 @@
                     Value="{Binding UserRating}"
                     Width="120" Maximum="5" Minimum="1" Height="21"/>
 
-            <Label Content="{Binding UserRating}" 
+            <Label Content="{Binding UserRating}"
                    HorizontalAlignment="Left" 
                    Margin="160,369,0,0" 
                    d:Content="5 ★"
@@ -406,10 +410,6 @@
                     Background="#FFFFCE4B" 
                     FontSize="16" 
                     BorderBrush="{x:Null}"/>
-            
-            <Image  Margin="165,314,110,176" 
-                    Stretch="Fill"  
-                    Source="/Views/Astar.png"/>
 
         </Grid>
 
