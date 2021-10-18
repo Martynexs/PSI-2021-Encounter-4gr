@@ -1,12 +1,16 @@
 ﻿using Encounter.Commands;
+using Encounter.Commands.AboutRoute;
 using Encounter.Commands.RouteVM;
 using Encounter.Models;
 using Encounter.Stores;
+using Encounter.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace Encounter.ViewModels
@@ -17,12 +21,15 @@ namespace Encounter.ViewModels
         public ICommand CreateNewWaypoint { get; }
         public ICommand SaveRoute { get; }
         public ICommand DeleteRoute { get; }
+        public ICommand AboutRoute { get; }
 
         public ObservableCollection<FrameworkElement> WaypointPanels { get; set; }
         public List<WaypointType> AllWaypointTypes { get; set; } = WayPointTypeExtensions.GetAllTypes();
 
         private readonly List<WaypointViewModel> _waypoints;
+
         public WaypointEditorViewModel WaypointEditorViewModel { get; }
+        public AboutRouteViewModel AboutRouteViewModel { get; }
 
         private readonly WaypointStore _waypointStore = new WaypointStore();
 
@@ -61,13 +68,18 @@ namespace Encounter.ViewModels
 
         public Route Route { get; }
 
+        //Builders
         public RouteViewModel(NavigationStore navigationStore, Route route)
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
+
             WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this);
+            AboutRouteViewModel = new AboutRouteViewModel(this, route);
+
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
+            AboutRoute = new AboutButtonCommand(AboutRouteViewModel);
             WaypointPanels = new ObservableCollection<FrameworkElement>();
             DeleteRoute = new DeleteRouteCommand(this, navigationStore);
             Route = route;
@@ -77,15 +89,20 @@ namespace Encounter.ViewModels
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
+
             WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this);
+            AboutRouteViewModel = new AboutRouteViewModel(this, route);
+
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
             WaypointPanels = new ObservableCollection<FrameworkElement>();
+            AboutRoute = new AboutButtonCommand(AboutRouteViewModel);
             DeleteRoute = new DeleteRouteCommand(this, navigationStore);
             Route = route;
             LoadRoute(waypoints);
         }
 
+        //Functions
         public void AddWaypoint(WaypointViewModel waypoint)
         {
             _waypoints.Add(waypoint);
@@ -187,7 +204,7 @@ namespace Encounter.ViewModels
             WaypointPanels = new ObservableCollection<FrameworkElement>( _waypoints.Where(x => x.Type == SelectedFilter).Select(x => x.GetWaypointPanel()).ToList());
         }
 
-    }
 
+    }
 
 }

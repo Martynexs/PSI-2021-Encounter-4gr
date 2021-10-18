@@ -4,9 +4,9 @@ using System.Windows.Controls.Primitives;
 
 namespace Encounter.Views
 {
-    public partial class RouteView : UserControl
+    public partial class RouteViewReadOnly : UserControl
     {
-        public RouteView()
+        public RouteViewReadOnly()
         {
             InitializeComponent();
         }

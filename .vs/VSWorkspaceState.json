@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Encounter",
-    "\\Encounter\\Encounter"
+    ""
   ],
-  "SelectedNode": "\\Encounter\\Encounter\\MainWindow.xaml",
+  "SelectedNode": "\\Encounter.sln",
   "PreviewInSolutionExplorer": false
 }

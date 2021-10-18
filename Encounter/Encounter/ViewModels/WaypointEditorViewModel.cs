@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using Encounter.Commands.AboutRoute;
 
 namespace Encounter.ViewModels
 {
@@ -31,6 +32,7 @@ namespace Encounter.ViewModels
         public ICommand CloseEditor { get; }
         public ICommand SaveWaypoint { get; }
         public ICommand DeleteWaypoint { get; }
+
 
         //Properties
         private Visibility _editorVisibility;

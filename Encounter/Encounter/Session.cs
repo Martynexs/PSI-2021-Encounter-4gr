@@ -20,6 +20,15 @@ namespace Encounter.Models
             return _Session;
         }
 
+        public static User GetUser()
+        {
+            if (_Session == null)
+            {
+                return null;
+            }
+            return _Session._user;
+        }
+
         public static string Get_Username()
         {
             if(_Session == null)

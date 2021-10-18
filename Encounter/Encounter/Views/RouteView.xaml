@@ -14,7 +14,7 @@
     <UserControl.Resources>
         <converters:CoordinatesConverter x:Key="CoordinatesConverter"/>
         <validation:PhoneNumberValidation x:Key="PhoneNumberValidation"/>
-        
+
         <ControlTemplate x:Key="validationTemplate">
             <DockPanel>
                 <Border BorderBrush="Red" BorderThickness="1">
@@ -60,7 +60,7 @@
                    FontWeight="Normal" 
                    Foreground="Black" 
                    Margin="2,5,0,0"/>
-            
+
             <Label Content="Coordinates:" 
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Top" 
@@ -68,7 +68,7 @@
                    Margin="0,40,0,0" 
                    FontSize="18" 
                    Foreground="Black"/>
-            
+
             <Label Content="Type:" 
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Top" 
@@ -76,7 +76,7 @@
                    Margin="0,75,0,0" 
                    FontSize="18" 
                    Foreground="Black"/>
-            
+
             <Label HorizontalAlignment="Left" 
                    VerticalAlignment="Top" 
                    Width="125" Height="35" 
@@ -84,7 +84,7 @@
                    Content="Price:" 
                    FontSize="18" 
                    Foreground="Black"/>
-            
+
             <Label Content="Opening hours:" 
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Top" 
@@ -92,7 +92,7 @@
                    Margin="0,145,0,0" 
                    FontSize="18" 
                    Foreground="Black"/>
-            
+
             <Label Content="Closing hours:" 
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Top" 
@@ -100,7 +100,7 @@
                    Margin="0,180,0,0" 
                    FontSize="18" 
                    Foreground="Black"/>
-            
+
             <TextBox x:Name="Description" 
                      Text="{Binding Description}" 
                      TextWrapping="Wrap" 
@@ -120,7 +120,7 @@
                     FontSize="18" 
                     BorderBrush="{x:Null}" 
                     Background="#FFFFCF4D"/>
-            
+
             <Button Content="Cancel" 
                     Command="{Binding CloseEditor}" 
                     HorizontalAlignment="Center" 
@@ -131,7 +131,7 @@
                     Foreground="Black" 
                     BorderBrush="{x:Null}" 
                     Background="White"/>
-            
+
             <Button Content="Delete" 
                     Command="{Binding DeleteWaypoint}" 
                     HorizontalAlignment="Center" 
@@ -142,7 +142,7 @@
                     FontSize="18" 
                     BorderBrush="{x:Null}" 
                     Background="White"/>
-            
+
             <TextBox HorizontalAlignment="Left"
                      Margin="130,5,5,0" 
                      Text="{Binding Name}" 
@@ -152,7 +152,7 @@
                      HorizontalContentAlignment="Center" 
                      FontSize="18" 
                      VerticalContentAlignment="Center"/>
-            
+
             <TextBox x:Name="Coordinates" 
                      HorizontalAlignment="Center" 
                      Margin="130,40,5,0" 
@@ -164,7 +164,7 @@
                      VerticalContentAlignment="Center" 
                      FontSize="18" 
                      HorizontalContentAlignment="Center"/>
-            
+
             <ComboBox x:Name="Type" 
                       HorizontalAlignment="Center" 
                       Margin="130,75,5,0" 
@@ -176,7 +176,7 @@
                       ItemsSource="{Binding AllWaypointTypes}" 
                       DisplayMemberPath="label" 
                       SelectedItem="{Binding TypeItem}"/>
-            
+
             <TextBox x:Name="Price" 
                      HorizontalAlignment="Center" 
                      Margin="130,110,5,0" 
@@ -188,7 +188,7 @@
                      HorizontalContentAlignment="Center" 
                      VerticalContentAlignment="Center" 
                      FontSize="18"/>
-            
+
             <TextBox x:Name="Opening" 
                      HorizontalAlignment="Center" 
                      Margin="130,145,5,0" 
@@ -239,7 +239,7 @@
                    Height="35" Width="104" 
                    FontSize="18" 
                    Foreground="Black"/>
-            
+
             <ComboBox x:Name="Index" 
                       HorizontalAlignment="Center" 
                       Margin="100,400,0,0" 
@@ -250,7 +250,7 @@
                       VerticalContentAlignment="Center"
                       ItemsSource="{Binding Indexes}"
                       SelectedValue="{Binding Index}"/>
-            
+
             <Label Content="Phone number:" 
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Top" 
@@ -260,25 +260,142 @@
                    Foreground="Black"/>
         </Grid>
 
+        <Grid x:Name="AboutRoute" 
+              DataContext="{Binding AboutRouteViewModel}" 
+              Visibility="{Binding Visibility}" 
+              HorizontalAlignment="Right" 
+              VerticalAlignment="Stretch" 
+              UseLayoutRounding="False" 
+              Panel.ZIndex="2" 
+              Background="#FFD8D8D8"
+              Margin="485,0,0,0" Width="315">
+
+            <Button Content="Save" 
+                    Command="{Binding SaveRoute}"  
+                    Margin="0,456,0,25" 
+                    Width="64" 
+                    Foreground="Black" 
+                    FontSize="18" 
+                    BorderBrush="{x:Null}" 
+                    Background="#FFFFCF4D"
+                    HorizontalAlignment="Center" Height="39"/>
+
+            <Button Content="Cancel" 
+                    Command="{Binding Close}" 
+                    HorizontalAlignment="Right"
+                    Margin="0,456,237,25"  
+                    Width="64" 
+                    Height="39"
+                    FontSize="18" 
+                    Foreground="Black" 
+                    BorderBrush="{x:Null}" 
+                    Background="White"/>
+
+            <Label Content="Description:" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top" 
+                   Width="132" Height="35" 
+                   Margin="14,58,0,0" 
+                   FontSize="18" 
+                   Foreground="Black" Grid.ColumnSpan="3"/>
+
+            <TextBox x:Name="AboutDiscription"
+                     Text="{Binding Description}"
+                     HorizontalAlignment="Left" 
+                     Margin="14,98,0,0"  
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="291" Height="131" 
+                     HorizontalContentAlignment="Center" 
+                     VerticalContentAlignment="Center" 
+                     FontSize="18" Grid.ColumnSpan="5"/>
+
+            <TextBox x:Name="RouteName"
+                     Text="{Binding Name}"
+                     HorizontalAlignment="Left" 
+                     Margin="14,10,0,0"  
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="291" Height="43" 
+                     HorizontalContentAlignment="Center" 
+                     VerticalContentAlignment="Center" 
+                     FontSize="18" Grid.ColumnSpan="5"
+                     Foreground="Black"
+                     Background="#FFD8D8D8"/>
+
+            <Label Content="Your rating:" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="132" Height="35" 
+                Margin="3,358,0,0" 
+                FontSize="18" 
+                Foreground="Black"/>
+
+            <Label Content="Rating:" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Height="35" 
+                Margin="3,308,0,0" 
+                FontSize="18" 
+                Foreground="Black"/>
+
+            <TextBox x:Name="Rate"
+                Text="{Binding Rating}"
+                HorizontalAlignment="Left" 
+                Margin="68,304,0,0"  
+                TextWrapping="Wrap" 
+                VerticalAlignment="Top" 
+                Width="64" Height="43" 
+                HorizontalContentAlignment="Center" 
+                VerticalContentAlignment="Center" 
+                FontSize="18"
+                Foreground="Black"
+                Background="#FFD8D8D8"/>
+
+            <Slider HorizontalAlignment="Left" 
+                    Margin="103,366,0,0" 
+                    VerticalAlignment="Top"
+                    Value="{Binding UserRating}"
+                    Width="120" Maximum="5"/>
+
+            <Label Content="{Binding UserRating}" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,336,0,0" 
+                   d:Content="5 ★"
+                   VerticalAlignment="Top" FontSize="16"/>
+
+            <TextBox HorizontalAlignment="Left" 
+                     Margin="18,256,0,0" 
+                     Text="{Binding Location}" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="290" 
+                     Height="43" FontSize="16"/>
+
+            <Label Content="Location:" HorizontalAlignment="Left" Margin="12,225,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Button Content="Vote" HorizontalAlignment="Left" Width="50" Margin="228,365,0,0" VerticalAlignment="Top" Background="#FFFFCE4B" FontSize="16" BorderBrush="{x:Null}"/>
+
+        </Grid>
+
         <StackPanel Background="#FFD8D8D8" 
                     Orientation="Horizontal"  
                     VerticalAlignment="Top" 
                     Height="39">
-            
+
             <Button Content="Home" 
                     Command="{Binding NavigateHomeCommand}" 
                     Width="118" 
                     Background="{x:Null}" 
                     BorderBrush="{x:Null}" 
                     FontSize="18"/>
-            
+
             <Button Content="Save route" 
                     Command="{Binding SaveRoute}" 
                     Width="118" 
                     Background="{x:Null}" 
                     BorderBrush="{x:Null}" 
                     FontSize="18"/>
-            
+
             <Button Content="New waypoint" 
                     Command="{Binding CreateNewWaypoint}" 
                     Width="118" 
@@ -292,6 +409,12 @@
                     Background="#FFFF8585" 
                     BorderBrush="{x:Null}" 
                     FontSize="18"/>
+            <Button Content="About route" 
+                Command="{Binding AboutRoute}" 
+                Width="118" 
+                Background="{x:Null}" 
+                BorderBrush="{x:Null}" 
+                FontSize="18"/>
         </StackPanel>
 
         <StackPanel Background="#FFF1F1F1"
@@ -312,9 +435,9 @@
                       ItemsSource="{Binding AllWaypointTypes}" 
                       IsEnabled="{Binding FilteringEnabled}"
                       SelectedItem="{Binding SelectedFilter}"/>
-            
+
 
         </StackPanel>
-    
+
     </Grid>
 </UserControl>
