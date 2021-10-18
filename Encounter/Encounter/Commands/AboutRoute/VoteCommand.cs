@@ -20,11 +20,11 @@ namespace Encounter.Commands.AboutRoute
             if (_aboutRouteViewModel.OldUserRating == 0)
             {
                 _route.Raters += 1;
-                _route.Rating = (_route.Rating + _aboutRouteViewModel.UserRating) / _route.Raters;
+                _route.Rating = (double)(_route.Rating + _aboutRouteViewModel.UserRating) / _route.Raters;
             }
             else
             {
-                _route.Rating = (_route.Rating + _aboutRouteViewModel.UserRating - _aboutRouteViewModel.OldUserRating) / _route.Raters;
+                _route.Rating = (double)(_route.Rating + _aboutRouteViewModel.UserRating - _aboutRouteViewModel.OldUserRating) / _route.Raters;
             }
             DatabaseFunctions.SubmitRating(_aboutRouteViewModel.UserRating, _route, _user);
             _aboutRouteViewModel.ReloadRoute();
