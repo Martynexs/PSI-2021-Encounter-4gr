@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Encounter.Views.RouteView"
+﻿<UserControl x:Class="Encounter.Views.RouteViewReadOnly"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -25,7 +25,6 @@
         </ControlTemplate>
     </UserControl.Resources>
 
-
     <Grid>
         <StackPanel/>
         <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="0,79,0,0">
@@ -47,7 +46,7 @@
               Panel.ZIndex="2" 
               Background="#FFD8D8D8"
               Margin="485,0,0,0" Width="315"
-              d:Visibility="Hidden">
+              d:Visibility="Visible">
 
             <Button Content="Save" 
                     Command="{Binding SaveRoute}"
@@ -171,6 +170,7 @@
                     Background="#FFFFCE4B" 
                     FontSize="16" 
                     BorderBrush="{x:Null}"/>
+
             <Image  Margin="165,314,110,176" 
                     Stretch="Fill"  
                     Source="/Views/Astar.png"/>
