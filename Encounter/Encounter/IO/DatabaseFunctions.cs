@@ -2,11 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
-using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Encounter.IO
@@ -48,7 +43,9 @@ namespace Encounter.IO
                 foreach (var waypoint in waypoints)
                 {
                     sql += "INSERT INTO Waypoints (RouteID, Position, Name, Longitude, Latitude, Type, Price, OpeningHours, ClosingTime, PhoneNumber, Description) " +
-                           "VALUES('" + route.ID + "', '" + waypoint.Index + "', '" + waypoint.Name + "', '" + waypoint.Coordinates.Longitude + "', '" + waypoint.Coordinates.Latitude + "', '" + waypoint.Type + "', '" + waypoint.Price + "', '" + waypoint.OpeningHours.ToString("HH:mm") + "', '" + waypoint.ClosingTime.ToString("HH:mm") + "', '" + waypoint.PhoneNumber + "', '" + waypoint.Description + "');\n";
+                           "VALUES('" + route.ID + "', '" + waypoint.Index + "', '" + waypoint.Name + "', '" + waypoint.Coordinates.Longitude + "', '" + 
+                           waypoint.Coordinates.Latitude + "', '" + waypoint.Type + "', '" + waypoint.Price + "', '" + waypoint.OpeningHours.ToString("HH:mm") + "', '" + 
+                           waypoint.ClosingTime.ToString("HH:mm") + "', '" + waypoint.PhoneNumber + "', '" + waypoint.Description + "');\n";
                 }
                 DatabaseIO.ExecuteNonQuery(sql);
             }
@@ -72,6 +69,7 @@ namespace Encounter.IO
                     route.Name = reader["Name"].ToString();
                     route.CreatorID = reader["CreatorID"].ToString();
                     route.ID = (int)reader["ID"];
+                    route.Rating = (double)reader["Rating"];
 
                     routeList.Add(route);
                 }
@@ -116,6 +114,45 @@ namespace Encounter.IO
                 return waypoints;
             }
             catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw new Exception();
+            }
+        }
+
+        public static double GetRating(Route route, User user)
+        {
+            try
+            {
+                var sql = "SELECT Value FROM Star WHERE ID='" + route.ID + user.Nickname + "';";
+                var reader = DatabaseIO.GetDataReader(sql);
+
+                var rating = 0d;
+                if (reader.Read())
+                {
+                    rating = (double)reader["Value"];
+                }
+
+                return rating;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw new Exception();
+            }
+        }
+
+        public static void SubmitRating(int rating, Route route, User user)
+        {
+            try
+            {
+                var sql = "INSERT INTO Stars(ID, RouteID, UserID, Value) " +
+                          "VALUES('"+ route.ID + user.Nickname + "', '" + route.ID + "', '" + user.Nickname + "', '" + rating + "');";
+
+                sql += "UPDATE Routes SET Rating='" + route.Rating + "' WHERE ID='" + route.ID + "';";
+                DatabaseIO.ExecuteNonQuery(sql);
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 throw new Exception();
