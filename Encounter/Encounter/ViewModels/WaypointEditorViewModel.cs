@@ -33,7 +33,6 @@ namespace Encounter.ViewModels
         public ICommand SaveWaypoint { get; }
         public ICommand DeleteWaypoint { get; }
 
-        public ICommand CloseAbout { get; }
 
         //Properties
         private Visibility _editorVisibility;
@@ -43,17 +42,6 @@ namespace Encounter.ViewModels
             set
             {
                 _editorVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Visibility _aboutVisibility;
-        public Visibility AboutVisibility
-        {
-            get => _aboutVisibility;
-            set
-            {
-                _aboutVisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -175,13 +163,11 @@ namespace Encounter.ViewModels
             _routeViewModel = routeViewModel;
 
             EditorVisibility = Visibility.Hidden;
-            AboutVisibility = Visibility.Hidden;
             AllWaypointTypes = WayPointTypeExtensions.GetLabelValueItems();
 
             _waypointStore.SelectedWaypointChanged += OnSelectedWaypointChanged;
 
             CloseEditor = new CloseEditorCommand(this);
-            CloseAbout = new CloseAboutCommand(this);
             SaveWaypoint = new SaveWaypointCommand(routeViewModel, this, waypointStore);
             DeleteWaypoint = new DeleteWaypointCommand(waypointStore, routeViewModel, this);
         }

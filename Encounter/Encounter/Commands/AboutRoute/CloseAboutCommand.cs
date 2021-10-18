@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace Encounter.Commands.AboutRoute
 {
-    class CloseAboutCommand : CommandBase
+    public class CloseAboutCommand : CommandBase
     {
-            private WaypointEditorViewModel _waypointEditorViewModel;
+        private AboutRouteViewModel _aboutRouteViewModel;
 
-            public CloseAboutCommand(WaypointEditorViewModel waypointEditorViewModel)
-            {
-                _waypointEditorViewModel = waypointEditorViewModel;
-            }
+        public CloseAboutCommand(AboutRouteViewModel aboutRouteViewModel)
+        {
+            _aboutRouteViewModel = aboutRouteViewModel;
+        }
 
-            public override void Execute(object parameter)
-            {
-                _waypointEditorViewModel.AboutVisibility = System.Windows.Visibility.Hidden;
-            }
+        public override void Execute(object parameter)
+        {
+            _aboutRouteViewModel.Visibility = System.Windows.Visibility.Hidden;
+        }
     }
 }

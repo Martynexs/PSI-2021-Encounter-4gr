@@ -12,18 +12,16 @@ namespace Encounter.Commands.AboutRoute
 {
     class AboutButtonCommand : CommandBase
     {
-        private RouteViewModel _routeViewModel;
-        private WaypointEditorViewModel _waypointEditorViewModel;
+        private AboutRouteViewModel _aboutRouteViewModel;
 
-        public AboutButtonCommand(WaypointEditorViewModel waypointEditorViewModel, RouteViewModel routeViewModel)
+        public AboutButtonCommand(AboutRouteViewModel aboutRouteViewModel)
         {
-            _waypointEditorViewModel = waypointEditorViewModel;
-            _routeViewModel = routeViewModel;
+            _aboutRouteViewModel = aboutRouteViewModel;
         }
 
         public override void Execute(object parameter)
         {
-            _waypointEditorViewModel.AboutVisibility = System.Windows.Visibility.Visible;
+            _aboutRouteViewModel.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }

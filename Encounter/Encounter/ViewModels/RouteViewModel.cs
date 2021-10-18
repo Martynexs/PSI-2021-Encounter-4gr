@@ -27,7 +27,9 @@ namespace Encounter.ViewModels
         public List<WaypointType> AllWaypointTypes { get; set; } = WayPointTypeExtensions.GetAllTypes();
 
         private readonly List<WaypointViewModel> _waypoints;
+
         public WaypointEditorViewModel WaypointEditorViewModel { get; }
+        public AboutRouteViewModel AboutRouteViewModel { get; }
 
         private readonly WaypointStore _waypointStore = new WaypointStore();
 
@@ -70,10 +72,13 @@ namespace Encounter.ViewModels
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
+
             WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this);
+            AboutRouteViewModel = new AboutRouteViewModel(this, route);
+
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
-            AboutRoute = new AboutButtonCommand(WaypointEditorViewModel, this);
+            AboutRoute = new AboutButtonCommand(AboutRouteViewModel);
             WaypointPanels = new ObservableCollection<FrameworkElement>();
             DeleteRoute = new DeleteRouteCommand(this, navigationStore);
             Route = route;
@@ -83,11 +88,14 @@ namespace Encounter.ViewModels
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
+
             WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this);
+            AboutRouteViewModel = new AboutRouteViewModel(this, route);
+
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
             WaypointPanels = new ObservableCollection<FrameworkElement>();
-            AboutRoute = new AboutButtonCommand(WaypointEditorViewModel, this);
+            AboutRoute = new AboutButtonCommand(AboutRouteViewModel);
             DeleteRoute = new DeleteRouteCommand(this, navigationStore);
             Route = route;
             LoadRoute(waypoints);
@@ -194,73 +202,6 @@ namespace Encounter.ViewModels
             WaypointPanels = new ObservableCollection<FrameworkElement>( _waypoints.Where(x => x.Type == SelectedFilter).Select(x => x.GetWaypointPanel()).ToList());
         }
 
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Rating", typeof(int), typeof(RouteView),
-        new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(RatingChanged)));
-
-        private int _max = 5;
-
-        public int Value
-        {
-            get
-            {
-                return (int)GetValue(ValueProperty);
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    SetValue(ValueProperty, 0);
-                }
-                else if (value > _max)
-                {
-                    SetValue(ValueProperty, _max);
-                }
-                else
-                {
-                    SetValue(ValueProperty, value);
-                }
-            }
-        }
-
-        private void SetValue(DependencyProperty valueProperty, int v)
-        {
-            throw new NotImplementedException();
-        }
-
-        private int GetValue(DependencyProperty valueProperty)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void RatingChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            RouteView item = sender as RouteView;
-            int newval = (int)e.NewValue;
-            UIElementCollection childs = ((Grid)(item.Content)).Children;
-
-            ToggleButton button = null;
-
-            for (int i = 1; i < newval; i++)
-            {
-                button = childs[i] as ToggleButton;
-                if (button != null)
-                    button.IsChecked = true;
-            }
-
-            for (int i = newval; i < childs.Count; i++)
-            {
-                button = childs[i] as ToggleButton;
-                if (button != null)
-                    button.IsChecked = false;
-            }
-
-        }
-        private void ClickEventHandler(object sender, RoutedEventArgs args)
-        {
-            ToggleButton button = sender as ToggleButton;
-            int newvalue = int.Parse(button.Tag.ToString());
-            Value = newvalue;
-        }
 
     }
 
