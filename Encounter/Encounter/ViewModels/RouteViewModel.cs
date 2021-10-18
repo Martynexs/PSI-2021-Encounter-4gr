@@ -3,11 +3,14 @@ using Encounter.Commands.AboutRoute;
 using Encounter.Commands.RouteVM;
 using Encounter.Models;
 using Encounter.Stores;
+using Encounter.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace Encounter.ViewModels
@@ -189,6 +192,74 @@ namespace Encounter.ViewModels
         private void FilterWaypoints()
         {
             WaypointPanels = new ObservableCollection<FrameworkElement>( _waypoints.Where(x => x.Type == SelectedFilter).Select(x => x.GetWaypointPanel()).ToList());
+        }
+
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Rating", typeof(int), typeof(RouteView),
+        new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(RatingChanged)));
+
+        private int _max = 5;
+
+        public int Value
+        {
+            get
+            {
+                return (int)GetValue(ValueProperty);
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    SetValue(ValueProperty, 0);
+                }
+                else if (value > _max)
+                {
+                    SetValue(ValueProperty, _max);
+                }
+                else
+                {
+                    SetValue(ValueProperty, value);
+                }
+            }
+        }
+
+        private void SetValue(DependencyProperty valueProperty, int v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private int GetValue(DependencyProperty valueProperty)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void RatingChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            RouteView item = sender as RouteView;
+            int newval = (int)e.NewValue;
+            UIElementCollection childs = ((Grid)(item.Content)).Children;
+
+            ToggleButton button = null;
+
+            for (int i = 1; i < newval; i++)
+            {
+                button = childs[i] as ToggleButton;
+                if (button != null)
+                    button.IsChecked = true;
+            }
+
+            for (int i = newval; i < childs.Count; i++)
+            {
+                button = childs[i] as ToggleButton;
+                if (button != null)
+                    button.IsChecked = false;
+            }
+
+        }
+        private void ClickEventHandler(object sender, RoutedEventArgs args)
+        {
+            ToggleButton button = sender as ToggleButton;
+            int newvalue = int.Parse(button.Tag.ToString());
+            Value = newvalue;
         }
 
     }

@@ -290,11 +290,11 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <ToggleButton Grid.Column="0" Tag="1" Cursor="Pen"  Template="{StaticResource ratingtemplate}" Click="ClickEventHandler" HorizontalAlignment="Right" Margin="0,278,0,166"/>
-            <ToggleButton Grid.Column="1" Tag="2" Cursor="Pen"  Template="{StaticResource ratingtemplate}" Click="ClickEventHandler" HorizontalAlignment="Center" Margin="0,278,0,166"/>
-            <ToggleButton Grid.Column="2" Tag="3" Cursor="Pen"  Template="{StaticResource ratingtemplate}" Click="ClickEventHandler" HorizontalAlignment="Center" Margin="0,278,0,166"/>
-            <ToggleButton Grid.Column="3" Tag="4" Cursor="Pen"  Template="{StaticResource ratingtemplate}" Click="ClickEventHandler" HorizontalAlignment="Center" Margin="0,278,0,166"/>
-            <ToggleButton Grid.Column="4" Tag="5" Cursor="Pen"  Template="{StaticResource ratingtemplate}" Click="ClickEventHandler" HorizontalAlignment="Center" Margin="0,278,0,166" />
+            <ToggleButton Grid.Column="0" Tag="1" Cursor="Pen"  Template="{StaticResource ratingtemplate}" Command="{Binding ClickEventHandler}" HorizontalAlignment="Right" Margin="0,278,0,166"/>
+            <ToggleButton Grid.Column="1" Tag="2" Cursor="Pen"  Template="{StaticResource ratingtemplate}" Command="{Binding ClickEventHandler}"  HorizontalAlignment="Center" Margin="0,278,0,166"/>
+            <ToggleButton Grid.Column="2" Tag="3" Cursor="Pen"  Template="{StaticResource ratingtemplate}" Command="{Binding ClickEventHandler}"  HorizontalAlignment="Center" Margin="0,278,0,166"/>
+            <ToggleButton Grid.Column="3" Tag="4" Cursor="Pen"  Template="{StaticResource ratingtemplate}" Command="{Binding ClickEventHandler}"  HorizontalAlignment="Center" Margin="0,278,0,166"/>
+            <ToggleButton Grid.Column="4" Tag="5" Cursor="Pen"  Template="{StaticResource ratingtemplate}" Command="{Binding ClickEventHandler}"  HorizontalAlignment="Center" Margin="0,278,0,166" />
 
             <Button Content="Save" 
                     Command="{Binding SaveWaypoint}"  
