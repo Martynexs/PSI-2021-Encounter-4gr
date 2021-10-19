@@ -6,7 +6,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
-using Encounter.Commands.AboutRoute;
 
 namespace Encounter.ViewModels
 {
@@ -15,10 +14,8 @@ namespace Encounter.ViewModels
         private RouteViewModel _routeViewModel;
         private WaypointStore _waypointStore;
 
-
         public bool ViewOnly { get; set; }
         public Visibility ViewOnlyVisibility => ViewOnly ? Visibility.Visible : Visibility.Hidden;
-
 
         public WaypointViewModel SelectedWaypoint => _waypointStore.SelectedWaypoint;
         public List<LabelValueItem<WaypointType>> AllWaypointTypes { get; }
@@ -34,13 +31,10 @@ namespace Encounter.ViewModels
             }
         }
 
-        //Commands
         public ICommand CloseEditor { get; }
         public ICommand SaveWaypoint { get; }
         public ICommand DeleteWaypoint { get; }
 
-
-        //Properties
         private Visibility _editorVisibility;
         public Visibility EditorVisibility
         {
@@ -92,6 +86,7 @@ namespace Encounter.ViewModels
             set
             {
                 _type = value;
+                OnPropertyChanged();
             }
         }
 
@@ -177,7 +172,6 @@ namespace Encounter.ViewModels
             CloseEditor = new CloseEditorCommand(this);
             SaveWaypoint = new SaveWaypointCommand(routeViewModel, this, waypointStore);
             DeleteWaypoint = new DeleteWaypointCommand(waypointStore, routeViewModel, this);
-
         }
 
         //Functions

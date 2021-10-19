@@ -2,10 +2,6 @@
 using Encounter.Models;
 using Encounter.Stores;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Encounter.ViewModels
@@ -15,7 +11,7 @@ namespace Encounter.ViewModels
         public ICommand NewRouteCommand { get; }
         public ICommand NavigateHomeCommand { get; }
 
-        NavigationStore _navigationStore;
+        private NavigationStore _navigationStore;
 
         private readonly Route _route;
         public string Name

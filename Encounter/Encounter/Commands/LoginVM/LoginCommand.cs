@@ -1,16 +1,11 @@
-﻿using System;
-using Encounter.Stores;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Encounter.Stores;
 using Encounter.ViewModels;
 using System.Windows;
 using Encounter.Models;
 
 namespace Encounter.Commands
 {
-    class LoginCommand : CommandBase
+    public class LoginCommand : CommandBase
     {
         private NavigationStore _navigationStore;
         private User _user;

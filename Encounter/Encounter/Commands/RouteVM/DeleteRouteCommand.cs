@@ -1,7 +1,6 @@
 ﻿using Encounter.IO;
 using Encounter.Stores;
 using Encounter.ViewModels;
-using System;
 
 namespace Encounter.Commands.RouteVM
 {
@@ -21,8 +20,5 @@ namespace Encounter.Commands.RouteVM
             DatabaseFunctions.DeleteRoute(_routeViewModel.Route);
             _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore);
         }
-
-        
-
     }
 }

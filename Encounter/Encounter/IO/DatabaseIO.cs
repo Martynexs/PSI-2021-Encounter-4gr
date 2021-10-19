@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Data;
 using System.Windows;
@@ -44,7 +40,6 @@ namespace Encounter.IO
         {
             try
             {
-                OpenConnection();
                 var dataSet = new DataSet();
                 var adapter = new SQLiteDataAdapter(query, _connection);
                 adapter.Fill(dataSet, table);
@@ -53,10 +48,6 @@ namespace Encounter.IO
             catch
             {
                 throw new Exception();
-            }
-            finally
-            {
-                CloseConnection();
             }
         }
 
@@ -88,9 +79,6 @@ namespace Encounter.IO
             {
                 MessageBox.Show(ex.Message);
                 throw new Exception();
-            }
-            finally
-            {
             }
         }
     }

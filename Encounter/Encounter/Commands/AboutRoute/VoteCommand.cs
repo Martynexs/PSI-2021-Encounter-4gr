@@ -6,9 +6,9 @@ namespace Encounter.Commands.AboutRoute
 {
     public class VoteCommand : CommandBase
     {
-        AboutRouteViewModel _aboutRouteViewModel;
-        User _user;
-        Route _route;
+        private AboutRouteViewModel _aboutRouteViewModel;
+        private User _user;
+        private Route _route;
         public VoteCommand(AboutRouteViewModel aboutRouteViewModel, User user, Route route)
         {
             _aboutRouteViewModel = aboutRouteViewModel;

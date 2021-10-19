@@ -39,9 +39,6 @@
     <Page Update="Views\NewRouteView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\RouteViewReadOnly.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\RouteView.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Encounter.Commands;
+﻿using Encounter.Commands;
 using Encounter.Stores;
 using System.Windows.Input;
 

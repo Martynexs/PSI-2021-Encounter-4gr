@@ -2,11 +2,6 @@
 using Encounter.Models;
 using Encounter.Stores;
 using Encounter.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Encounter.Commands

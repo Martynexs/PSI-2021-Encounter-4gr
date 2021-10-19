@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Encounter.Models
+﻿namespace Encounter.Models
 {
     public class Route
     {

@@ -78,7 +78,6 @@ namespace Encounter.IO
 
                     routeList.Add(route);
                 }
-
                 return routeList;
             }
             catch(Exception ex)

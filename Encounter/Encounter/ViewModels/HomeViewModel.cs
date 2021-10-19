@@ -1,6 +1,5 @@
 ﻿using Encounter.Commands;
 using Encounter.Stores;
-using Encounter.Models;
 using System.Windows.Input;
 
 namespace Encounter.ViewModels

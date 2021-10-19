@@ -2,12 +2,9 @@
 using Encounter.IO;
 using Encounter.Models;
 using Encounter.Stores;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Encounter.ViewModels
@@ -51,8 +48,5 @@ namespace Encounter.ViewModels
         {
             Routes = new ObservableCollection<Route>(_allRoutes.Where(x => x.ToString().ToLower().Contains(search.ToLower())).Select(x => x).ToList());
         }
-
-
-
     }
 }
