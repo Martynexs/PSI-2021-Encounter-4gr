@@ -13,6 +13,10 @@ namespace Encounter.ViewModels
     {
         private RouteViewModel _routeViewModel;
         private WaypointStore _waypointStore;
+
+        public bool ViewOnly { get; set; }
+        public Visibility ViewOnlyVisibility => ViewOnly ? Visibility.Visible : Visibility.Hidden;
+
         public WaypointViewModel SelectedWaypoint => _waypointStore.SelectedWaypoint;
         public List<LabelValueItem<WaypointType>> AllWaypointTypes { get; }
 
@@ -27,12 +31,10 @@ namespace Encounter.ViewModels
             }
         }
 
-        //Commands
         public ICommand CloseEditor { get; }
         public ICommand SaveWaypoint { get; }
         public ICommand DeleteWaypoint { get; }
 
-        //Properties
         private Visibility _editorVisibility;
         public Visibility EditorVisibility
         {
@@ -84,6 +86,7 @@ namespace Encounter.ViewModels
             set
             {
                 _type = value;
+                OnPropertyChanged();
             }
         }
 
@@ -155,10 +158,11 @@ namespace Encounter.ViewModels
         }
 
         //Builder
-        public WaypointEditorViewModel(WaypointStore waypointStore, RouteViewModel routeViewModel)
+        public WaypointEditorViewModel(WaypointStore waypointStore, RouteViewModel routeViewModel, bool viewOnly)
         {
             _waypointStore = waypointStore;
             _routeViewModel = routeViewModel;
+            ViewOnly = viewOnly;
 
             EditorVisibility = Visibility.Hidden;
             AllWaypointTypes = WayPointTypeExtensions.GetLabelValueItems();
@@ -174,6 +178,7 @@ namespace Encounter.ViewModels
         public void OnSelectedWaypointChanged()
         {
             EditorVisibility = Visibility.Visible;
+            _routeViewModel.HideAbout();
 
             var waypoint = SelectedWaypoint;
 

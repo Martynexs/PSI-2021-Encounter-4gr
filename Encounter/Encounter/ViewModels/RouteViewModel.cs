@@ -1,4 +1,7 @@
 ﻿using Encounter.Commands;
+using Encounter.Commands.AboutRoute;
+using Encounter.Commands.RouteVM;
+using Encounter.Models;
 using Encounter.Stores;
 using System;
 using System.Collections.Generic;
@@ -11,37 +14,97 @@ namespace Encounter.ViewModels
 {
     public class RouteViewModel : ViewModelBase
     {
+        public bool ViewOnly { get; set; }
+        public Visibility ViewOnlyVisibility => ViewOnly ? Visibility.Visible : Visibility.Hidden;
+
         public ICommand NavigateHomeCommand { get; }
         public ICommand CreateNewWaypoint { get; }
         public ICommand SaveRoute { get; }
-        public ObservableCollection<FrameworkElement> WaypointPanels { get; }
+        public ICommand DeleteRoute { get; }
+        public ICommand AboutRoute { get; }
+
+        public ObservableCollection<FrameworkElement> WaypointPanels { get; set; }
+        public List<WaypointType> AllWaypointTypes { get; set; } = WayPointTypeExtensions.GetAllTypes();
 
         private readonly List<WaypointViewModel> _waypoints;
+
         public WaypointEditorViewModel WaypointEditorViewModel { get; }
+        public AboutRouteViewModel AboutRouteViewModel { get; }
 
         private readonly WaypointStore _waypointStore = new WaypointStore();
 
-        public RouteViewModel(NavigationStore navigationStore)
+        private bool _filteringEnabled;
+        public bool FilteringEnabled 
         {
-            NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
-            CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
-            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this);
-            SaveRoute = new SaveRouteCommand(this);
-            _waypoints = new List<WaypointViewModel>();
-            WaypointPanels = new ObservableCollection<FrameworkElement>();
+            get => _filteringEnabled; 
+            set
+            {
+                _filteringEnabled = value;
+
+                if (!value)
+                {
+                    WaypointPanels = new ObservableCollection<FrameworkElement>(_waypoints.Select(x => x.GetWaypointPanel()).ToList());
+                }
+                else
+                {
+                    FilterWaypoints();
+                }
+
+                OnPropertyChanged();
+            }
         }
 
-        public RouteViewModel(NavigationStore navigationStore, IEnumerable<Waypoint> waypoints)
+        private WaypointType _selectedFilter;
+        public WaypointType SelectedFilter 
+        {
+            get => _selectedFilter;
+            set
+            {
+                _selectedFilter = value;
+                FilterWaypoints();
+                OnPropertyChanged();
+            }
+        }
+
+        public Route Route { get; }
+
+        //Builders
+        public RouteViewModel(NavigationStore navigationStore, Route route)
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
-            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this);
+
+            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this, true);
+            AboutRouteViewModel = new AboutRouteViewModel(this, route, true);
+
+            SaveRoute = new SaveRouteCommand(this);
+            _waypoints = new List<WaypointViewModel>();
+            AboutRoute = new AboutButtonCommand(AboutRouteViewModel, this);
+            WaypointPanels = new ObservableCollection<FrameworkElement>();
+            DeleteRoute = new DeleteRouteCommand(this, navigationStore);
+            ViewOnly = true;
+            Route = route;
+        }
+
+        public RouteViewModel(NavigationStore navigationStore, Route route, bool viewOnly, IEnumerable<Waypoint> waypoints)
+        {
+            NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
+            CreateNewWaypoint = new CreateNewWaypointCommand(this, _waypointStore);
+
+            WaypointEditorViewModel = new WaypointEditorViewModel(_waypointStore, this, viewOnly);
+            AboutRouteViewModel = new AboutRouteViewModel(this, route, viewOnly);
+
             SaveRoute = new SaveRouteCommand(this);
             _waypoints = new List<WaypointViewModel>();
             WaypointPanels = new ObservableCollection<FrameworkElement>();
+            AboutRoute = new AboutButtonCommand(AboutRouteViewModel, this);
+            DeleteRoute = new DeleteRouteCommand(this, navigationStore);
+            Route = route;
+            ViewOnly = viewOnly;
             LoadRoute(waypoints);
         }
 
+        //Functions
         public void AddWaypoint(WaypointViewModel waypoint)
         {
             _waypoints.Add(waypoint);
@@ -56,6 +119,11 @@ namespace Encounter.ViewModels
         public void HideEditor()
         {
             WaypointEditorViewModel.EditorVisibility = Visibility.Hidden;
+        }
+
+        public void HideAbout()
+        {
+            AboutRouteViewModel.Visibility = Visibility.Hidden;
         }
 
         public void DeleteWaypoint(int index)
@@ -96,9 +164,6 @@ namespace Encounter.ViewModels
         public List<Waypoint> GetWaypoints()
         {
             var listOfWaypoints = _waypoints.Select(x => x.GetWaypoint()).ToList();
-
-
-
             return listOfWaypoints;
         }
 
@@ -141,7 +206,9 @@ namespace Encounter.ViewModels
             return (int)DistanceValue;
         }
 
+        private void FilterWaypoints()
+        {
+            WaypointPanels = new ObservableCollection<FrameworkElement>( _waypoints.Where(x => x.Type == SelectedFilter).Select(x => x.GetWaypointPanel()).ToList());
+        }
     }
-
-
 }

@@ -10,7 +10,13 @@
     <Compile Update="Views\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\LoginWindow.xaml.cs">
+    <Compile Update="Views\LoginView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\LoadRouteView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\NewRouteView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\RouteView.xaml.cs">
@@ -24,7 +30,13 @@
     <Page Update="Views\HomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\LoginWindow.xaml">
+    <Page Update="Views\LoadRouteView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\NewRouteView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\RouteView.xaml">

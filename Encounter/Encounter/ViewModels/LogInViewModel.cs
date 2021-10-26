@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Encounter.Commands;
+﻿using Encounter.Commands;
 using Encounter.Stores;
 using System.Windows.Input;
 
@@ -11,12 +6,19 @@ namespace Encounter.ViewModels
 {
     public class LogInViewModel : ViewModelBase
     {
-        public ICommand LoadHomePage { get; }
-      
+        public ICommand DoLoginCommand { get; }
+        private readonly User _user;
+
+        public string Username
+        {
+            get => _user.Nickname;
+            set => _user.Nickname = value;
+        }
+
         public LogInViewModel(NavigationStore navigationStore)
         {
-            LoadHomePage = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
-           
+            _user = new User();
+            DoLoginCommand = new LoginCommand(navigationStore, _user);
         }
     }
 }

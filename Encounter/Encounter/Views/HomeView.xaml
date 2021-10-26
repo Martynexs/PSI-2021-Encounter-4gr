@@ -7,7 +7,7 @@
         mc:Ignorable="d" VerticalAlignment="Stretch" d:DesignHeight="468.776" d:DesignWidth="500.0">
     <Grid>
         <Button Content="New route" 
-                Command="{Binding NavigateRouteCommand}" 
+                Command="{Binding NavigateNewRouteCommand}" 
                 HorizontalAlignment="Center" 
                 Margin="0,100,0,0" 
                 VerticalAlignment="Center" 
@@ -22,7 +22,7 @@
         </Button>
 
         <Button Content="Load route" 
-                Command="{Binding LoadRouteCommand}"
+                Command="{Binding NavigateLoadRouteCommand}"
                 HorizontalAlignment="Center" 
                 Margin="0,200,0,0" 
                 VerticalAlignment="Center" 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Encounter
 {
@@ -28,7 +29,7 @@ namespace Encounter
                 WaypointType.Cafe => "#f37736",      //Orange
                 WaypointType.Museum => "#ee4035",    //Red
                 WaypointType.Church => "#a64ca6",    //Purple 
-                WaypointType.Sculpture => "#00e5e5",  //Cyan 
+                WaypointType.Sculpture => "#00e5e5", //Cyan 
                 WaypointType.Park => "#7bc043",      //Green
                 WaypointType.Other => "#fdf498",     //Yellow
                 _ => "#fdf498",
@@ -48,6 +49,11 @@ namespace Encounter
                 WaypointType.Other => "Other",
                 _ => "Other",
             };
+        }
+
+        public static List<WaypointType> GetAllTypes()
+        {
+            return Enum.GetValues(typeof(WaypointType)).Cast<WaypointType>().ToList();
         }
 
         public static List<LabelValueItem<WaypointType>> GetLabelValueItems()

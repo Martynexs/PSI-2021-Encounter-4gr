@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\Astar.png" />
     <None Remove="Views\compass.jpg" />
     <None Remove="Views\EncounterMe.jpg" />
     <None Remove="Views\globe.png" />
@@ -14,12 +15,20 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="27.1.1" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.115" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Views\Astar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Views\compass.jpg" />
     <Resource Include="Views\globe.png" />
     <Resource Include="Views\EncounterMe.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\LoadRouteVM\" />
   </ItemGroup>
 
 </Project>
