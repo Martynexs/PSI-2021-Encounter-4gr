@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PSI.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundImage="LogIn.jpg">
+    
+    <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+        <Label Text="Encounter" TextColor="Black" FontSize="32" FontAttributes="Italic" Margin="20,30,20,0" HorizontalOptions="Center"/>
+        <Grid RowSpacing="20" Grid.Row="1" Margin="20,0,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Entry Grid.Row="1" Placeholder="Email or Phone Number" PlaceholderColor="Black" FontSize="16"/>
+            <Entry Grid.Row="2" Placeholder="Password" PlaceholderColor="Black" FontSize="16"/>
+            <Button Text="Log In" BackgroundColor="#FFC900" TextColor="White" HeightRequest="50" VerticalOptions="Start" Grid.Row="3" Command="{Binding LoginCommand}"/>
+            <Label Text="Don't have an account yet?  Sign Up!" TextColor="Black" HorizontalOptions="Center" Grid.Row="4" Margin="0,10,0,0" FontSize="16">
+             <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RegistrationCommand}"/>
+            </Label.GestureRecognizers>
+            </Label>
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                <Label Text="OR" TextColor="Black" Grid.Column="1" VerticalOptions="Center"/>
+                <Label BackgroundColor="Black" Grid.Column="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+            </Grid>
+            <Grid Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </Grid>
+        <StackLayout Margin="0,6"
+                                         Orientation="Horizontal"
+                                         HorizontalOptions="CenterAndExpand">
+        <Frame BackgroundColor="#F0F0F0"
+                                       HeightRequest="45"
+                                       WidthRequest="45"
+                                       CornerRadius="45"
+                                       HasShadow="False"
+                                       HorizontalOptions="Center"
+                                       Margin="0"
+                                       Padding="0">
+
+            <Image Source="facebook.png"
+                                           Aspect="AspectFill"
+                                           Margin="0"/>
+        </Frame>
+        <Frame BackgroundColor="#F0F0F0"
+                                       HeightRequest="45"
+                                       WidthRequest="45"
+                                       CornerRadius="45"
+                                       HasShadow="False"
+                                       HorizontalOptions="Center"
+                                       Margin="0"
+                                       Padding="0">
+
+            <Image Source="google.png"
+                                           Aspect="AspectFill"
+                                           Margin="0"/>
+        </Frame>
+        </StackLayout>
+    </StackLayout>
+    
+</ContentPage>
