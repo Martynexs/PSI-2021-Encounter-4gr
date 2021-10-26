@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="Encounter.Views.HomeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Encounter.Views"
+        mc:Ignorable="d" VerticalAlignment="Stretch" d:DesignHeight="468.776" d:DesignWidth="500.0">
+    <Grid>
+        <Button Content="New route" 
+                Command="{Binding NavigateNewRouteCommand}" 
+                HorizontalAlignment="Center" 
+                Margin="0,100,0,0" 
+                VerticalAlignment="Center" 
+                FontSize="24" 
+                Width="150" 
+                Background="#FFFFCF4D" Foreground="Black" BorderBrush="{x:Null}" FontWeight="Bold">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button Content="Load route" 
+                Command="{Binding NavigateLoadRouteCommand}"
+                HorizontalAlignment="Center" 
+                Margin="0,200,0,0" 
+                VerticalAlignment="Center" 
+                FontSize="24" 
+                Width="150" 
+                Background="#FFFFCF4D" Foreground="Black" BorderBrush="{x:Null}" FontWeight="Bold">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Image HorizontalAlignment="Center" 
+               Height="221" 
+               VerticalAlignment="Center" 
+               Width="216"  
+               Margin="0,0,0,200" Source="/Views/globe.png"/>
+    </Grid>
+</UserControl>

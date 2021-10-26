@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using Encounter.IO;
+using Encounter.Stores;
+using Encounter.ViewModels;
 
 namespace Encounter
 {
@@ -13,5 +10,28 @@ namespace Encounter
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var navigationStore = new NavigationStore();
+
+            navigationStore.CurrentViewModel = new LogInViewModel(navigationStore);
+
+            DatabaseIO.OpenConnection();
+
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainViewModel(navigationStore)
+            };
+            MainWindow.Show();
+
+            base.OnStartup(e);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            DatabaseIO.CloseConnection();
+
+            base.OnExit(e);
+        }
     }
 }

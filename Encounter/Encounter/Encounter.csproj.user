@@ -7,7 +7,39 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\HomeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\LoginView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\LoadRouteView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\NewRouteView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\RouteView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\LoadRouteView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\NewRouteView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\RouteView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
