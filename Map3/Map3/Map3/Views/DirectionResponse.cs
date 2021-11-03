@@ -12,11 +12,11 @@ using System.Collections.Generic;
 
 namespace Map3.Views
 {
-    public class LatLong
-    {
-        public double Lat { get; set; }
-        public double Long { get; set; }
-    }
+        public class LatLong
+        {
+            public double Lat { get; set; }
+            public double Long { get; set; }
+        }
 
         public partial class DirectionResponse
         {
@@ -32,41 +32,41 @@ namespace Map3.Views
         }
         public partial class Route
         {
-        [JsonProperty("geometry")]
-        public string Geometry{ get; set; }
+        //[JsonProperty("geometry")]
+        //public string Geometry{ get; set; }
 
         [JsonProperty("legs")]
         public List<Leg>Legs { get; set; }
 
-        [JsonProperty("weight_name")]
-        public string WeightName { get; set; }
+        //[JsonProperty("weight_name")]
+        //public string WeightName { get; set; }
 
-        [JsonProperty("weight")]
-        public double Weight { get; set; }
+        //[JsonProperty("weight")]
+        //public double Weight { get; set; }
 
         [JsonProperty("duration")]
         public double Duration { get; set; }
 
-         [JsonProperty("distance")]
+        [JsonProperty("distance")]
         public double Distance { get; set; }
 
         }
     public partial class Leg
     {
-        [JsonProperty("summary")]
-        public string Summary { get; set; }
+        //[JsonProperty("summary")]
+        //public string Summary { get; set; }
 
-        [JsonProperty("weight")]
-        public double Weight { get; set; }
+        //[JsonProperty("weight")]
+        //public double Weight { get; set; }
 
-        [JsonProperty("duration")]
-        public string Duration { get; set; }
+        //[JsonProperty("duration")]
+        //public string Duration { get; set; }
 
         [JsonProperty("steps")]
         public List <Step> Steps { get; set; }
 
-        [JsonProperty("distance")]
-        public double Distance { get; set; }
+        //[JsonProperty("distance")]
+        //public double Distance { get; set; }
 
 
     }
@@ -75,68 +75,68 @@ namespace Map3.Views
         [JsonProperty("intersections")]
         public List <Intersection> Intersections{ get; set; }
 
-        [JsonProperty("driving_side")]
-        public string DrivingSide { get; set; }
+        //[JsonProperty("driving_side")]
+        //public string DrivingSide { get; set; }
 
-        [JsonProperty("geometry")]
-        public string Geometry { get; set; }
+        //[JsonProperty("geometry")]
+        //public string Geometry { get; set; }
 
-        [JsonProperty("mode")]
-        public double Mode { get; set; }
+        //[JsonProperty("mode")]
+        //public double Mode { get; set; }
 
         [JsonProperty("maneuver")]
         public Maneuver Maneuver { get; set; }
 
-        [JsonProperty("weight")]
-        public double Weight { get; set; }
+        //[JsonProperty("weight")]
+        //public double Weight { get; set; }
 
     }
     public partial class Waypoint
     {
-        [JsonProperty("hint")]
-        public string Hint { get; set; }
+        //[JsonProperty("hint")]
+        //public string Hint { get; set; }
 
-        [JsonProperty("distance")]
-        public double Distance { get; set; }
+        //[JsonProperty("distance")]
+        //public double Distance { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        //[JsonProperty("name")]
+        //public string Name { get; set; }
 
-        [JsonProperty("location")]
-        public LatLong Location{ get; set; }
+        //[JsonProperty("location")]
+        //public List<double> Location{ get; set; }
 
     }
     public partial class Maneuver
     {
-        [JsonProperty("hint")]
-        public string Hint { get; set; }
+        //[JsonProperty("hint")]
+        //public string Hint { get; set; }
 
-        [JsonProperty("distance")]
-        public double Distance { get; set; }
+        //[JsonProperty("distance")]
+        //public double Distance { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        //[JsonProperty("name")]
+        //public string Name { get; set; }
 
         [JsonProperty("location")]
-        public List<LatLong> Location { get; set; }
+        public List<double> Location { get; set; }
 
     }
     public partial class Intersection
     {
-        [JsonProperty("out")]
-        public int Out { get; set; }
+        //[JsonProperty("out")]
+        //public int Out { get; set; }
 
-        [JsonProperty("in")]
-        public int In { get; set; }
+        //[JsonProperty("in")]
+        //public int In { get; set; }
 
-        [JsonProperty("entry")]
-        public bool Entry { get; set; }
+        //[JsonProperty("entry")]
+        //public List<bool> Entry { get; set; }
 
-        [JsonProperty("bearings")]
-        public List <int> Bearings { get; set; }
+        //[JsonProperty("bearings")]
+        //public List <int> Bearings { get; set; }
 
         [JsonProperty("location")]
-        public List<LatLong> Location { get; set; }
+        public List<double> Location { get; set; }
 
     }
 

@@ -125,7 +125,7 @@ namespace Map3.ViewModels
                     {
                         var localIntersections = step.Intersections.ToList();
 
-                        foreach (var intersection in intersections)
+                        foreach (var intersection in localIntersections)
                         {
                             intersections.Add(intersection);
 
@@ -134,8 +134,8 @@ namespace Map3.ViewModels
                     foreach (var intersection in intersections)
                     {
                         LatLong p = new LatLong();
-                        p.Lat = intersection.Location[1].Lat;
-                        p.Long = intersection.Location[0].Long;
+                        p.Lat = intersection.Location[1];
+                        p.Long = intersection.Location[0];
                         locations.Add(p);
 
 
