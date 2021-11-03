@@ -21,7 +21,7 @@
   </queries>
   <uses-feature android:glEsVersion="0x00020000" android:required="true" />
   <application android:name="android.app.Application" android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:extractNativeLibs="true" android:icon="@mipmap/icon" android:label="Map3.Android" android:theme="@style/MainTheme">
-    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCiQCOKqYi-dUNxhCt6ACJbxqow_faQ2rQ" />
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAvJyRwc3p2O4eQdKIANs6qpDq05G_Cdso" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <uses-library android:name="org.apache.http.legacy" android:required="false" />
     <activity android:name="crc64be1b1b2c6e9e9fab.MainActivity" android:configChanges="orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:icon="@mipmap/icon" android:label="Map3" android:theme="@style/MainTheme">
