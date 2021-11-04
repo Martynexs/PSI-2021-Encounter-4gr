@@ -1,0 +1,13 @@
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\obj\Debug\EncounterDataLibrary.csproj.AssemblyReference.cache
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\obj\Debug\EncounterDataLibrary.csproj.CoreCompileInputs.cache
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\bin\Debug\EncounterDataLibrary.exe.config
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\bin\Debug\EncounterDataLibrary.exe
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\bin\Debug\EncounterDataLibrary.pdb
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\bin\Debug\Newtonsoft.Json.dll
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\bin\Debug\nunit.framework.dll
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\bin\Debug\System.Net.Http.Formatting.dll
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\bin\Debug\Newtonsoft.Json.xml
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\bin\Debug\nunit.framework.xml
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\bin\Debug\System.Net.Http.Formatting.xml
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\obj\Debug\EncounterDataLibrary.exe
+D:\Uni 2021-2022\PSI\MobileTest\App1\EncounterDataLibrary\obj\Debug\EncounterDataLibrary.pdb

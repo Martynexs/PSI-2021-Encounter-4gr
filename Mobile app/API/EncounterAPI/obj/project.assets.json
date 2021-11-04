@@ -7659,11 +7659,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Uni 2021-2022\\PSI\\MobileTest\\API\\EncounterAPI\\EncounterAPI.csproj",
+      "projectUniqueName": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\EncounterAPI\\EncounterAPI.csproj",
       "projectName": "EncounterAPI",
-      "projectPath": "D:\\Uni 2021-2022\\PSI\\MobileTest\\API\\EncounterAPI\\EncounterAPI.csproj",
+      "projectPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\EncounterAPI\\EncounterAPI.csproj",
       "packagesPath": "C:\\Users\\valat\\.nuget\\packages\\",
-      "outputPath": "D:\\Uni 2021-2022\\PSI\\MobileTest\\API\\EncounterAPI\\obj\\",
+      "outputPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\EncounterAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
