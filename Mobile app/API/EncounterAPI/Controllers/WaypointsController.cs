@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using EncounterAPI.Models;
 using EncounterAPI.TypeExtensions;
 using EncounterAPI.Data_Transfer_Objects;
-using System.Linq;
 
 namespace EncounterAPI.Controllers
 {

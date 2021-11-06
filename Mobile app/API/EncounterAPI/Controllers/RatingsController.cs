@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EncounterAPI.Models;
-using EncounterAPI.TypeExtensions;
-using EncounterAPI.Data_Transfer_Objects;
 
 namespace EncounterAPI.Controllers
 {
@@ -24,111 +22,63 @@ namespace EncounterAPI.Controllers
 
         // GET: api/Ratings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RatingDTO>>> GetRatings()
+        public async Task<ActionResult<IEnumerable<Rating>>> GetRatings()
         {
-            return await _context.Ratings.Select(r => r.ToDTO()).ToListAsync();
+            return await _context.Ratings.ToListAsync();
         }
 
-        // GET: api/Ratings/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<RatingDTO>> GetRating(long id)
+        // GET: api/Ratings/5/3
+        [HttpGet("{RouteId}/{UserId}")]
+        public async Task<ActionResult<Rating>> GetRating(long RouteId, long UserId)
         {
-            var rating = await _context.Ratings.FindAsync(id);
+            var rating = await _context.Ratings.FindAsync(RouteId, UserId);
 
             if (rating == null)
             {
                 return NotFound();
             }
 
-            return rating.ToDTO();
+            return rating;
         }
 
-        // PUT: api/Ratings/5
+        // PUT: api/Ratings/5/3
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutRating(long id, Rating rating)
+        [HttpPut("{RouteId}/{UserId}")]
+        public async Task<IActionResult> PutRating(long RouteId, long UserId, Rating rating)
         {
-            if (id != rating.Id)
+            if (RouteId != rating.RouteId || UserId != rating.UserId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(rating).State = EntityState.Modified;
+
+            if(RatingExists(RouteId, UserId))
+            {
+               _context.Entry(rating).State = EntityState.Modified;
+            }
+            else
+            {
+                _context.Ratings.Add(rating);
+            }
+
+            RatingsLogic.UpdateRating(rating, _context);
 
             try
             {
                 await _context.SaveChangesAsync();
-                UpdateRating(rating);
+                
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RatingExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+               throw;
             }
 
             return NoContent();
         }
 
-        // POST: api/Ratings
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<RatingDTO>> PostRating(Rating rating)
+        private bool RatingExists(long RouteId, long UserId)
         {
-            _context.Ratings.Add(rating);
-            await _context.SaveChangesAsync();
-
-            UpdateRating(rating);
-
-            return CreatedAtAction(nameof(GetRating), new { id = rating.Id }, rating.ToDTO());
+            return _context.Ratings.Any(e => e.RouteId == RouteId && e.UserId == UserId);
         }
-
-        // DELETE: api/Ratings/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRating(long id)
-        {
-            var rating = await _context.Ratings.FindAsync(id);
-            if (rating == null)
-            {
-                return NotFound();
-            }
-
-            _context.Ratings.Remove(rating);
-            await _context.SaveChangesAsync();
-
-            UpdateRating(rating);
-
-            return NoContent();
-        }
-
-        private bool RatingExists(long id)
-        {
-            return _context.Ratings.Any(e => e.Id == id);
-        }
-
-        private async void UpdateRating(Rating rating)
-        {
-            var route = _context.Routes.Find(rating.RouteId);
-            var query = (from rt in _context.Ratings
-                         where rt.RouteId == route.Id
-                         group rt by rt.RouteId into grp
-                         select new
-                         {
-                             rowCount = grp.Count(),
-                             rowSum = grp.Sum(x => x.Value)
-                         }).Single();
-
-            route.Raters = query.rowCount;
-            route.RateSum = query.rowSum;
-            route.Rating = (double)query.rowSum / query.rowCount;
-
-            await _context.SaveChangesAsync();
-        }
-
     }
 }

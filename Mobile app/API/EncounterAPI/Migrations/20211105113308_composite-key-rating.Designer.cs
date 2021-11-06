@@ -3,14 +3,16 @@ using System;
 using EncounterAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EncounterAPI.Migrations
 {
     [DbContext(typeof(EncounterContext))]
-    partial class EncounterContextModelSnapshot : ModelSnapshot
+    [Migration("20211105113308_composite-key-rating")]
+    partial class compositekeyrating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,6 +20,9 @@ namespace EncounterAPI.Migrations
 
             modelBuilder.Entity("EncounterAPI.Models.Rating", b =>
                 {
+                    b.Property<long>("Id")
+                        .HasColumnType("INTEGER");
+
                     b.Property<long>("RouteId")
                         .HasColumnType("INTEGER");
 
@@ -27,7 +32,9 @@ namespace EncounterAPI.Migrations
                     b.Property<int>("Value")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("RouteId", "UserId");
+                    b.HasKey("Id", "RouteId", "UserId");
+
+                    b.HasIndex("RouteId");
 
                     b.HasIndex("UserId");
 

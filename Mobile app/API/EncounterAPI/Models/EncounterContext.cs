@@ -15,5 +15,11 @@ namespace EncounterAPI.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite(@"Data Source=D:\Database\EncounterDB.db");
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Rating>().HasKey(t => new { t.RouteId, t.UserId });
+        }
+
     }
 }
