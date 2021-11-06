@@ -44,9 +44,9 @@ namespace EncounterAPI.Controllers
         // PUT: api/Ratings/5/3
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{RouteId}/{UserId}")]
-        public async Task<IActionResult> PutRating(long RouteId, long UserId, Rating rating)
+        public async Task<IActionResult> PutRating(long RouteId, string UserId, Rating rating)
         {
-            if (RouteId != rating.RouteId || UserId != rating.UserId)
+            if (RouteId != rating.RouteId || UserId != rating.Username)
             {
                 return BadRequest();
             }
@@ -76,9 +76,9 @@ namespace EncounterAPI.Controllers
             return NoContent();
         }
 
-        private bool RatingExists(long RouteId, long UserId)
+        private bool RatingExists(long RouteId, string UserId)
         {
-            return _context.Ratings.Any(e => e.RouteId == RouteId && e.UserId == UserId);
+            return _context.Ratings.Any(e => e.RouteId == RouteId && e.Username == UserId);
         }
     }
 }

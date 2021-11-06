@@ -18,7 +18,9 @@ namespace EncounterAPI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Rating>().HasKey(t => new { t.RouteId, t.UserId });
+            modelBuilder.Entity<User>().HasKey(t => new { t.Username });
+            modelBuilder.Entity<User>().HasIndex(t => t.Username).IsUnique();
+            modelBuilder.Entity<Rating>().HasKey(t => new { t.RouteId, t.Username });
         }
 
     }

@@ -27,26 +27,32 @@ namespace EncounterAPI.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(long id)
+        // GET: api/Users/username
+        [HttpGet("{username}")]
+        public async Task<ActionResult<User>> GetUser(string username, string password)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.Users.FindAsync(username);
 
             if (user == null)
             {
                 return NotFound();
             }
 
+            var hashedPassword = Convert.FromBase64String(user.Password);
+            if(PasswordHasher.ComparePasswords(hashedPassword, password) != 0)
+            {
+                return Unauthorized();
+            }
+
             return user;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Users/username
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(long id, User user)
+        [HttpPut("{username}")]
+        public async Task<IActionResult> PutUser(string username, User user)
         {
-            if (id != user.Id)
+            if (username != user.Username)
             {
                 return BadRequest();
             }
@@ -59,7 +65,7 @@ namespace EncounterAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!UserExists(username))
                 {
                     return NotFound();
                 }
@@ -77,31 +83,18 @@ namespace EncounterAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
+            var hashedPassword = PasswordHasher.HashPassword(user.Password);
+            user.Password = Convert.ToBase64String(hashedPassword);
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetUser", new { username = user.Username }, user);
         }
 
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(long id)
+        private bool UserExists(string username)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool UserExists(long id)
-        {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Username == username);
         }
     }
 }

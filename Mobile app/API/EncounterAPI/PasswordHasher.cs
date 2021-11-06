@@ -12,14 +12,20 @@ namespace EncounterAPI
                 new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
             }
 
-            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000);
-            byte[] hash = pbkdf2.GetBytes(20);
+            byte[] hash = GetHash(password, salt);
 
             byte[] hashBytes = new byte[36];
             Array.Copy(salt, 0, hashBytes, 0, 16);
-            Array.Copy(hash, 0, hashBytes, 0, 20);
+            Array.Copy(hash, 0, hashBytes, 16, 20);
 
             return hashBytes;
+        }
+
+        public static byte[] GetHash(string password, byte[] salt)
+        {
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000);
+            byte[] hash = pbkdf2.GetBytes(20);
+            return hash;
         }
 
         public static byte[] GetSalt(byte[] hashBytes)
@@ -32,7 +38,7 @@ namespace EncounterAPI
         public static int ComparePasswords(byte[] hashBytes, string password)
         {
             var salt = GetSalt(hashBytes);
-            var hash = HashPassword(password, salt);
+            var hash = GetHash(password, salt);
 
             for (int i = 0; i < 20; i++)
                 if (hashBytes[i + 16] != hash[i]) return -1;

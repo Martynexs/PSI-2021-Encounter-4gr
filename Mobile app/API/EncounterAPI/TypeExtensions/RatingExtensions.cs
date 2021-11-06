@@ -13,7 +13,7 @@ namespace EncounterAPI.TypeExtensions
         {
             return new RatingDTO
             {
-                UserId = rating.UserId,
+                Username = rating.Username,
                 RouteId = rating.RouteId,
                 Value = rating.Value
             };

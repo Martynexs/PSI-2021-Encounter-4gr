@@ -10,7 +10,7 @@ namespace EncounterAPI.TypeExtensions
             return new RouteDTO
             {
                 Id = route.Id,
-                CreatorId = route.CreatorId,
+                CreatorUsername = route.CreatorUsername,
                 Name = route.Name,
                 Location = route.Location,
                 Description = route.Description,
