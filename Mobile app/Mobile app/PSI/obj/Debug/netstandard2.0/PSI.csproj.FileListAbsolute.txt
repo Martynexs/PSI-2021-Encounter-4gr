@@ -19,3 +19,25 @@ C:\Users\Vartotojas\source\repos\PSI\PSI\PSI\obj\Debug\netstandard2.0\Views\Regi
 C:\Users\Vartotojas\source\repos\PSI\PSI\PSI\obj\Debug\netstandard2.0\Views\RoutePage.xaml.g.cs
 C:\Users\Vartotojas\source\repos\PSI\PSI\PSI\obj\Debug\netstandard2.0\Views\NewRoutePage.xaml.g.cs
 C:\Users\Vartotojas\source\repos\PSI\PSI\PSI\obj\Debug\netstandard2.0\Views\MainPage.xaml.g.cs
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\bin\Debug\netstandard2.0\PSI.deps.json
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\bin\Debug\netstandard2.0\PSI.dll
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\bin\Debug\netstandard2.0\ref\PSI.dll
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\bin\Debug\netstandard2.0\PSI.pdb
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.csproj.AssemblyReference.cache
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\AppShell.xaml.g.cs
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\ItemDetailPage.xaml.g.cs
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\LoginPage.xaml.g.cs
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\MainPage.xaml.g.cs
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\Map.xaml.g.cs
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\NewRoutePage.xaml.g.cs
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\RegistrationPage.xaml.g.cs
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\RoutePage.xaml.g.cs
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.AssemblyInfoInputs.cache
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.AssemblyInfo.cs
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.csproj.CoreCompileInputs.cache
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.dll
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\ref\PSI.dll
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.pdb
