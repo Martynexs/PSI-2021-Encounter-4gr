@@ -66,7 +66,7 @@
             <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />
         </Tab>
         <Tab Title="Map" Icon="Map.png">
-            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:Map}" />
         </Tab>
         <Tab Title="Route" Icon="Routes.png">
             <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
