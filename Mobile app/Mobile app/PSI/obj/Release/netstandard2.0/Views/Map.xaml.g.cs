@@ -8,17 +8,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("PSI.Views.Map.xaml", "Views/Map.xaml", typeof(global::PSI.Views.View1))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("PSI.Views.Map.xaml", "Views/Map.xaml", typeof(global::PSI.Views.Map))]
 
 namespace PSI.Views {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\Map.xaml")]
-    public partial class View1 : global::Xamarin.Forms.ContentView {
+    public partial class Map : global::Xamarin.Forms.ContentPage {
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.Maps.Map map;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(View1));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(Map));
+            map = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Maps.Map>(this, "map");
         }
     }
 }

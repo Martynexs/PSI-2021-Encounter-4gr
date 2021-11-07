@@ -31,17 +31,17 @@ item;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI
 LinearLayout;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\layout\bottomtablayout.xml
 paths;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\53\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 resources;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\values\attrs.xml
-resources;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\values\strings.xml
 resources;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\values\styles.xml
+resources;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\values\strings.xml
 resources;obj\Debug\110\res\values\colors.xml
 resources;obj\Debug\110\res\values\styles.xml
 set;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\anim\enterfromleft.xml
 set;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\anim\enterfromright.xml
 set;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\anim\exittoleft.xml
 set;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\anim\exittoright.xml
-string;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\values\strings.xml
 style;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\values\styles.xml
 style;obj\Debug\110\res\values\styles.xml
+string;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\values\strings.xml
 translate;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\anim\enterfromleft.xml
 translate;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\anim\enterfromright.xml
 translate;C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\55\jl\res\anim\exittoleft.xml
