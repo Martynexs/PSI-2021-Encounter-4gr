@@ -113,7 +113,7 @@ namespace Map3.ViewModels
                         routes = dr.Routes.ToList();
 
                         RouteDuration = Math.Round((Double)routes[0].Duration / 60, 0);
-                        RouteDistance = Math.Round((Double)routes[0].Distance);
+                        RouteDistance = Math.Round((Double)routes[0].Distance/1000, 1);
                     }
                     foreach (var route in routes)
                     {

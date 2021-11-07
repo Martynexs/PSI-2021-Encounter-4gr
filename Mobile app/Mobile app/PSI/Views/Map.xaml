@@ -27,7 +27,9 @@
             </StackLayout>
 
             <ActivityIndicator HeightRequest = "10" Grid.Row="1" Grid.Column="0" IsRunning="{Binding IsBusy}"/>
-            <maps:Map Grid.Row="2" Grid.ColumnSpan="3"  x:Name="map"/>
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding RouteDistance, StringFormat='{0} km'}"/>
+            <Label Grid.Row="1" Grid.Column="2" Text="{Binding RouteDuration, StringFormat='{0} mins'}"/>
+            <maps:Map IsShowingUser ="True" Grid.Row="2" Grid.ColumnSpan="3"  x:Name="map"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
