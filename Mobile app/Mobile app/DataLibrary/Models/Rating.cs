@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataLibrary.Models
+﻿namespace DataLibrary.Models
 {
     public class Rating
     {
+        public string Username { get; set; }
+        public long RouteId { get; set; }
+        public int Value { get; set; }
     }
 }

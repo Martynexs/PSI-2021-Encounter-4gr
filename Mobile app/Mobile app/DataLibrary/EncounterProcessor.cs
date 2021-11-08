@@ -1,9 +1,7 @@
 ﻿using DataLibrary.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataLibrary
@@ -21,7 +19,6 @@ namespace DataLibrary
                 if(response.IsSuccessStatusCode)
                 {
                     Route route = await response.Content.ReadAsAsync<Route>();
-
                     return route;
                 }
                 else
@@ -161,11 +158,30 @@ namespace DataLibrary
 
         public static async Task SubmitRating(Rating rating)
         {
-            var url = $"https://{ _apiAdress }/api/ratings";
+            var url = $"https://{ _apiAdress }/api/ratings/{ rating.RouteId }/{ rating.Username }";
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.PostAsJsonAsync(url, rating))
+            using (HttpResponseMessage response = await ApiHelper.ApiClient.PutAsJsonAsync(url, rating))
             {
                 if (!response.IsSuccessStatusCode)
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<Rating> GetRating(long routeId, string username)
+        {
+            var url = $"https://{ _apiAdress }/api/ratings/{ routeId }/{ username }";
+
+            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    Rating rating = await response.Content.ReadAsAsync<Rating>();
+
+                    return rating;
+                }
+                else
                 {
                     throw new Exception(response.ReasonPhrase);
                 }
