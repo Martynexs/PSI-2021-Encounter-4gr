@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EncounterDataLibrary\EncounterDataLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

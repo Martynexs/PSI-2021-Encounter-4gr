@@ -189,10 +189,20 @@
           "lib/Xamarin.iOS10/Xamarin.Forms.Maps.iOS.dll": {}
         }
       },
+      "EncounterDataLibrary/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/EncounterDataLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EncounterDataLibrary.dll": {}
+        }
+      },
       "PSI/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "EncounterDataLibrary": "1.0.0",
           "Newtonsoft.Json": "13.0.1",
           "Rg.Plugins.Popup": "2.0.0.14",
           "Xamarin.Essentials": "1.7.0",
@@ -395,10 +405,20 @@
           "lib/Xamarin.iOS10/Xamarin.Forms.Maps.iOS.dll": {}
         }
       },
+      "EncounterDataLibrary/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/EncounterDataLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EncounterDataLibrary.dll": {}
+        }
+      },
       "PSI/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "EncounterDataLibrary": "1.0.0",
           "Newtonsoft.Json": "13.0.1",
           "Rg.Plugins.Popup": "2.0.0.14",
           "Xamarin.Essentials": "1.7.0",
@@ -601,10 +621,20 @@
           "lib/Xamarin.iOS10/Xamarin.Forms.Maps.iOS.dll": {}
         }
       },
+      "EncounterDataLibrary/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/EncounterDataLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EncounterDataLibrary.dll": {}
+        }
+      },
       "PSI/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "EncounterDataLibrary": "1.0.0",
           "Newtonsoft.Json": "13.0.1",
           "Rg.Plugins.Popup": "2.0.0.14",
           "Xamarin.Essentials": "1.7.0",
@@ -807,10 +837,20 @@
           "lib/Xamarin.iOS10/Xamarin.Forms.Maps.iOS.dll": {}
         }
       },
+      "EncounterDataLibrary/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/EncounterDataLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EncounterDataLibrary.dll": {}
+        }
+      },
       "PSI/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "EncounterDataLibrary": "1.0.0",
           "Newtonsoft.Json": "13.0.1",
           "Rg.Plugins.Popup": "2.0.0.14",
           "Xamarin.Essentials": "1.7.0",
@@ -1237,6 +1277,11 @@
         "xamarin.forms.maps.nuspec"
       ]
     },
+    "EncounterDataLibrary/1.0.0": {
+      "type": "project",
+      "path": "../EncounterDataLibrary/EncounterDataLibrary.csproj",
+      "msbuildProject": "../EncounterDataLibrary/EncounterDataLibrary.csproj"
+    },
     "PSI/1.0.0": {
       "type": "project",
       "path": "../PSI/PSI.csproj",
@@ -1254,24 +1299,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vartotojas\\.nuget\\packages\\": {},
+    "C:\\Users\\valat\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\PSI.iOS.csproj",
+      "projectUniqueName": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\PSI.iOS.csproj",
       "projectName": "PSI.iOS",
-      "projectPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\PSI.iOS.csproj",
-      "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\obj\\",
+      "projectPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\PSI.iOS.csproj",
+      "packagesPath": "C:\\Users\\valat\\.nuget\\packages\\",
+      "outputPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Vartotojas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\valat\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -1285,8 +1330,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj": {
-              "projectPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj"
+            "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj": {
+              "projectPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj"
             }
           }
         }
