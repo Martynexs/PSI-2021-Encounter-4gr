@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "Xamarin.iOS,Version=v1.0": {
+      "Microsoft.AspNet.WebApi.Client/5.2.7": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.1",
+          "Newtonsoft.Json.Bson": "1.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/System.Net.Http.Formatting.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Net.Http.Formatting.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -9,6 +22,19 @@
         },
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Newtonsoft.Json.Bson/1.0.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "10.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
         }
       },
       "Rg.Plugins.Popup/2.0.0.14": {
@@ -189,10 +215,25 @@
           "lib/Xamarin.iOS10/Xamarin.Forms.Maps.iOS.dll": {}
         }
       },
+      "DataLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "5.2.7",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "bin/placeholder/DataLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataLibrary.dll": {}
+        }
+      },
       "PSI/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "DataLibrary": "1.0.0",
           "Newtonsoft.Json": "13.0.1",
           "Rg.Plugins.Popup": "2.0.0.14",
           "Xamarin.Essentials": "1.7.0",
@@ -208,6 +249,19 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win": {
+      "Microsoft.AspNet.WebApi.Client/5.2.7": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.1",
+          "Newtonsoft.Json.Bson": "1.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/System.Net.Http.Formatting.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Net.Http.Formatting.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -215,6 +269,19 @@
         },
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Newtonsoft.Json.Bson/1.0.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "10.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
         }
       },
       "Rg.Plugins.Popup/2.0.0.14": {
@@ -395,10 +462,25 @@
           "lib/Xamarin.iOS10/Xamarin.Forms.Maps.iOS.dll": {}
         }
       },
+      "DataLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "5.2.7",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "bin/placeholder/DataLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataLibrary.dll": {}
+        }
+      },
       "PSI/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "DataLibrary": "1.0.0",
           "Newtonsoft.Json": "13.0.1",
           "Rg.Plugins.Popup": "2.0.0.14",
           "Xamarin.Essentials": "1.7.0",
@@ -414,6 +496,19 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win-x64": {
+      "Microsoft.AspNet.WebApi.Client/5.2.7": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.1",
+          "Newtonsoft.Json.Bson": "1.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/System.Net.Http.Formatting.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Net.Http.Formatting.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -421,6 +516,19 @@
         },
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Newtonsoft.Json.Bson/1.0.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "10.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
         }
       },
       "Rg.Plugins.Popup/2.0.0.14": {
@@ -601,10 +709,25 @@
           "lib/Xamarin.iOS10/Xamarin.Forms.Maps.iOS.dll": {}
         }
       },
+      "DataLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "5.2.7",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "bin/placeholder/DataLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataLibrary.dll": {}
+        }
+      },
       "PSI/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "DataLibrary": "1.0.0",
           "Newtonsoft.Json": "13.0.1",
           "Rg.Plugins.Popup": "2.0.0.14",
           "Xamarin.Essentials": "1.7.0",
@@ -620,6 +743,19 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win-x86": {
+      "Microsoft.AspNet.WebApi.Client/5.2.7": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.1",
+          "Newtonsoft.Json.Bson": "1.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/System.Net.Http.Formatting.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Net.Http.Formatting.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -627,6 +763,19 @@
         },
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Newtonsoft.Json.Bson/1.0.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "10.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
         }
       },
       "Rg.Plugins.Popup/2.0.0.14": {
@@ -807,10 +956,25 @@
           "lib/Xamarin.iOS10/Xamarin.Forms.Maps.iOS.dll": {}
         }
       },
+      "DataLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "5.2.7",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "bin/placeholder/DataLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataLibrary.dll": {}
+        }
+      },
       "PSI/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "DataLibrary": "1.0.0",
           "Newtonsoft.Json": "13.0.1",
           "Rg.Plugins.Popup": "2.0.0.14",
           "Xamarin.Essentials": "1.7.0",
@@ -827,6 +991,23 @@
     }
   },
   "libraries": {
+    "Microsoft.AspNet.WebApi.Client/5.2.7": {
+      "sha512": "/76fAHknzvFqbznS6Uj2sOyE9rJB3PltY+f53TH8dX9RiGhk02EhuFCWljSj5nnqKaTsmma8DFR50OGyQ4yJ1g==",
+      "type": "package",
+      "path": "microsoft.aspnet.webapi.client/5.2.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/System.Net.Http.Formatting.dll",
+        "lib/net45/System.Net.Http.Formatting.xml",
+        "lib/netstandard2.0/System.Net.Http.Formatting.dll",
+        "lib/netstandard2.0/System.Net.Http.Formatting.xml",
+        "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.dll",
+        "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.xml",
+        "microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
+        "microsoft.aspnet.webapi.client.nuspec"
+      ]
+    },
     "Newtonsoft.Json/13.0.1": {
       "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
       "type": "package",
@@ -852,6 +1033,21 @@
         "newtonsoft.json.13.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
+      ]
+    },
+    "Newtonsoft.Json.Bson/1.0.1": {
+      "sha512": "5PYT/IqQ+UK31AmZiSS102R6EsTo+LGTSI8bp7WAUqDKaF4wHXD8U9u4WxTI1vc64tYi++8p3dk3WWNqPFgldw==",
+      "type": "package",
+      "path": "newtonsoft.json.bson/1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Newtonsoft.Json.Bson.dll",
+        "lib/net45/Newtonsoft.Json.Bson.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
+        "newtonsoft.json.bson.1.0.1.nupkg.sha512",
+        "newtonsoft.json.bson.nuspec"
       ]
     },
     "Rg.Plugins.Popup/2.0.0.14": {
@@ -1237,6 +1433,11 @@
         "xamarin.forms.maps.nuspec"
       ]
     },
+    "DataLibrary/1.0.0": {
+      "type": "project",
+      "path": "../DataLibrary/DataLibrary.csproj",
+      "msbuildProject": "../DataLibrary/DataLibrary.csproj"
+    },
     "PSI/1.0.0": {
       "type": "project",
       "path": "../PSI/PSI.csproj",
@@ -1254,24 +1455,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vartotojas\\.nuget\\packages\\": {},
+    "C:\\Users\\valat\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\PSI.iOS.csproj",
+      "projectUniqueName": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\PSI.iOS.csproj",
       "projectName": "PSI.iOS",
-      "projectPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\PSI.iOS.csproj",
-      "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\obj\\",
+      "projectPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\PSI.iOS.csproj",
+      "packagesPath": "C:\\Users\\valat\\.nuget\\packages\\",
+      "outputPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Vartotojas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\valat\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -1285,8 +1486,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj": {
-              "projectPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj"
+            "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj": {
+              "projectPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj"
             }
           }
         }
