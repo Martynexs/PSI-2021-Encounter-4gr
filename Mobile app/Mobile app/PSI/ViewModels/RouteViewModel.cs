@@ -1,4 +1,5 @@
-﻿using PSI.Models;
+﻿using DataLibrary;
+using PSI.Models;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -6,18 +7,23 @@ using Xamarin.Forms;
 
 namespace PSI.ViewModels
 {
-    [QueryProperty(nameof(ItemId), nameof(ItemId))]
+    [QueryProperty(nameof(RoutesId), nameof(RoutesId))]
     public class ItemDetailViewModel : BaseViewModel
     {
-        private string itemId;
-        private string text;
+        private long routeId;
+        private long creatorId;
+        private string name;
         private string description;
-        public string Id { get; set; }
+        private string location;
+        private double rating;
 
-        public string Text
+        public long RouteId { get; set; }
+        public long CreatorId { get; set; }
+
+        public string Name
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => name;
+            set => SetProperty(ref name, value);
         }
 
         public string Description
@@ -26,16 +32,28 @@ namespace PSI.ViewModels
             set => SetProperty(ref description, value);
         }
 
-        public string ItemId
+        public string Location
+        {
+            get => location;
+            set => SetProperty(ref location, value);
+        }
+
+        public double Rating
+        {
+            get => rating;
+            set => SetProperty(ref rating, value);
+        }
+
+        public long RoutesId
         {
             get
             {
-                return itemId;
+                return routeId;
             }
             set
             {
-                itemId = value;
-                LoadItemId(value);
+                routeId = value;
+                LoadItemId(value.ToString());
             }
         }
 
@@ -43,10 +61,13 @@ namespace PSI.ViewModels
         {
             try
             {
-                var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Text = item.Text;
+                var item = await EncounterProcessor.GetRoute(long.Parse(itemId));
+                RouteId = item.Id;
+                CreatorId = item.CreatorId;
+                Name = item.Name;
                 Description = item.Description;
+                Location = item.Location;
+                Rating = item.Rating;
             }
             catch (Exception)
             {

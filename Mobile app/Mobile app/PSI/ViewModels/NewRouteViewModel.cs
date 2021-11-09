@@ -1,4 +1,6 @@
-﻿using PSI.Models;
+﻿using DataLibrary;
+using DataLibrary.Models;
+using PSI.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -49,14 +51,14 @@ namespace PSI.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
+            Route newItem = new Route()
             {
-                Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
+                Id = long.Parse(Guid.NewGuid().ToString()),
+                CreatorId = long.Parse(Guid.NewGuid().ToString()),
+                Name = Text,
             };
 
-            await DataStore.AddItemAsync(newItem);
+            await EncounterProcessor.CreateRoute(newItem);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

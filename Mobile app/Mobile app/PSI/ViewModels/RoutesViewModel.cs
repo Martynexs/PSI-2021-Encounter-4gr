@@ -1,4 +1,6 @@
-﻿using PSI.Models;
+﻿using DataLibrary;
+using DataLibrary.Models;
+using PSI.Models;
 using PSI.Views;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -13,7 +15,7 @@ namespace PSI.ViewModels
     {
         private Item _selectedItem;
 
-        public ObservableCollection<Item> Items { get; }
+        public ObservableCollection<Route> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
         public Command WaypointInfoCommand { get; }
@@ -27,7 +29,7 @@ namespace PSI.ViewModels
         public ItemsViewModel()
         {
             Title = "Routes";
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<Route>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<Item>(OnItemSelected);
@@ -52,7 +54,7 @@ namespace PSI.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = await EncounterProcessor.GetAllRoutes();
                 foreach (var item in items)
                 {
                     Items.Add(item);
@@ -95,7 +97,7 @@ namespace PSI.ViewModels
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.RoutesId)}={item.Id}");
         }
 
         async void OnWaypointSelected(Item item)

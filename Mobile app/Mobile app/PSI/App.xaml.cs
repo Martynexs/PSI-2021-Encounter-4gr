@@ -1,4 +1,5 @@
-﻿using PSI.Services;
+﻿using DataLibrary;
+using PSI.Services;
 using PSI.Views;
 using System;
 using Xamarin.Forms;
@@ -20,6 +21,7 @@ namespace PSI
         protected override void OnStart()
         {
             Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            ApiHelper.InitializeClient();
         }
 
         protected override void OnSleep()

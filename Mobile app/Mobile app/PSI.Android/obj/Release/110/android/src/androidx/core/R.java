@@ -16,9 +16,13 @@ public final class R {
 		public static final int fontProviderFetchTimeout = 0x7f0301ae;
 		public static final int fontProviderPackage = 0x7f0301af;
 		public static final int fontProviderQuery = 0x7f0301b0;
+		public static final int fontProviderSystemFontFamily = 0x7f0301b1;
 		public static final int fontStyle = 0x7f0301b2;
 		public static final int fontVariationSettings = 0x7f0301b3;
 		public static final int fontWeight = 0x7f0301b4;
+		public static final int nestedScrollViewStyle = 0x7f0302d4;
+		public static final int queryPatterns = 0x7f030320;
+		public static final int shortcutMatchRequired = 0x7f03034c;
 		public static final int ttcIndex = 0x7f03041f;
 	}
 	public static final class color {
@@ -125,10 +129,15 @@ public final class R {
 		public static final int tag_accessibility_clickable_spans = 0x7f0801af;
 		public static final int tag_accessibility_heading = 0x7f0801b0;
 		public static final int tag_accessibility_pane_title = 0x7f0801b1;
+		public static final int tag_on_apply_window_listener = 0x7f0801b2;
+		public static final int tag_on_receive_content_listener = 0x7f0801b3;
+		public static final int tag_on_receive_content_mime_types = 0x7f0801b4;
 		public static final int tag_screen_reader_focusable = 0x7f0801b5;
+		public static final int tag_state_description = 0x7f0801b6;
 		public static final int tag_transition_group = 0x7f0801b7;
 		public static final int tag_unhandled_key_event_manager = 0x7f0801b8;
 		public static final int tag_unhandled_key_listeners = 0x7f0801b9;
+		public static final int tag_window_insets_animation_callback = 0x7f0801ba;
 		public static final int text = 0x7f0801c0;
 		public static final int text2 = 0x7f0801c1;
 		public static final int time = 0x7f0801d0;
@@ -159,6 +168,9 @@ public final class R {
 		public static final int Widget_Compat_NotificationActionText = 0x7f0f0274;
 	}
 	public static final class styleable {
+		public static final int[] Capability = new int[] { 0x7f030320, 0x7f03034c };
+		public static final int Capability_queryPatterns = 0;
+		public static final int Capability_shortcutMatchRequired = 1;
 		public static final int[] ColorStateListItem = new int[] { 0x010101a5, 0x0101031f, 0x7f030032 };
 		public static final int ColorStateListItem_alpha = 2;
 		public static final int ColorStateListItem_android_alpha = 1;
@@ -170,6 +182,7 @@ public final class R {
 		public static final int FontFamily_fontProviderFetchTimeout = 3;
 		public static final int FontFamily_fontProviderPackage = 4;
 		public static final int FontFamily_fontProviderQuery = 5;
+		public static final int FontFamily_fontProviderSystemFontFamily = 6;
 		public static final int[] FontFamilyFont = new int[] { 0x01010532, 0x01010533, 0x0101053f, 0x0101056f, 0x01010570, 0x7f0301a9, 0x7f0301b2, 0x7f0301b3, 0x7f0301b4, 0x7f03041f };
 		public static final int FontFamilyFont_android_font = 0;
 		public static final int FontFamilyFont_android_fontStyle = 2;
@@ -197,24 +210,5 @@ public final class R {
 		public static final int[] GradientColorItem = new int[] { 0x010101a5, 0x01010514 };
 		public static final int GradientColorItem_android_color = 0;
 		public static final int GradientColorItem_android_offset = 1;
-	}
-	public static final class attr {
-		public static final int fontProviderSystemFontFamily = 0x7f0301b1;
-		public static final int nestedScrollViewStyle = 0x7f0302d4;
-		public static final int queryPatterns = 0x7f030320;
-		public static final int shortcutMatchRequired = 0x7f03034c;
-	}
-	public static final class id {
-		public static final int tag_on_apply_window_listener = 0x7f0801b2;
-		public static final int tag_on_receive_content_listener = 0x7f0801b3;
-		public static final int tag_on_receive_content_mime_types = 0x7f0801b4;
-		public static final int tag_state_description = 0x7f0801b6;
-		public static final int tag_window_insets_animation_callback = 0x7f0801ba;
-	}
-	public static final class styleable {
-		public static final int[] Capability = new int[] { 0x7f030320, 0x7f03034c };
-		public static final int Capability_queryPatterns = 0;
-		public static final int Capability_shortcutMatchRequired = 1;
-		public static final int FontFamily_fontProviderSystemFontFamily = 6;
 	}
 }

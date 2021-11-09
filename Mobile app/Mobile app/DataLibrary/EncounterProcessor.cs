@@ -31,19 +31,26 @@ namespace DataLibrary
         public static async Task<List<Route>> GetAllRoutes()
         {
             var url = $"https://{ _apiAdress }/api/route";
-
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
+            try
             {
-                if (response.IsSuccessStatusCode)
+                using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
                 {
-                    var routes = await response.Content.ReadAsAsync<List<Route>>();
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var routes = await response.Content.ReadAsAsync<List<Route>>();
 
-                    return routes;
+                        return routes;
+                    }
+                    else
+                    {
+                        throw new Exception(response.ReasonPhrase);
+                    }
                 }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
+            }
+            catch (Exception ex)
+            {
+                var exc = ex.Message;
+                throw new Exception();
             }
         }
 
