@@ -17,5 +17,18 @@ namespace EncounterAPI.TypeExtensions
                 Rating = route.Rating
             };
         }
+
+        public static RouteModel ToEFModel(this RouteDTO routeDTO)
+        {
+            return new RouteModel
+            {
+                Id = routeDTO.Id,
+                CreatorUsername = routeDTO.CreatorUsername,
+                Name = routeDTO.Name,
+                Location = routeDTO.Location,
+                Description = routeDTO.Description,
+                Rating = routeDTO.Rating
+            };
+        }
     }
 }

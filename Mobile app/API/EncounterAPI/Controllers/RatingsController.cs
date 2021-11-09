@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EncounterAPI.Models;
+using EncounterAPI.Data_Transfer_Objects;
+using EncounterAPI.TypeExtensions;
 
 namespace EncounterAPI.Controllers
 {
@@ -22,14 +24,14 @@ namespace EncounterAPI.Controllers
 
         // GET: api/Ratings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Rating>>> GetRatings()
+        public async Task<ActionResult<IEnumerable<RatingDTO>>> GetRatings()
         {
-            return await _context.Ratings.ToListAsync();
+            return await _context.Ratings.Select(x => x.ToDTO()).ToListAsync();
         }
 
         // GET: api/Ratings/5/3
         [HttpGet("{RouteId}/{UserId}")]
-        public async Task<ActionResult<Rating>> GetRating(long RouteId, long UserId)
+        public async Task<ActionResult<RatingDTO>> GetRating(long RouteId, long UserId)
         {
             var rating = await _context.Ratings.FindAsync(RouteId, UserId);
 
@@ -38,35 +40,35 @@ namespace EncounterAPI.Controllers
                 return NotFound();
             }
 
-            return rating;
+            return rating.ToDTO();
         }
 
         // PUT: api/Ratings/5/3
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{RouteId}/{UserId}")]
-        public async Task<IActionResult> PutRating(long RouteId, string UserId, Rating rating)
+        public async Task<IActionResult> PutRating(long RouteId, string UserId, RatingDTO rating)
         {
             if (RouteId != rating.RouteId || UserId != rating.Username)
             {
                 return BadRequest();
             }
 
+            var createdRating = rating.ToEFModel();
 
             if(RatingExists(RouteId, UserId))
             {
-               _context.Entry(rating).State = EntityState.Modified;
+               _context.Entry(createdRating).State = EntityState.Modified;
             }
             else
             {
-                _context.Ratings.Add(rating);
+                _context.Ratings.Add(createdRating);
             }
 
-            RatingsLogic.UpdateRating(rating, _context);
+            RatingsLogic.UpdateRating(createdRating, _context);
 
             try
             {
                 await _context.SaveChangesAsync();
-                
             }
             catch (DbUpdateConcurrencyException)
             {

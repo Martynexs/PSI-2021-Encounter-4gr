@@ -23,5 +23,26 @@ namespace EncounterAPI.TypeExtensions
                 PhoneNumber = wp.PhoneNumber
             };
         }
+
+        public static Waypoint ToEFModel(this WaypointDTO waypointDTO)
+        {
+            return new Waypoint
+            {
+                Id = waypointDTO.Id,
+                RouteId = waypointDTO.RouteId,
+                Position = waypointDTO.Position,
+                Name = waypointDTO.Name,
+                Longitude = waypointDTO.Longitude,
+                Latitude = waypointDTO.Latitude,
+                Description = waypointDTO.Description,
+                OpeningHours = waypointDTO.OpeningHours,
+                ClosingTime = waypointDTO.ClosingTime,
+                Price = waypointDTO.Price,
+                Type = waypointDTO.Type,
+                PhoneNumber = waypointDTO.PhoneNumber
+            };
+        }
+
+
     }
 }
