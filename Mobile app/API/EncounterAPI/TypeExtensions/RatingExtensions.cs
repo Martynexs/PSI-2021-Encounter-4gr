@@ -1,9 +1,5 @@
 ﻿using EncounterAPI.Data_Transfer_Objects;
 using EncounterAPI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EncounterAPI.TypeExtensions
 {
@@ -13,7 +9,7 @@ namespace EncounterAPI.TypeExtensions
         {
             return new RatingDTO
             {
-                Username = rating.Username,
+                UserId = rating.UserId,
                 RouteId = rating.RouteId,
                 Value = rating.Value
             };
@@ -23,7 +19,7 @@ namespace EncounterAPI.TypeExtensions
         {
             return new Rating
             {
-                Username = ratingDTO.Username,
+                UserId = ratingDTO.UserId,
                 RouteId = ratingDTO.RouteId,
                 Value = ratingDTO.Value
             };

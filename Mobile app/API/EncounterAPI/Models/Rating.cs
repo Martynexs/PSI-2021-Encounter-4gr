@@ -4,8 +4,8 @@ namespace EncounterAPI.Models
 {
     public class Rating
     {
-        public string Username { get; set; }
-        [ForeignKey("Username")]
+        public long UserId { get; set; }
+        [ForeignKey("UserId")]
         public virtual User User { get; set; }
         public long RouteId { get; set; }
         [ForeignKey("RouteId")]

@@ -1,8 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EncounterAPI.Models
 {
@@ -18,9 +14,8 @@ namespace EncounterAPI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasKey(t => new { t.Username });
             modelBuilder.Entity<User>().HasIndex(t => t.Username).IsUnique();
-            modelBuilder.Entity<Rating>().HasKey(t => new { t.RouteId, t.Username });
+            modelBuilder.Entity<Rating>().HasKey(t => new { t.RouteId, t.UserId });
         }
 
     }

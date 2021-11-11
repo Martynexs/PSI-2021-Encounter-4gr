@@ -31,7 +31,7 @@ namespace EncounterAPI.Controllers
         [HttpGet("{username}")]
         public async Task<ActionResult<User>> GetUser(string username, string password)
         {
-            var user = await _context.Users.FindAsync(username);
+            var user = await _context.Users.Where(u => u.Username == username).SingleAsync();
 
             if (user == null)
             {
@@ -41,7 +41,7 @@ namespace EncounterAPI.Controllers
             var hashedPassword = Convert.FromBase64String(user.Password);
             if(PasswordHasher.ComparePasswords(hashedPassword, password) != 0)
             {
-                return Unauthorized();
+                return Forbid();
             }
 
             return user;
@@ -49,10 +49,10 @@ namespace EncounterAPI.Controllers
 
         // PUT: api/Users/username
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{username}")]
-        public async Task<IActionResult> PutUser(string username, User user)
+        [HttpPut("{userId}")]
+        public async Task<IActionResult> PutUser(long userId, User user)
         {
-            if (username != user.Username)
+            if (userId != user.ID)
             {
                 return BadRequest();
             }
@@ -65,7 +65,7 @@ namespace EncounterAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(username))
+                if (!UserExists(userId))
                 {
                     return NotFound();
                 }
@@ -92,9 +92,9 @@ namespace EncounterAPI.Controllers
             return CreatedAtAction("GetUser", new { username = user.Username }, user);
         }
 
-        private bool UserExists(string username)
+        private bool UserExists(long userId)
         {
-            return _context.Users.Any(e => e.Username == username);
+            return _context.Users.Any(e => e.ID == userId);
         }
     }
 }

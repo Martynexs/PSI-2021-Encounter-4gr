@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EncounterAPI.Models
 {
     public class User
     {
+        public long ID { get; set; }
+        [Required]
         public string Username { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
