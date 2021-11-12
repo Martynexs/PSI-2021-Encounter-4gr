@@ -6,7 +6,7 @@ namespace EncounterAPI.Models
     {
         public long UserId { get; set; }
         [ForeignKey("UserId")]
-        public virtual User User { get; set; }
+        public virtual UserModel User { get; set; }
         public long RouteId { get; set; }
         [ForeignKey("RouteId")]
         public virtual RouteModel Route { get; set; }

@@ -6,11 +6,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EncounterAPI.Models;
+using EncounterAPI.Data_Transfer_Objects;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace EncounterAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly EncounterContext _context;
@@ -22,15 +26,17 @@ namespace EncounterAPI.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserModel>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
         }
 
         // GET: api/Users/username
         [HttpGet("{username}")]
-        public async Task<ActionResult<User>> GetUser(string username, string password)
+        public async Task<ActionResult<UserModel>> GetUser(string username)
         {
+            var curresntUser = User.Claims.Where(c => c.Type == ClaimTypes.Name).First().Value;
+
             var user = await _context.Users.Where(u => u.Username == username).SingleAsync();
 
             if (user == null)
@@ -38,8 +44,7 @@ namespace EncounterAPI.Controllers
                 return NotFound();
             }
 
-            var hashedPassword = Convert.FromBase64String(user.Password);
-            if(PasswordHasher.ComparePasswords(hashedPassword, password) != 0)
+            if(curresntUser != username)
             {
                 return Forbid();
             }
@@ -50,7 +55,7 @@ namespace EncounterAPI.Controllers
         // PUT: api/Users/username
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{userId}")]
-        public async Task<IActionResult> PutUser(long userId, User user)
+        public async Task<IActionResult> PutUser(long userId, UserModel user)
         {
             if (userId != user.ID)
             {
@@ -81,7 +86,8 @@ namespace EncounterAPI.Controllers
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        [AllowAnonymous]
+        public async Task<ActionResult<UserModel>> PostUser(UserModel user)
         {
             var hashedPassword = PasswordHasher.HashPassword(user.Password);
             user.Password = Convert.ToBase64String(hashedPassword);

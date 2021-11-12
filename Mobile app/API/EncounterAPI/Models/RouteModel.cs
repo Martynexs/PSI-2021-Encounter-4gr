@@ -9,7 +9,7 @@ namespace EncounterAPI.Models
     public class RouteModel
     {
         public long Id { get; set; }
-        public virtual User Creator { get; set; }
+        public virtual UserModel Creator { get; set; }
         public long CreatorID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

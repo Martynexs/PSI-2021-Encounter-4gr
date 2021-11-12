@@ -35,15 +35,17 @@ namespace EncounterAPI
             return salt;
         }
 
-        public static int ComparePasswords(byte[] hashBytes, string password)
+        public static bool ComparePasswords(string hashedPassword, string password)
         {
-            var salt = GetSalt(hashBytes);
+            var passwordBytes = Convert.FromBase64String(hashedPassword);
+
+            var salt = GetSalt(passwordBytes);
             var hash = GetHash(password, salt);
 
             for (int i = 0; i < 20; i++)
-                if (hashBytes[i + 16] != hash[i]) return -1;
+                if (passwordBytes[i + 16] != hash[i]) return false;
 
-            return 0;
+            return true;
         }
     }
 }

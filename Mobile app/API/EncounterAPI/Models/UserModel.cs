@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EncounterAPI.Models
 {
-    public class User
+    public class UserModel
     {
         public long ID { get; set; }
         [Required]
