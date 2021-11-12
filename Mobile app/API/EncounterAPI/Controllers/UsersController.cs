@@ -37,9 +37,9 @@ namespace EncounterAPI.Controllers
         {
             var curresntUser = User.Claims.Where(c => c.Type == ClaimTypes.Name).First().Value;
 
-            var user = await _context.Users.Where(u => u.Username == username).SingleAsync();
+            var user = await _context.Users.Where(u => u.Username == username).FirstOrDefaultAsync();
 
-            if (user == null)
+            if (user == default)
             {
                 return NotFound();
             }

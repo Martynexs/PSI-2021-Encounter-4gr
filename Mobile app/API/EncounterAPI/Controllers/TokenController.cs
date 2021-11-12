@@ -1,4 +1,5 @@
-﻿using EncounterAPI.Models;
+﻿using EncounterAPI.Data_Transfer_Objects;
+using EncounterAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,7 @@ namespace EncounterAPI.Controllers
 
             if (user == default || !PasswordHasher.ComparePasswords(user.Password, password))
             {
-                return BadRequest("Incorrect username or password");
+                return BadRequest("Username or password is incorect");
             }
 
             return new ObjectResult(await GenerateToken(username));
@@ -57,7 +58,7 @@ namespace EncounterAPI.Controllers
             var output = new
             {
                 Access_Token = new JwtSecurityTokenHandler().WriteToken(token),
-                UserName = username
+                Username = username
             };
 
             return output;

@@ -1,191 +1,150 @@
-﻿using DataLibrary.Models;
+﻿using DataLibrary.Exceptions;
+using DataLibrary.Models;
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace DataLibrary
 {
-    public static class EncounterProcessor
+    public class EncounterProcessor
     {
-        private static readonly string _apiAdress = "localhost:44309";
+        private const string _apiAdress = "https://localhost:44309";
 
-        public static async Task<Route> GetRoute(long id)
+        private static readonly Lazy<EncounterProcessor> _encounterProcessor =
+            new Lazy<EncounterProcessor>(() => new EncounterProcessor());
+        public static EncounterProcessor Instanse { get => _encounterProcessor.Value; }
+        private EncounterProcessor()
         {
-            var url = $"https://{ _apiAdress }/api/route/{ id }";
-
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
-            {
-                if(response.IsSuccessStatusCode)
-                {
-                    Route route = await response.Content.ReadAsAsync<Route>();
-                    return route;
-                }
-                else
-                { 
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
         }
 
-        public static async Task<List<Route>> GetAllRoutes()
+        private readonly ApiHelper _apiHelper = new ApiHelper();
+
+        public event Action UnauthorisedHttpRequestEvent;
+
+        public void EnableJWTAuthetication(string jwt)
         {
-            var url = $"https://{ _apiAdress }/api/route";
-
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var routes = await response.Content.ReadAsAsync<List<Route>>();
-
-                    return routes;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+            _apiHelper.SetJWT(jwt);
         }
 
-        public static async Task<List<Waypoint>> GetWaypoints(long routeId)
+        public async Task<Route> GetRoute(long id)
         {
-            var url = $"https://{ _apiAdress }/api/route/{ routeId }/Waypoints";
+            var url = $"{ _apiAdress }/api/route/{ id }";
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var waypoints = await response.Content.ReadAsAsync<List<Waypoint>>();
-
-                    return waypoints;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+            var route = await _apiHelper.HttpGet<Route>(url);
+            return route;
         }
 
-        public static async Task<Route> CreateRoute(Route route)
+        public async Task<List<Route>> GetAllRoutes()
         {
-            var url = $"https://{ _apiAdress }/api/route";
+            var url = $"{ _apiAdress }/api/route";
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.PostAsJsonAsync(url, route))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var createdRoute = await response.Content.ReadAsAsync<Route>();
-
-                    return createdRoute;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+            var routes = await _apiHelper.HttpGet<List<Route>>(url);
+            return routes;
         }
 
-        public static async Task UpdateRoute(long id, Route route)
+        public async Task<List<Waypoint>> GetWaypoints(long routeId)
         {
-            var url = $"https://{ _apiAdress }/api/route/{ id }";
+            var url = $"{ _apiAdress }/api/route/{ routeId }/Waypoints";
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.PutAsJsonAsync(url, route))
-            {
-                if (!response.IsSuccessStatusCode)
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+            var waypoints = await _apiHelper.HttpGet<List<Waypoint>>(url);
+            return waypoints;
         }
 
-        public static async Task DeleteRoute(long id)
+        public async Task<Route> CreateRoute(Route route)
         {
-            var url = $"https://{ _apiAdress }/api/route/{ id }";
+            var url = $"{ _apiAdress }/api/route";
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.DeleteAsync(url))
-            {
-                if (!response.IsSuccessStatusCode)
-                { 
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+            var createdRoute = await _apiHelper.HttpPost<Route>(url, route);
+            return createdRoute;
         }
 
-        public static async Task<Waypoint> CreateWaypoint(Waypoint waypoint)
+        public async Task UpdateRoute(long id, Route route)
         {
-            var url = $"https://{ _apiAdress }/api/waypoints";
+            var url = $"{ _apiAdress }/api/route/{ id }";
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.PostAsJsonAsync(url, waypoint))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var createdWaypoint = await response.Content.ReadAsAsync<Waypoint>();
-
-                    return createdWaypoint;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+            await _apiHelper.HttpPut<Route>(url, route);
         }
 
-        public static async Task UpdateWaypoint(long id, Waypoint waypoint)
+        public async Task DeleteRoute(long id)
         {
-            var url = $"https://{ _apiAdress }/api/waypoints/{ id }";
+            var url = $"{ _apiAdress }/api/route/{ id }";
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.PutAsJsonAsync(url, waypoint))
-            {
-                if (!response.IsSuccessStatusCode)
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+            await _apiHelper.HttpDelete(url);
         }
 
-        public static async Task DeleteWaypoint(long id)
+        public async Task<Waypoint> CreateWaypoint(Waypoint waypoint)
         {
-            var url = $"https://{ _apiAdress }/api/waypoints/{ id }";
+            var url = $"{ _apiAdress }/api/waypoints";
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.DeleteAsync(url))
-            {
-                if (!response.IsSuccessStatusCode)
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+            var createdWaypoint = await _apiHelper.HttpPost<Waypoint>(url, waypoint);
+            return createdWaypoint;
         }
 
-        public static async Task SubmitRating(Rating rating)
+        public async Task UpdateWaypoint(long id, Waypoint waypoint)
         {
-            var url = $"https://{ _apiAdress }/api/ratings/{ rating.RouteId }/{ rating.Username }";
+            var url = $"{ _apiAdress }/api/waypoints/{ id }";
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.PutAsJsonAsync(url, rating))
-            {
-                if (!response.IsSuccessStatusCode)
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+            await _apiHelper.HttpPut<Waypoint>(url, waypoint);
         }
 
-        public static async Task<Rating> GetRating(long routeId, string username)
+        public async Task DeleteWaypoint(long id)
         {
-            var url = $"https://{ _apiAdress }/api/ratings/{ routeId }/{ username }";
+            var url = $"{ _apiAdress }/api/waypoints/{ id }";
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
+            await _apiHelper.HttpDelete(url);
+        }
+
+        public async Task SubmitRating(Rating rating)
+        {
+            var url = $"{ _apiAdress }/api/ratings/{ rating.RouteId }/{ rating.Username }";
+
+            await _apiHelper.HttpPut<Rating>(url, rating);
+        }
+
+        public async Task<Rating> GetRating(long routeId, string username)
+        {
+            var url = $"{ _apiAdress }/api/ratings/{ routeId }/{ username }";
+
+            var rating = await _apiHelper.HttpGet<Rating>(url);
+            return rating;
+        }
+
+        public async Task<User> GetUser(string username)
+        {
+            try
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    Rating rating = await response.Content.ReadAsAsync<Rating>();
+                var url = $"{ _apiAdress }/User/{ username }";
+                var user = await _apiHelper.HttpGet<User>(url);
 
-                    return rating;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
+                return user;
             }
+            catch(UnauthorizedHttpRequestException)
+            {
+                UnauthorisedHttpRequestEvent.Invoke();
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+            
+        }
+
+        public async Task<User> RegisterUser(User user)
+        {
+            var url = $"{ _apiAdress }/Users";
+
+            var createdUser = await _apiHelper.HttpPost<User>(url, user);
+            return createdUser;
+        }
+
+        public async Task<string> GetAuthenticationToken(string username, string password)
+        {
+            var url = $"{ _apiAdress }/token?username={ username }&password={password}";
+
+            var logininfo = await _apiHelper.HttpPost<LoginInfo>(url, new LoginInfo { Username = username, Password = password });
+            var token = logininfo.Authentication_token;
+            return token;
         }
 
     }
