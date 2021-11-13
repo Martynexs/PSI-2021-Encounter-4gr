@@ -6,6 +6,7 @@ using System.Linq;
 using PSI.Models;
 using PSI.Services;
 using Map3.ViewModels;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using PSI.Views;
@@ -51,15 +52,23 @@ namespace Map3.ViewModels
 
         public static Map map;
         public Command GetRouteCommand { get; }
+        public Command GetAllWaypointsCommand { get; }
         private MapService services;
         private DirectionResponse dr;
-
+        private LatLong latLong;
+        private WaypointsCoordinatesService waypointsCoordinatesService;
+        
         public MapViewModel()
         {
             map = new Map();
             services = new MapService();
             dr = new DirectionResponse();
+            latLong = new LatLong();
+            waypointsCoordinatesService = new WaypointsCoordinatesService();
+         
             GetRouteCommand = new Command(async () => await addPolylineAsync(Origin, Destination));
+            GetAllWaypointsCommand = new Command(() => LoadWaypointButton(latLong.Lat, latLong.Long));
+           
 
         }
         public async Task DisplayAlert(string title, string message, string cancel)
@@ -70,6 +79,9 @@ namespace Map3.ViewModels
         {
             await Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);
         }
+
+        
+
         public async Task addPolylineAsync(string origin, string destination)
         {
             if (!IsBusy)
@@ -145,8 +157,6 @@ namespace Map3.ViewModels
                     foreach (var step in steps)
                     {
                         maneuver = step.Maneuver;
-
-
                     }
 
                     Polyline polyline = new Polyline
@@ -203,5 +213,37 @@ namespace Map3.ViewModels
 
             }
         }
+
+        public async void LoadWaypointButton(double Lat, double Long)
+        {
+            var contents = await waypointsCoordinatesService.LoadWaypoints();
+
+            if(contents != null)
+            {
+                foreach(var item in contents)
+                {
+                    Pin WaypointPins = new Pin()
+                    {
+                        Type = PinType.Place,
+                        Label = "waypoint",
+                        Address = " i don know",
+                        Position = new Position(item.Lat, item.Long),
+                    };
+                    map.Pins.Add(WaypointPins);
+
+                }
+                MapSpan mapSpan = MapSpan.FromCenterAndRadius(new Position(contents[0].Lat, contents[0].Long),
+                Distance.FromKilometers(100));
+                map.MoveToRegion(mapSpan);
+
+
+
+            }
+
+        }
+
+       
+
+
     }
 }

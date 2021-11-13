@@ -308,3 +308,6 @@ D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\ref\EncounterAPI.dll
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.pdb
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.genruntimeconfig.cache
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.dll
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\ref\EncounterAPI.dll
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.pdb

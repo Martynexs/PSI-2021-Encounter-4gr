@@ -23,6 +23,7 @@
                 <Entry Text = "{Binding Origin}" Placeholder="Origin" ></Entry>
                 <Entry Text = "{Binding Destination}" Placeholder="Destination"></Entry>
                 <Button Text= "Get route!" Command="{Binding GetRouteCommand}"></Button>
+                <Button Text= "Load waypoints!" Command="{Binding GetAllWaypointsCommand}"></Button>
 
             </StackLayout>
 

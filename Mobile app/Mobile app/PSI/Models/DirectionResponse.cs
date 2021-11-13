@@ -11,7 +11,7 @@ namespace Map3.Views
         public double Long { get; set; }
     }
 
-    public partial class DirectionResponse
+    public  class DirectionResponse
     {
         [JsonProperty("routes")]
         public List<Route> Routes { get; set; }
@@ -23,7 +23,7 @@ namespace Map3.Views
         public string Code { get; set; }
 
     }
-    public partial class Route
+    public  class Route
     {
         [JsonProperty("legs")]
         public List<Leg> Legs { get; set; }
@@ -35,13 +35,13 @@ namespace Map3.Views
         public double Distance { get; set; }
 
     }
-    public partial class Leg
+    public  class Leg
     {
   
         [JsonProperty("steps")]
         public List<Step> Steps { get; set; }
     }
-    public partial class Step
+    public class Step
     {
         [JsonProperty("intersections")]
         public List<Intersection> Intersections { get; set; }
@@ -50,7 +50,7 @@ namespace Map3.Views
         public Maneuver Maneuver { get; set; }
 
     }
-    public partial class Waypoint
+    public class Waypoint
     {
         //[JsonProperty("hint")]
         //public string Hint { get; set; }
@@ -65,12 +65,12 @@ namespace Map3.Views
         //public List<double> Location{ get; set; }
 
     }
-    public partial class Maneuver
+    public class Maneuver
     {
         [JsonProperty("location")]
         public List<double> Location { get; set; }
     }
-    public partial class Intersection
+    public class Intersection
     {
         [JsonProperty("location")]
         public List<double> Location { get; set; }
