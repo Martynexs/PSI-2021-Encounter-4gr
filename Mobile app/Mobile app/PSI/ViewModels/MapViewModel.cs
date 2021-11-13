@@ -165,14 +165,14 @@ namespace Map3.ViewModels
                     }
                     map.MapElements.Add(polyline);
 
-                    MapSpan mapSpan = MapSpan.FromCenterAndRadius(new Position(apiWaypoints[0].Lat, apiWaypoints[0].Long),
+                    MapSpan mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(apiWaypoints),
                             Distance.FromKilometers(6));
                     map.MoveToRegion(mapSpan);
                 }
 
                 catch (Exception)
                 {
-                    await DisplayAlert("error: ", "Opps something went wong!", "ok");
+                    await DisplayAlert("error: ", "Oops something went wrong!", "ok");
                 }
                 finally
                 {
@@ -182,7 +182,24 @@ namespace Map3.ViewModels
             }
         }
 
- 
+
+        private Position GetVisualCenterPosition(List<VisualWaypoint> waypoints)
+        {
+            if (waypoints == null || waypoints.Count == 0)
+            {
+                return new Position(0, 0);
+            }
+
+            double LatSum = 0;
+            double LongSum = 0;
+
+            foreach (VisualWaypoint w in waypoints)
+            {
+                LatSum += w.Lat;
+                LongSum += w.Long;
+            }
+            return new Position(LatSum / waypoints.Count, LongSum / waypoints.Count);
+        }
 
     }
 }
