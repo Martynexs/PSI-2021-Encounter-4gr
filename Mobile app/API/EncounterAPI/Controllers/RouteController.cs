@@ -62,14 +62,14 @@ namespace EncounterAPI.Controllers
         // PUT: api/Route/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRouteModel(long id, RouteModel routeModel)
+        public async Task<IActionResult> PutRouteModel(long id, RouteDTO route)
         {
-            if (id != routeModel.Id)
+            if (id != route.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(routeModel).State = EntityState.Modified;
+            _context.Entry(route.ToEFModel()).State = EntityState.Modified;
 
             try
             {
@@ -93,12 +93,13 @@ namespace EncounterAPI.Controllers
         // POST: api/Route
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<RouteDTO>> PostRouteModel(RouteModel routeModel)
+        public async Task<ActionResult<RouteDTO>> PostRouteModel(RouteDTO route)
         {
-            _context.Routes.Add(routeModel);
+            var createdRoute = route.ToEFModel();
+            _context.Routes.Add(createdRoute);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetRouteModel), new { id = routeModel.Id }, routeModel.ToDTO());
+            return CreatedAtAction(nameof(GetRouteModel), new { id = route.Id }, createdRoute.ToDTO());
         }
 
         // DELETE: api/Route/5

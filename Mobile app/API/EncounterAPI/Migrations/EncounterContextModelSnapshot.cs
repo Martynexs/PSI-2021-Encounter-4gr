@@ -21,15 +21,15 @@ namespace EncounterAPI.Migrations
                     b.Property<long>("RouteId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Username")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("UserId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Value")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("RouteId", "Username");
+                    b.HasKey("RouteId", "UserId");
 
-                    b.HasIndex("Username");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Ratings");
                 });
@@ -40,8 +40,8 @@ namespace EncounterAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CreatorUsername")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("CreatorID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
@@ -63,15 +63,16 @@ namespace EncounterAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorUsername");
+                    b.HasIndex("CreatorID");
 
                     b.ToTable("Routes");
                 });
 
             modelBuilder.Entity("EncounterAPI.Models.User", b =>
                 {
-                    b.Property<string>("Username")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
@@ -79,7 +80,11 @@ namespace EncounterAPI.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Username");
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
 
                     b.HasIndex("Username")
                         .IsUnique();
@@ -143,7 +148,7 @@ namespace EncounterAPI.Migrations
 
                     b.HasOne("EncounterAPI.Models.User", "User")
                         .WithMany("Ratings")
-                        .HasForeignKey("Username")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -156,7 +161,9 @@ namespace EncounterAPI.Migrations
                 {
                     b.HasOne("EncounterAPI.Models.User", "Creator")
                         .WithMany("Routes")
-                        .HasForeignKey("CreatorUsername");
+                        .HasForeignKey("CreatorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Creator");
                 });

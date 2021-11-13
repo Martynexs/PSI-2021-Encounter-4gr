@@ -1,5 +1,6 @@
 ﻿using PSI.Models;
 using PSI.Views;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -15,7 +16,13 @@ namespace PSI.ViewModels
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
+        public Command WaypointInfoCommand { get; }
+        public Command WaypointEditCommand { get; }
+
+        public Command RouteEditCommand { get; }
+        public Command RouteInfoCommand { get; }
         public Command<Item> ItemTapped { get; }
+        public Command<Item> WaypointTapped { get; }
 
         public ItemsViewModel()
         {
@@ -24,6 +31,16 @@ namespace PSI.ViewModels
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<Item>(OnItemSelected);
+
+            WaypointTapped = new Command<Item>(OnWaypointSelected);
+
+            WaypointInfoCommand = new Command(OnWaypointClicked);
+
+            WaypointEditCommand = new Command(OnWaypointEditClicked);
+
+            RouteEditCommand = new Command(OnRouteEditClicked);
+
+            RouteInfoCommand = new Command(OnAboutRouteClicked);
 
             AddItemCommand = new Command(OnAddItem);
         }
@@ -79,6 +96,39 @@ namespace PSI.ViewModels
 
             // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+        }
+
+        async void OnWaypointSelected(Item item)
+        {
+            if (item == null)
+                return;
+
+            // This will push the ItemDetailPage onto the navigation stack
+            await Shell.Current.GoToAsync(nameof(WaypointInfo));
+        }
+
+        private async void OnWaypointClicked(object obj)
+        {
+            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
+            await Shell.Current.GoToAsync(nameof(WaypointInfo));
+        }
+
+        private async void OnWaypointEditClicked(object sender)
+        {
+            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
+            await PopupNavigation.Instance.PushAsync(new EditWaypointPopup());
+        }
+
+        private async void OnRouteEditClicked(object sender)
+        {
+            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
+            await PopupNavigation.Instance.PushAsync(new RouteEditPopup());
+        }
+
+        private async void OnAboutRouteClicked(object obj)
+        {
+            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
+            await Shell.Current.GoToAsync(nameof(AboutRoute));
         }
     }
 }

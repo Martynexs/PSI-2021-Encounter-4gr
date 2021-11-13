@@ -4,8 +4,11 @@ public class MonoPackageManager_Resources {
 		/* We need to ensure that "PSI.Android.dll" comes first in this list. */
 		"PSI.Android.dll",
 		"FormsViewGroup.dll",
+		"Newtonsoft.Json.Bson.dll",
 		"Newtonsoft.Json.dll",
 		"PSI.dll",
+		"Rg.Plugins.Popup.dll",
+		"System.Net.Http.Formatting.dll",
 		"Xamarin.AndroidX.Activity.dll",
 		"Xamarin.AndroidX.Annotation.dll",
 		"Xamarin.AndroidX.Annotation.Experimental.dll",

@@ -41,3 +41,32 @@ C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\
 C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.dll
 C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\ref\PSI.dll
 C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.pdb
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\bin\Debug\netstandard2.0\PSI.deps.json
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\bin\Debug\netstandard2.0\PSI.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\bin\Debug\netstandard2.0\ref\PSI.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\bin\Debug\netstandard2.0\PSI.pdb
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\bin\Debug\netstandard2.0\DataLibrary.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\bin\Debug\netstandard2.0\DataLibrary.pdb
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.csproj.AssemblyReference.cache
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.GeneratedMSBuildEditorConfig.editorconfig
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\App.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\AppShell.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\AboutRoute.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\EditWaypointPopup.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\ItemDetailPage.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\LoginPage.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\MainPage.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\Map.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\NewRoutePage.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\RegistrationPage.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\RouteEditPopup.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\RoutePage.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\WaypointInfo.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.AssemblyInfoInputs.cache
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.AssemblyInfo.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.csproj.CoreCompileInputs.cache
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\XamlC.stamp
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.csproj.CopyComplete
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\ref\PSI.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.pdb

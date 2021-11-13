@@ -46,14 +46,14 @@ namespace EncounterAPI.Controllers
         // PUT: api/Waypoints/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutWaypoint(long id, Waypoint waypoint)
+        public async Task<IActionResult> PutWaypoint(long id, WaypointDTO waypoint)
         {
             if (id != waypoint.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(waypoint).State = EntityState.Modified;
+            _context.Entry(waypoint.ToEFModel()).State = EntityState.Modified;
 
             try
             {
@@ -77,12 +77,13 @@ namespace EncounterAPI.Controllers
         // POST: api/Waypoints
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Waypoint>> PostWaypoint(Waypoint waypoint)
+        public async Task<ActionResult<WaypointDTO>> PostWaypoint(WaypointDTO waypoint)
         {
-            _context.Waypoints.Add(waypoint);
+            var createdWaypoint = waypoint.ToEFModel();
+            _context.Waypoints.Add(createdWaypoint);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetWaypoint), new { id = waypoint.Id }, waypoint);
+            return CreatedAtAction(nameof(GetWaypoint), new { id = createdWaypoint.Id }, createdWaypoint.ToDTO());
         }
 
         // DELETE: api/Waypoints/5
