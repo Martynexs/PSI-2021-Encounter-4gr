@@ -52,17 +52,6 @@ namespace Map3.Views
     }
     public class Waypoint
     {
-        //[JsonProperty("hint")]
-        //public string Hint { get; set; }
-
-        //[JsonProperty("distance")]
-        //public double Distance { get; set; }
-
-        //[JsonProperty("name")]
-        //public string Name { get; set; }
-
-        //[JsonProperty("location")]
-        //public List<double> Location{ get; set; }
 
     }
     public class Maneuver

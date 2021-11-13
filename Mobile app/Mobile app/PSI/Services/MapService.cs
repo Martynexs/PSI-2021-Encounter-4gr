@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Linq;
 using Map3.Views;
+using PSI.Services;
 
 namespace Map3
 {
@@ -16,57 +17,42 @@ namespace Map3
     {
         private readonly string BaseRouteUrl = "https://router.project-osrm.org/route/v1/driving/";
         private readonly HttpClient _httpClient;
+        private WaypointsCoordinatesService waypointsCoordinatesService = new WaypointsCoordinatesService();
 
         public MapService()
         {
             _httpClient = new HttpClient();
         }
 
-
-        public async Task<DirectionResponse> GetDirectionResponseAsync(string origin, string destination)
+        public async Task<DirectionResponse> GetDirectionResponseAsync(List<VisualWaypoint> coordinates)
         {
             try
             {
-                var originLocations = await Geocoding.GetLocationsAsync(origin);
-                var originLocation = originLocations?.FirstOrDefault();
-                var destinationLocations = await Geocoding.GetLocationsAsync(destination);
-                var destinationLocation = destinationLocations?.FirstOrDefault();
+                    List<string> latLongStrings = new List<string>();
+                    string resultString = "";
 
-                if (originLocation == null || destinationLocation == null)
-                {
-                    return null;
-                }
-                if (originLocation != null && destinationLocation != null)
-                {
-                    string url = string.Format(BaseRouteUrl) + $"{originLocation.Longitude},{originLocation.Latitude};" +
-                     $"{destinationLocation.Longitude},{destinationLocation.Latitude}?overview=full&steps=true";
-
-                    var response = await _httpClient.GetAsync(url);
-                    var json = await response.Content.ReadAsStringAsync();
-                    //var json = "";
-                    // var json = "{\"code\":\"Ok\",\"waypoints\":[{\"hint\":\"P9wkgcKzIYwFAAAAAgAAAAAAAAAHAAAAFFi_QJLUDEAAAAAA2wzxQAUAAAACAAAAAAAAAAcAAAAx5QAAmLyBAZ51QgOjvIEBtHVCAwAAnwZWl_ws\",\"distance\":2.549754,\"location\":[25.27964,54.687134],\"name\":\"Gedimino pr.\"},{\"hint\":\"k7gbkNG4G5AEAAAAAAAAAAkAAAAAAAAA5ZO7PwAAAADVN3JAAAAAAAQAAAAAAAAACQAAAAAAAAAx5QAAvOQjAJuA6QJe5CMAJn7pAgEAXw1Wl_ws\",\"distance\":70.288429,\"location\":[2.352316,48.857243],\"name\":\"\"}],\"routes\":[{\"legs\":[{\"steps\":[],\"weight\":78609.8,\"distance\":2021090.6,\"summary\":\"\",\"duration\":78597.1}],\"weight_name\":\"routability\",\"weight\":78609.8,\"distance\":2021090.6,\"duration\":78597.1}]}";
-
-                    //if (response.IsSuccessStatusCode)
-                    if (true)
+                    if (coordinates != null)
                     {
-                        var result = JsonConvert.DeserializeObject<DirectionResponse>(json);
-                        if (result.Code.Equals("Ok"))
+                        foreach(VisualWaypoint coordinate in coordinates)
                         {
-                            return result;
-
+                            latLongStrings.Add(coordinate.Long + "," + coordinate.Lat);
                         }
-                        return null;
-
-
+                        resultString = string.Join(";", latLongStrings.ToArray());
                     }
-                }
-                else
-                {
-                    return null;
-                }
 
-              
+                    string url = string.Format(BaseRouteUrl) + resultString + "?overview=full&steps=true";
 
+                    HttpResponseMessage response = await _httpClient.GetAsync(url);
+                    string json = await response.Content.ReadAsStringAsync();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        DirectionResponse result = JsonConvert.DeserializeObject<DirectionResponse>(json);
+                        return result.Code.Equals("Ok") ? result : null;
+                    }
+                return null;
+                
+             
             }
             catch (Exception)
             {
