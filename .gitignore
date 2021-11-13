@@ -6,3 +6,17 @@ CMakeSettings.json
 /Encounter/Encounter/bin
 /.vs/Swashbucklers-Project/v16
 /Mobile-app/Mobile-app/PSI.Android/obj/Debug/110
+/Mobile app/API/.vs
+/Mobile app/API/EncounterAPI/bin
+/Mobile app/API/EncounterAPI/obj
+/Mobile app/API/EncounterAPI/EncounterAPI.csproj.user
+/Mobile app/API/EncounterAPI/EncounterAPI.csproj
+/Mobile app/Mobile app/.vs
+/Mobile app/Mobile app/packages
+/Mobile app/Mobile app/PSI/PSI.csproj
+/Mobile app/Mobile app/PSI/bin
+/Mobile app/Mobile app/PSI/obj
+/Mobile app/Mobile app/PSI.Android/PSI.Android.csproj.user
+/Mobile app/Mobile app/PSI.Android/bin
+/Mobile app/Mobile app/PSI.Android/obj
+/Mobile app/Mobile app/PSI.Android/PSI.Android.csproj
