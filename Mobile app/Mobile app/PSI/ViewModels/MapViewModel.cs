@@ -84,6 +84,14 @@ namespace Map3.ViewModels
                 return;
             }
 
+            Location deviceLocation = await Geolocation.GetLocationAsync();
+           
+            if (!WalkingSession.IsGoalReached(deviceLocation))
+            {
+                VisualWaypoint firstGoal = WalkingSession.CurrentGoal();
+                await DisplayAlert("Info", "Hello, to start the route you need to reach first waypoint "  + firstGoal.Name + ". Please follow directions.", "Ok");
+            }
+
             CancellationTokenSource cancellation = new CancellationTokenSource();
             HandleUserWalkingPeriodically(TimeSpan.FromSeconds(10), cancellation.Token);
             //Timer updateUserLocationTimer = new Timer();
@@ -112,14 +120,14 @@ namespace Map3.ViewModels
 
         private async Task HandleUserWalking()
         {
-            Location loc = await Geolocation.GetLocationAsync();
+            Location deviceLocation = await Geolocation.GetLocationAsync();
 
-            if (!WalkingSession.CheckMoved(loc))
+            if (!WalkingSession.CheckMoved(deviceLocation))
             {
                 return;
             }
 
-            if (WalkingSession.IsGoalReached(loc))
+            if (WalkingSession.IsGoalReached(deviceLocation))
             {
                 if (WalkingSession.IsTheLastGoal())
                 {
@@ -150,8 +158,8 @@ namespace Map3.ViewModels
 
                 List<VisualWaypoint> fromTo = new List<VisualWaypoint>();
                 VisualWaypoint from = new VisualWaypoint();
-                from.Lat = loc.Latitude;
-                from.Long = loc.Longitude;
+                from.Lat = deviceLocation.Latitude;
+                from.Long = deviceLocation.Longitude;
 
                 VisualWaypoint to = WalkingSession.CurrentGoal();
 
@@ -161,9 +169,6 @@ namespace Map3.ViewModels
                 List<LatLong> polylineLocations = services.ExtractLocations(dr);
                 services.DrawPolyline(polylineLocations, map);
             }
-
-
-
             return;
         }
 

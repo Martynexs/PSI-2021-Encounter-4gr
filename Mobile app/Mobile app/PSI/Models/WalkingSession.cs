@@ -41,9 +41,9 @@ namespace PSI.Models
             Current = null;
         }
 
-        public static bool IsGoalReached(Location location)
+        public static bool IsGoalReached(Location deviceLocation)
         {
-            if (location == null)
+            if (deviceLocation == null)
             {
                 return false;
             }
@@ -53,7 +53,7 @@ namespace PSI.Models
             {
                 return true;
             }
-            return (Math.Abs(location.Latitude - currentGoal.Lat) < 0.001) && (Math.Abs(location.Longitude - currentGoal.Long) < 0.001);
+            return (Math.Abs(deviceLocation.Latitude - currentGoal.Lat) < 0.001) && (Math.Abs(deviceLocation.Longitude - currentGoal.Long) < 0.001);
         }
 
         public static VisualWaypoint MoveToNextGoal()
@@ -77,7 +77,7 @@ namespace PSI.Models
             return Current != null && Current.WaypointsLeft != null && Current.WaypointsLeft.Count == 1;
         }
 
-        public static bool CheckMoved(Location lastKnownLocation)
+        public static bool CheckMoved(Location currentLocation)
         {
             if (Current == null)
             {
@@ -86,16 +86,16 @@ namespace PSI.Models
 
             if (Current.LastKnownLocation == null)
             {
-                Current.LastKnownLocation = lastKnownLocation;
+                Current.LastKnownLocation = currentLocation;
                 return true;
             }
 
-            if (lastKnownLocation.Latitude == Current.LastKnownLocation.Latitude && lastKnownLocation.Longitude == Current.LastKnownLocation.Longitude)
+            if (currentLocation.Latitude == Current.LastKnownLocation.Latitude && currentLocation.Longitude == Current.LastKnownLocation.Longitude)
             {
                 return false;
             }
 
-            Current.LastKnownLocation = lastKnownLocation;
+            Current.LastKnownLocation = currentLocation;
             return true;
         }
     }

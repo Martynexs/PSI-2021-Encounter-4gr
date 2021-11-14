@@ -17,7 +17,7 @@ namespace PSI.Services
             _api = EncounterProcessor.Instanse;
         }
 
-        internal async Task <List<LatLong>> LoadWaypoints()
+        public List<LatLong> LoadWaypoints()
         {
              List<LatLong> waypointLocations = new List<LatLong>
             {
@@ -32,7 +32,7 @@ namespace PSI.Services
             return waypointLocations;
         }
 
-        internal async Task<List<VisualWaypoint>> LoadWaypointsFromAPI()
+        public async Task<List<VisualWaypoint>> LoadWaypointsFromAPI()
         {
             List<VisualWaypoint> result = new List<VisualWaypoint>();
             List<DataLibrary.Models.Waypoint> waypoints = await _api.GetWaypoints(1);
