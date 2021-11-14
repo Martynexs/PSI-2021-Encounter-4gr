@@ -14,6 +14,8 @@ using Xamarin.Essentials;
 using Map = Xamarin.Forms.Maps.Map;
 using PSI.ViewModels;
 using Map3.Views;
+using System.Timers;
+using System.Threading;
 
 namespace Map3.ViewModels
 {
@@ -29,8 +31,9 @@ namespace Map3.ViewModels
         private WaypointsCoordinatesService waypointsCoordinatesService;
         public static Map map;
         public Command GetRouteCommand { get; }
-       
-       
+        public Command GoWalkingCommand { get; }
+
+
 
 
         public MapViewModel()
@@ -40,7 +43,7 @@ namespace Map3.ViewModels
             dr = new DirectionResponse();
             waypointsCoordinatesService = new WaypointsCoordinatesService();
             GetRouteCommand = new Command(async () => await AddPolylineAsync());
-           
+            GoWalkingCommand = new Command(async () => await InitializeWalkingProcess());
         }
 
         public string Origin
@@ -73,13 +76,102 @@ namespace Map3.ViewModels
             await Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);
         }    
 
+        public async Task InitializeWalkingProcess()
+        {
+            if (!WalkingSession.HasGoalsLeft())
+            {
+                await DisplayAlert("Error:", "No waypoints to walk, please choose the route first.", "ok");
+                return;
+            }
+
+            CancellationTokenSource cancellation = new CancellationTokenSource();
+            HandleUserWalkingPeriodically(TimeSpan.FromSeconds(10), cancellation.Token);
+            //Timer updateUserLocationTimer = new Timer();
+            //updateUserLocationTimer.Interval = 15 * 1000;
+            //updateUserLocationTimer.Elapsed += new ElapsedEventHandler(HandleUserWalking);
+            //updateUserLocationTimer.Enabled = true;
+        }
+
+        private async void HandleUserWalkingPeriodically(TimeSpan interval, CancellationToken cancellationToken)
+        {
+            //_ = HandleUserWalking(sender, eventArgs);
+            //_ = Task.Run(async () => await HandleUserWalking(sender, eventArgs));
+            while (true)
+            {
+                Task task = Task.Delay(interval, cancellationToken);
+                try
+                {
+                    await HandleUserWalking();
+                    await task;
+                } catch(TaskCanceledException)
+                {
+
+                }
+            }
+        }
+
+        private async Task HandleUserWalking()
+        {
+            Location loc = await Geolocation.GetLocationAsync();
+
+            if (!WalkingSession.CheckMoved(loc))
+            {
+                return;
+            }
+
+            if (WalkingSession.IsGoalReached(loc))
+            {
+                if (WalkingSession.IsTheLastGoal())
+                {
+                    await DisplayAlert("Finish!", "You completed the route!", "ok");
+                    WalkingSession.Finish();
+                    map.MapElements.Clear();
+                    return;
+                }
+                else
+                {
+                    VisualWaypoint currentWaypoint = WalkingSession.CurrentGoal();
+                    VisualWaypoint nextWaypoint = WalkingSession.MoveToNextGoal();
+                    await DisplayAlert("Good job!", "You reached " + currentWaypoint.Name + " now please go to " + nextWaypoint.Name, "ok");
+
+                    map.MapElements.Clear();
+                    List<VisualWaypoint> fromTo = new List<VisualWaypoint>();
+                    fromTo.Add(currentWaypoint);
+                    fromTo.Add(nextWaypoint);
+                    DirectionResponse dr = await services.GetDirectionResponseAsync(fromTo);
+                    List<LatLong> polylineLocations = services.ExtractLocations(dr);
+                    services.DrawPolyline(polylineLocations, map);
+                    return;
+                }
+            }
+            else
+            {
+                map.MapElements.Clear();
+
+                List<VisualWaypoint> fromTo = new List<VisualWaypoint>();
+                VisualWaypoint from = new VisualWaypoint();
+                from.Lat = loc.Latitude;
+                from.Long = loc.Longitude;
+
+                VisualWaypoint to = WalkingSession.CurrentGoal();
+
+                fromTo.Add(from);
+                fromTo.Add(to);
+                DirectionResponse dr = await services.GetDirectionResponseAsync(fromTo);
+                List<LatLong> polylineLocations = services.ExtractLocations(dr);
+                services.DrawPolyline(polylineLocations, map);
+            }
+
+
+
+            return;
+        }
+
         public async Task AddPolylineAsync()
         {
             Route route;
-            List<Step> steps;
-            List<Leg> legs;
-            List<Intersection> intersections = new List<Intersection>();
-            List<LatLong> locations = new List<LatLong>();
+            
+            List<LatLong> locations;
             if (!IsBusy)
             {
                 try
@@ -114,60 +206,17 @@ namespace Map3.ViewModels
                     RouteDuration = Math.Round((double)route.Duration / 60, 0);
                     RouteDistance = Math.Round((double)route.Distance / 1000, 1);
 
-                    legs = route.Legs.ToList();
-                    foreach (Leg leg in legs)
-                    {
-                        steps = leg.Steps.ToList();
+                    locations = services.ExtractLocations(dr);
 
-                        foreach (Step step in steps)
-                        {
-                            List<Intersection> localIntersections = step.Intersections.ToList();
-
-                            foreach (Intersection intersection in localIntersections)
-                            {
-                                intersections.Add(intersection);
-                            }
-                        }
-                    }
-                    foreach (Intersection intersection in intersections)
-                    {
-                        LatLong p = new LatLong
-                        {
-                            Lat = intersection.Location[1],
-                            Long = intersection.Location[0]
-                        };
-                        locations.Add(p);
-                    }
-
-                    foreach (VisualWaypoint item in apiWaypoints)
-                    {
-                        Pin WaypointPins = new Pin()
-                        {
-                            Type = PinType.Place,
-                            Label = item.Name,
-                            Address = item.Description,
-                            Position = new Position(item.Lat, item.Long),
-                        };
-                        map.Pins.Add(WaypointPins);
-                    }
+                    services.DrawPins(apiWaypoints, map);
 
 
-                    Polyline polyline = new Polyline
-                    {
-                        StrokeColor = Color.Blue,
-                        StrokeWidth = 9,
-
-                    };
-
-                    foreach (LatLong latlong in locations)
-                    {
-                        polyline.Geopath.Add(new Position(latlong.Lat, latlong.Long));
-                    }
-                    map.MapElements.Add(polyline);
+                    services.DrawPolyline(locations, map);
 
                     MapSpan mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(apiWaypoints),
                             Distance.FromKilometers(6));
                     map.MoveToRegion(mapSpan);
+                    WalkingSession.ResetTo(apiWaypoints);
                 }
 
                 catch (Exception)
