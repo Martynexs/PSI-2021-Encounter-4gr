@@ -21,17 +21,17 @@ namespace Map3.ViewModels
 {
     public class MapViewModel : BaseViewModel
     {
-       
-        private string _origin;
-        private string _destination;
+        private bool _walkingActive;
         private double _routeduration;
         private double _routedistance;
         private MapService services;
         private DirectionResponse dr;
         private WaypointsCoordinatesService waypointsCoordinatesService;
+        private CancellationTokenSource _walkingCancelHandler;
         public static Map map;
         public Command GetRouteCommand { get; }
         public Command GoWalkingCommand { get; }
+        public Command QuitWalkingCommand { get; }
         public MapViewModel()
         {
             map = new Map();
@@ -40,18 +40,9 @@ namespace Map3.ViewModels
             waypointsCoordinatesService = new WaypointsCoordinatesService();
             GetRouteCommand = new Command(async () => await AddPolylineAsync());
             GoWalkingCommand = new Command(async () => await InitializeWalkingProcess());
+            QuitWalkingCommand = new Command(async () => await QuitWalkingProcess());
         }
 
-        public string Origin
-        {
-            get { return _origin; }
-            set { _origin = value; OnPropertyChanged(); }
-        }
-        public string Destination
-        {
-            get { return _destination; }
-            set { _destination = value; OnPropertyChanged(); }
-        }
         public double RouteDuration
         {
             get { return _routeduration; }
@@ -62,6 +53,7 @@ namespace Map3.ViewModels
             get { return _routedistance; }
             set { _routedistance = value; OnPropertyChanged(); }
         }
+
 
         public async Task DisplayAlert(string title, string message, string cancel)
         {
@@ -80,6 +72,7 @@ namespace Map3.ViewModels
                 return;
             }
 
+            _walkingActive = true;
             Location deviceLocation = await Geolocation.GetLocationAsync();
            
             if (!WalkingSession.IsGoalReached(deviceLocation))
@@ -88,33 +81,36 @@ namespace Map3.ViewModels
                 await DisplayAlert("Info", "Hello, to start the route you need to reach first waypoint "  + firstGoal.Name + ". Please follow directions.", "Ok");
             }
 
-            CancellationTokenSource cancellation = new CancellationTokenSource();
-            HandleUserWalkingPeriodically(TimeSpan.FromSeconds(10), cancellation.Token);
-            //Timer updateUserLocationTimer = new Timer();
-            //updateUserLocationTimer.Interval = 15 * 1000;
-            //updateUserLocationTimer.Elapsed += new ElapsedEventHandler(HandleUserWalking);
-            //updateUserLocationTimer.Enabled = true;
+            _walkingCancelHandler = new CancellationTokenSource();
+            HandleUserWalkingPeriodically(10);
         }
 
-        private async void HandleUserWalkingPeriodically(TimeSpan interval, CancellationToken cancellationToken)
+        private async void HandleUserWalkingPeriodically(int intervalSeconds)
         {
-            //_ = HandleUserWalking(sender, eventArgs);
-            //_ = Task.Run(async () => await HandleUserWalking(sender, eventArgs));
             while (true)
             {
-                Task task = Task.Delay(interval, cancellationToken);
+                Task task = Task.Delay(TimeSpan.FromSeconds(intervalSeconds), _walkingCancelHandler.Token);
                 try
                 {
-                    await HandleUserWalking();
-                    await task;
+                    if (!_walkingCancelHandler.IsCancellationRequested)
+                    {
+                        await HandleUserWalking(_walkingCancelHandler);
+                        await task;
+                    } else
+                    {
+                        WalkingSession.Finish();
+                        _walkingActive = false;
+                        return;
+                    }
                 } catch(TaskCanceledException)
                 {
-
+                    WalkingSession.Finish();
+                    _walkingActive = false;
                 }
             }
         }
 
-        private async Task HandleUserWalking()
+        private async Task HandleUserWalking(CancellationTokenSource walkingCancelHandler)
         {
             Location deviceLocation = await Geolocation.GetLocationAsync();
 
@@ -129,7 +125,10 @@ namespace Map3.ViewModels
                 {
                     await DisplayAlert("Finish!", "You completed the route!", "ok");
                     WalkingSession.Finish();
+                    walkingCancelHandler.Cancel();
                     map.MapElements.Clear();
+                    map.Pins.Clear();
+                    _walkingActive = false;
                     return;
                 }
                 else
@@ -137,37 +136,35 @@ namespace Map3.ViewModels
                     VisualWaypoint currentWaypoint = WalkingSession.CurrentGoal();
                     VisualWaypoint nextWaypoint = WalkingSession.MoveToNextGoal();
                     await DisplayAlert("Good job!", "You reached " + currentWaypoint.Name + " now please go to " + nextWaypoint.Name, "ok");
-
-                    map.MapElements.Clear();
-                    List<VisualWaypoint> fromTo = new List<VisualWaypoint>();
-                    fromTo.Add(currentWaypoint);
-                    fromTo.Add(nextWaypoint);
-                    DirectionResponse dr = await services.GetDirectionResponseAsync(fromTo);
-                    UpdateDistanceAndTime(dr);
-                    List<LatLong> polylineLocations = services.ExtractLocations(dr);
-                    services.DrawPolyline(polylineLocations, map);
+                    RedrawPolylineFromTo(currentWaypoint, nextWaypoint);
                     return;
                 }
             }
             else
             {
-                map.MapElements.Clear();
-
-                List<VisualWaypoint> fromTo = new List<VisualWaypoint>();
                 VisualWaypoint from = new VisualWaypoint();
                 from.Lat = deviceLocation.Latitude;
                 from.Long = deviceLocation.Longitude;
-
                 VisualWaypoint to = WalkingSession.CurrentGoal();
-
-                fromTo.Add(from);
-                fromTo.Add(to);
-                DirectionResponse dr = await services.GetDirectionResponseAsync(fromTo);
-                UpdateDistanceAndTime(dr);
-                List<LatLong> polylineLocations = services.ExtractLocations(dr);
-                services.DrawPolyline(polylineLocations, map);
+                RedrawPolylineFromTo(from, to);
             }
             return;
+        }
+
+        private async void RedrawPolylineFromTo(VisualWaypoint from, VisualWaypoint to)
+        {
+            List<VisualWaypoint> fromTo = new List<VisualWaypoint>();
+            fromTo.Add(from);
+            fromTo.Add(to);
+
+            DirectionResponse dr = await services.GetDirectionResponseAsync(fromTo);
+            UpdateDistanceAndTime(dr);
+            List<LatLong> polylineLocations = services.ExtractLocations(dr);
+            map.MapElements.Clear();
+            services.DrawPolyline(polylineLocations, map);
+
+            MapSpan mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(fromTo), Distance.FromMeters(Math.Max(dr.Routes[0].Distance / 2, 50)));
+            map.MoveToRegion(mapSpan);
         }
 
         public async Task AddPolylineAsync()
@@ -226,6 +223,20 @@ namespace Map3.ViewModels
             }
         }
 
+        public async Task QuitWalkingProcess()
+        {
+            if (!_walkingActive)
+            {
+                await DisplayAlert("Error", "You're not walking, there's nothing to stop.", "ok");
+                return;
+            }
+            WalkingSession.Finish();
+            _walkingCancelHandler.Cancel();
+            map.MapElements.Clear();
+            map.Pins.Clear();
+            _walkingActive = false;
+            await DisplayAlert("Info", "You quit this route without finishing it. Keep exploring other routes!", "ok");
+        }
 
         private Position GetVisualCenterPosition(List<VisualWaypoint> waypoints)
         {

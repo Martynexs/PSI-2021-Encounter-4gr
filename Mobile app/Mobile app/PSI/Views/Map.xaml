@@ -11,6 +11,7 @@
                 <RowDefinition Height = "auto" />
                 <RowDefinition Height = "*" />
                 <RowDefinition Height = "auto" />
+                <RowDefinition Height = "auto" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -31,6 +32,7 @@
 
             <StackLayout Grid.Row="3" Grid.ColumnSpan ="3">
                 <Button Text= "Start Walking" Command="{Binding GoWalkingCommand}"></Button>
+                <Button Text= "Quit Walking" Command="{Binding QuitWalkingCommand}"></Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
