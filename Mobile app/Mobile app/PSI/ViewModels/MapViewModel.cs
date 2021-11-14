@@ -32,10 +32,6 @@ namespace Map3.ViewModels
         public static Map map;
         public Command GetRouteCommand { get; }
         public Command GoWalkingCommand { get; }
-
-
-
-
         public MapViewModel()
         {
             map = new Map();
@@ -147,6 +143,7 @@ namespace Map3.ViewModels
                     fromTo.Add(currentWaypoint);
                     fromTo.Add(nextWaypoint);
                     DirectionResponse dr = await services.GetDirectionResponseAsync(fromTo);
+                    UpdateDistanceAndTime(dr);
                     List<LatLong> polylineLocations = services.ExtractLocations(dr);
                     services.DrawPolyline(polylineLocations, map);
                     return;
@@ -166,6 +163,7 @@ namespace Map3.ViewModels
                 fromTo.Add(from);
                 fromTo.Add(to);
                 DirectionResponse dr = await services.GetDirectionResponseAsync(fromTo);
+                UpdateDistanceAndTime(dr);
                 List<LatLong> polylineLocations = services.ExtractLocations(dr);
                 services.DrawPolyline(polylineLocations, map);
             }
@@ -173,9 +171,7 @@ namespace Map3.ViewModels
         }
 
         public async Task AddPolylineAsync()
-        {
-            Route route;
-            
+        {      
             List<LatLong> locations;
             if (!IsBusy)
             {
@@ -204,22 +200,16 @@ namespace Map3.ViewModels
                         await DisplayAlert("Error:", "Could not find route!", "ok");
                         return;
                     }
-                    
-                        
-                    route = dr.Routes[0];
 
-                    RouteDuration = Math.Round((double)route.Duration / 60, 0);
-                    RouteDistance = Math.Round((double)route.Distance / 1000, 1);
+                    UpdateDistanceAndTime(dr);
+                   
 
                     locations = services.ExtractLocations(dr);
 
                     services.DrawPins(apiWaypoints, map);
-
-
                     services.DrawPolyline(locations, map);
 
-                    MapSpan mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(apiWaypoints),
-                            Distance.FromKilometers(6));
+                    MapSpan mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(apiWaypoints), Distance.FromKilometers(6));
                     map.MoveToRegion(mapSpan);
                     WalkingSession.ResetTo(apiWaypoints);
                 }
@@ -253,6 +243,13 @@ namespace Map3.ViewModels
                 LongSum += w.Long;
             }
             return new Position(LatSum / waypoints.Count, LongSum / waypoints.Count);
+        }
+
+        private void UpdateDistanceAndTime(DirectionResponse dr)
+        {
+            Route route = dr.Routes[0];
+            RouteDuration = Math.Round((double)route.Duration / 60, 0);
+            RouteDistance = Math.Round((double)route.Distance / 1000, 1);
         }
 
     }
