@@ -1,4 +1,5 @@
-﻿using PSI.Models;
+﻿using DataLibrary;
+using DataLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,8 +10,15 @@ namespace PSI.ViewModels
 {
     public class NewItemViewModel : BaseViewModel
     {
-        private string text;
+
+        private EncounterProcessor _encounterProcessor;
+
+        private long id;
+        private long creatorId;
+        private string name;
         private string description;
+        private string location;
+        private double rating;
 
         public NewItemViewModel()
         {
@@ -18,24 +26,48 @@ namespace PSI.ViewModels
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
+            _encounterProcessor = EncounterProcessor.Instanse;
         }
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
+            return !String.IsNullOrWhiteSpace(name)
                 && !String.IsNullOrWhiteSpace(description);
         }
 
-        public string Text
+        public long Id
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => id;
+            set => SetProperty(ref id, value);
+        }
+        public string Name
+        {
+            get => name;
+            set => SetProperty(ref name, value);
         }
 
         public string Description
         {
             get => description;
             set => SetProperty(ref description, value);
+        }
+
+        public string Location
+        {
+            get => location;
+            set => SetProperty(ref location, value);
+        }
+
+        public double Rating
+        {
+            get => rating;
+            set => SetProperty(ref rating, value);
+        }
+
+        public long CreatorId
+        {
+            get => creatorId;
+            set => SetProperty(ref creatorId, value);
         }
 
         public Command SaveCommand { get; }
@@ -49,14 +81,14 @@ namespace PSI.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
+            Route newItem = new Route()
             {
-                Id = Guid.NewGuid().ToString(),
-                Text = Text,
+                CreatorId = 1,
+                Name = Name,
                 Description = Description
             };
 
-            await DataStore.AddItemAsync(newItem);
+            await _encounterProcessor.CreateRoute(newItem);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

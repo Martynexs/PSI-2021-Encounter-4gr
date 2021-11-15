@@ -1,4 +1,5 @@
-﻿using PSI.Models;
+﻿using DataLibrary;
+using DataLibrary.Models;
 using PSI.Views;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -9,30 +10,46 @@ using Xamarin.Forms;
 
 namespace PSI.ViewModels
 {
+
     public class ItemsViewModel : BaseViewModel
     {
-        private Item _selectedItem;
+        private Route _selectedItem;
 
-        public ObservableCollection<Item> Items { get; }
+        private Waypoint _selectedWaypoint;
+
+        private EncounterProcessor _encounterProcessor;
+        public ObservableCollection<Route> Routes { get; }
+        public ObservableCollection<Waypoint> Waypoints { get; }
         public Command LoadItemsCommand { get; }
+
+        public Command LoadWaypointsCommand { get; }
         public Command AddItemCommand { get; }
         public Command WaypointInfoCommand { get; }
         public Command WaypointEditCommand { get; }
 
+        public Command WaypointDeleteCommand { get; }
         public Command RouteEditCommand { get; }
         public Command RouteInfoCommand { get; }
-        public Command<Item> ItemTapped { get; }
-        public Command<Item> WaypointTapped { get; }
+        public Command RouteDeleteCommand { get; }
+        public Command<Route> ItemTapped { get; set; }
+        public Command<Waypoint> WaypointTapped { get; }
 
+        private long routeId;
         public ItemsViewModel()
         {
             Title = "Routes";
-            Items = new ObservableCollection<Item>();
+
+            Routes = new ObservableCollection<Route>();
+
+            Waypoints = new ObservableCollection<Waypoint>();
+
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            ItemTapped = new Command<Item>(OnItemSelected);
+            LoadWaypointsCommand = new Command(async () => await ExecuteLoadIWaypointsCommand());
 
-            WaypointTapped = new Command<Item>(OnWaypointSelected);
+            ItemTapped = new Command<Route>(OnItemSelected);
+
+            WaypointTapped = new Command<Waypoint>(OnWaypointSelected);
 
             WaypointInfoCommand = new Command(OnWaypointClicked);
 
@@ -42,7 +59,13 @@ namespace PSI.ViewModels
 
             RouteInfoCommand = new Command(OnAboutRouteClicked);
 
+            RouteDeleteCommand = new Command(OnRouteDeleteClicked);
+
+            WaypointDeleteCommand = new Command(OnWaypointDeleteClicked);
+
             AddItemCommand = new Command(OnAddItem);
+
+            _encounterProcessor = EncounterProcessor.Instanse;
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -51,11 +74,11 @@ namespace PSI.ViewModels
 
             try
             {
-                Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                Routes.Clear();
+                var items = await _encounterProcessor.GetAllRoutes();
                 foreach (var item in items)
                 {
-                    Items.Add(item);
+                    Routes.Add(item);
                 }
             }
             catch (Exception ex)
@@ -67,14 +90,34 @@ namespace PSI.ViewModels
                 IsBusy = false;
             }
         }
-
+        async Task ExecuteLoadIWaypointsCommand()
+        {
+            IsBusy = true;
+            try
+            {
+                Routes.Clear();
+                var items = await _encounterProcessor.GetWaypoints(1);
+                foreach (var item in items)
+                {
+                    Waypoints.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
         public void OnAppearing()
         {
             IsBusy = true;
             SelectedItem = null;
         }
 
-        public Item SelectedItem
+        public Route SelectedItem
         {
             get => _selectedItem;
             set
@@ -89,22 +132,21 @@ namespace PSI.ViewModels
             await Shell.Current.GoToAsync(nameof(NewRoutePage));
         }
 
-        async void OnItemSelected(Item item)
+        public async void OnItemSelected(Route item)
         {
             if (item == null)
                 return;
-
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.RouteId)}={item.Id}");
         }
 
-        async void OnWaypointSelected(Item item)
+        async void OnWaypointSelected(Waypoint item)
         {
             if (item == null)
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync(nameof(WaypointInfo));
+            await Shell.Current.GoToAsync($"{nameof(WaypointInfo)}?{nameof(WaypointViewModel.WaypointId)}={item.Id}?{nameof(WaypointViewModel.RouteId)}={item.RouteId}");
         }
 
         private async void OnWaypointClicked(object obj)
@@ -128,7 +170,22 @@ namespace PSI.ViewModels
         private async void OnAboutRouteClicked(object obj)
         {
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync(nameof(AboutRoute));
+            //await Shell.Current.GoToAsync(nameof(AboutRoute));
+            await Shell.Current.GoToAsync($"{nameof(AboutRoute)}?{nameof(ItemDetailViewModel.RouteId)}={2}");
+        }
+
+        private async void OnRouteDeleteClicked(object obj)
+        {
+            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
+            await Shell.Current.GoToAsync($"//{nameof(ItemsPage)}");
+            await _encounterProcessor.DeleteRoute(4);
+        }
+
+        private async void OnWaypointDeleteClicked(object obj)
+        {
+            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
+            await Shell.Current.GoToAsync($"//{nameof(ItemDetailPage)}");
+            await _encounterProcessor.DeleteWaypoint(1);
         }
     }
 }

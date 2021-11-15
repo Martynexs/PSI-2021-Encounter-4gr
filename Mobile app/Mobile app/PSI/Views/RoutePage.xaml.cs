@@ -1,5 +1,4 @@
-﻿using PSI.Models;
-using PSI.ViewModels;
+﻿using PSI.ViewModels;
 using PSI.Views;
 using System;
 using System.Collections.Generic;

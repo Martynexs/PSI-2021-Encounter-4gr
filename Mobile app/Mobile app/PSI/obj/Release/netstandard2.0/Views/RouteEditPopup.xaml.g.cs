@@ -14,7 +14,7 @@ namespace PSI.Views {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\RouteEditPopup.xaml")]
-    public partial class RouteEditPopup : global::Xamarin.Forms.ContentPage {
+    public partial class RouteEditPopup : global::Rg.Plugins.Popup.Pages.PopupPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {

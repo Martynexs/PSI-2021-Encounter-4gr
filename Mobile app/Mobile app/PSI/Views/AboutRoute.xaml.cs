@@ -1,4 +1,5 @@
 ﻿using PSI.ViewModels;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace PSI.Views
         public AboutRoute()
         {
             InitializeComponent();
-            BindingContext = new ItemsViewModel();
+            BindingContext = new ItemDetailViewModel();
         }
     }
 }

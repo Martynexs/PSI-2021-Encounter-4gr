@@ -50,7 +50,7 @@
                                        Padding="0" Margin="0">
 
                                     <StackLayout Orientation="Horizontal">
-                                        <Entry Text="Name"/>
+                                        <Entry Text="{Binding Name}"/>
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
@@ -67,7 +67,7 @@
                                        Padding="0" Margin="0">
 
                                     <StackLayout Orientation="Horizontal">
-                                        <Entry Text="Name"/>
+                                        <Entry Text="{Binding Description}"/>
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
@@ -84,7 +84,7 @@
                                        Padding="0" Margin="0">
 
                                     <StackLayout Orientation="Horizontal">
-                                        <Entry Text="Name"/>
+                                        <Entry Text="{Binding Rating}"/>
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
@@ -102,8 +102,8 @@
                                 <Button Text="Save"
                                         TextColor="Black"
                                         BackgroundColor="#FFC900"
-                                        CornerRadius="30"/>
-
+                                        CornerRadius="30"
+                                        Command="{Binding UpdateCommand}"/>
                             </StackLayout>
 
                         </StackLayout>

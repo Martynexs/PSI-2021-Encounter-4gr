@@ -14,7 +14,7 @@ namespace PSI.Views {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\EditWaypointPopup.xaml")]
-    public partial class EditWaypointPopup : global::Xamarin.Forms.ContentPage {
+    public partial class EditWaypointPopup : global::Rg.Plugins.Popup.Pages.PopupPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {

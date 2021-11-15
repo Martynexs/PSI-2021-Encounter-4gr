@@ -1,5 +1,4 @@
-﻿using PSI.Models;
-using PSI.Services;
+﻿using DataLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +9,7 @@ namespace PSI.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        //public EncounterProcessor<Route> DataStore => DependencyService.Get<EncounterProcessor<Route>>();
 
         bool isBusy = false;
         public bool IsBusy

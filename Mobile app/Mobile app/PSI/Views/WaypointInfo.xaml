@@ -5,7 +5,7 @@
              Title="Waypoint">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Delete" Command="{Binding WaypointEditCommand}"/>
+        <ToolbarItem Text="Delete" Command="{Binding WaypointDeleteCommand}"/>
         <ToolbarItem Text="Edit" Command="{Binding WaypointEditCommand}"/>
     </ContentPage.ToolbarItems>
     <ScrollView>

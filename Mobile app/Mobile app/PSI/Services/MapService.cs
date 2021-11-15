@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
-using PSI.Models;
 using PSI.Views;
 using System.Net.Http;
 using System.Threading.Tasks;

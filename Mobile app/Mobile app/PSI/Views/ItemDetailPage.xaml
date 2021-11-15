@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:PSI.ViewModels" xmlns:model="clr-namespace:PSI.Models"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:PSI.ViewModels" xmlns:model="clr-namespace:PSI.Models" xmlns:model1="clr-namespace:DataLibrary.Models;assembly=DataLibrary"
              x:Class="PSI.Views.ItemDetailPage"
-             Title="{Binding Title}">
+             Title="{Binding Waypoints}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Delete" Command="{Binding WaypointCommand}" />
+        <ToolbarItem Text="Delete" Command="{Binding RouteDeleteCommand}" />
         <ToolbarItem Text="About" Command="{Binding RouteInfoCommand}"/>
         <ToolbarItem Text="Add waypoint" Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>
-    <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+    <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadWaypointsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
+                ItemsSource="{Binding Waypoints}"
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Item">
-                        <Label Text="{Binding Text}" 
+                    <StackLayout Padding="10" x:DataType="model1:Waypoint">
+                        <Label Text="{Binding Name}" 
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="16" />

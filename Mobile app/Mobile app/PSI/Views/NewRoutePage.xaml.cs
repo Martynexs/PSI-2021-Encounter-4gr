@@ -1,4 +1,4 @@
-﻿using PSI.Models;
+﻿using DataLibrary.Models;
 using PSI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace PSI.Views
 {
     public partial class NewRoutePage : ContentPage
     {
-        public Item Item { get; set; }
+        public Route Item { get; set; }
 
         public NewRoutePage()
         {

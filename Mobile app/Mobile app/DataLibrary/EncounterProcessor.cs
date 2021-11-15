@@ -8,7 +8,7 @@ namespace DataLibrary
 {
     public class EncounterProcessor
     {
-        private const string _apiAdress = "https://localhost:44309";
+        private const string _apiAdress = "https://encounterapi-kk3.conveyor.cloud";
 
         private static readonly Lazy<EncounterProcessor> _encounterProcessor =
             new Lazy<EncounterProcessor>(() => new EncounterProcessor());
@@ -36,10 +36,18 @@ namespace DataLibrary
 
         public async Task<List<Route>> GetAllRoutes()
         {
+            Console.WriteLine("Pateko i API");
             var url = $"{ _apiAdress }/api/route";
-
+            try
+            {
             var routes = await _apiHelper.HttpGet<List<Route>>(url);
             return routes;
+            }
+            catch (Exception ex)
+            {
+                var exc = ex.Message;
+                throw new Exception();
+            }
         }
 
         public async Task<List<Waypoint>> GetWaypoints(long routeId)

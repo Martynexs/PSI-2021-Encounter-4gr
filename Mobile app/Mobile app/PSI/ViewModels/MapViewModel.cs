@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
-using PSI.Models;
-using PSI.Services;
 using Map3.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;

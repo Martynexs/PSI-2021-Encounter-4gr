@@ -1,4 +1,4 @@
-﻿using PSI.Services;
+﻿using DataLibrary;
 using PSI.Views;
 using System;
 using Xamarin.Forms;
@@ -13,7 +13,7 @@ namespace PSI
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<EncounterProcessor>();
             MainPage = new AppShell();
         }
 
