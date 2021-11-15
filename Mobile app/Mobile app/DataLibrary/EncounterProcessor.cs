@@ -58,6 +58,14 @@ namespace DataLibrary
             return waypoints;
         }
 
+        public async Task<Waypoint> GetWaypoint(long waypointId)
+        {
+            var url = $"{ _apiAdress }/api/waypoints/{ waypointId }";
+
+            var waypoint = await _apiHelper.HttpGet<Waypoint>(url);
+            return waypoint;
+        }
+
         public async Task<Route> CreateRoute(Route route)
         {
             var url = $"{ _apiAdress }/api/route";
