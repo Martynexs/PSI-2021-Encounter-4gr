@@ -24,6 +24,7 @@ namespace Map3.ViewModels
         private bool _walkingActive;
         private double _routeduration;
         private double _routedistance;
+        private string _maneuverinfo;
         private MapService services;
         private DirectionResponse dr;
         private WaypointsCoordinatesService waypointsCoordinatesService;
@@ -52,6 +53,11 @@ namespace Map3.ViewModels
         {
             get { return _routedistance; }
             set { _routedistance = value; OnPropertyChanged(); }
+        }
+        public string ManeuverInfo
+        {
+            get { return _maneuverinfo; }
+            set { _maneuverinfo = value; OnPropertyChanged(); }
         }
 
 
@@ -159,6 +165,7 @@ namespace Map3.ViewModels
 
             DirectionResponse dr = await services.GetDirectionResponseAsync(fromTo);
             UpdateDistanceAndTime(dr);
+            UpdateManeuver(dr);
             List<LatLong> polylineLocations = services.ExtractLocations(dr);
             map.MapElements.Clear();
             services.DrawPolyline(polylineLocations, map);
@@ -199,7 +206,7 @@ namespace Map3.ViewModels
                     }
 
                     UpdateDistanceAndTime(dr);
-                   
+                    ManeuverInfo = "";
 
                     locations = services.ExtractLocations(dr);
 
@@ -261,6 +268,46 @@ namespace Map3.ViewModels
             Route route = dr.Routes[0];
             RouteDuration = Math.Round((double)route.Duration / 60, 0);
             RouteDistance = Math.Round((double)route.Distance / 1000, 1);
+        }
+
+        private void UpdateManeuver(DirectionResponse dr)
+        {
+            Route route = dr.Routes[0];
+            if (route == null || route.Legs == null || route.Legs.Count == 0 || route.Legs[0].Steps == null || route.Legs[0].Steps.Count < 2)
+            {
+                ManeuverInfo = "";
+                return;
+            }
+
+            if (route.Distance < 50)
+            {
+                ManeuverInfo = "You're arriving!";
+                return;
+            }
+
+            Step currentStep = route.Legs[0].Steps[0];
+            Step nextStep = route.Legs[0].Steps[1];
+
+            if (currentStep.Maneuver == null)
+            {
+                ManeuverInfo = "";
+                return;
+            }
+
+            string maneuverType = (currentStep.Maneuver.Type == "depart") ? nextStep.Maneuver.Type : currentStep.Maneuver.Type;
+            string maneuverModifier = (nextStep.Maneuver != null) ? nextStep.Maneuver.Modifier : "";
+            string street = nextStep.Name;
+            string toStreetString = (street != null && street != "") ? " to " + street : "";
+
+            if (maneuverType != null && maneuverModifier != null)
+            {
+                ManeuverInfo = "In " + currentStep.Distance + " m. " + maneuverType + " " + maneuverModifier + toStreetString;
+            } else
+            {
+                ManeuverInfo = "";
+            }
+
+            
         }
 
     }

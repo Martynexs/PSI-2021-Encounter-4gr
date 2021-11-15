@@ -9,8 +9,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height = "auto" />
                 <RowDefinition Height = "auto" />
-                <RowDefinition Height = "*" />
                 <RowDefinition Height = "auto" />
+                <RowDefinition Height = "*" />
                 <RowDefinition Height = "auto" />
             </Grid.RowDefinitions>
 
@@ -28,12 +28,13 @@
             <ActivityIndicator HeightRequest = "10" Grid.Row="1" Grid.Column="0" IsRunning="{Binding IsBusy}"/>
             <Label Grid.Row="1" Grid.Column="1" Text="{Binding RouteDistance, StringFormat='{0} km'}"/>
             <Label Grid.Row="1" Grid.Column="2" Text="{Binding RouteDuration, StringFormat='{0} mins'}"/>
-            <maps:Map IsShowingUser ="True" Grid.Row="2" Grid.ColumnSpan="3"  x:Name="map"/>
+            <Label Grid.Row="2" Grid.ColumnSpan="2"  Text="{Binding ManeuverInfo}"/>
+            <maps:Map IsShowingUser ="True" Grid.Row="3" Grid.ColumnSpan="3"  x:Name="map"/>
 
-            <StackLayout Grid.Row="3" Grid.ColumnSpan ="3">
-                <Button Text= "Start Walking" Command="{Binding GoWalkingCommand}"></Button>
-                <Button Text= "Quit Walking" Command="{Binding QuitWalkingCommand}"></Button>
-            </StackLayout>
+         
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Text= "Start Walking" Command="{Binding GoWalkingCommand}"></Button>
+            <Button Grid.Row="4" Grid.Column="2" Text= "Quit" Command="{Binding QuitWalkingCommand}"></Button>
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>

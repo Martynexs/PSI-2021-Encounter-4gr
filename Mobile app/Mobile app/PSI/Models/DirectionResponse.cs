@@ -49,6 +49,11 @@ namespace Map3.Views
         [JsonProperty("maneuver")]
         public Maneuver Maneuver { get; set; }
 
+        [JsonProperty("distance")]
+        public double Distance { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
     public class Waypoint
     {
@@ -58,6 +63,12 @@ namespace Map3.Views
     {
         [JsonProperty("location")]
         public List<double> Location { get; set; }
+
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        [JsonProperty("modifier")]
+        public string Modifier { get; set; }
     }
     public class Intersection
     {
