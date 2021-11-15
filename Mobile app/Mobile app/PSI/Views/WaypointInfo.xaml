@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PSI.Views.WaypointInfo"
+             Title="Waypoint">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete" Command="{Binding WaypointDeleteCommand}"/>
+        <ToolbarItem Text="Edit" Command="{Binding WaypointEditCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Spacing="20" Padding="15">
+                <Label Text="Name:" FontSize="Medium" />
+                <Label Text="{Binding Name}" FontSize="Small"/>
+                <Label Text="Coordinates:" FontSize="Medium" />
+                <Label Text="{Binding Position}" FontSize="Small"/>
+                <Label Text="Type:" FontSize="Medium" />
+                <Label Text="{Binding Type}" FontSize="Small"/>
+                <Label Text="Price:" FontSize="Medium" />
+                <Label Text="{Binding Price}" FontSize="Small"/>
+                <Label Text="Opening hours:" FontSize="Medium" />
+                <Label Text="{Binding OpeningHours}" FontSize="Small"/>
+                <Label Text="Closing hours:" FontSize="Medium" />
+                <Label Text="{Binding ClosingHours}" FontSize="Small"/>
+                <Label Text="Phone number:" FontSize="Medium" />
+                <Label Text="{Binding PhoneNumber}" FontSize="Small"/>
+                <Label Text="Description:" FontSize="Medium" />
+                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="Waypoint number:" FontSize="Medium" />
+                <Label Text="{Binding Id}" FontSize="Small"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

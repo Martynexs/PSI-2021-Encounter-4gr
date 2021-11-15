@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model1="clr-namespace:DataLibrary.Models;assembly=DataLibrary"
+             x:Class="PSI.Views.AboutRoute"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Command="{Binding EditCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Spacing="20" Padding="15">
+                <Label Text="Route name:" FontSize="Large" />
+                <Label Text="{Binding Name}" FontSize="Small"/>
+                <Label Text="Description:" FontSize="Large" />
+                <Label Text="{Binding Description}" FontSize="Medium"/>
+                <Label Text="Location:" FontSize="Large" />
+                <Label Text="{Binding Location}" FontSize="Medium"/>
+                <Label Text="Rate:" FontSize="Large" />
+                <Label Text="{Binding Rating}" FontSize="Medium"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
