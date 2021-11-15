@@ -12,6 +12,7 @@ namespace PSI.ViewModels
     {
 
         private EncounterProcessor _encounterProcessor;
+        private Session _session;
 
         private long id;
         private long creatorId;
@@ -27,6 +28,7 @@ namespace PSI.ViewModels
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
             _encounterProcessor = EncounterProcessor.Instanse;
+            _session = Session.Instanse;
         }
 
         private bool ValidateSave()

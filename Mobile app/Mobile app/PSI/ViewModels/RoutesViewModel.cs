@@ -34,6 +34,8 @@ namespace PSI.ViewModels
         public Command<Route> ItemTapped { get; set; }
         public Command<Waypoint> WaypointTapped { get; }
 
+        private Route _selectedRoute;
+
         private long routeId;
         public ItemsViewModel()
         {
@@ -95,8 +97,8 @@ namespace PSI.ViewModels
             IsBusy = true;
             try
             {
-                Routes.Clear();
-                var items = await _encounterProcessor.GetWaypoints(1);
+                Waypoints.Clear();
+                var items = await _encounterProcessor.GetWaypoints(SelectedRoute.Id);
                 foreach (var item in items)
                 {
                     Waypoints.Add(item);
@@ -125,6 +127,21 @@ namespace PSI.ViewModels
                 SetProperty(ref _selectedItem, value);
                 OnItemSelected(value);
             }
+        }
+
+        public Route SelectedRoute
+        {
+            get => _selectedRoute;
+            set
+            {
+                _selectedRoute = value;
+                //OnItemSelected(value);
+                OnRouteSelected(value);
+            }
+        }
+        private async void OnRouteSelected(Route route)
+        {
+            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemsViewModel.SelectedItem.Id)}={route.Id}");
         }
 
         private async void OnAddItem(object obj)

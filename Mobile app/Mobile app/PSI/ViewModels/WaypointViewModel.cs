@@ -9,12 +9,18 @@ namespace PSI.ViewModels
     class WaypointViewModel : BaseViewModel
     {
         private EncounterProcessor _encounterProcessor;
-        private long routeId;
         private long waypointId;
+        private long routeId;
+        private int position;
+        private double longitude;
+        private double latitude;
         private string name;
         private string description;
-        private string location;
-        private double rating;
+        private DateTime openingHours;
+        private DateTime closingHours;
+        private string phoneNumber;
+        private decimal price;
+        private WaypointType type;
 
         public long Id { get; set; }
 
@@ -22,6 +28,17 @@ namespace PSI.ViewModels
         public WaypointViewModel()
         {
             _encounterProcessor = EncounterProcessor.Instanse;
+        }
+        public int Position
+        {
+            get => position;
+            set => SetProperty(ref position, value);
+        }
+
+        public double Longitude
+        {
+            get => longitude;
+            set => SetProperty(ref longitude, value);
         }
 
         public string Name
@@ -36,18 +53,32 @@ namespace PSI.ViewModels
             set => SetProperty(ref description, value);
         }
 
-        public string Location
+        public DateTime OpeningHours
         {
-            get => location;
-            set => SetProperty(ref location, value);
+            get => openingHours;
+            set => SetProperty(ref openingHours, value);
+        }
+        public DateTime ClosingHours
+        {
+            get => closingHours;
+            set => SetProperty(ref closingHours, value);
         }
 
-        public double Rating
+        public string PhoneNumber
         {
-            get => rating;
-            set => SetProperty(ref rating, value);
+            get => phoneNumber;
+            set => SetProperty(ref phoneNumber, value);
         }
-
+        public decimal Price
+        {
+            get => price;
+            set => SetProperty(ref price, value);
+        }
+        public WaypointType Type
+        {
+            get => type;
+            set => SetProperty(ref type, value);
+        }
         public long RouteId
         {
             get
@@ -83,8 +114,8 @@ namespace PSI.ViewModels
                 RoutesId = item.CreatorId;
                 Name = item.Name;
                 Description = item.Description;
-                Location = item.Location;
-                Rating = item.Rating;
+                //Location = item.Location;
+                //Rating = item.Rating;
             }
             catch (Exception)
             {

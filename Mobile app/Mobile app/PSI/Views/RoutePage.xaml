@@ -4,7 +4,7 @@
              x:Class="PSI.Views.ItemsPage"
              Title="{Binding Title}"
              xmlns:local="clr-namespace:PSI.ViewModels"  
-             xmlns:model="clr-namespace:PSI.Models" xmlns:model1="clr-namespace:DataLibrary.Models;assembly=DataLibrary"
+             xmlns:model1="clr-namespace:DataLibrary.Models;assembly=DataLibrary"
              x:Name="BrowseItemsPage">
 
     <ContentPage.ToolbarItems>
@@ -13,7 +13,8 @@
     <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Routes}"
-                SelectionMode="None">
+                SelectedItem="{Binding SelectedRoute , Mode=TwoWay}"
+                SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="model1:Route">
@@ -25,13 +26,6 @@
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
