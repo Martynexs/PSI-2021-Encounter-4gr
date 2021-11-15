@@ -76,7 +76,7 @@ namespace PSI.ViewModels
         private async void OnEdit()
         {
             // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(AboutRoute)}?{nameof(ItemDetailViewModel.RouteId)}={2}");
+            LoadPopupId(RouteId.ToString());
             await PopupNavigation.Instance.PushAsync(new RouteEditPopup());
         }
 
@@ -112,11 +112,29 @@ namespace PSI.ViewModels
                 Description = item.Description;
                 Location = item.Location;
                 Rating = item.Rating;
+               // await PopupNavigation.Instance.PushAsync(new RouteEditPopup(item));
             }
             catch (Exception)
             {
                 Debug.WriteLine("Failed to Load Item");
             }
             }
+        public async void LoadPopupId(string routeId)
+        {
+            try
+            {
+                var item = await _encounterProcessor.GetRoute(long.Parse(routeId));
+                Id = item.Id;
+                CreatorId = item.CreatorId;
+                Name = item.Name;
+                Description = item.Description;
+                Location = item.Location;
+                Rating = item.Rating;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed to Load Item");
+            }
         }
+    }
 }

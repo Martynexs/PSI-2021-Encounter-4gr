@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using Xamarin.Forms;
 
 namespace PSI.ViewModels
 {
+    [QueryProperty(nameof(WaypointId), nameof(WaypointId))]
     class WaypointViewModel : BaseViewModel
     {
         private EncounterProcessor _encounterProcessor;
@@ -23,8 +25,6 @@ namespace PSI.ViewModels
         private WaypointType type;
 
         public long Id { get; set; }
-
-        public long RoutesId { get; set; }
         public WaypointViewModel()
         {
             _encounterProcessor = EncounterProcessor.Instanse;
@@ -39,6 +39,12 @@ namespace PSI.ViewModels
         {
             get => longitude;
             set => SetProperty(ref longitude, value);
+        }
+
+        public double Latitude
+        {
+            get => latitude;
+            set => SetProperty(ref latitude, value);
         }
 
         public string Name
@@ -81,15 +87,8 @@ namespace PSI.ViewModels
         }
         public long RouteId
         {
-            get
-            {
-                return routeId;
-            }
-            set
-            {
-                routeId = value;
-                LoadItemId(value.ToString());
-            }
+            get => routeId;
+            set => SetProperty(ref routeId, value);
         }
 
         public long WaypointId
@@ -101,25 +100,31 @@ namespace PSI.ViewModels
             set
             {
                 waypointId = value;
-                LoadItemId(value.ToString());
+                LoadItemId(value);
             }
         }
 
-        public async void LoadItemId(string routeId)
+        public async void LoadItemId(long waypointId)
         {
             try
             {
-                var item = await _encounterProcessor.GetRoute(Id);
+                var item = await _encounterProcessor.GetWaypoint(waypointId);
                 Id = item.Id;
-                RoutesId = item.CreatorId;
+                RouteId = item.RouteId;
+                Position = item.Position;
+                Longitude = item.Longitude;
+                Latitude = item.Latitude;
                 Name = item.Name;
                 Description = item.Description;
-                //Location = item.Location;
-                //Rating = item.Rating;
+                OpeningHours = item.OpeningHours;
+                ClosingHours = item.ClosingTime;
+                PhoneNumber = item.PhoneNumber;
+                Price = item.Price;
+                Type = item.Type;
             }
             catch (Exception)
             {
-                Debug.WriteLine("Failed to Load Item");
+                Debug.WriteLine("Failed to Load Waypoint");
             }
         }
     }

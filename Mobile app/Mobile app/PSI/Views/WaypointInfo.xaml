@@ -12,23 +12,23 @@
         <StackLayout>
             <StackLayout Spacing="20" Padding="15">
                 <Label Text="Name:" FontSize="Medium" />
-                <Label Text="{Binding Text}" FontSize="Small"/>
+                <Label Text="{Binding Name}" FontSize="Small"/>
                 <Label Text="Coordinates:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding Position}" FontSize="Small"/>
                 <Label Text="Type:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding Type}" FontSize="Small"/>
                 <Label Text="Price:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding Price}" FontSize="Small"/>
                 <Label Text="Opening hours:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding OpeningHours}" FontSize="Small"/>
                 <Label Text="Closing hours:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding ClosingHours}" FontSize="Small"/>
                 <Label Text="Phone number:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding PhoneNumber}" FontSize="Small"/>
                 <Label Text="Description:" FontSize="Medium" />
                 <Label Text="{Binding Description}" FontSize="Small"/>
                 <Label Text="Waypoint number:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding Id}" FontSize="Small"/>
             </StackLayout>
         </StackLayout>
     </ScrollView>

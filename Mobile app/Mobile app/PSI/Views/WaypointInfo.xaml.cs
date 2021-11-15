@@ -16,7 +16,7 @@ namespace PSI.Views
         public WaypointInfo()
         {
             InitializeComponent();
-            BindingContext = new ItemsViewModel();
+            BindingContext = new WaypointsViewModel();
         }
     }
 }

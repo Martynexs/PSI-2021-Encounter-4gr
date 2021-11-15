@@ -53,19 +53,6 @@ namespace PSI.ViewModels
             get => description;
             set => SetProperty(ref description, value);
         }
-
-        public string Location
-        {
-            get => location;
-            set => SetProperty(ref location, value);
-        }
-
-        public double Rating
-        {
-            get => rating;
-            set => SetProperty(ref rating, value);
-        }
-
         public long CreatorId
         {
             get => creatorId;

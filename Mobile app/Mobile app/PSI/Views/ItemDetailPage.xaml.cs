@@ -9,10 +9,10 @@ namespace PSI.Views
         public ItemDetailPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new WaypointsViewModel();
         }
 
-        ItemsViewModel _viewModel;
+        WaypointsViewModel _viewModel;
 
         protected override void OnAppearing()
         {

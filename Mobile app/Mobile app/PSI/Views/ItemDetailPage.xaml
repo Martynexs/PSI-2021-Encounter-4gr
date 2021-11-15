@@ -7,12 +7,13 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Delete" Command="{Binding RouteDeleteCommand}" />
         <ToolbarItem Text="About" Command="{Binding RouteInfoCommand}"/>
-        <ToolbarItem Text="Add waypoint" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="Add waypoint" Command="{Binding AddWaypointCommand}" />
     </ContentPage.ToolbarItems>
-    <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadWaypointsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+    <RefreshView x:DataType="local:WaypointsViewModel" Command="{Binding LoadWaypointsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Waypoints}"
-                SelectionMode="None">
+                SelectedItem="{Binding SelectedWaypoint, Mode=TwoWay}"
+                SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="model1:Waypoint">
@@ -24,13 +25,6 @@
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=WaypointTapped}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
