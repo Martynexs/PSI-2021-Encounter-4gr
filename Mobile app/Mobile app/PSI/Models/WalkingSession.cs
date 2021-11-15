@@ -8,32 +8,32 @@ namespace PSI.Models
     public class WalkingSession
     {
         private static WalkingSession Current;
-        private readonly List<VisualWaypoint> WaypointsLeft;
+        private readonly List<VisualWaypoint> GoalWaypointsLeft;
         private Location LastKnownLocation;
         
 
         private WalkingSession(List<VisualWaypoint> waypoints)
         {
-            WaypointsLeft = waypoints;
+            GoalWaypointsLeft = waypoints;
         }
 
-        public static VisualWaypoint CurrentGoal()
+        public static VisualWaypoint CurrentGoalWaypoint()
         {
-            if (!HasGoalsLeft())
+            if (!HasGoalWaypointsLeft())
             {
                 return null;
             }
-            return Current.WaypointsLeft[0];
+            return Current.GoalWaypointsLeft[0];
         }
 
-        public static bool HasGoalsLeft()
+        public static bool HasGoalWaypointsLeft()
         {
-            return Current != null && Current.WaypointsLeft != null && Current.WaypointsLeft.Count > 0;
+            return Current != null && Current.GoalWaypointsLeft != null && Current.GoalWaypointsLeft.Count > 0;
         }
 
-        public static void ResetTo(List<VisualWaypoint> waypointsLeft)
+        public static void ResetTo(List<VisualWaypoint> goalWaypointsLeft)
         {
-            Current = new WalkingSession(waypointsLeft);
+            Current = new WalkingSession(goalWaypointsLeft);
         }
 
         public static void Finish()
@@ -41,40 +41,40 @@ namespace PSI.Models
             Current = null;
         }
 
-        public static bool IsGoalReached(Location deviceLocation)
+        public static bool IsGoalWaypointReached(Location deviceLocation)
         {
             if (deviceLocation == null)
             {
                 return false;
             }
 
-            VisualWaypoint currentGoal = CurrentGoal();
-            if (currentGoal == null)
+            VisualWaypoint currentGoalWaypoint = CurrentGoalWaypoint();
+            if (currentGoalWaypoint == null)
             {
                 return true;
             }
-            return (Math.Abs(deviceLocation.Latitude - currentGoal.Lat) < 0.001) && (Math.Abs(deviceLocation.Longitude - currentGoal.Long) < 0.001);
+            return (Math.Abs(deviceLocation.Latitude - currentGoalWaypoint.Lat) < 0.001) && (Math.Abs(deviceLocation.Longitude - currentGoalWaypoint.Long) < 0.001);
         }
 
-        public static VisualWaypoint MoveToNextGoal()
+        public static VisualWaypoint MoveToNextGoalWaypoint()
         {
-            if (!HasGoalsLeft())
+            if (!HasGoalWaypointsLeft())
             {
                 return null;
             }
 
-            Current.WaypointsLeft.RemoveAt(0);
+            Current.GoalWaypointsLeft.RemoveAt(0);
 
-            if (Current.WaypointsLeft.Count == 0)
+            if (Current.GoalWaypointsLeft.Count == 0)
             {
                 return null;
             }
-            return Current.WaypointsLeft[0];
+            return Current.GoalWaypointsLeft[0];
         }
 
-        public static bool IsTheLastGoal()
+        public static bool IsTheLastGoalWaypoint()
         {
-            return Current != null && Current.WaypointsLeft != null && Current.WaypointsLeft.Count == 1;
+            return Current != null && Current.GoalWaypointsLeft != null && Current.GoalWaypointsLeft.Count == 1;
         }
 
         public static bool CheckMoved(Location currentLocation)

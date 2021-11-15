@@ -33,7 +33,7 @@
 
          
             <Button Grid.Row="4" Grid.ColumnSpan="2" Text= "Start Walking" Command="{Binding GoWalkingCommand}"></Button>
-            <Button Grid.Row="4" Grid.Column="2" Text= "Quit" Command="{Binding QuitWalkingCommand}"></Button>
+            <Button Grid.Row="4" Grid.Column="2" Text= "Quit Walking" Command="{Binding QuitWalkingCommand}"></Button>
             
         </Grid>
     </ContentPage.Content>
