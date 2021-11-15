@@ -16,10 +16,12 @@ namespace PSI.Views
     {
         public Waypoint Waypoint { get; set; }
 
+        NewWaypointViewModel _viewModel;
+
         public NewWaypointPage()
         {
             InitializeComponent();
-            BindingContext = new NewWaypointViewModel();
+            BindingContext = _viewModel = new NewWaypointViewModel();
         }
     }
 }

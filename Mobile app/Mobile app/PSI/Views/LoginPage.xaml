@@ -7,8 +7,16 @@
              x:Class="PSI.Views.LoginPage"
              Shell.NavBarIsVisible="False"
              BackgroundImage="LogIn.jpg">
-    
+
     <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+
+        <ActivityIndicator x:Name="actInd"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"
+                             AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                             IsRunning="{Binding IsBusy}"
+                             IsVisible="{Binding IsBusy}" />
+
+
         <Label Text="Encounter" TextColor="Black" FontSize="32" FontAttributes="Italic" Margin="20,30,20,0" HorizontalOptions="Center"/>
         <Grid RowSpacing="20" Grid.Row="1" Margin="20,0,20,0">
             <Grid.RowDefinitions>
@@ -20,8 +28,19 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Entry Grid.Row="1" Placeholder="Email or Phone Number" PlaceholderColor="Black" FontSize="16"/>
-            <Entry Grid.Row="2" Placeholder="Password" PlaceholderColor="Black" FontSize="16"/>
+            
+            <Entry Grid.Row="1" 
+                   Placeholder="Email or Phone Number"
+                   PlaceholderColor="Black"
+                   Text="{Binding Username}"
+                   FontSize="16"/>
+            
+            <Entry Grid.Row="2" 
+                   Placeholder="Password" 
+                   PlaceholderColor="Black" 
+                   Text="{Binding Password}"
+                   FontSize="16"/>
+            
             <Button Text="Log In" BackgroundColor="#FFC900" TextColor="White" HeightRequest="50" VerticalOptions="Start" Grid.Row="3" Command="{Binding LoginCommand}"/>
             <Label Text="Don't have an account yet?  Sign Up!" TextColor="Black" HorizontalOptions="Center" Grid.Row="4" Margin="0,10,0,0" FontSize="16">
              <Label.GestureRecognizers>

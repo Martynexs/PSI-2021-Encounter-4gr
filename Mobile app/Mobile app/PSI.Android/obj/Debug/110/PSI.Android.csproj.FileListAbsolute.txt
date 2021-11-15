@@ -2730,3 +2730,7 @@ C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\android\assets\DataLibrary.dll
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\android\assets\DataLibrary.pdb
 C:\Users\Vartotojas\source\repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\PSI.Android.csproj.CopyComplete
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\bin\Debug\DataLibrary.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\bin\Debug\DataLibrary.pdb
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\android\assets\DataLibrary.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\android\assets\DataLibrary.pdb

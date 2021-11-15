@@ -10,7 +10,6 @@ using Xamarin.Forms;
 
 namespace PSI.ViewModels
 {
-
     public class ItemsViewModel : BaseViewModel
     {
         private Route _selectedItem;
@@ -129,7 +128,7 @@ namespace PSI.ViewModels
         {
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
             await Shell.Current.GoToAsync("..");
-            await _encounterProcessor.DeleteRoute(1);
+            await _encounterProcessor.DeleteRoute(SelectedRoute.Id);
         }
     }
 }

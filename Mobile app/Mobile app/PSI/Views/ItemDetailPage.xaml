@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:PSI.ViewModels" xmlns:model="clr-namespace:PSI.Models" xmlns:model1="clr-namespace:DataLibrary.Models;assembly=DataLibrary"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:PSI.ViewModels" xmlns:model="clr-namespace:PSI.Models" 
+             xmlns:model1="clr-namespace:DataLibrary.Models;assembly=DataLibrary"
              x:Class="PSI.Views.ItemDetailPage"
              Title="{Binding Waypoints}">
 
@@ -8,7 +10,9 @@
         <ToolbarItem Text="Delete" Command="{Binding RouteDeleteCommand}" />
         <ToolbarItem Text="About" Command="{Binding RouteInfoCommand}"/>
         <ToolbarItem Text="Add waypoint" Command="{Binding AddWaypointCommand}" />
+        <ToolbarItem Text="Show in map"/>
     </ContentPage.ToolbarItems>
+    
     <RefreshView x:DataType="local:WaypointsViewModel" Command="{Binding LoadWaypointsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Waypoints}"

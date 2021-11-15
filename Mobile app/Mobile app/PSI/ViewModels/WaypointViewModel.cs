@@ -11,7 +11,9 @@ namespace PSI.ViewModels
     class WaypointViewModel : BaseViewModel
     {
         private EncounterProcessor _encounterProcessor;
-        private long waypointId;
+
+        private long _waypointId;
+
         private long routeId;
         private int position;
         private double longitude;
@@ -93,13 +95,10 @@ namespace PSI.ViewModels
 
         public long WaypointId
         {
-            get
-            {
-                return waypointId;
-            }
+            get => _waypointId;
             set
             {
-                waypointId = value;
+                _waypointId = value;
                 LoadItemId(value);
             }
         }

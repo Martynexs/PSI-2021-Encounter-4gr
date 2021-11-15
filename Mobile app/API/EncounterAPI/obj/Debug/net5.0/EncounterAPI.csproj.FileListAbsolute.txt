@@ -474,3 +474,4 @@ C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\EncounterA
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\ref\EncounterAPI.dll
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.pdb
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.genruntimeconfig.cache
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.csproj.CopyComplete

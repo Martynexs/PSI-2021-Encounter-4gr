@@ -15,6 +15,7 @@ namespace PSI
             Routing.RegisterRoute(nameof(NewRoutePage), typeof(NewRoutePage));
             Routing.RegisterRoute(nameof(WaypointInfo), typeof(WaypointInfo));
             Routing.RegisterRoute(nameof(AboutRoute), typeof(AboutRoute));
+            Routing.RegisterRoute(nameof(NewWaypointPage), typeof(NewWaypointPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

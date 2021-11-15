@@ -51,7 +51,6 @@ namespace PSI.ViewModels
             AddWaypointCommand = new Command(OnAddWaypoint);
 
             _encounterProcessor = EncounterProcessor.Instanse;
-
         }
 
         public long RoutesId
@@ -96,7 +95,7 @@ namespace PSI.ViewModels
         private async void OnWaypointEditClicked(object sender)
         {
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await PopupNavigation.Instance.PushAsync(new EditWaypointPopup());
+            //await PopupNavigation.Instance.PushAsync(new EditWaypointPopup());
         }
         private async void OnAboutRouteClicked(object obj)
         {
@@ -114,10 +113,10 @@ namespace PSI.ViewModels
         public void OnAppearing()
         {
             IsBusy = true;
-            //SelectedItem = null;
         }
         private async void OnAddWaypoint(object obj)
         {
+            //
             await Shell.Current.GoToAsync($"{nameof(NewWaypointPage)}?{nameof(NewWaypointViewModel.RoutesId)}={routeId}");
         }
         public Waypoint SelectedWaypoint

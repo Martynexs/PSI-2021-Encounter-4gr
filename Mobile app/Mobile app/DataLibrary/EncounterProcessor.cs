@@ -8,7 +8,7 @@ namespace DataLibrary
 {
     public class EncounterProcessor
     {
-        private const string _apiAdress = "https://encounterapi-kk3.conveyor.cloud";
+        private const string _apiAdress = "https://encounterapi.conveyor.cloud";
 
         private static readonly Lazy<EncounterProcessor> _encounterProcessor =
             new Lazy<EncounterProcessor>(() => new EncounterProcessor());
@@ -129,7 +129,7 @@ namespace DataLibrary
         {
             try
             {
-                var url = $"{ _apiAdress }/User/{ username }";
+                var url = $"{ _apiAdress }/api/Users/{ username }";
                 var user = await _apiHelper.HttpGet<User>(url);
 
                 return user;
@@ -139,11 +139,10 @@ namespace DataLibrary
                 UnauthorisedHttpRequestEvent.Invoke();
                 return null;
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
             }
-            
         }
 
         public async Task<User> RegisterUser(User user)
@@ -159,7 +158,7 @@ namespace DataLibrary
             var url = $"{ _apiAdress }/token?username={ username }&password={password}";
 
             var logininfo = await _apiHelper.HttpPost<LoginInfo>(url, new LoginInfo { Username = username, Password = password });
-            var token = logininfo.Authentication_token;
+            var token = logininfo.access_token;
             return token;
         }
 
