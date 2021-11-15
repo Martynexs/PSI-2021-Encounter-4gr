@@ -61,7 +61,7 @@ namespace Map3
             List<LatLong> locations = new List<LatLong>();
             Route route;
             List<Leg> legs;
-            List<Step> steps;
+            List<Step> steps = new List<Step>();
             List<Intersection> intersections = new List<Intersection>();
 
             route = dr.Routes[0];
@@ -69,7 +69,7 @@ namespace Map3
             legs = route.Legs.ToList();
             foreach (Leg leg in legs)
             {
-                steps = leg.Steps.ToList();
+                steps.AddRange(leg.Steps.ToList());
 
                 foreach (Step step in steps)
                 {
