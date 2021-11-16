@@ -1,5 +1,4 @@
 ﻿using PSI.ViewModels;
-using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace PSI.Views

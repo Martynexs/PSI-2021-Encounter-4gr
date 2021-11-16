@@ -1,12 +1,10 @@
 ﻿using DataLibrary;
 using DataLibrary.Models;
+using Map3.ViewModels;
 using PSI.Views;
-using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -24,6 +22,7 @@ namespace PSI.ViewModels
         public Command RouteInfoCommand { get; }
         public Command RouteDeleteCommand { get; }
         public Command AddWaypointCommand { get; }
+        public Command OpenMapCommand { get; }
         public ObservableCollection<Waypoint> Waypoints { get; }
         public Command<Waypoint> WaypointTapped { get; }
 
@@ -33,6 +32,8 @@ namespace PSI.ViewModels
         public WaypointsViewModel()
         {
             Waypoints = new ObservableCollection<Waypoint>();
+
+            OpenMapCommand = new Command(OpenMapView);
 
             WaypointTapped = new Command<Waypoint>(OnWaypointSelected);
 
@@ -82,31 +83,25 @@ namespace PSI.ViewModels
 
         private async void OnWaypointDeleteClicked(object obj)
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}");
             await _encounterProcessor.DeleteWaypoint(SelectedWaypoint.Id);
         }
         private async void OnWaypointClicked(object obj)
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
             await Shell.Current.GoToAsync(nameof(WaypointInfo));
         }
 
         private async void OnWaypointEditClicked(object sender)
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
             //await PopupNavigation.Instance.PushAsync(new EditWaypointPopup());
         }
         private async void OnAboutRouteClicked(object obj)
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            //await Shell.Current.GoToAsync(nameof(AboutRoute));
             await Shell.Current.GoToAsync($"{nameof(AboutRoute)}?{nameof(ItemDetailViewModel.RouteId)}={routeId}");
         }
 
         private async void OnRouteDeleteClicked(object obj)
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
             await Shell.Current.GoToAsync("..");
             await _encounterProcessor.DeleteRoute(routeId);
         }
@@ -116,7 +111,6 @@ namespace PSI.ViewModels
         }
         private async void OnAddWaypoint(object obj)
         {
-            //
             await Shell.Current.GoToAsync($"{nameof(NewWaypointPage)}?{nameof(NewWaypointViewModel.RoutesId)}={routeId}");
         }
         public Waypoint SelectedWaypoint
@@ -131,6 +125,11 @@ namespace PSI.ViewModels
         private async void OnWaypointSelected(Waypoint waypoint)
         {
             await Shell.Current.GoToAsync($"{nameof(WaypointInfo)}?{nameof(WaypointViewModel.WaypointId)}={waypoint.Id}");
+        }
+
+        private async void OpenMapView()
+        {
+            await Shell.Current.GoToAsync($"{nameof(Map)}?{nameof(MapViewModel.SelectedRouteId)}={routeId}");
         }
     }
 }

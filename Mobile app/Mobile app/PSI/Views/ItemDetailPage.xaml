@@ -10,7 +10,7 @@
         <ToolbarItem Text="Delete" Command="{Binding RouteDeleteCommand}" />
         <ToolbarItem Text="About" Command="{Binding RouteInfoCommand}"/>
         <ToolbarItem Text="Add waypoint" Command="{Binding AddWaypointCommand}" />
-        <ToolbarItem Text="Show in map"/>
+        <ToolbarItem Text="Open map" Command="{Binding OpenMapCommand}"/>
     </ContentPage.ToolbarItems>
     
     <RefreshView x:DataType="local:WaypointsViewModel" Command="{Binding LoadWaypointsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">

@@ -1,10 +1,8 @@
 ﻿using DataLibrary;
-using DataLibrary.Models;
 using PSI.Views;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PSI.ViewModels

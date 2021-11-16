@@ -1,7 +1,5 @@
-﻿using PSI.ViewModels;
-using PSI.Views;
+﻿using PSI.Views;
 using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace PSI
@@ -16,6 +14,7 @@ namespace PSI
             Routing.RegisterRoute(nameof(WaypointInfo), typeof(WaypointInfo));
             Routing.RegisterRoute(nameof(AboutRoute), typeof(AboutRoute));
             Routing.RegisterRoute(nameof(NewWaypointPage), typeof(NewWaypointPage));
+            Routing.RegisterRoute(nameof(Map), typeof(Map));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

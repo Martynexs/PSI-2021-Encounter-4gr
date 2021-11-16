@@ -83,9 +83,15 @@ namespace DataLibrary
 
         public async Task DeleteRoute(long id)
         {
-            var url = $"{ _apiAdress }/api/route/{ id }";
-
-            await _apiHelper.HttpDelete(url);
+            try
+            {
+                var url = $"{ _apiAdress }/api/route/{ id }";
+                await _apiHelper.HttpDelete(url);
+            }
+            catch(UnauthorizedHttpRequestException)
+            {
+                UnauthorisedHttpRequestEvent.Invoke();
+            }
         }
 
         public async Task<Waypoint> CreateWaypoint(Waypoint waypoint)
@@ -139,7 +145,7 @@ namespace DataLibrary
                 UnauthorisedHttpRequestEvent.Invoke();
                 return null;
             }
-            catch(Exception ex)
+            catch
             {
                 return null;
             }

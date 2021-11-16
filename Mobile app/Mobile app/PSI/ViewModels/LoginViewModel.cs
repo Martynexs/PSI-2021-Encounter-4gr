@@ -1,8 +1,5 @@
 ﻿using DataLibrary;
 using PSI.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PSI.ViewModels
@@ -23,6 +20,7 @@ namespace PSI.ViewModels
             LoginCommand = new Command(OnLoginClicked);
             RegistrationCommand = new Command(OnRegisterClicked);
             _session = Session.Instanse;
+            EncounterProcessor.Instanse.UnauthorisedHttpRequestEvent += async () => await Application.Current.MainPage.DisplayAlert("Unauthorized action", "Please login.", "OK");
         }
 
         private async void OnLoginClicked(object obj)

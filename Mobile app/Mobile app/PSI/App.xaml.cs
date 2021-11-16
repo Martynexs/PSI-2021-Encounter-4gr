@@ -1,8 +1,6 @@
 ﻿using DataLibrary;
 using PSI.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace PSI
 {

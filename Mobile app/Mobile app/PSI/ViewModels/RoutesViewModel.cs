@@ -44,6 +44,7 @@ namespace PSI.ViewModels
             AddItemCommand = new Command(OnAddItem);
 
             _encounterProcessor = EncounterProcessor.Instanse;
+            _encounterProcessor.UnauthorisedHttpRequestEvent += OnAuthenticationFailed;
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -130,5 +131,12 @@ namespace PSI.ViewModels
             await Shell.Current.GoToAsync("..");
             await _encounterProcessor.DeleteRoute(SelectedRoute.Id);
         }
+
+        private async void OnAuthenticationFailed()
+        {
+            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+        }
+
+
     }
 }

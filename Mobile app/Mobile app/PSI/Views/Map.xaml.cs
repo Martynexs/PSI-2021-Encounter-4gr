@@ -1,9 +1,4 @@
 ﻿using Xamarin.Forms;
-using Xamarin.Forms.Maps;
-using System.Linq;
-using System.Collections.Generic;
-using PSI.ViewModels;
-using System;
 
 using Xamarin.Forms.Xaml;
 using Map3.ViewModels;

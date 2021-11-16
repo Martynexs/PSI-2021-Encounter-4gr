@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using EncounterAPI.Models;
 using EncounterAPI.TypeExtensions;
 using EncounterAPI.Data_Transfer_Objects;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace EncounterAPI.Controllers
 {
@@ -104,12 +106,20 @@ namespace EncounterAPI.Controllers
 
         // DELETE: api/Route/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteRouteModel(long id)
         {
+            var currentUser = User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).First().Value;
+
             var routeModel = await _context.Routes.FindAsync(id);
             if (routeModel == null)
             {
                 return NotFound();
+            }
+
+            if(routeModel.CreatorID.ToString() != currentUser)
+            {
+                return Forbid();
             }
 
             _context.Routes.Remove(routeModel);

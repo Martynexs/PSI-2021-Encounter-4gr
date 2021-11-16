@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Net;
@@ -36,7 +33,7 @@ namespace DataLibrary
                     return value;
                 }
 
-                if(response.StatusCode == HttpStatusCode.Unauthorized)
+                if(response.StatusCode == HttpStatusCode.Forbidden)
                 {
                     throw new UnauthorizedHttpRequestException(response.ReasonPhrase);
                 }
@@ -55,7 +52,7 @@ namespace DataLibrary
                     return obj;
                 }
 
-                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                if (response.StatusCode == HttpStatusCode.Forbidden)
                 {
                     throw new UnauthorizedHttpRequestException(response.ReasonPhrase);
                 }
@@ -71,7 +68,7 @@ namespace DataLibrary
             {
                 if (!response.IsSuccessStatusCode)
                 {
-                    if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    if (response.StatusCode == HttpStatusCode.Forbidden)
                     {
                         throw new UnauthorizedHttpRequestException(response.ReasonPhrase);
                     }
@@ -86,7 +83,7 @@ namespace DataLibrary
             {
                 if (!response.IsSuccessStatusCode)
                 {
-                    if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    if (response.StatusCode == HttpStatusCode.Forbidden)
                     {
                         throw new UnauthorizedHttpRequestException(response.ReasonPhrase);
                     }
