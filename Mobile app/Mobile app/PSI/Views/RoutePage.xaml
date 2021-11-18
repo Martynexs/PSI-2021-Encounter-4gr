@@ -12,11 +12,8 @@
         <ToolbarItem Text="New" Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>
     <StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Entry Placeholder="Search" WidthRequest="320"/>
-            <Button Text="Search" WidthRequest="80"/>
-        </StackLayout>
-        <RefreshView x:DataType="local:RoutesViewModel" Command="{Binding LoadRoutesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <Entry Placeholder="Search" WidthRequest="320" Text="{Binding SearchText}"/>
+            <RefreshView x:DataType="local:RoutesViewModel" Command="{Binding LoadRoutesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Routes}"
                 SelectedItem="{Binding SelectedRoute , Mode=TwoWay}"

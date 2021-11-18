@@ -63,6 +63,7 @@ namespace EncounterAPI.Controllers
             {
                 _context.Ratings.Add(createdRating);
             }
+            await _context.SaveChangesAsync();
 
             RatingsLogic.UpdateRating(createdRating, _context);
 
@@ -73,6 +74,10 @@ namespace EncounterAPI.Controllers
             catch (DbUpdateConcurrencyException)
             {
                throw;
+            }
+            catch(Exception ex)
+            {
+                throw;
             }
 
             return NoContent();

@@ -3,8 +3,11 @@ using DataLibrary.Models;
 using PSI.Views;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -20,6 +23,9 @@ namespace PSI.ViewModels
         public Command AddRouteCommand { get; }
 
         private Route _selectedRoute;
+
+        private bool _userRoutesOnly = false;
+        public string SearchText { get; set; }
 
         public RoutesViewModel()
         {
@@ -41,25 +47,32 @@ namespace PSI.ViewModels
 
         async Task ExecuteLoadRoutesCommand()
         {
-            IsBusy = true;
-
-            try
+            if (!_userRoutesOnly)
             {
-                Routes.Clear();
-                var routes = await _encounterProcessor.GetAllRoutes();
-                foreach (var route in routes)
+                IsBusy = true;
+
+                try
                 {
-                    Routes.Add(route);
+                    Routes.Clear();
+                    var routes = await _encounterProcessor.GetAllRoutes();
+
+                    if (SearchText != "" && SearchText != null) routes = SearchRoutes(routes);
+
+                    foreach (var route in routes)
+                    {
+                        Routes.Add(route);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+                finally
+                {
+                    IsBusy = false;
                 }
             }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+            IsBusy = false;
         }
         public void OnAppearing()
         {
@@ -91,26 +104,40 @@ namespace PSI.ViewModels
 
         private async void LoadUserRoutes()
         {
-            IsBusy = true;
+            _userRoutesOnly = !_userRoutesOnly;
 
-            try
+            if (_userRoutesOnly)
             {
-                Routes.Clear();
-                var items = await _encounterProcessor.GetUserRoutes(_session.CurrentUser.Id);
-                foreach (var item in items)
+                IsBusy = true;
+                try
                 {
-                    Routes.Add(item);
+                    Routes.Clear();
+                    var items = await _encounterProcessor.GetUserRoutes(_session.CurrentUser.Id);
+                    foreach (var item in items)
+                    {
+                        Routes.Add(item);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+                finally
+                {
+                    IsBusy = false;
                 }
             }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
         }
+
+
+        private List<Route> SearchRoutes(List<Route> routes)
+        {
+            var smthg = routes;
+            var searchedRoutes = routes.Where(r => r.Name.Contains(SearchText)).Select(r => r);
+            return searchedRoutes.ToList();
+        }
+
+
 
 
     }

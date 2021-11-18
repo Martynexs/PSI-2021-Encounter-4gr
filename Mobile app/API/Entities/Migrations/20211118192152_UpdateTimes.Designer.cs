@@ -3,14 +3,16 @@ using System;
 using EncounterAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EncounterAPI.Migrations
 {
     [DbContext(typeof(EncounterContext))]
-    partial class EncounterContextModelSnapshot : ModelSnapshot
+    [Migration("20211118192152_UpdateTimes")]
+    partial class UpdateTimes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,7 +70,7 @@ namespace EncounterAPI.Migrations
                     b.ToTable("Routes");
                 });
 
-            modelBuilder.Entity("EncounterAPI.Models.User", b =>
+            modelBuilder.Entity("EncounterAPI.Models.UserModel", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
@@ -98,7 +100,7 @@ namespace EncounterAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("ClosingTime")
+                    b.Property<TimeSpan>("ClosingTime")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -113,7 +115,7 @@ namespace EncounterAPI.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("OpeningHours")
+                    b.Property<TimeSpan>("OpeningHours")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PhoneNumber")
@@ -146,7 +148,7 @@ namespace EncounterAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EncounterAPI.Models.User", "User")
+                    b.HasOne("EncounterAPI.Models.UserModel", "User")
                         .WithMany("Ratings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -159,7 +161,7 @@ namespace EncounterAPI.Migrations
 
             modelBuilder.Entity("EncounterAPI.Models.RouteModel", b =>
                 {
-                    b.HasOne("EncounterAPI.Models.User", "Creator")
+                    b.HasOne("EncounterAPI.Models.UserModel", "Creator")
                         .WithMany("Routes")
                         .HasForeignKey("CreatorID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -184,7 +186,7 @@ namespace EncounterAPI.Migrations
                     b.Navigation("Waypoints");
                 });
 
-            modelBuilder.Entity("EncounterAPI.Models.User", b =>
+            modelBuilder.Entity("EncounterAPI.Models.UserModel", b =>
                 {
                     b.Navigation("Ratings");
 

@@ -479,5 +479,5 @@ D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Contracts.pdb
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Entities.pdb
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Repository.pdb
-D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.csproj.CopyComplete
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.csproj.CopyComplete

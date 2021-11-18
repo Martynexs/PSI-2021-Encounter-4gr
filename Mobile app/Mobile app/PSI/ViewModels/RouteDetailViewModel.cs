@@ -103,6 +103,7 @@ namespace PSI.ViewModels
 
 
                 var userRating = await _encounterProcessor.GetRating(RouteId, _session.CurrentUser.Id);
+                UserRating = userRating.Value;
 
             }
             catch (Exception)
