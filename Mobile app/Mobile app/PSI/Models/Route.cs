@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PSI.Models
+﻿namespace PSI.Models
 {
     public class Item
     {

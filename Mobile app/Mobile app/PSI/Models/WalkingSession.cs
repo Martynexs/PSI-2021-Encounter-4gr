@@ -1,5 +1,4 @@
-﻿using Map3.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Xamarin.Essentials;
 

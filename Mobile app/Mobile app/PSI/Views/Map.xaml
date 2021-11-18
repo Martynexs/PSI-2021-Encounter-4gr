@@ -22,7 +22,7 @@
 
 
             <StackLayout Grid.Row="0" Grid.ColumnSpan ="3" >
-                <Button Text= "Get route!" Command="{Binding GetRouteCommand}"></Button>
+                <Button Text= "Calculate route" Command="{Binding GetRouteCommand}"></Button>
             </StackLayout>
 
             <ActivityIndicator HeightRequest = "10" Grid.Row="1" Grid.Column="0" IsRunning="{Binding IsBusy}"/>

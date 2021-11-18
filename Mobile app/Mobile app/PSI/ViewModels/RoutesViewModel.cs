@@ -1,134 +1,144 @@
-﻿using PSI.Models;
+﻿using DataLibrary;
+using DataLibrary.Models;
 using PSI.Views;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PSI.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class RoutesViewModel : BaseViewModel
     {
-        private Item _selectedItem;
+        private EncounterProcessor _encounterProcessor;
+        private Session _session;
+        public ObservableCollection<Route> Routes { get; }
+        public Command LoadRoutesCommand { get; }
+        public Command LoadUserRoutesCommand { get; }
+        public Command AddRouteCommand { get; }
 
-        public ObservableCollection<Item> Items { get; }
-        public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
-        public Command WaypointInfoCommand { get; }
-        public Command WaypointEditCommand { get; }
+        private Route _selectedRoute;
 
-        public Command RouteEditCommand { get; }
-        public Command RouteInfoCommand { get; }
-        public Command<Item> ItemTapped { get; }
-        public Command<Item> WaypointTapped { get; }
+        private bool _userRoutesOnly = false;
+        public string SearchText { get; set; }
 
-        public ItemsViewModel()
+        public RoutesViewModel()
         {
             Title = "Routes";
-            Items = new ObservableCollection<Item>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            ItemTapped = new Command<Item>(OnItemSelected);
+            Routes = new ObservableCollection<Route>();
 
-            WaypointTapped = new Command<Item>(OnWaypointSelected);
+            LoadRoutesCommand = new Command(async () => await ExecuteLoadRoutesCommand());
 
-            WaypointInfoCommand = new Command(OnWaypointClicked);
+            LoadUserRoutesCommand = new Command(LoadUserRoutes);
 
-            WaypointEditCommand = new Command(OnWaypointEditClicked);
+            AddRouteCommand = new Command(AddRoute);
 
-            RouteEditCommand = new Command(OnRouteEditClicked);
+            _encounterProcessor = EncounterProcessor.Instanse;
+            _encounterProcessor.UnauthorisedHttpRequestEvent += OnAuthenticationFailed;
 
-            RouteInfoCommand = new Command(OnAboutRouteClicked);
-
-            AddItemCommand = new Command(OnAddItem);
+            _session = Session.Instanse;
         }
 
-        async Task ExecuteLoadItemsCommand()
+        async Task ExecuteLoadRoutesCommand()
         {
-            IsBusy = true;
-
-            try
+            if (!_userRoutesOnly)
             {
-                Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
+                IsBusy = true;
+
+                try
                 {
-                    Items.Add(item);
+                    Routes.Clear();
+                    var routes = await _encounterProcessor.GetAllRoutes();
+
+                    if (SearchText != "" && SearchText != null) routes = SearchRoutes(routes);
+
+                    foreach (var route in routes)
+                    {
+                        Routes.Add(route);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+                finally
+                {
+                    IsBusy = false;
                 }
             }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+            IsBusy = false;
         }
-
         public void OnAppearing()
         {
             IsBusy = true;
-            SelectedItem = null;
         }
 
-        public Item SelectedItem
+        public Route SelectedRoute
         {
-            get => _selectedItem;
+            get => _selectedRoute;
             set
             {
-                SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
+                _selectedRoute = value;
+                OnRouteSelected(value);
             }
         }
+        private async void OnRouteSelected(Route route)
+        {
+            await Shell.Current.GoToAsync($"{nameof(RouteDetailPage)}?{nameof(WaypointsViewModel.RoutesId)}={route.Id}");
+        }
 
-        private async void OnAddItem(object obj)
+        private async void AddRoute(object obj)
         {
             await Shell.Current.GoToAsync(nameof(NewRoutePage));
         }
-
-        async void OnItemSelected(Item item)
+        private async void OnAuthenticationFailed()
         {
-            if (item == null)
-                return;
-
-            // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
 
-        async void OnWaypointSelected(Item item)
+        private async void LoadUserRoutes()
         {
-            if (item == null)
-                return;
+            _userRoutesOnly = !_userRoutesOnly;
 
-            // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync(nameof(WaypointInfo));
+            if (_userRoutesOnly)
+            {
+                IsBusy = true;
+                try
+                {
+                    Routes.Clear();
+                    var items = await _encounterProcessor.GetUserRoutes(_session.CurrentUser.Id);
+                    foreach (var item in items)
+                    {
+                        Routes.Add(item);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
+            }
         }
 
-        private async void OnWaypointClicked(object obj)
+
+        private List<Route> SearchRoutes(List<Route> routes)
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync(nameof(WaypointInfo));
+            var smthg = routes;
+            var searchedRoutes = routes.Where(r => r.Name.Contains(SearchText)).Select(r => r);
+            return searchedRoutes.ToList();
         }
 
-        private async void OnWaypointEditClicked(object sender)
-        {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await PopupNavigation.Instance.PushAsync(new EditWaypointPopup());
-        }
 
-        private async void OnRouteEditClicked(object sender)
-        {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await PopupNavigation.Instance.PushAsync(new RouteEditPopup());
-        }
 
-        private async void OnAboutRouteClicked(object obj)
-        {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync(nameof(AboutRoute));
-        }
+
     }
 }

@@ -1,26 +1,17 @@
-﻿using PSI.Models;
-using PSI.ViewModels;
-using PSI.Views;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PSI.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace PSI.Views
 {
-    public partial class ItemsPage : ContentPage
+    public partial class RoutesPage : ContentPage
     {
-        ItemsViewModel _viewModel;
+        RoutesViewModel _viewModel;
 
-        public ItemsPage()
+        public RoutesPage()
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new RoutesViewModel();
         }
 
         protected override void OnAppearing()

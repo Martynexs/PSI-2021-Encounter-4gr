@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Linq;
 using Map3.Views;
-using PSI.Services;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 
@@ -26,15 +25,11 @@ namespace Map3
         {
             try
             {
-                List<string> latLongStrings = new List<string>();
                 string resultString = "";
 
                 if (coordinates != null)
                 {
-                    foreach(VisualWaypoint coordinate in coordinates)
-                    {
-                        latLongStrings.Add(coordinate.Long + "," + coordinate.Lat);
-                    }
+                    var latLongStrings = coordinates.Select(c => c.Long + "," + c.Lat);
                     resultString = string.Join(";", latLongStrings.ToArray());
                 }
 
@@ -56,34 +51,33 @@ namespace Map3
             }
         }
 
-        public List<LatLong> ExtractLocations(DirectionResponse dr)
+        public List<LatLong> ExtractLocations(DirectionResponse directionResponse)
         {
-            List<LatLong> locations = new List<LatLong>();
-            Route route;
-            List<Leg> legs;
-            List<Step> steps = new List<Step>();
-            List<Intersection> intersections = new List<Intersection>();
+            var locations = new List<LatLong>();
+            var legs = new List<Leg>();
+            var steps = new List<Step>();
+            var intersections = new List<Intersection>();
 
-            route = dr.Routes[0];
+            var route = directionResponse.Routes[0];
 
             legs = route.Legs.ToList();
-            foreach (Leg leg in legs)
+            foreach (var leg in legs)
             {
                 steps.AddRange(leg.Steps.ToList());
 
-                foreach (Step step in steps)
+                foreach (var step in steps)
                 {
-                    List<Intersection> localIntersections = step.Intersections.ToList();
+                    var localIntersections = step.Intersections.ToList();
 
-                    foreach (Intersection intersection in localIntersections)
+                    foreach (var intersection in localIntersections)
                     {
                         intersections.Add(intersection);
                     }
                 }
             }
-            foreach (Intersection intersection in intersections)
+            foreach (var intersection in intersections)
             {
-                LatLong p = new LatLong
+                var p = new LatLong
                 {
                     Lat = intersection.Location[1],
                     Long = intersection.Location[0]
@@ -96,7 +90,7 @@ namespace Map3
 
         public void DrawPins(List<VisualWaypoint> visualWaypoints, Map map)
         {
-            foreach (VisualWaypoint item in visualWaypoints)
+            foreach (var item in visualWaypoints)
             {
                 Pin WaypointPins = new Pin()
                 {
@@ -115,7 +109,6 @@ namespace Map3
             {
                 StrokeColor = Color.Blue,
                 StrokeWidth = 9,
-
             };
 
             foreach (LatLong latlong in locations)

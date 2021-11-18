@@ -18,7 +18,7 @@ namespace EncounterAPI
                          {
                              rowCount = grp.Count(),
                              rowSum = grp.Sum(x => x.Value)
-                         }).Single();
+                         }).First();
 
             route.Raters = query.rowCount;
             route.RateSum = query.rowSum;

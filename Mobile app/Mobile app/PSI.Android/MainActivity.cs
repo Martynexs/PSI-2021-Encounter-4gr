@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -54,7 +53,6 @@ namespace PSI.Droid
                 base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             }
         }
-
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

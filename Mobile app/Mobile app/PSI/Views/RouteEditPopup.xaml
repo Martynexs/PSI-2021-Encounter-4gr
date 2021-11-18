@@ -3,7 +3,8 @@
                  xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-                 x:Class="PSI.Views.RouteEditPopup">
+                 x:Class="PSI.Views.RouteEditPopup"
+                 Background="white">
 
     <popup:PopupPage.Animation>
         <animations:ScaleAnimation 
@@ -49,8 +50,8 @@
                                        HorizontalOptions="FillAndExpand"
                                        Padding="0" Margin="0">
 
-                                    <StackLayout Orientation="Horizontal">
-                                        <Entry Text="Name"/>
+                                    <StackLayout  VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                        <Entry Text="{Binding Name}"/>
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
@@ -66,14 +67,14 @@
                                        HorizontalOptions="FillAndExpand"
                                        Padding="0" Margin="0">
 
-                                    <StackLayout Orientation="Horizontal">
-                                        <Entry Text="Name"/>
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                        <Entry Text="{Binding Description}"/>
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
 
                             <StackLayout Margin="0,10,0,0">
-                                <Label Text="Rate:"
+                                <Label Text="Location:"
                                        TextColor="#FFC900"
                                        FontSize="Medium"/>
 
@@ -83,11 +84,12 @@
                                        HorizontalOptions="FillAndExpand"
                                        Padding="0" Margin="0">
 
-                                    <StackLayout Orientation="Horizontal">
-                                        <Entry Text="Name"/>
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                        <Entry Text="{Binding Location}"/>
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
+
                             <StackLayout Orientation="Horizontal"
                                          HorizontalOptions="Center"
                                          Margin="0,20,0,0"
@@ -97,13 +99,13 @@
                                         TextColor="Black"
                                         BackgroundColor="#FFC900"
                                         CornerRadius="30"
-                                        Clicked="Cancel_Button_Clicked"/>
+                                        Command="{Binding CloseCommand}"/>
 
                                 <Button Text="Save"
                                         TextColor="Black"
                                         BackgroundColor="#FFC900"
-                                        CornerRadius="30"/>
-
+                                        CornerRadius="30"
+                                        Command="{Binding SaveCommand}"/>
                             </StackLayout>
 
                         </StackLayout>

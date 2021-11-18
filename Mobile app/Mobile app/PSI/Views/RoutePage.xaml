@@ -1,40 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PSI.Views.ItemsPage"
+             x:Class="PSI.Views.RoutesPage"
              Title="{Binding Title}"
              xmlns:local="clr-namespace:PSI.ViewModels"  
-             xmlns:model="clr-namespace:PSI.Models"  
+             xmlns:model1="clr-namespace:DataLibrary.Models;assembly=DataLibrary"
              x:Name="BrowseItemsPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="My Routes" Command="{Binding LoadUserRoutesCommand}"/>
+        <ToolbarItem Text="New" Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>
-    <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
-                SelectionMode="None">
+    <StackLayout>
+        <Entry Placeholder="Search" WidthRequest="320" Text="{Binding SearchText}"/>
+            <RefreshView x:DataType="local:RoutesViewModel" Command="{Binding LoadRoutesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Routes}"
+                SelectedItem="{Binding SelectedRoute , Mode=TwoWay}"
+                SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Item">
-                        <Label Text="{Binding Text}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                        <Label Text="{Binding Description}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
+                        <StackLayout Padding="5" x:DataType="model1:Route">
+                            <Frame>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}"
+                                FontAttributes="Bold"
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                                    <Label Text="{Binding Location}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                                    <Label Text="{Binding Rating, StringFormat='{0} ★'}"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </RefreshView>
+    </StackLayout>
 </ContentPage>

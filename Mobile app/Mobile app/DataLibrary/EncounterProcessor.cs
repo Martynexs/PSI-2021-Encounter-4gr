@@ -36,8 +36,23 @@ namespace DataLibrary
 
         public async Task<List<Route>> GetAllRoutes()
         {
+            Console.WriteLine("Pateko i API");
             var url = $"{ _apiAdress }/api/route";
+            try
+            {
+            var routes = await _apiHelper.HttpGet<List<Route>>(url);
+            return routes;
+            }
+            catch (Exception ex)
+            {
+                var exc = ex.Message;
+                throw new Exception();
+            }
+        }
 
+        public async Task<List<Route>> GetUserRoutes(long id)
+        {
+            var url = $"{ _apiAdress }/api/route/user/{ id }";
             var routes = await _apiHelper.HttpGet<List<Route>>(url);
             return routes;
         }
@@ -48,6 +63,14 @@ namespace DataLibrary
 
             var waypoints = await _apiHelper.HttpGet<List<Waypoint>>(url);
             return waypoints;
+        }
+
+        public async Task<Waypoint> GetWaypoint(long waypointId)
+        {
+            var url = $"{ _apiAdress }/api/waypoints/{ waypointId }";
+
+            var waypoint = await _apiHelper.HttpGet<Waypoint>(url);
+            return waypoint;
         }
 
         public async Task<Route> CreateRoute(Route route)
@@ -67,9 +90,15 @@ namespace DataLibrary
 
         public async Task DeleteRoute(long id)
         {
-            var url = $"{ _apiAdress }/api/route/{ id }";
-
-            await _apiHelper.HttpDelete(url);
+            try
+            {
+                var url = $"{ _apiAdress }/api/route/{ id }";
+                await _apiHelper.HttpDelete(url);
+            }
+            catch(UnauthorizedHttpRequestException)
+            {
+                UnauthorisedHttpRequestEvent.Invoke();
+            }
         }
 
         public async Task<Waypoint> CreateWaypoint(Waypoint waypoint)
@@ -96,14 +125,14 @@ namespace DataLibrary
 
         public async Task SubmitRating(Rating rating)
         {
-            var url = $"{ _apiAdress }/api/ratings/{ rating.RouteId }/{ rating.Username }";
+            var url = $"{ _apiAdress }/api/ratings/{ rating.RouteId }/{ rating.UserId }";
 
             await _apiHelper.HttpPut<Rating>(url, rating);
         }
 
-        public async Task<Rating> GetRating(long routeId, string username)
+        public async Task<Rating> GetRating(long routeId, long userId)
         {
-            var url = $"{ _apiAdress }/api/ratings/{ routeId }/{ username }";
+            var url = $"{ _apiAdress }/api/ratings/{ routeId }/{ userId }";
 
             var rating = await _apiHelper.HttpGet<Rating>(url);
             return rating;
@@ -113,7 +142,7 @@ namespace DataLibrary
         {
             try
             {
-                var url = $"{ _apiAdress }/User/{ username }";
+                var url = $"{ _apiAdress }/api/Users/{ username }";
                 var user = await _apiHelper.HttpGet<User>(url);
 
                 return user;
@@ -127,7 +156,6 @@ namespace DataLibrary
             {
                 return null;
             }
-            
         }
 
         public async Task<User> RegisterUser(User user)
@@ -143,7 +171,7 @@ namespace DataLibrary
             var url = $"{ _apiAdress }/token?username={ username }&password={password}";
 
             var logininfo = await _apiHelper.HttpPost<LoginInfo>(url, new LoginInfo { Username = username, Password = password });
-            var token = logininfo.Authentication_token;
+            var token = logininfo.access_token;
             return token;
         }
 

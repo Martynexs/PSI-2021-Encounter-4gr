@@ -5,29 +5,29 @@
              Title="Waypoint">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Delete" Command="{Binding WaypointEditCommand}"/>
-        <ToolbarItem Text="Edit" Command="{Binding WaypointEditCommand}"/>
+        <ToolbarItem Text="Delete" Command="{Binding WaypointDeleteCommand}"/>
+        <ToolbarItem Text="Edit" Command="{Binding EditCommand}"/>
     </ContentPage.ToolbarItems>
     <ScrollView>
         <StackLayout>
             <StackLayout Spacing="20" Padding="15">
                 <Label Text="Name:" FontSize="Medium" />
-                <Label Text="{Binding Text}" FontSize="Small"/>
-                <Label Text="Coordinates:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding Name}" FontSize="Small"/>
+                <Label Text="Longitude:" FontSize="Medium" />
+                <Label Text="{Binding Longitude}" FontSize="Small"/>
+                <Label Text="Latitude:" FontSize="Medium" />
+                <Label Text="{Binding Latitude}" FontSize="Small"/>
                 <Label Text="Type:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding Type}" FontSize="Small"/>
                 <Label Text="Price:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding Price}" FontSize="Small"/>
                 <Label Text="Opening hours:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding OpeningHours}" FontSize="Small"/>
                 <Label Text="Closing hours:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding ClosingHours}" FontSize="Small"/>
                 <Label Text="Phone number:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="{Binding PhoneNumber}" FontSize="Small"/>
                 <Label Text="Description:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
-                <Label Text="Waypoint number:" FontSize="Medium" />
                 <Label Text="{Binding Description}" FontSize="Small"/>
             </StackLayout>
         </StackLayout>

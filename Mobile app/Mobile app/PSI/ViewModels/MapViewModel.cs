@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
 using PSI.Models;
 using PSI.Services;
-using Map3.ViewModels;
-using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
-using PSI.Views;
 using Xamarin.Essentials;
 using Map = Xamarin.Forms.Maps.Map;
 using PSI.ViewModels;
 using Map3.Views;
-using System.Timers;
 using System.Threading;
 
 namespace Map3.ViewModels
 {
+    [QueryProperty(nameof(SelectedRouteId), nameof(SelectedRouteId))]
     public class MapViewModel : BaseViewModel
     {
         private bool _walkingActive;
@@ -33,6 +28,9 @@ namespace Map3.ViewModels
         public Command GetRouteCommand { get; }
         public Command GoWalkingCommand { get; }
         public Command QuitWalkingCommand { get; }
+
+        public long SelectedRouteId { get; set; }
+
         public MapViewModel()
         {
             map = new Map();
@@ -46,20 +44,19 @@ namespace Map3.ViewModels
 
         public double RouteDuration
         {
-            get { return _routeduration; }
+            get => _routeduration;
             set { _routeduration = value; OnPropertyChanged(); }
         }
         public double RouteDistance
         {
-            get { return _routedistance; }
+            get => _routedistance;
             set { _routedistance = value; OnPropertyChanged(); }
         }
         public string ManeuverInfo
         {
-            get { return _maneuverinfo; }
+            get => _maneuverinfo;
             set { _maneuverinfo = value; OnPropertyChanged(); }
         }
-
 
         public async Task DisplayAlert(string title, string message, string cancel)
         {
@@ -68,7 +65,7 @@ namespace Map3.ViewModels
         public async Task DisplayAlert(string title, string message, string accept, string cancel)
         {
             await Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);
-        }    
+        }
 
         public async Task InitializeWalkingProcess()
         {
@@ -80,11 +77,11 @@ namespace Map3.ViewModels
 
             _walkingActive = true;
             Location deviceLocation = await Geolocation.GetLocationAsync();
-           
+
             if (!WalkingSession.IsGoalWaypointReached(deviceLocation))
             {
                 VisualWaypoint firstGoal = WalkingSession.CurrentGoalWaypoint();
-                await DisplayAlert("Info", "Hello, to start the route you need to reach first waypoint "  + firstGoal.Name + ". Please follow directions.", "Ok");
+                await DisplayAlert("Info", "Hello, to start the route you need to reach first waypoint " + firstGoal.Name + ". Please follow directions.", "Ok");
             }
 
             _walkingCancelHandler = new CancellationTokenSource();
@@ -102,13 +99,15 @@ namespace Map3.ViewModels
                     {
                         await HandleUserWalking();
                         await task;
-                    } else
+                    }
+                    else
                     {
                         WalkingSession.Finish();
                         _walkingActive = false;
                         return;
                     }
-                } catch(TaskCanceledException)
+                }
+                catch (TaskCanceledException)
                 {
                     WalkingSession.Finish();
                     _walkingActive = false;
@@ -118,7 +117,7 @@ namespace Map3.ViewModels
 
         private async Task HandleUserWalking()
         {
-            Location deviceLocation = await Geolocation.GetLocationAsync();
+            var deviceLocation = await Geolocation.GetLocationAsync();
 
             if (!WalkingSession.CheckMoved(deviceLocation))
             {
@@ -139,8 +138,8 @@ namespace Map3.ViewModels
                 }
                 else
                 {
-                    VisualWaypoint currentWaypoint = WalkingSession.CurrentGoalWaypoint();
-                    VisualWaypoint nextWaypoint = WalkingSession.MoveToNextGoalWaypoint();
+                    var currentWaypoint = WalkingSession.CurrentGoalWaypoint();
+                    var nextWaypoint = WalkingSession.MoveToNextGoalWaypoint();
                     await DisplayAlert("Good job!", "You reached " + currentWaypoint.Name + " now please go to " + nextWaypoint.Name, "ok");
                     RedrawPolylineFromTo(currentWaypoint, nextWaypoint);
                     return;
@@ -148,7 +147,7 @@ namespace Map3.ViewModels
             }
             else
             {
-                VisualWaypoint from = new VisualWaypoint();
+                var from = new VisualWaypoint();
                 from.Lat = deviceLocation.Latitude;
                 from.Long = deviceLocation.Longitude;
                 VisualWaypoint to = WalkingSession.CurrentGoalWaypoint();
@@ -159,23 +158,23 @@ namespace Map3.ViewModels
 
         private async void RedrawPolylineFromTo(VisualWaypoint from, VisualWaypoint to)
         {
-            List<VisualWaypoint> fromTo = new List<VisualWaypoint>();
+            var fromTo = new List<VisualWaypoint>();
             fromTo.Add(from);
             fromTo.Add(to);
 
-            DirectionResponse dr = await services.GetDirectionResponseAsync(fromTo);
-            UpdateDistanceAndTime(dr);
-            UpdateManeuver(dr);
-            List<LatLong> polylineLocations = services.ExtractLocations(dr);
+            var directionResponse = await services.GetDirectionResponseAsync(fromTo);
+            UpdateDistanceAndTime(directionResponse);
+            UpdateManeuver(directionResponse);
+            var polylineLocations = services.ExtractLocations(directionResponse);
             map.MapElements.Clear();
             services.DrawPolyline(polylineLocations, map);
 
-            MapSpan mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(fromTo), Distance.FromMeters(Math.Max(dr.Routes[0].Distance / 2, 50)));
+            var mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(fromTo), Distance.FromMeters(Math.Max(directionResponse.Routes[0].Distance / 2, 50)));
             map.MoveToRegion(mapSpan);
         }
 
         public async Task AddPolylineAsync()
-        {      
+        {
             List<LatLong> locations;
             if (!IsBusy)
             {
@@ -195,7 +194,7 @@ namespace Map3.ViewModels
                     map.MapElements.Clear();
                     map.Pins.Clear();
 
-                    List<VisualWaypoint> apiWaypoints = await waypointsCoordinatesService.LoadWaypointsFromAPI();
+                    List<VisualWaypoint> apiWaypoints = await waypointsCoordinatesService.LoadWaypointsFromAPI(SelectedRouteId);
 
                     dr = await services.GetDirectionResponseAsync(apiWaypoints);
 
@@ -213,7 +212,7 @@ namespace Map3.ViewModels
                     services.DrawPins(apiWaypoints, map);
                     services.DrawPolyline(locations, map);
 
-                    MapSpan mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(apiWaypoints), Distance.FromKilometers(6));
+                    var mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(apiWaypoints), Distance.FromKilometers(6));
                     map.MoveToRegion(mapSpan);
                     WalkingSession.ResetTo(apiWaypoints);
                 }
@@ -226,7 +225,6 @@ namespace Map3.ViewModels
                 {
                     IsBusy = false;
                 }
-
             }
         }
 
@@ -246,9 +244,9 @@ namespace Map3.ViewModels
             RouteDuration = 0;
             ManeuverInfo = "";
 
-            Location currentLocation = await Geolocation.GetLocationAsync();
+            var currentLocation = await Geolocation.GetLocationAsync();
             MapSpan.FromCenterAndRadius(new Position(currentLocation.Latitude, currentLocation.Longitude), Distance.FromKilometers(6));
-            
+
             await DisplayAlert("Info", "You quit this route without finishing it. Keep exploring other routes!", "ok");
         }
 
@@ -272,14 +270,14 @@ namespace Map3.ViewModels
 
         private void UpdateDistanceAndTime(DirectionResponse dr)
         {
-            Route route = dr.Routes[0];
+            var route = dr.Routes[0];
             RouteDuration = Math.Round((double)route.Duration / 60, 0);
             RouteDistance = Math.Round((double)route.Distance / 1000, 1);
         }
 
         private void UpdateManeuver(DirectionResponse dr)
         {
-            Route route = dr.Routes[0];
+            var route = dr.Routes[0];
             if (route == null || route.Legs == null || route.Legs.Count == 0 || route.Legs[0].Steps == null || route.Legs[0].Steps.Count < 2)
             {
                 ManeuverInfo = "";
@@ -292,8 +290,8 @@ namespace Map3.ViewModels
                 return;
             }
 
-            Step departureStep = route.Legs[0].Steps[0];
-            Step turningStep = route.Legs[0].Steps[1];
+            var departureStep = route.Legs[0].Steps[0];
+            var turningStep = route.Legs[0].Steps[1];
 
             if (departureStep.Maneuver == null)
             {
@@ -301,21 +299,19 @@ namespace Map3.ViewModels
                 return;
             }
 
-            string maneuverType = turningStep.Maneuver.Type;
-            string maneuverModifier = turningStep.Maneuver.Modifier;
-            string street = turningStep.Name;
-            string toStreetString = (street != null && street != "") ? " to " + street : "";
+            var maneuverType = turningStep.Maneuver.Type;
+            var maneuverModifier = turningStep.Maneuver.Modifier;
+            var street = turningStep.Name;
+            var toStreetString = (street != null && street != "") ? " to " + street : "";
 
             if (maneuverType != null && maneuverModifier != null)
             {
                 ManeuverInfo = "In " + departureStep.Distance + " m. " + maneuverType + " " + maneuverModifier + toStreetString;
-            } else
+            }
+            else
             {
                 ManeuverInfo = "";
             }
-
-            
         }
-
     }
 }
