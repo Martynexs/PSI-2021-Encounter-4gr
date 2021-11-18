@@ -10,7 +10,6 @@ using EncounterAPI.TypeExtensions;
 using EncounterAPI.Data_Transfer_Objects;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
-using Contracts;
 
 namespace EncounterAPI.Controllers
 {
@@ -18,36 +17,32 @@ namespace EncounterAPI.Controllers
     [ApiController]
     public class RouteController : ControllerBase
     {
-        private IRepositoryWrapper _repository;
-        private IAuthorizationService _authorization;
-        private EncounterContext _context;
+        private readonly EncounterContext _context;
 
-        public RouteController(IRepositoryWrapper repoWrapper, EncounterContext encounter, IAuthorizationService authorization)
+        public RouteController(EncounterContext context)
         {
-            _repository = repoWrapper;
-            _context = encounter;
-            _authorization = authorization;
+            _context = context;
         }
 
         // GET: api/Route
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RouteDTO>>> GetRoutes()
         {
-            var routes = await _repository.Route.GetAllRoutesAsync();
-            return routes.Select(r => r.ToDTO()).ToList();
+            return await _context.Routes.Select(rt => rt.ToDTO()).ToListAsync();
         }
 
         // GET: api/Route/5
         [HttpGet("{id}")]
         public async Task<ActionResult<RouteDTO>> GetRouteModel(long id)
         {
-            var route = await _repository.Route.GetRouteByIdAsync(id);
-            if (route == null)
+            var routeModel = await _context.Routes.FindAsync(id);
+
+            if (routeModel == null)
             {
                 return NotFound();
             }
 
-            return Ok(route.ToDTO());
+            return routeModel.ToDTO();
         }
 
         // GET: api/Route/5/Waypoints
@@ -76,14 +71,11 @@ namespace EncounterAPI.Controllers
                 return BadRequest();
             }
 
-            _repository.Route.UpdateRoute(route.ToEFModel());
-
-
-            //_context.Entry(route.ToEFModel()).State = EntityState.Modified;
+            _context.Entry(route.ToEFModel()).State = EntityState.Modified;
 
             try
             {
-                await _repository.SaveAsync();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -105,12 +97,11 @@ namespace EncounterAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<RouteDTO>> PostRouteModel(RouteDTO route)
         {
-            var routeEntity = route.ToEFModel();
+            var createdRoute = route.ToEFModel();
+            _context.Routes.Add(createdRoute);
+            await _context.SaveChangesAsync();
 
-            _repository.Route.CreateRoute(routeEntity);
-            await _repository.SaveAsync();
-
-            return CreatedAtAction(nameof(GetRouteModel), new { id = route.Id }, routeEntity.ToDTO());
+            return CreatedAtAction(nameof(GetRouteModel), new { id = route.Id }, createdRoute.ToDTO());
         }
 
         // DELETE: api/Route/5
@@ -120,7 +111,7 @@ namespace EncounterAPI.Controllers
         {
             var currentUser = User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).First().Value;
 
-            var routeModel = await _repository.Route.GetRouteByIdAsync(id);
+            var routeModel = await _context.Routes.FindAsync(id);
             if (routeModel == null)
             {
                 return NotFound();
@@ -131,7 +122,7 @@ namespace EncounterAPI.Controllers
                 return Forbid();
             }
 
-            _repository.Route.DeleteRoute(routeModel);
+            _context.Routes.Remove(routeModel);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -139,7 +130,7 @@ namespace EncounterAPI.Controllers
 
         private bool RouteModelExists(long id)
         {
-            return _repository.Route.FindByCondition(route => route.Id == id).Any();
+            return _context.Routes.Any(e => e.Id == id);
         }
     }
 }

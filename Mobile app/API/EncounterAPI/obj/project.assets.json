@@ -2313,57 +2313,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "Contracts/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Entities": "1.0.0",
-          "Microsoft.EntityFrameworkCore": "5.0.11",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.11",
-          "Microsoft.EntityFrameworkCore.Sqlite": "5.0.11",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2"
-        },
-        "compile": {
-          "bin/placeholder/Contracts.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Contracts.dll": {}
-        }
-      },
-      "Entities/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "5.0.11",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.11",
-          "Microsoft.EntityFrameworkCore.Sqlite": "5.0.11",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2"
-        },
-        "compile": {
-          "bin/placeholder/Entities.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Entities.dll": {}
-        }
-      },
-      "Repository/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Contracts": "1.0.0",
-          "Entities": "1.0.0",
-          "Microsoft.EntityFrameworkCore": "5.0.11",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.11",
-          "Microsoft.EntityFrameworkCore.Sqlite": "5.0.11",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2"
-        },
-        "compile": {
-          "bin/placeholder/Repository.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Repository.dll": {}
-        }
       }
     }
   },
@@ -7854,34 +7803,16 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
-    },
-    "Contracts/1.0.0": {
-      "type": "project",
-      "path": "../Contracts/Contracts.csproj",
-      "msbuildProject": "../Contracts/Contracts.csproj"
-    },
-    "Entities/1.0.0": {
-      "type": "project",
-      "path": "../Entities/Entities.csproj",
-      "msbuildProject": "../Entities/Entities.csproj"
-    },
-    "Repository/1.0.0": {
-      "type": "project",
-      "path": "../Repository/Repository.csproj",
-      "msbuildProject": "../Repository/Repository.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Contracts >= 1.0.0",
-      "Entities >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.12",
       "Microsoft.EntityFrameworkCore >= 5.0.11",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.11",
       "Microsoft.EntityFrameworkCore.Sqlite >= 5.0.11",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.11",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
-      "Repository >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.6.3",
       "Swashbuckle.AspNetCore.Annotations >= 6.2.3",
       "Swashbuckle.AspNetCore.Swagger >= 6.2.3",
@@ -7922,17 +7853,7 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {
-            "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj": {
-              "projectPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj"
-            },
-            "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj": {
-              "projectPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj"
-            },
-            "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\Repository\\Repository.csproj": {
-              "projectPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\Repository\\Repository.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

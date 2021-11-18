@@ -22,7 +22,7 @@ namespace EncounterAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.ConfigureRepositoryWrapper();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -53,8 +53,6 @@ namespace EncounterAPI
             });
 
             services.AddDbContext<EncounterContext>();
-
-            services.AddAuthorization();
 
             services.AddAuthentication(options =>
             {
