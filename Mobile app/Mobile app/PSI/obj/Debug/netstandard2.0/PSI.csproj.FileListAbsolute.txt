@@ -127,6 +127,5 @@ C:\Users\Vartotojas\source\repos\ZJBS\Swashbucklers-Project\Mobile app\Mobile ap
 C:\Users\Vartotojas\source\repos\ZJBS\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\Vartotojas\source\repos\ZJBS\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\RouteDetailPage.xaml.g.cs
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\RouteDetailPage.xaml.g.cs
-C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.csproj.CopyComplete
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\RouteDetailPage.xaml.g.cs
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.csproj.CopyComplete

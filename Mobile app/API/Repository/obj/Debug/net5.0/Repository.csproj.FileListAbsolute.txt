@@ -18,3 +18,23 @@ D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\n
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\Repository.pdb
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\Repository.genruntimeconfig.cache
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\Repository.csproj.CopyComplete
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\bin\Debug\net5.0\Repository.deps.json
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\bin\Debug\net5.0\Repository.runtimeconfig.json
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\bin\Debug\net5.0\Repository.runtimeconfig.dev.json
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\bin\Debug\net5.0\Repository.dll
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\bin\Debug\net5.0\ref\Repository.dll
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\bin\Debug\net5.0\Repository.pdb
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\bin\Debug\net5.0\Contracts.dll
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\bin\Debug\net5.0\Entities.dll
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\bin\Debug\net5.0\Contracts.pdb
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\bin\Debug\net5.0\Entities.pdb
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\Repository.csproj.AssemblyReference.cache
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\Repository.AssemblyInfoInputs.cache
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\Repository.AssemblyInfo.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\Repository.csproj.CoreCompileInputs.cache
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\Repository.csproj.CopyComplete
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\Repository.dll
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\ref\Repository.dll
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\Repository.pdb
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Repository\obj\Debug\net5.0\Repository.genruntimeconfig.cache
