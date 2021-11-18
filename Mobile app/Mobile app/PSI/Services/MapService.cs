@@ -53,19 +53,19 @@ namespace Map3
 
         public List<LatLong> ExtractLocations(DirectionResponse directionResponse)
         {
-            var locations = new List<LatLong>();
-            var legs = new List<Leg>();
-            var steps = new List<Step>();
-            var intersections = new List<Intersection>();
+            List<LatLong> locations = new List<LatLong>();
+            List<Leg> legs;
+            List<Step> steps = new List<Step>();
+            List<Intersection> intersections = new List<Intersection>();
 
-            var route = directionResponse.Routes[0];
+            Route route = directionResponse.Routes[0];
 
             legs = route.Legs.ToList();
-            foreach (var leg in legs)
+            foreach (Leg leg in legs)
             {
                 steps.AddRange(leg.Steps.ToList());
 
-                foreach (var step in steps)
+                foreach (Step step in steps)
                 {
                     var localIntersections = step.Intersections.ToList();
 
@@ -75,7 +75,7 @@ namespace Map3
                     }
                 }
             }
-            foreach (var intersection in intersections)
+            foreach (Intersection intersection in intersections)
             {
                 var p = new LatLong
                 {
@@ -90,7 +90,7 @@ namespace Map3
 
         public void DrawPins(List<VisualWaypoint> visualWaypoints, Map map)
         {
-            foreach (var item in visualWaypoints)
+            foreach (VisualWaypoint item in visualWaypoints)
             {
                 Pin WaypointPins = new Pin()
                 {
