@@ -1,0 +1,15 @@
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\obj\Debug\net5.0\Entities.csproj.AssemblyReference.cache
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\obj\Debug\net5.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\obj\Debug\net5.0\Entities.AssemblyInfoInputs.cache
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\obj\Debug\net5.0\Entities.AssemblyInfo.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\obj\Debug\net5.0\Entities.csproj.CoreCompileInputs.cache
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\bin\Debug\net5.0\Entities.deps.json
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\bin\Debug\net5.0\Entities.runtimeconfig.json
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\bin\Debug\net5.0\Entities.runtimeconfig.dev.json
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\bin\Debug\net5.0\Entities.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\bin\Debug\net5.0\ref\Entities.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\bin\Debug\net5.0\Entities.pdb
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\obj\Debug\net5.0\Entities.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\obj\Debug\net5.0\ref\Entities.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\obj\Debug\net5.0\Entities.pdb
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Entities\obj\Debug\net5.0\Entities.genruntimeconfig.cache
