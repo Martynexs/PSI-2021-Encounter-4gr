@@ -16,7 +16,7 @@
             <Entry Placeholder="Search" WidthRequest="320"/>
             <Button Text="Search" WidthRequest="80"/>
         </StackLayout>
-        <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <RefreshView x:DataType="local:RoutesViewModel" Command="{Binding LoadRoutesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Routes}"
                 SelectedItem="{Binding SelectedRoute , Mode=TwoWay}"

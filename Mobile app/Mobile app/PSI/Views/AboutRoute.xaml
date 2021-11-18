@@ -18,8 +18,7 @@
             <Label Text="Rating:" FontSize="Small" FontAttributes="Italic"/>
             <Label Text="{Binding Rating, StringFormat='Total rating: {0:F1} ★'}" FontSize="Medium"/>
             <Label Text="{Binding UserRating, StringFormat='Your rating: {0} ★'}" FontSize="Medium"/>
-            <Slider Maximum="5" Minimum="1"  MinimumTrackColor="Purple" MaximumTrackColor="Yellow" DragCompletedCommand="{Binding SubmitRatingCommand}"/>
-        </StackLayout>
+            <Slider Maximum="5" Minimum="1"  MinimumTrackColor="Purple" MaximumTrackColor="Yellow" Value="{Binding UserRating, Mode=TwoWay}" DragCompletedCommand="{Binding SubmitRatingCommand}"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

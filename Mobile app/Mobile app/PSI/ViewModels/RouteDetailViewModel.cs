@@ -19,7 +19,13 @@ namespace PSI.ViewModels
         public Command SubmitRatingCommand { get; }
 
         public double TotalRating { get; set; }
-        public int UserRating { get; set; }
+
+        private int _userRating;
+        public int UserRating 
+        {
+            get => _userRating;
+            set => SetProperty(ref _userRating, value);
+        }
 
 
         private long routeId;
