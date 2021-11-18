@@ -298,7 +298,6 @@ D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.AssemblyInfoInputs.cache
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.AssemblyInfo.cs
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.csproj.CoreCompileInputs.cache
-D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.MvcApplicationPartsAssemblyInfo.cs
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.MvcApplicationPartsAssemblyInfo.cache
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\staticwebassets\EncounterAPI.StaticWebAssets.Manifest.cache
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\staticwebassets\EncounterAPI.StaticWebAssets.xml
@@ -474,3 +473,10 @@ C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\EncounterA
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\ref\EncounterAPI.dll
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.pdb
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.genruntimeconfig.cache
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Contracts.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Entities.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Repository.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Contracts.pdb
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Entities.pdb
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Repository.pdb
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.csproj.CopyComplete
