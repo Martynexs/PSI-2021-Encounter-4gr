@@ -8,17 +8,18 @@
         <ToolbarItem Text="Edit" Command="{Binding EditCommand}"/>
     </ContentPage.ToolbarItems>
     <ScrollView>
-        <StackLayout>
-            <StackLayout Spacing="20" Padding="15">
-                <Label Text="Route name:" FontSize="Large" />
-                <Label Text="{Binding Name}" FontSize="Small"/>
-                <Label Text="Description:" FontSize="Large" />
-                <Label Text="{Binding Description}" FontSize="Medium"/>
-                <Label Text="Location:" FontSize="Large" />
-                <Label Text="{Binding Location}" FontSize="Medium"/>
-                <Label Text="Rate:" FontSize="Large" />
-                <Label Text="{Binding Rating}" FontSize="Medium"/>
-            </StackLayout>
+        <StackLayout Spacing="10" Padding="15">
+            <Label Text="Route name:" FontSize="Small" FontAttributes="Italic"/>
+            <Label Text="{Binding Name}" FontSize="Large"/>
+            <Label Text="Location:" FontSize="Small" FontAttributes="Italic" />
+            <Label Text="{Binding Location}" FontSize="Large"/>
+            <Label Text="Description:" FontSize="Small" FontAttributes="Italic"/>
+            <Label Text="{Binding Description}" FontSize="Large"/>
+            <Label Text="Rating:" FontSize="Small" FontAttributes="Italic"/>
+            <Label Text="{Binding Rating, StringFormat='Total rating: {0:F1} ★'}" FontSize="Medium"/>
+            <Label Text="{Binding UserRating, StringFormat='Your rating: {0} ★'}" FontSize="Medium"/>
+            <Slider Maximum="5" Minimum="1"  MinimumTrackColor="Purple" MaximumTrackColor="Yellow" DragCompletedCommand="{Binding SubmitRatingCommand}"/>
+        </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>

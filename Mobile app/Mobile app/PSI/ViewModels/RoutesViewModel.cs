@@ -13,8 +13,10 @@ namespace PSI.ViewModels
     public class RoutesViewModel : BaseViewModel
     {
         private EncounterProcessor _encounterProcessor;
+        private Session _session;
         public ObservableCollection<Route> Routes { get; }
         public Command LoadRoutesCommand { get; }
+        public Command LoadUserRoutesCommand { get; }
         public Command AddRouteCommand { get; }
 
         private Route _selectedRoute;
@@ -27,11 +29,14 @@ namespace PSI.ViewModels
 
             LoadRoutesCommand = new Command(async () => await ExecuteLoadRoutesCommand());
 
+            LoadUserRoutesCommand = new Command(LoadUserRoutes);
+
             AddRouteCommand = new Command(AddRoute);
 
             _encounterProcessor = EncounterProcessor.Instanse;
-
             _encounterProcessor.UnauthorisedHttpRequestEvent += OnAuthenticationFailed;
+
+            _session = Session.Instanse;
         }
 
         async Task ExecuteLoadRoutesCommand()
@@ -82,6 +87,29 @@ namespace PSI.ViewModels
         private async void OnAuthenticationFailed()
         {
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+        }
+
+        private async void LoadUserRoutes()
+        {
+            IsBusy = true;
+
+            try
+            {
+                Routes.Clear();
+                var items = await _encounterProcessor.GetUserRoutes(_session.CurrentUser.Id);
+                foreach (var item in items)
+                {
+                    Routes.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
 

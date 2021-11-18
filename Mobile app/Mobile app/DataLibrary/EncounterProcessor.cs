@@ -50,6 +50,13 @@ namespace DataLibrary
             }
         }
 
+        public async Task<List<Route>> GetUserRoutes(long id)
+        {
+            var url = $"{ _apiAdress }/api/route/user/{ id }";
+            var routes = await _apiHelper.HttpGet<List<Route>>(url);
+            return routes;
+        }
+
         public async Task<List<Waypoint>> GetWaypoints(long routeId)
         {
             var url = $"{ _apiAdress }/api/route/{ routeId }/Waypoints";
@@ -118,14 +125,14 @@ namespace DataLibrary
 
         public async Task SubmitRating(Rating rating)
         {
-            var url = $"{ _apiAdress }/api/ratings/{ rating.RouteId }/{ rating.Username }";
+            var url = $"{ _apiAdress }/api/ratings/{ rating.RouteId }/{ rating.UserId }";
 
             await _apiHelper.HttpPut<Rating>(url, rating);
         }
 
-        public async Task<Rating> GetRating(long routeId, string username)
+        public async Task<Rating> GetRating(long routeId, long userId)
         {
-            var url = $"{ _apiAdress }/api/ratings/{ routeId }/{ username }";
+            var url = $"{ _apiAdress }/api/ratings/{ routeId }/{ userId }";
 
             var rating = await _apiHelper.HttpGet<Rating>(url);
             return rating;

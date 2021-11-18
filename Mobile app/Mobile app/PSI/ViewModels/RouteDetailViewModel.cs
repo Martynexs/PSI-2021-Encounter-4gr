@@ -3,6 +3,7 @@ using PSI.Views;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Diagnostics;
+using DataLibrary.Models;
 using Xamarin.Forms;
 
 namespace PSI.ViewModels
@@ -12,7 +13,14 @@ namespace PSI.ViewModels
     public class RouteDetailViewModel : BaseViewModel
     {
         private EncounterProcessor _encounterProcessor;
+        private Session _session;
         public Command RouteEditCommand { get; }
+
+        public Command SubmitRatingCommand { get; }
+
+        public double TotalRating { get; set; }
+        public int UserRating { get; set; }
+
 
         private long routeId;
         private string name;
@@ -24,7 +32,9 @@ namespace PSI.ViewModels
         public RouteDetailViewModel()
         {
             EditCommand = new Command(OnEdit);
+            SubmitRatingCommand = new Command(SubmitRating);
             _encounterProcessor = EncounterProcessor.Instanse;
+            _session = Session.Instanse;
         }
 
         public long CreatorId { get; set; }
@@ -84,11 +94,35 @@ namespace PSI.ViewModels
                 Description = route.Description;
                 Location = route.Location;
                 Rating = route.Rating;
+
+
+                var userRating = await _encounterProcessor.GetRating(RouteId, _session.CurrentUser.Id);
+
             }
             catch (Exception)
             {
                 Debug.WriteLine("Failed to Load Item");
             }
         }
+
+        private async void SubmitRating()
+        {
+            try
+            {
+                var rating = new Rating
+                {
+                    UserId = _session.CurrentUser.Id,
+                    RouteId = RouteId,
+                    Value = UserRating
+                };
+                await _encounterProcessor.SubmitRating(rating);
+            }
+            catch (Exception)
+            {
+                await Application.Current.MainPage.DisplayAlert("Failed to submit rating", "Please try again", "OK");
+            }
+        }
+
+
     }
 }
