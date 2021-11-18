@@ -50,6 +50,20 @@ namespace EncounterAPI.Controllers
             return Ok(route.ToDTO());
         }
 
+        [HttpGet("User/{id}")]
+        public async Task<ActionResult<IEnumerable<RouteDTO>>> GetUserRoutes(long id)
+        {
+            var routes = await _repository.Route.GetUserRoutes(id);
+            if (routes == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(routes.Select(r => r.ToDTO()));
+        }
+
+
+
         // GET: api/Route/5/Waypoints
         [HttpGet("{id}/Waypoints")]
         public async Task<ActionResult<IEnumerable<WaypointDTO>>> GetRouteWaypoints(long id)

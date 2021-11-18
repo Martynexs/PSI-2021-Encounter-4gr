@@ -11,6 +11,7 @@ namespace Contracts
     {
         Task<IEnumerable<RouteModel>> GetAllRoutesAsync();
         Task<RouteModel> GetRouteByIdAsync(long Id);
+        Task<IEnumerable<RouteModel>> GetUserRoutes(long Id);
         void CreateRoute(RouteModel route);
         void UpdateRoute(RouteModel route);
         void DeleteRoute(RouteModel route);

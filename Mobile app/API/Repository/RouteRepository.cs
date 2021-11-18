@@ -26,6 +26,11 @@ namespace Repository
             return await FindByCondition(route => route.Id == Id).FirstOrDefaultAsync();
         }
 
+        public async Task<IEnumerable<RouteModel>> GetUserRoutes(long Id)
+        {
+            return await FindByCondition(route => route.CreatorID == Id).ToListAsync();
+        }
+
         public void CreateRoute(RouteModel route)
         {
             Create(route);
