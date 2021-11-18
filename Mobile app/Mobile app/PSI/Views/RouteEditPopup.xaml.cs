@@ -14,12 +14,7 @@ namespace PSI.Views
         public RouteEditPopup()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
-        }
-
-        async void Cancel_Button_Clicked(object sender, EventArgs e)
-        {
-            await PopupNavigation.Instance.PopAsync();
+            BindingContext = new EditRouteViewModel();
         }
     }
 }

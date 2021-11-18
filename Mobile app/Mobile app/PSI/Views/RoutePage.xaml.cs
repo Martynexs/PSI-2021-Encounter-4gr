@@ -3,15 +3,15 @@ using Xamarin.Forms;
 
 namespace PSI.Views
 {
-    public partial class ItemsPage : ContentPage
+    public partial class RoutesPage : ContentPage
     {
-        ItemsViewModel _viewModel;
+        RoutesViewModel _viewModel;
 
-        public ItemsPage()
+        public RoutesPage()
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new RoutesViewModel();
         }
 
         protected override void OnAppearing()

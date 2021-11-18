@@ -4,8 +4,8 @@
     "\\Mobile app",
     "\\Mobile app\\API",
     "\\Mobile app\\API\\EncounterAPI",
-    "\\Mobile app\\API\\EncounterAPI\\Models",
-    "\\Mobile app\\Mobile app"
+    "\\Mobile app\\API\\EncounterAPI\\Models"
   ],
+  "SelectedNode": "\\Mobile app\\API\\EncounterAPI\\Models\\EncounterContext.cs",
   "PreviewInSolutionExplorer": false
 }

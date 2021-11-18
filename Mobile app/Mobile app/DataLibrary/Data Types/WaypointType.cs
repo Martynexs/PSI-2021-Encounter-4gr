@@ -5,12 +5,12 @@ namespace DataLibrary
     [Flags]
     public enum WaypointType
     {
-        Other = 1,
-        Shop = 2,
-        Cafe = 4,
-        Museum = 8,
-        Church = 16,
-        Sculpture = 32,
-        Park = 64
+        Other = 0,
+        Shop = 1,
+        Cafe = 2,
+        Museum = 3,
+        Church = 4,
+        Sculpture = 5,
+        Park = 6
     }
 }

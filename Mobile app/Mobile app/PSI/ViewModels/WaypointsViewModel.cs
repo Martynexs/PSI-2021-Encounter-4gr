@@ -16,15 +16,11 @@ namespace PSI.ViewModels
         public Command LoadWaypointsCommand { get; }
 
         private Waypoint _selectedWaypoint;
-        public Command WaypointInfoCommand { get; }
-        public Command WaypointEditCommand { get; }
-        public Command WaypointDeleteCommand { get; }
         public Command RouteInfoCommand { get; }
         public Command RouteDeleteCommand { get; }
         public Command AddWaypointCommand { get; }
         public Command OpenMapCommand { get; }
         public ObservableCollection<Waypoint> Waypoints { get; }
-        public Command<Waypoint> WaypointTapped { get; }
 
         private EncounterProcessor _encounterProcessor;
 
@@ -35,15 +31,7 @@ namespace PSI.ViewModels
 
             OpenMapCommand = new Command(OpenMapView);
 
-            WaypointTapped = new Command<Waypoint>(OnWaypointSelected);
-
-            WaypointInfoCommand = new Command(OnWaypointClicked);
-
-            WaypointEditCommand = new Command(OnWaypointEditClicked);
-
             LoadWaypointsCommand = new Command(async () => await ExecuteLoadIWaypointsCommand());
-
-            WaypointDeleteCommand = new Command(OnWaypointDeleteClicked);
 
             RouteInfoCommand = new Command(OnAboutRouteClicked);
 
@@ -65,10 +53,10 @@ namespace PSI.ViewModels
             try
             {
                 Waypoints.Clear();
-                var items = await _encounterProcessor.GetWaypoints(routeId);
-                foreach (var item in items)
+                var waypoints = await _encounterProcessor.GetWaypoints(routeId);
+                foreach (var waypoint in waypoints)
                 {
-                    Waypoints.Add(item);
+                    Waypoints.Add(waypoint);
                 }
             }
             catch (Exception ex)
@@ -80,30 +68,15 @@ namespace PSI.ViewModels
                 IsBusy = false;
             }
         }
-
-        private async void OnWaypointDeleteClicked(object obj)
-        {
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}");
-            await _encounterProcessor.DeleteWaypoint(SelectedWaypoint.Id);
-        }
-        private async void OnWaypointClicked(object obj)
-        {
-            await Shell.Current.GoToAsync(nameof(WaypointInfo));
-        }
-
-        private async void OnWaypointEditClicked(object sender)
-        {
-            //await PopupNavigation.Instance.PushAsync(new EditWaypointPopup());
-        }
         private async void OnAboutRouteClicked(object obj)
         {
-            await Shell.Current.GoToAsync($"{nameof(AboutRoute)}?{nameof(ItemDetailViewModel.RouteId)}={routeId}");
+            await Shell.Current.GoToAsync($"{nameof(AboutRoute)}?{nameof(RouteDetailViewModel.RouteId)}={routeId}");
         }
 
         private async void OnRouteDeleteClicked(object obj)
         {
-            await Shell.Current.GoToAsync("..");
             await _encounterProcessor.DeleteRoute(routeId);
+            await Shell.Current.GoToAsync("..");
         }
         public void OnAppearing()
         {
@@ -124,7 +97,7 @@ namespace PSI.ViewModels
         }
         private async void OnWaypointSelected(Waypoint waypoint)
         {
-            await Shell.Current.GoToAsync($"{nameof(WaypointInfo)}?{nameof(WaypointViewModel.WaypointId)}={waypoint.Id}");
+            await Shell.Current.GoToAsync($"{nameof(WaypointInfo)}?{nameof(WaypointDetailViewModel.WaypointId)}={waypoint.Id}");
         }
 
         private async void OpenMapView()

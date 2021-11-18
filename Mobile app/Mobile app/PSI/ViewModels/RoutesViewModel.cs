@@ -10,54 +10,41 @@ using Xamarin.Forms;
 
 namespace PSI.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class RoutesViewModel : BaseViewModel
     {
-        private Route _selectedItem;
-
         private EncounterProcessor _encounterProcessor;
         public ObservableCollection<Route> Routes { get; }
-        public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
-        public Command RouteEditCommand { get; }
-        public Command RouteInfoCommand { get; }
-        public Command RouteDeleteCommand { get; }
-        public Command<Route> ItemTapped { get; set; }
+        public Command LoadRoutesCommand { get; }
+        public Command AddRouteCommand { get; }
 
         private Route _selectedRoute;
 
-        public ItemsViewModel()
+        public RoutesViewModel()
         {
             Title = "Routes";
 
             Routes = new ObservableCollection<Route>();
 
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadRoutesCommand = new Command(async () => await ExecuteLoadRoutesCommand());
 
-            ItemTapped = new Command<Route>(OnItemSelected);
-
-            RouteEditCommand = new Command(OnRouteEditClicked);
-
-            RouteInfoCommand = new Command(OnAboutRouteClicked);
-
-            RouteDeleteCommand = new Command(OnRouteDeleteClicked);
-
-            AddItemCommand = new Command(OnAddItem);
+            AddRouteCommand = new Command(AddRoute);
 
             _encounterProcessor = EncounterProcessor.Instanse;
+
             _encounterProcessor.UnauthorisedHttpRequestEvent += OnAuthenticationFailed;
         }
 
-        async Task ExecuteLoadItemsCommand()
+        async Task ExecuteLoadRoutesCommand()
         {
             IsBusy = true;
 
             try
             {
                 Routes.Clear();
-                var items = await _encounterProcessor.GetAllRoutes();
-                foreach (var item in items)
+                var routes = await _encounterProcessor.GetAllRoutes();
+                foreach (var route in routes)
                 {
-                    Routes.Add(item);
+                    Routes.Add(route);
                 }
             }
             catch (Exception ex)
@@ -72,17 +59,6 @@ namespace PSI.ViewModels
         public void OnAppearing()
         {
             IsBusy = true;
-            SelectedItem = null;
-        }
-
-        public Route SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
-            }
         }
 
         public Route SelectedRoute
@@ -91,47 +67,18 @@ namespace PSI.ViewModels
             set
             {
                 _selectedRoute = value;
-                //OnItemSelected(value);
                 OnRouteSelected(value);
             }
         }
         private async void OnRouteSelected(Route route)
         {
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(WaypointsViewModel.RoutesId)}={route.Id}");
+            await Shell.Current.GoToAsync($"{nameof(RouteDetailPage)}?{nameof(WaypointsViewModel.RoutesId)}={route.Id}");
         }
 
-        private async void OnAddItem(object obj)
+        private async void AddRoute(object obj)
         {
             await Shell.Current.GoToAsync(nameof(NewRoutePage));
         }
-
-        public async void OnItemSelected(Route item)
-        {
-            if (item == null)
-                return;
-            // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.RouteId)}={item.Id}");
-        }
-        private async void OnRouteEditClicked(object sender)
-        {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await PopupNavigation.Instance.PushAsync(new RouteEditPopup());
-        }
-
-        private async void OnAboutRouteClicked(object obj)
-        {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            //await Shell.Current.GoToAsync(nameof(AboutRoute));
-            await Shell.Current.GoToAsync($"{nameof(AboutRoute)}?{nameof(ItemDetailViewModel.RouteId)}={2}");
-        }
-
-        private async void OnRouteDeleteClicked(object obj)
-        {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync("..");
-            await _encounterProcessor.DeleteRoute(SelectedRoute.Id);
-        }
-
         private async void OnAuthenticationFailed()
         {
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");

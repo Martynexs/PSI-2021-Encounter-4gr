@@ -66,7 +66,7 @@
             <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />
         </Tab>
         <Tab Title="Route" Icon="Routes.png">
-            <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
+            <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:RoutesPage}" />
         </Tab>
     </FlyoutItem>
 

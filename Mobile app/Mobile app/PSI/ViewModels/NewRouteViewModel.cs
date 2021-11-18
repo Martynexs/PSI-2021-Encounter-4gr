@@ -67,14 +67,14 @@ namespace PSI.ViewModels
 
         private async void OnSave()
         {
-            Route newItem = new Route()
+            Route newRoute = new Route()
             {
                 CreatorId = 1,
                 Name = Name,
                 Description = Description
             };
 
-            await _encounterProcessor.CreateRoute(newItem);
+            await _encounterProcessor.CreateRoute(newRoute);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

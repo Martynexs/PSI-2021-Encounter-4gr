@@ -11,7 +11,7 @@ namespace PSI.Views
         public AboutRoute()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
+            BindingContext = new RouteDetailViewModel();
         }
     }
 }
