@@ -1,10 +1,8 @@
 ﻿using DataLibrary;
-using PSI.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PSI.ViewModels
@@ -150,7 +148,7 @@ namespace PSI.ViewModels
         private async void OnCancel()
         {
             // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(WaypointInfo)}?{nameof(WaypointDetailViewModel.WaypointId)}={waypointId}");
+            await Shell.Current.GoToAsync("..");
         }
 
         private async void OnSave()
@@ -178,7 +176,7 @@ namespace PSI.ViewModels
             }
 
             // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(WaypointInfo)}?{nameof(WaypointDetailViewModel.WaypointId)}={waypointId}");
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

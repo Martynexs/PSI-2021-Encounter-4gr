@@ -1,10 +1,6 @@
 ﻿using DataLibrary;
-using PSI.Views;
-using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PSI.ViewModels
@@ -17,7 +13,6 @@ namespace PSI.ViewModels
         public Command CancelCommand { get; }
 
         private long routeId;
-        private long creatorId;
         private string name;
         private string description;
         private string location;
@@ -99,7 +94,7 @@ namespace PSI.ViewModels
         private async void OnCancel()
         {
             // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(AboutRoute)}?{nameof(RouteDetailViewModel.RouteId)}={routeId}");
+            await Shell.Current.GoToAsync("..");
         }
 
         private async void OnSave()
@@ -121,7 +116,7 @@ namespace PSI.ViewModels
             }
 
             // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(AboutRoute)}?{nameof(RouteDetailViewModel.RouteId)}={routeId}");
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

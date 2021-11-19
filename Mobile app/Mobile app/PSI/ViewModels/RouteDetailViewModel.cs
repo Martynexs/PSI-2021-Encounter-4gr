@@ -1,6 +1,5 @@
 ﻿using DataLibrary;
 using PSI.Views;
-using Rg.Plugins.Popup.Services;
 using System;
 using System.Diagnostics;
 using DataLibrary.Models;

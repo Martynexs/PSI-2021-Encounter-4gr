@@ -102,15 +102,13 @@ namespace Map3.ViewModels
                     }
                     else
                     {
-                        WalkingSession.Finish();
-                        _walkingActive = false;
+                        ClearWalkingState();
                         return;
                     }
                 }
                 catch (TaskCanceledException)
                 {
-                    WalkingSession.Finish();
-                    _walkingActive = false;
+                    ClearWalkingState();
                 }
             }
         }
@@ -129,11 +127,7 @@ namespace Map3.ViewModels
                 if (WalkingSession.IsTheLastGoalWaypoint())
                 {
                     await DisplayAlert("Finish!", "You completed the route!", "ok");
-                    WalkingSession.Finish();
-                    _walkingCancelHandler.Cancel();
-                    map.MapElements.Clear();
-                    map.Pins.Clear();
-                    _walkingActive = false;
+                    ClearWalkingState();
                     return;
                 }
                 else
@@ -235,14 +229,8 @@ namespace Map3.ViewModels
                 await DisplayAlert("Error", "You're not walking, there's nothing to stop.", "ok");
                 return;
             }
-            WalkingSession.Finish();
-            _walkingCancelHandler.Cancel();
-            map.MapElements.Clear();
-            map.Pins.Clear();
-            _walkingActive = false;
-            RouteDistance = 0;
-            RouteDuration = 0;
-            ManeuverInfo = "";
+
+            ClearWalkingState();
 
             var currentLocation = await Geolocation.GetLocationAsync();
             MapSpan.FromCenterAndRadius(new Position(currentLocation.Latitude, currentLocation.Longitude), Distance.FromKilometers(6));
@@ -250,7 +238,25 @@ namespace Map3.ViewModels
             await DisplayAlert("Info", "You quit this route without finishing it. Keep exploring other routes!", "ok");
         }
 
-        private Position GetVisualCenterPosition(List<VisualWaypoint> waypoints)
+
+        private void ClearWalkingState()
+        {
+            WalkingSession.Finish();
+            _walkingCancelHandler.Cancel();
+            if (_walkingCancelHandler != null)
+            {
+                _walkingCancelHandler.Cancel();
+            }
+            map.MapElements.Clear();
+            map.Pins.Clear();
+            _walkingActive = false;
+            RouteDistance = 0;
+            RouteDuration = 0;
+            ManeuverInfo = "";
+        }
+
+
+            private Position GetVisualCenterPosition(List<VisualWaypoint> waypoints)
         {
             if (waypoints == null || waypoints.Count == 0)
             {

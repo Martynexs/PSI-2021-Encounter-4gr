@@ -1,6 +1,4 @@
-﻿using EncounterAPI.Data_Transfer_Objects;
-using EncounterAPI.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using EncounterAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
