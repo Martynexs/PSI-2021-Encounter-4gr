@@ -18,3 +18,13 @@ C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\Dat
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.csproj.CoreCompileInputs.cache
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.dll
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.pdb
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.dll
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.pdb
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\bin\Debug\netstandard2.0\DataLibrary.deps.json
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\bin\Debug\netstandard2.0\DataLibrary.dll
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\bin\Debug\netstandard2.0\DataLibrary.pdb
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.csproj.AssemblyReference.cache
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.AssemblyInfoInputs.cache
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.AssemblyInfo.cs
+C:\Users\Juste\source\repos\Swashbucklers-Project\Mobile app\Mobile app\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.csproj.CoreCompileInputs.cache

@@ -8,9 +8,13 @@ namespace EncounterAPI.Models
         public DbSet<Waypoint> Waypoints { get; set; }
         public DbSet<UserModel> Users { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Quiz> Quizes { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<QuestionChoice> QuestionChoices { get; set; }
+        public DbSet<UserAnswer> UserAnswers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(@"Data Source=D:\Database\EncounterDB.db");
+            => options.UseSqlite(@"Data Source=C:\Users\Juste\source\repos\EncounterDB.db");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

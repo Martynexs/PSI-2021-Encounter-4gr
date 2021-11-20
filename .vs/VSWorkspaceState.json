@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Mobile app",
-    "\\Mobile app\\API",
-    "\\Mobile app\\API\\EncounterAPI",
-    "\\Mobile app\\API\\EncounterAPI\\Models"
+    ""
   ],
-  "SelectedNode": "\\Mobile app\\API\\EncounterAPI\\Models\\EncounterContext.cs",
+  "SelectedNode": "\\Mobile app.sln",
   "PreviewInSolutionExplorer": false
 }

@@ -14,7 +14,79 @@ namespace EncounterAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.11");
+                .HasAnnotation("ProductVersion", "5.0.12");
+
+            modelBuilder.Entity("EncounterAPI.Models.Question", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("QuestionScore")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("QuestionText")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("QuestionTimer")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("QuestionType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("QuizId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("EncounterAPI.Models.QuestionChoice", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("AnswerIsRight")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("AnswerSelectedScore")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("AnswerUnselectedScore")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("ChoiceLetter")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("ChoicePosition")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ChoiceText")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("QuestionId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuestionChoices");
+                });
+
+            modelBuilder.Entity("EncounterAPI.Models.Quiz", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("WaypointId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Quizes");
+                });
 
             modelBuilder.Entity("EncounterAPI.Models.Rating", b =>
                 {
@@ -68,6 +140,26 @@ namespace EncounterAPI.Migrations
                     b.ToTable("Routes");
                 });
 
+            modelBuilder.Entity("EncounterAPI.Models.UserAnswer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AnswerLetter")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("ChoiceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserAnswers");
+                });
+
             modelBuilder.Entity("EncounterAPI.Models.UserModel", b =>
                 {
                     b.Property<long>("ID")
@@ -98,7 +190,7 @@ namespace EncounterAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<TimeSpan>("ClosingTime")
+                    b.Property<DateTime>("ClosingTime")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -113,7 +205,7 @@ namespace EncounterAPI.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<TimeSpan>("OpeningHours")
+                    b.Property<DateTime>("OpeningHours")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PhoneNumber")
