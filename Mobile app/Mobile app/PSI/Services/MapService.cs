@@ -15,10 +15,28 @@ namespace Map3
     {
         private readonly string BaseRouteUrl = "https://router.project-osrm.org/route/v1/driving/";
         private readonly HttpClient _httpClient;
+        private readonly Geocoder _geocoder;
 
         public MapService()
         {
             _httpClient = new HttpClient();
+            _geocoder = new Geocoder();
+        }
+
+        public async Task<LatLong> GetCoordinatesOfAddress(string address)
+        {
+            IEnumerable<Position> possiblePositions = await _geocoder.GetPositionsForAddressAsync(address);
+            Position foundPosition = possiblePositions.FirstOrDefault();
+            if (foundPosition == null)
+            {
+                return null;
+            }
+
+            return new LatLong()
+            {
+                Lat = foundPosition.Latitude,
+                Long = foundPosition.Longitude
+            };
         }
 
         public async Task<DirectionResponse> GetDirectionResponseAsync(List<VisualWaypoint> coordinates)
@@ -53,31 +71,31 @@ namespace Map3
 
         public List<LatLong> ExtractLocations(DirectionResponse directionResponse)
         {
-            var locations = new List<LatLong>();
-            var legs = new List<Leg>();
-            var steps = new List<Step>();
-            var intersections = new List<Intersection>();
+            List<LatLong> locations = new List<LatLong>();
+            List<Leg> legs;
+            List<Step> steps;
+            List<Intersection> intersections = new List<Intersection>();
 
-            var route = directionResponse.Routes[0];
+            Route route = directionResponse.Routes[0];
 
             legs = route.Legs.ToList();
-            foreach (var leg in legs)
+            foreach (Leg leg in legs)
             {
                 steps = leg.Steps.ToList();
 
                 foreach (var step in steps)
                 {
-                    var localIntersections = step.Intersections.ToList();
+                     List<Intersection> stepIntersections = step.Intersections.ToList();
 
-                    foreach (var intersection in localIntersections)
+                    foreach (Intersection intersection in stepIntersections)
                     {
                         intersections.Add(intersection);
                     }
                 }
             }
-            foreach (var intersection in intersections)
+            foreach (Intersection intersection in intersections)
             {
-                var p = new LatLong
+                LatLong p = new LatLong
                 {
                     Lat = intersection.Location[1],
                     Long = intersection.Location[0]
