@@ -2,7 +2,7 @@
 {
     public class QuizDTO
     {
-        public long QuizId { get; set; }
+        public long Id { get; set; }
         public long WaypointId { get; set; }
     }
 }

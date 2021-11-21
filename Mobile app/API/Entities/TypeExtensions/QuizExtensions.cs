@@ -9,8 +9,8 @@ namespace Entities.TypeExtensions
         {
             return new QuizDTO
             {
-                QuizId = qz.Id,
-               
+                Id = qz.Id,
+                WaypointId = qz.WaypointId
             };
         }
 
@@ -18,7 +18,8 @@ namespace Entities.TypeExtensions
         {
             return new Quiz
             {
-                Id = quizDTO.QuizId,
+                Id = quizDTO.Id,
+                WaypointId = quizDTO.WaypointId
             };
         }
     }
