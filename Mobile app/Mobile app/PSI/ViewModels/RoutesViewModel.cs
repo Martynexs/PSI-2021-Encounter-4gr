@@ -37,10 +37,10 @@ namespace PSI.ViewModels
 
             AddRouteCommand = new Command(AddRoute);
 
-            _encounterProcessor = EncounterProcessor.Instanse;
+            _encounterProcessor = EncounterProcessor.Instance;
             _encounterProcessor.UnauthorisedHttpRequestEvent += OnAuthenticationFailed;
 
-            _session = Session.Instanse;
+            _session = Session.Instance;
         }
 
         async Task ExecuteLoadRoutesCommand()

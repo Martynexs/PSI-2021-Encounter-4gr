@@ -24,8 +24,8 @@ namespace PSI.ViewModels
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
-            _encounterProcessor = EncounterProcessor.Instanse;
-            _session = Session.Instanse;
+            _encounterProcessor = EncounterProcessor.Instance;
+            _session = Session.Instance;
         }
 
         private bool ValidateSave()

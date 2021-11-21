@@ -11,7 +11,7 @@ namespace PSI.Services
 
         public WaypointsCoordinatesService()
         {
-            _api = EncounterProcessor.Instanse;
+            _api = EncounterProcessor.Instance;
         }
 
         public async Task<List<VisualWaypoint>> LoadWaypointsFromAPI(long routeId)

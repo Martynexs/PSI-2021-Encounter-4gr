@@ -8,14 +8,14 @@ namespace DataLibrary
     {
         private static readonly Lazy<Session> _session =
             new Lazy<Session>(() => new Session());
-        public static Session Instanse { get => _session.Value; }
+        public static Session Instance { get => _session.Value; }
 
         private readonly EncounterProcessor _api;
         public User CurrentUser { get; set; }
         public string Authentication_token { get; set; }
         private Session()
         {
-            _api = EncounterProcessor.Instanse;
+            _api = EncounterProcessor.Instance;
         }
 
         public async Task<User> LogIn(string username, string password)

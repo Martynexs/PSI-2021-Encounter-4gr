@@ -38,8 +38,8 @@ namespace PSI.ViewModels
         {
             EditCommand = new Command(OnEdit);
             SubmitRatingCommand = new Command(SubmitRating);
-            _encounterProcessor = EncounterProcessor.Instanse;
-            _session = Session.Instanse;
+            _encounterProcessor = EncounterProcessor.Instance;
+            _session = Session.Instance;
         }
 
         public long CreatorId { get; set; }

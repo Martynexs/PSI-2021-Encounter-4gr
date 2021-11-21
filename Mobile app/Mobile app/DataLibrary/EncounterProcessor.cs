@@ -12,7 +12,7 @@ namespace DataLibrary
 
         private static readonly Lazy<EncounterProcessor> _encounterProcessor =
             new Lazy<EncounterProcessor>(() => new EncounterProcessor());
-        public static EncounterProcessor Instanse { get => _encounterProcessor.Value; }
+        public static EncounterProcessor Instance { get => _encounterProcessor.Value; }
         private EncounterProcessor()
         {
         }

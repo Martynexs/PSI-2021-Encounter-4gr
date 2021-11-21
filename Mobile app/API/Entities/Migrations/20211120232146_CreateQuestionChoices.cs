@@ -11,13 +11,13 @@ namespace EncounterAPI.Migrations
             columns: table => new
             {
                 Id = table.Column<long>(type: "INTEGER", nullable: false)
-                .Annotation("Sqlite:Autoincrement", true),
-                Choice_Position = table.Column<long>(type: "INTEGER", nullable: true),
-                Choice_Letter = table.Column<string>(type: "CHAR", nullable: false),
-                Choice_Text = table.Column<string>(type: "TEXT", nullable: false),
-                Answer_Is_Right = table.Column<int>(type: "INTEGER", nullable: false),
-                Answer_Selected_Score = table.Column<double>(type: "REAL", nullable: true),
-                Answer_Unselected_Score = table.Column<double>(type: "REAL", nullable: true),
+                    .Annotation("Sqlite:Autoincrement", true),
+                Position = table.Column<long>(type: "INTEGER", nullable: true),
+                Letter = table.Column<string>(type: "CHAR", nullable: false),
+                Text = table.Column<string>(type: "TEXT", nullable: false),
+                IsRight = table.Column<int>(type: "INTEGER", nullable: false),
+                SelectedScore = table.Column<double>(type: "REAL", nullable: true),
+                UnselectedScore = table.Column<double>(type: "REAL", nullable: true),
                 QuestionId = table.Column<long>(type: "INTEGER", nullable: false)
             },
             constraints: table =>

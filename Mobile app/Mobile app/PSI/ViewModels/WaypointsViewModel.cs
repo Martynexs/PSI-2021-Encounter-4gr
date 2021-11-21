@@ -39,7 +39,7 @@ namespace PSI.ViewModels
 
             AddWaypointCommand = new Command(OnAddWaypoint);
 
-            _encounterProcessor = EncounterProcessor.Instanse;
+            _encounterProcessor = EncounterProcessor.Instance;
         }
 
         public long RoutesId

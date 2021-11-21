@@ -3,12 +3,12 @@
     public class QuestionChoice
     {
         public long Id { get; set; }
-        public long ChoicePosition { get; set; }
-        public string ChoiceLetter { get; set; }
-        public string ChoiceText { get; set; }
-        public int AnswerIsRight { get; set; }
-        public double AnswerSelectedScore { get; set; }
-        public double AnswerUnselectedScore { get; set; }
+        public long Position { get; set; }
+        public string Letter { get; set; }
+        public string Text { get; set; }
+        public int IsRight { get; set; }
+        public double SelectedScore { get; set; }
+        public double UnselectedScore { get; set; }
         public long QuestionId { get; set; }
     }
 }

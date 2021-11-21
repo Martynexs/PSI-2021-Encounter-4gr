@@ -13,10 +13,9 @@ namespace EncounterAPI.Migrations
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false),
                     UserId = table.Column<long>(type: "INTEGER", nullable: false)
-                    .Annotation("Sqlite:Autoincrement", true),
-                    ChoiceId = table.Column<long>(type: "INTEGER", nullable: false),
-                    Answer_Letter = table.Column<string>(type: "TEXT", nullable: true),
-
+                        .Annotation("Sqlite:Autoincrement", true),
+                    QuestionId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ActualChoiceId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -29,8 +28,14 @@ namespace EncounterAPI.Migrations
                           principalColumn: "ID");
 
                     table.ForeignKey(
-                          name: "FK_ChoiceId",
-                          column: x => x.ChoiceId,
+                          name: "FK_UserAnswers_QuestionId",
+                          column: x => x.QuestionId,
+                          principalTable: "Questions",
+                          principalColumn: "Id");
+
+                    table.ForeignKey(
+                          name: "FK_UserAnswers_ActualChoiceId",
+                          column: x => x.ActualChoiceId,
                           principalTable: "QuestionChoices",
                           principalColumn: "Id");
                 });

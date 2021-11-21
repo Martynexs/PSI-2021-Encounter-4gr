@@ -11,7 +11,7 @@ namespace EncounterAPI.Migrations
             columns: table => new
             {
                 Id = table.Column<long>(type: "INTEGER", nullable: false)
-                .Annotation("Sqlite:Autoincrement", true),
+                    .Annotation("Sqlite:Autoincrement", true),
                 WaypointId = table.Column<int>(type: "INTEGER", nullable: false),
             },
             constraints: table =>

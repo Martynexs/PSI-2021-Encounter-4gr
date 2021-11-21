@@ -31,7 +31,7 @@ namespace PSI.ViewModels
         public long Id { get; set; }
         public WaypointDetailViewModel()
         {
-            _encounterProcessor = EncounterProcessor.Instanse;
+            _encounterProcessor = EncounterProcessor.Instance;
             EditCommand = new Command(OnEdit);
             WaypointDeleteCommand = new Command(OnWaypointDeleteClicked);
         }
