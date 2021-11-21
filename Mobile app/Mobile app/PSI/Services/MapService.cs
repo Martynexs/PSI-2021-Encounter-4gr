@@ -63,7 +63,7 @@ namespace Map3
             legs = route.Legs.ToList();
             foreach (var leg in legs)
             {
-                steps.AddRange(leg.Steps.ToList());
+                steps = leg.Steps.ToList();
 
                 foreach (var step in steps)
                 {

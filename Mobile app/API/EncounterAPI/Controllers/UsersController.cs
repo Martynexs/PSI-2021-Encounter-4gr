@@ -33,7 +33,7 @@ namespace EncounterAPI.Controllers
         [HttpGet("{username}")]
         public async Task<ActionResult<UserModel>> GetUser(string username)
         {
-            var curresntUser = User.Claims.Where(c => c.Type == ClaimTypes.Name).First().Value;
+            var currentUser = User.Claims.Where(c => c.Type == ClaimTypes.Name).First().Value;
 
             var user = await _context.Users.Where(u => u.Username == username).FirstOrDefaultAsync();
 
@@ -42,7 +42,7 @@ namespace EncounterAPI.Controllers
                 return NotFound();
             }
 
-            if(curresntUser != username)
+            if(currentUser != username)
             {
                 return Forbid();
             }
