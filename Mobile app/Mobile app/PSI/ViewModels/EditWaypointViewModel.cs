@@ -1,6 +1,6 @@
 ﻿using DataLibrary;
-using Map3;
-using Map3.Views;
+using PSI.Services;
+using PSI.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -51,8 +51,8 @@ namespace PSI.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(name)
-                && !String.IsNullOrWhiteSpace(description);
+            return !string.IsNullOrWhiteSpace(name)
+                && !string.IsNullOrWhiteSpace(description);
         }
         public int Position
         {
@@ -154,7 +154,7 @@ namespace PSI.ViewModels
                 PhoneNumber = waypoint.PhoneNumber;
                 Price = waypoint.Price;
                 Type = waypoint.Type;
-                UpdatePin(true);
+                mapService.ResetSingularPin(map, true, new Position(Latitude, Longitude));
                 MapSearch = "";
             }
             catch (Exception)
@@ -179,7 +179,7 @@ namespace PSI.ViewModels
                 return;
             }
 
-            LatLong result = await mapService.GetCoordinatesOfAddress(MapSearch);
+            LatLong result = await mapService.GetCoordinatesByAddress(MapSearch);
             if (result == null)
             {
                 await DisplayAlert("Error", "Nothing could be found by your search query", "ok");
@@ -188,7 +188,7 @@ namespace PSI.ViewModels
 
             Latitude = result.Lat;
             Longitude = result.Long;
-            UpdatePin(true);
+            mapService.ResetSingularPin(map, true, new Position(Latitude, Longitude));
         }
 
         private async void OnCancel()
@@ -231,26 +231,7 @@ namespace PSI.ViewModels
             {
                 Longitude = e.Position.Longitude;
                 Latitude = e.Position.Latitude;
-                UpdatePin(false);
-            }
-        }
-
-        private void UpdatePin(bool moveToRegion)
-        {
-            map.Pins.Clear();
-            Pin newPin = new Pin()
-            {
-                Type = PinType.Place,
-                Label = "Waypoint location",
-                Address = "",
-                Position = new Position(Latitude, Longitude),
-            };
-            map.Pins.Add(newPin);
-
-            if (moveToRegion)
-            {
-                var mapSpan = MapSpan.FromCenterAndRadius(new Position(Latitude, Longitude), Distance.FromMeters(100));
-                map.MoveToRegion(mapSpan);
+                mapService.ResetSingularPin(map, false, new Position(Latitude, Longitude));
             }
         }
     }

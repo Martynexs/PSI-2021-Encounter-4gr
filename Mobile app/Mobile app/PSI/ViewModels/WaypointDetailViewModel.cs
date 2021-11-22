@@ -1,8 +1,11 @@
 ﻿using DataLibrary;
+using PSI.Services;
 using PSI.Views;
 using System;
 using System.Diagnostics;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
+using Map = Xamarin.Forms.Maps.Map;
 
 namespace PSI.ViewModels
 {
@@ -20,6 +23,7 @@ namespace PSI.ViewModels
         private int position;
         private double longitude;
         private double latitude;
+        private string coordinatesText;
         private string name;
         private string description;
         private DateTime openingHours;
@@ -29,6 +33,10 @@ namespace PSI.ViewModels
         private WaypointType type;
 
         public long Id { get; set; }
+
+        public static Map map;
+        private readonly MapService mapService = new MapService();
+
         public WaypointDetailViewModel()
         {
             _encounterProcessor = EncounterProcessor.Instance;
@@ -51,6 +59,12 @@ namespace PSI.ViewModels
         {
             get => latitude;
             set => SetProperty(ref latitude, value);
+        }
+
+        public string CoordinatesText
+        {
+            get => coordinatesText;
+            set => SetProperty(ref coordinatesText, value);
         }
 
         public string Name
@@ -134,6 +148,13 @@ namespace PSI.ViewModels
                 PhoneNumber = waypoint.PhoneNumber;
                 Price = waypoint.Price;
                 Type = waypoint.Type;
+
+                CoordinatesText = await mapService.GetAddressByCoordinates(new LatLong()
+                {
+                    Lat = Latitude,
+                    Long = Longitude
+                });
+                mapService.ResetSingularPin(map, true, new Position(Latitude, Longitude));
             }
             catch (Exception)
             {

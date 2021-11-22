@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Waypoint = DataLibrary.Models.Waypoint;
 
 namespace PSI.ViewModels
 {

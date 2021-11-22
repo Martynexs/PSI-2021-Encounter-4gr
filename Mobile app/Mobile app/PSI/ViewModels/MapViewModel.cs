@@ -8,7 +8,7 @@ using Xamarin.Forms.Maps;
 using Xamarin.Essentials;
 using Map = Xamarin.Forms.Maps.Map;
 using PSI.ViewModels;
-using Map3.Views;
+using PSI.Views;
 using System.Threading;
 
 namespace Map3.ViewModels

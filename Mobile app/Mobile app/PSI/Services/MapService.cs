@@ -5,11 +5,12 @@ using PSI.Models;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Linq;
-using Map3.Views;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms;
+using PSI.Views;
+using Map = Xamarin.Forms.Maps.Map;
 
-namespace Map3
+namespace PSI.Services
 {
     public class MapService
     {
@@ -23,7 +24,7 @@ namespace Map3
             _geocoder = new Geocoder();
         }
 
-        public async Task<LatLong> GetCoordinatesOfAddress(string address)
+        public async Task<LatLong> GetCoordinatesByAddress(string address)
         {
             IEnumerable<Position> possiblePositions = await _geocoder.GetPositionsForAddressAsync(address);
             Position foundPosition = possiblePositions.FirstOrDefault();
@@ -39,6 +40,17 @@ namespace Map3
             };
         }
 
+        public async Task<string> GetAddressByCoordinates(LatLong coords)
+        {
+            if (coords == null)
+            {
+                return null;
+            }
+
+            IEnumerable<string> possibleAddresses = await _geocoder.GetAddressesForPositionAsync(new Position(coords.Lat, coords.Long));
+            return possibleAddresses.FirstOrDefault();
+        }
+
         public async Task<DirectionResponse> GetDirectionResponseAsync(List<VisualWaypoint> coordinates)
         {
             try
@@ -47,7 +59,7 @@ namespace Map3
 
                 if (coordinates != null)
                 {
-                    var latLongStrings = coordinates.Select(c => c.Long + "," + c.Lat);
+                    IEnumerable<string> latLongStrings = coordinates.Select(c => c.Long + "," + c.Lat);
                     resultString = string.Join(";", latLongStrings.ToArray());
                 }
 
@@ -108,7 +120,7 @@ namespace Map3
 
         public void DrawPins(List<VisualWaypoint> visualWaypoints, Map map)
         {
-            foreach (var item in visualWaypoints)
+            foreach (VisualWaypoint item in visualWaypoints)
             {
                 Pin WaypointPins = new Pin()
                 {
@@ -134,6 +146,25 @@ namespace Map3
                 polyline.Geopath.Add(new Position(latlong.Lat, latlong.Long));
             }
             map.MapElements.Add(polyline);
+        }
+
+        public void ResetSingularPin(Map map, bool moveToRegion, Position position)
+        {
+            map.Pins.Clear();
+            Pin newPin = new Pin()
+            {
+                Type = PinType.Place,
+                Label = "Waypoint location",
+                Address = "",
+                Position = position,
+            };
+            map.Pins.Add(newPin);
+
+            if (moveToRegion)
+            {
+                MapSpan mapSpan = MapSpan.FromCenterAndRadius(position, Distance.FromMeters(500));
+                map.MoveToRegion(mapSpan);
+            }
         }
     }
 }
