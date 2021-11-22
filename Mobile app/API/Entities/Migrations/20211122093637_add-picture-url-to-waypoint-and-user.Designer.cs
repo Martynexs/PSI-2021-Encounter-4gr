@@ -3,14 +3,16 @@ using System;
 using EncounterAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EncounterAPI.Migrations
 {
     [DbContext(typeof(EncounterContext))]
-    partial class EncounterContextModelSnapshot : ModelSnapshot
+    [Migration("20211122093637_add-picture-url-to-waypoint-and-user")]
+    partial class addpictureurltowaypointanduser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

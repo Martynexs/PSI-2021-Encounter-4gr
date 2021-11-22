@@ -17,5 +17,6 @@ namespace EncounterAPI.Models
         public string PhoneNumber { get; set; }
         public decimal Price { get; set; }
         public WaypointType Type { get; set; }
+        public string PictureURL { get; set; }
     }
 }

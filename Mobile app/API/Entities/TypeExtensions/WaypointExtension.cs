@@ -20,7 +20,8 @@ namespace EncounterAPI.TypeExtensions
                 ClosingTime = wp.ClosingTime,
                 Price = wp.Price,
                 Type = wp.Type,
-                PhoneNumber = wp.PhoneNumber
+                PhoneNumber = wp.PhoneNumber,
+                PictureURL = wp.PictureURL
             };
         }
 
@@ -39,7 +40,8 @@ namespace EncounterAPI.TypeExtensions
                 ClosingTime = waypointDTO.ClosingTime,
                 Price = waypointDTO.Price,
                 Type = waypointDTO.Type,
-                PhoneNumber = waypointDTO.PhoneNumber
+                PhoneNumber = waypointDTO.PhoneNumber,
+                PictureURL = waypointDTO.PictureURL
             };
         }
 
