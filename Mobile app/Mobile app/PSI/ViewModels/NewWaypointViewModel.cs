@@ -12,6 +12,7 @@ namespace PSI.ViewModels
 
         private long id;
         private string name;
+        private string picture;
         private string description;
 
         public NewWaypointViewModel()
@@ -32,6 +33,12 @@ namespace PSI.ViewModels
         {
             get => name;
             set => SetProperty(ref name, value);
+        }
+
+        public string Picture
+        {
+            get => picture;
+            set => SetProperty(ref picture, value);
         }
 
         public string Description
@@ -60,7 +67,9 @@ namespace PSI.ViewModels
             {
                 RouteId = id,
                 Name = Name,
-                Description = Description
+                Description = Description,
+                PictureURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"
+
             };
 
             await _encounterProcessor.CreateWaypoint(newWaypoint);

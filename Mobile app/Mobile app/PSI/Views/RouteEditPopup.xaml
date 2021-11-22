@@ -4,7 +4,7 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
                  x:Class="PSI.Views.RouteEditPopup"
-                 Background="white">
+                 Background="White">
 
     <popup:PopupPage.Animation>
         <animations:ScaleAnimation 

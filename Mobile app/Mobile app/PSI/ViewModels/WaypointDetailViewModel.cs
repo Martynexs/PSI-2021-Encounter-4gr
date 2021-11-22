@@ -25,6 +25,7 @@ namespace PSI.ViewModels
         private DateTime openingHours;
         private DateTime closingHours;
         private string phoneNumber;
+        private string picture;
         private decimal price;
         private WaypointType type;
 
@@ -97,6 +98,12 @@ namespace PSI.ViewModels
             set => SetProperty(ref routeId, value);
         }
 
+        public string Picture
+        {
+            get => picture;
+            set => SetProperty(ref picture, value);
+        }
+
         public long WaypointId
         {
             get => waypointId;
@@ -133,6 +140,7 @@ namespace PSI.ViewModels
                 ClosingHours = waypoint.ClosingTime;
                 PhoneNumber = waypoint.PhoneNumber;
                 Price = waypoint.Price;
+                Picture = waypoint.PictureURL;
                 Type = waypoint.Type;
             }
             catch (Exception)

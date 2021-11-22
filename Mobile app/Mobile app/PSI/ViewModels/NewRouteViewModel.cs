@@ -15,8 +15,6 @@ namespace PSI.ViewModels
         private long creatorId;
         private string name;
         private string description;
-        private string location;
-        private double rating;
 
         public NewItemViewModel()
         {
@@ -69,7 +67,7 @@ namespace PSI.ViewModels
         {
             Route newRoute = new Route()
             {
-                CreatorId = 1,
+                CreatorId = _session.CurrentUser.Id,
                 Name = Name,
                 Description = Description
             };

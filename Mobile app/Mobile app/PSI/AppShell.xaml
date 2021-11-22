@@ -71,7 +71,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Profile" Icon="Profile.png">
-        <ShellContent  ContentTemplate="{DataTemplate local:MainPage}" />
+        <ShellContent  ContentTemplate="{DataTemplate local:ProfilePage}" />
     </FlyoutItem>
     <FlyoutItem Title="Settings" Icon="Settings.png">
         <ShellContent  ContentTemplate="{DataTemplate local:MainPage}" />
