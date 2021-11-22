@@ -18,12 +18,10 @@ namespace EncounterAPI.Controllers
     {
         private IRepositoryWrapper _repository;
         private IAuthorizationService _authorization;
-        private EncounterContext _context;
 
-        public RouteController(IRepositoryWrapper repoWrapper, EncounterContext encounter, IAuthorizationService authorization)
+        public RouteController(IRepositoryWrapper repoWrapper, IAuthorizationService authorization)
         {
             _repository = repoWrapper;
-            _context = encounter;
             _authorization = authorization;
         }
 
@@ -66,15 +64,15 @@ namespace EncounterAPI.Controllers
         [HttpGet("{id}/Waypoints")]
         public async Task<ActionResult<IEnumerable<WaypointDTO>>> GetRouteWaypoints(long id)
         {
-            var routeModel = await _context.Routes.FindAsync(id);
+            var routeModel = await _repository.Route.GetRouteByIdAsync(id);
 
-            if (routeModel == null)
+            if (routeModel == default)
             {
                 return NotFound();
             }
 
-            var query = await _context.Waypoints.Where(wp => wp.RouteId == id).Select(wp => wp.ToDTO()).ToListAsync();
-            return query;
+            var query = await _repository.Waypoint.GetWaypointsByRoute(id);
+            return query.Select(wp => wp.ToDTO()).ToList();
         }
 
 
@@ -144,7 +142,7 @@ namespace EncounterAPI.Controllers
             }
 
             _repository.Route.DeleteRoute(routeModel);
-            await _context.SaveChangesAsync();
+            await _repository.SaveAsync();
 
             return NoContent();
         }

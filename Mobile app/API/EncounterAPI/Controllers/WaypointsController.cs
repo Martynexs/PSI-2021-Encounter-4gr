@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using EncounterAPI.Models;
 using EncounterAPI.TypeExtensions;
 using EncounterAPI.Data_Transfer_Objects;
+using Contracts;
 
 namespace EncounterAPI.Controllers
 {
@@ -13,25 +14,26 @@ namespace EncounterAPI.Controllers
     [ApiController]
     public class WaypointsController : ControllerBase
     {
-        private readonly EncounterContext _context;
+        private readonly IRepositoryWrapper _repository;
 
-        public WaypointsController(EncounterContext context)
+        public WaypointsController(IRepositoryWrapper repositoryWrapper)
         {
-            _context = context;
+            _repository = repositoryWrapper;
         }
 
         // GET: api/Waypoints
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WaypointDTO>>> GetWaypoints()
         {
-            return await _context.Waypoints.Select(wp => wp.ToDTO()).ToListAsync();
+            var waypoints = await _repository.Waypoint.GetAllWaypoints();
+            return waypoints.Select(wp => wp.ToDTO()).ToList();
         }
 
         // GET: api/Waypoints/5
         [HttpGet("{id}")]
         public async Task<ActionResult<WaypointDTO>> GetWaypoint(long id)
         {
-            var waypoint = await _context.Waypoints.FindAsync(id);
+            var waypoint = await _repository.Waypoint.GetWaypointById(id);
 
             if (waypoint == null)
             {
@@ -51,11 +53,11 @@ namespace EncounterAPI.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(waypoint.ToEFModel()).State = EntityState.Modified;
+            _repository.Waypoint.UpdateWaypoint(waypoint.ToEFModel());
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _repository.SaveAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,8 +80,8 @@ namespace EncounterAPI.Controllers
         public async Task<ActionResult<WaypointDTO>> PostWaypoint(WaypointDTO waypoint)
         {
             var createdWaypoint = waypoint.ToEFModel();
-            _context.Waypoints.Add(createdWaypoint);
-            await _context.SaveChangesAsync();
+            _repository.Waypoint.CreateWaypoint(createdWaypoint);
+            await _repository.SaveAsync();
 
             return CreatedAtAction(nameof(GetWaypoint), new { id = createdWaypoint.Id }, createdWaypoint.ToDTO());
         }
@@ -88,21 +90,21 @@ namespace EncounterAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteWaypoint(long id)
         {
-            var waypoint = await _context.Waypoints.FindAsync(id);
+            var waypoint = await _repository.Waypoint.GetWaypointById(id);
             if (waypoint == null)
             {
                 return NotFound();
             }
 
-            _context.Waypoints.Remove(waypoint);
-            await _context.SaveChangesAsync();
+            _repository.Waypoint.DeleteWaypoint(waypoint);
+            await _repository.SaveAsync();
 
             return NoContent();
         }
 
         private bool WaypointExists(long id)
         {
-            return _context.Waypoints.Any(e => e.Id == id);
+            return _repository.Waypoint.GetWaypointById(id) == default;
         }
     }
 }

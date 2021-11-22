@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using EncounterAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Contracts;
 
 namespace EncounterAPI.Controllers
 {
@@ -15,34 +16,35 @@ namespace EncounterAPI.Controllers
     [Authorize]
     public class UsersController : ControllerBase
     {
-        private readonly EncounterContext _context;
+        private readonly IRepositoryWrapper _repository;
 
-        public UsersController(EncounterContext context)
+        public UsersController(IRepositoryWrapper repositoryWrapper)
         {
-            _context = context;
+            _repository = repositoryWrapper;
         }
 
         // GET: api/Users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserModel>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            var users = await _repository.User.GetAllUsers();
+            return users.ToList();
         }
 
         // GET: api/Users/username
         [HttpGet("{username}")]
         public async Task<ActionResult<UserModel>> GetUser(string username)
         {
-            var curresntUser = User.Claims.Where(c => c.Type == ClaimTypes.Name).First().Value;
+            var currentUser = User.Claims.Where(c => c.Type == ClaimTypes.Name).First().Value;
 
-            var user = await _context.Users.Where(u => u.Username == username).FirstOrDefaultAsync();
+            var user = await _repository.User.GetUserByUsername(username);
 
             if (user == default)
             {
                 return NotFound();
             }
 
-            if(curresntUser != username)
+            if(currentUser != username)
             {
                 return Forbid();
             }
@@ -60,11 +62,11 @@ namespace EncounterAPI.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            _repository.User.UpdateUser(user);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _repository.SaveAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -90,15 +92,15 @@ namespace EncounterAPI.Controllers
             var hashedPassword = PasswordHasher.HashPassword(user.Password);
             user.Password = Convert.ToBase64String(hashedPassword);
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            _repository.User.CreateUser(user);
+            await _repository.SaveAsync();
 
             return CreatedAtAction("GetUser", new { username = user.Username }, user);
         }
 
         private bool UserExists(long userId)
         {
-            return _context.Users.Any(e => e.ID == userId);
+            return _repository.User.GetUserById(userId) == default;
         }
     }
 }
