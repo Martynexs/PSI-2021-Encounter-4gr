@@ -5627,3 +5627,4 @@ C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobi
 C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\stamp\_ResolveLibraryProjectImports.stamp
 C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\PSI.Android.csproj.CopyComplete
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\PSI.Android.csproj.CopyComplete

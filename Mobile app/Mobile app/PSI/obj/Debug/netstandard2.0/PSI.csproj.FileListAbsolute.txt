@@ -229,3 +229,6 @@ C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobi
 C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\Mobile app\PSI\bin\Debug\netstandard2.0\DataLibrary.pdb
 C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.csproj.CopyComplete
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\EditUserPasswordPopup.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\ProfilePage.xaml.g.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\UploadProfilePhotoPage.xaml.g.cs
