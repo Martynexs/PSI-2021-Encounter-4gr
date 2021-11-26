@@ -1,9 +1,14 @@
 ﻿using DataLibrary;
+using Map3;
+using Map3.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Xamarin.Forms;
+using System.Threading.Tasks;
+using Xamarin.Forms.Maps;
+using Map = Xamarin.Forms.Maps.Map;
 
 namespace PSI.ViewModels
 {
@@ -13,6 +18,7 @@ namespace PSI.ViewModels
         private EncounterProcessor _encounterProcessor;
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
+        public Command MapSearchCommand { get; }
 
         private long waypointId;
         private long routeId;
@@ -28,11 +34,16 @@ namespace PSI.ViewModels
         private decimal price;
         private WaypointType type;
 
+        private string mapSearch;
+        public static Map map;
+        private MapService mapService = new MapService();
+
         public long Id { get; set; }
         public EditWaypointViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
+            MapSearchCommand = new Command(onMapSearch);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
             _encounterProcessor = EncounterProcessor.Instanse;
@@ -121,6 +132,17 @@ namespace PSI.ViewModels
             }
         }
 
+        public string MapSearch
+        {
+            get => mapSearch;
+            set => SetProperty(ref mapSearch, value);
+        }
+
+        public async Task DisplayAlert(string title, string message, string cancel)
+        {
+            await Application.Current.MainPage.DisplayAlert(title, message, cancel);
+        }
+
         public async void LoadItemId(long waypointId)
         {
             try
@@ -139,6 +161,8 @@ namespace PSI.ViewModels
                 Picture = waypoint.PictureURL;
                 Price = waypoint.Price;
                 Type = waypoint.Type;
+                mapService.ResetSingularPin(map, true, new Position(Latitude, Longitude));
+                MapSearch = "";
             }
             catch (Exception)
             {
@@ -152,6 +176,26 @@ namespace PSI.ViewModels
             {
                 return Enum.GetNames(typeof(WaypointType)).Select(b => b).ToList();
             }
+        }
+
+        private async void onMapSearch()
+        {
+            if (MapSearch == null || MapSearch.Length == 0)
+            {
+                await DisplayAlert("Error", "Nothing to search, please enter search query", "ok");
+                return;
+            }
+
+            LatLong result = await mapService.GetCoordinatesByAddress(MapSearch);
+            if (result == null)
+            {
+                await DisplayAlert("Error", "Nothing could be found by your search query", "ok");
+                return;
+            }
+
+            Latitude = result.Lat;
+            Longitude = result.Long;
+            mapService.ResetSingularPin(map, true, new Position(Latitude, Longitude));
         }
         private async void OnCancel()
         {
@@ -187,5 +231,16 @@ namespace PSI.ViewModels
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
+
+        public void LocationSelected(MapClickedEventArgs e)
+        {
+            if (e != null && e.Position != null)
+            {
+                Longitude = e.Position.Longitude;
+                Latitude = e.Position.Latitude;
+                mapService.ResetSingularPin(map, true, new Position(Latitude, Longitude));
+            }
+        }
+
     }
 }

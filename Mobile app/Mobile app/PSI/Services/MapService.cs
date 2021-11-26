@@ -15,10 +15,39 @@ namespace Map3
     {
         private readonly string BaseRouteUrl = "https://router.project-osrm.org/route/v1/driving/";
         private readonly HttpClient _httpClient;
+        private readonly Geocoder _geocoder;
 
         public MapService()
         {
             _httpClient = new HttpClient();
+            _geocoder = new Geocoder();
+        }
+
+        public async Task<LatLong> GetCoordinatesByAddress(string address)
+        {
+            IEnumerable<Position> possiblePositions = await _geocoder.GetPositionsForAddressAsync(address);
+            Position foundPosition = possiblePositions.FirstOrDefault();
+            if (foundPosition == null)
+            {
+                return null;
+            }
+
+            return new LatLong()
+            {
+                Lat = foundPosition.Latitude,
+                Long = foundPosition.Longitude
+            };
+        }
+
+        public async Task<string> GetAddressByCoordinates(LatLong coords)
+        {
+            if (coords == null)
+            {
+                return null;
+            }
+
+            IEnumerable<string> possibleAddresses = await _geocoder.GetAddressesForPositionAsync(new Position(coords.Lat, coords.Long));
+            return possibleAddresses.FirstOrDefault();
         }
 
         public async Task<DirectionResponse> GetDirectionResponseAsync(List<VisualWaypoint> coordinates)
@@ -116,6 +145,25 @@ namespace Map3
                 polyline.Geopath.Add(new Position(latlong.Lat, latlong.Long));
             }
             map.MapElements.Add(polyline);
+        }
+
+        public void ResetSingularPin(Map map, bool moveToRegion, Position position)
+        {
+            map.Pins.Clear();
+            Pin newPin = new Pin()
+            {
+                Type = PinType.Place,
+                Label = "Waypoint location",
+                Address = "",
+                Position = position,
+            };
+            map.Pins.Add(newPin);
+
+            if (moveToRegion)
+            {
+                MapSpan mapSpan = MapSpan.FromCenterAndRadius(position, Distance.FromMeters(500));
+                map.MoveToRegion(mapSpan);
+            }
         }
     }
 }
