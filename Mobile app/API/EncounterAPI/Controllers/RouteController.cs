@@ -3,12 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using EncounterAPI.Models;
 using EncounterAPI.TypeExtensions;
 using EncounterAPI.Data_Transfer_Objects;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Contracts;
+using AuthorizationService;
 
 namespace EncounterAPI.Controllers
 {
@@ -128,23 +128,30 @@ namespace EncounterAPI.Controllers
         [Authorize]
         public async Task<IActionResult> DeleteRouteModel(long id)
         {
-            var currentUser = User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).First().Value;
-
             var routeModel = await _repository.Route.GetRouteByIdAsync(id);
-            if (routeModel == null)
+
+            var authorizationResult = await _authorization.AuthorizeAsync(User, routeModel, Operations.Delete);
+
+            if (routeModel == default)
             {
                 return NotFound();
             }
 
-            if(routeModel.CreatorID.ToString() != currentUser)
+            if(authorizationResult.Succeeded)
+            {
+                _repository.Route.DeleteRoute(routeModel);
+                await _repository.SaveAsync();
+
+                return NoContent();
+            }
+            else if(User.Identity.IsAuthenticated)
             {
                 return Forbid();
             }
-
-            _repository.Route.DeleteRoute(routeModel);
-            await _repository.SaveAsync();
-
-            return NoContent();
+            else
+            {
+                return Challenge();
+            }
         }
 
         private bool RouteModelExists(long id)

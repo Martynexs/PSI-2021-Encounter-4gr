@@ -17,10 +17,12 @@ namespace EncounterAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IRepositoryWrapper _repository;
+        private readonly IAuthorizationService _authorization;
 
-        public UsersController(IRepositoryWrapper repositoryWrapper)
+        public UsersController(IRepositoryWrapper repositoryWrapper, IAuthorizationService authorization)
         {
             _repository = repositoryWrapper;
+            _authorization = authorization;
         }
 
         // GET: api/Users
@@ -44,12 +46,20 @@ namespace EncounterAPI.Controllers
                 return NotFound();
             }
 
-            if(currentUser != username)
+            var authorizationResult = await _authorization.AuthorizeAsync(User, user, "UserInfoPolicy");
+
+            if(authorizationResult.Succeeded)
+            {
+                return user;
+            }
+            else if(User.Identity.IsAuthenticated)
             {
                 return Forbid();
             }
-
-            return user;
+            else
+            {
+                return Challenge();
+            }
         }
 
         // PUT: api/Users/username
