@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using EncounterAPI.Models;
 using EncounterAPI.Data_Transfer_Objects;
 using EncounterAPI.TypeExtensions;
+using Contracts;
 
 namespace EncounterAPI.Controllers
 {
@@ -14,27 +15,28 @@ namespace EncounterAPI.Controllers
     [ApiController]
     public class RatingsController : ControllerBase
     {
-        private readonly EncounterContext _context;
+        private readonly IRepositoryWrapper _repository;
 
-        public RatingsController(EncounterContext context)
+        public RatingsController(IRepositoryWrapper repositoryWrapper)
         {
-            _context = context;
+            _repository = repositoryWrapper;
         }
 
         // GET: api/Ratings
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RatingDTO>>> GetRatings()
         {
-            return await _context.Ratings.Select(x => x.ToDTO()).ToListAsync();
+            var ratings = await _repository.Rating.GetAllRatings();
+            return ratings.Select(r => r.ToDTO()).ToList();
         }
 
         // GET: api/Ratings/5/3
         [HttpGet("{RouteId}/{UserId}")]
         public async Task<ActionResult<RatingDTO>> GetRating(long RouteId, long UserId)
         {
-            var rating = await _context.Ratings.FindAsync(RouteId, UserId);
+            var rating = await _repository.Rating.GetRating(RouteId, UserId);
 
-            if (rating == null)
+            if (rating == default)
             {
                 return NotFound();
             }
@@ -56,19 +58,16 @@ namespace EncounterAPI.Controllers
 
             if(RatingExists(RouteId, UserId))
             {
-               _context.Entry(createdRating).State = EntityState.Modified;
+                _repository.Rating.UpdateRating(createdRating);
             }
             else
             {
-                _context.Ratings.Add(createdRating);
+                _repository.Rating.CreateRating(createdRating);
             }
-            await _context.SaveChangesAsync();
-
-            RatingsLogic.UpdateRating(createdRating, _context);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _repository.SaveAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,7 +83,7 @@ namespace EncounterAPI.Controllers
 
         private bool RatingExists(long RouteId, long UserId)
         {
-            return _context.Ratings.Any(e => e.RouteId == RouteId && e.UserId == UserId);
+            return _repository.Rating.FindByCondition(r => r.RouteId == RouteId && r.UserId == UserId).Any();
         }
     }
 }

@@ -3,12 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using EncounterAPI.Models;
 using EncounterAPI.TypeExtensions;
 using EncounterAPI.Data_Transfer_Objects;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Contracts;
+using AuthorizationService;
 
 namespace EncounterAPI.Controllers
 {
@@ -18,12 +18,10 @@ namespace EncounterAPI.Controllers
     {
         private IRepositoryWrapper _repository;
         private IAuthorizationService _authorization;
-        private EncounterContext _context;
 
-        public RouteController(IRepositoryWrapper repoWrapper, EncounterContext encounter, IAuthorizationService authorization)
+        public RouteController(IRepositoryWrapper repoWrapper, IAuthorizationService authorization)
         {
             _repository = repoWrapper;
-            _context = encounter;
             _authorization = authorization;
         }
 
@@ -66,15 +64,15 @@ namespace EncounterAPI.Controllers
         [HttpGet("{id}/Waypoints")]
         public async Task<ActionResult<IEnumerable<WaypointDTO>>> GetRouteWaypoints(long id)
         {
-            var routeModel = await _context.Routes.FindAsync(id);
+            var routeModel = await _repository.Route.GetRouteByIdAsync(id);
 
-            if (routeModel == null)
+            if (routeModel == default)
             {
                 return NotFound();
             }
 
-            var query = await _context.Waypoints.Where(wp => wp.RouteId == id).Select(wp => wp.ToDTO()).ToListAsync();
-            return query;
+            var query = await _repository.Waypoint.GetWaypointsByRoute(id);
+            return query.Select(wp => wp.ToDTO()).ToList();
         }
 
 
@@ -130,23 +128,30 @@ namespace EncounterAPI.Controllers
         [Authorize]
         public async Task<IActionResult> DeleteRouteModel(long id)
         {
-            var currentUser = User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).First().Value;
-
             var routeModel = await _repository.Route.GetRouteByIdAsync(id);
-            if (routeModel == null)
+
+            var authorizationResult = await _authorization.AuthorizeAsync(User, routeModel, Operations.Delete);
+
+            if (routeModel == default)
             {
                 return NotFound();
             }
 
-            if(routeModel.CreatorID.ToString() != currentUser)
+            if(authorizationResult.Succeeded)
+            {
+                _repository.Route.DeleteRoute(routeModel);
+                await _repository.SaveAsync();
+
+                return NoContent();
+            }
+            else if(User.Identity.IsAuthenticated)
             {
                 return Forbid();
             }
-
-            _repository.Route.DeleteRoute(routeModel);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            else
+            {
+                return Challenge();
+            }
         }
 
         private bool RouteModelExists(long id)

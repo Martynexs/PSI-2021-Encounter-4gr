@@ -480,6 +480,7 @@ D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Entities.pdb
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Repository.pdb
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.MvcApplicationPartsAssemblyInfo.cs
+<<<<<<< HEAD
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.csproj.CopyComplete
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Contracts.dll
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Entities.dll
@@ -821,3 +822,14 @@ C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobi
 C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\ref\EncounterAPI.dll
 C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.pdb
 C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\EncounterAPI\obj\Debug\net5.0\EncounterAPI.genruntimeconfig.cache
+=======
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Metadata.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\AuthorizationService.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\AuthorizationService.pdb
+>>>>>>> API-Refactoring

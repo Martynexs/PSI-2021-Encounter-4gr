@@ -7,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using AuthorizationService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EncounterAPI
 {
@@ -54,7 +56,15 @@ namespace EncounterAPI
 
             services.AddDbContext<EncounterContext>();
 
-            services.AddAuthorization();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("UserInfoPolicy", policy =>
+                    policy.Requirements.Add(new SameUserRequirement()));
+            });
+
+            services.AddSingleton<IAuthorizationHandler, UserAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, RouteAuthorizationCrudHandler>();
+
 
             services.AddAuthentication(options =>
             {
