@@ -28,6 +28,7 @@ foreground;obj\Release\110\res\mipmap-anydpi-v26\icon.xml
 foreground;obj\Release\110\res\mipmap-anydpi-v26\icon_round.xml
 FrameLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Release\110\lp\106\jl\res\layout\bottomtablayout.xml
 item;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Release\110\lp\106\jl\res\values\styles.xml
+item;obj\Release\110\res\values\styles.xml
 LinearLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Release\110\lp\106\jl\res\layout\bottomtablayout.xml
 paths;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Release\110\lp\104\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 resources;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Release\110\lp\106\jl\res\values\attrs.xml

@@ -17,6 +17,8 @@ namespace PSI
             Routing.RegisterRoute(nameof(RouteEditPopup), typeof(RouteEditPopup));
             Routing.RegisterRoute(nameof(EditWaypointPopup), typeof(EditWaypointPopup));
             Routing.RegisterRoute(nameof(Map), typeof(Map));
+            Routing.RegisterRoute(nameof(UploadProfilePhotoPage), typeof(UploadProfilePhotoPage));
+            Routing.RegisterRoute(nameof(EditUserPasswordPopup), typeof(EditUserPasswordPopup));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

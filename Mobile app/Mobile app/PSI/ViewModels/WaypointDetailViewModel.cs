@@ -1,8 +1,13 @@
 ﻿using DataLibrary;
 using PSI.Views;
+using PSI.Services;
 using System;
 using System.Diagnostics;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
+using Map = Xamarin.Forms.Maps.Map;
+using Map3;
+using Map3.Views;
 
 namespace PSI.ViewModels
 {
@@ -25,16 +30,28 @@ namespace PSI.ViewModels
         private DateTime openingHours;
         private DateTime closingHours;
         private string phoneNumber;
+        private string picture;
         private decimal price;
         private WaypointType type;
+        private string coordinatesText;
 
         public long Id { get; set; }
+
+        public static Map map;
+        private readonly MapService mapService = new MapService();
         public WaypointDetailViewModel()
         {
             _encounterProcessor = EncounterProcessor.Instanse;
             EditCommand = new Command(OnEdit);
             WaypointDeleteCommand = new Command(OnWaypointDeleteClicked);
         }
+
+        public string CoordinatesText
+        {
+            get => coordinatesText;
+            set => SetProperty(ref coordinatesText, value);
+        }
+
         public int Position
         {
             get => position;
@@ -97,6 +114,12 @@ namespace PSI.ViewModels
             set => SetProperty(ref routeId, value);
         }
 
+        public string Picture
+        {
+            get => picture;
+            set => SetProperty(ref picture, value);
+        }
+
         public long WaypointId
         {
             get => waypointId;
@@ -133,7 +156,15 @@ namespace PSI.ViewModels
                 ClosingHours = waypoint.ClosingTime;
                 PhoneNumber = waypoint.PhoneNumber;
                 Price = waypoint.Price;
+                Picture = waypoint.PictureURL;
                 Type = waypoint.Type;
+
+                CoordinatesText = await mapService.GetAddressByCoordinates(new LatLong()
+                {
+                    Lat = Latitude,
+                    Long = Longitude
+                });
+                mapService.ResetSingularPin(map, true, new Position(Latitude, Longitude));
             }
             catch (Exception)
             {

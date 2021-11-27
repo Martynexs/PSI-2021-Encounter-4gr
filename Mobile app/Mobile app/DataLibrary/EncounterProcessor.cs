@@ -8,7 +8,7 @@ namespace DataLibrary
 {
     public class EncounterProcessor
     {
-        private const string _apiAdress = "https://encounterapi.conveyor.cloud";
+        private const string _apiAdress = "https://encounterapi-kk3.conveyor.cloud";
 
         private static readonly Lazy<EncounterProcessor> _encounterProcessor =
             new Lazy<EncounterProcessor>(() => new EncounterProcessor());
@@ -114,6 +114,13 @@ namespace DataLibrary
             var url = $"{ _apiAdress }/api/waypoints/{ id }";
 
             await _apiHelper.HttpPut<Waypoint>(url, waypoint);
+        }
+
+        public async Task UpdateUser(long userId, User user)
+        {
+            var url = $"{ _apiAdress }/api/Users/{ userId }";
+
+            await _apiHelper.HttpPut<User>(url, user);
         }
 
         public async Task DeleteWaypoint(long id)

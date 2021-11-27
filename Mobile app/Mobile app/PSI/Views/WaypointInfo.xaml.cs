@@ -12,6 +12,7 @@ namespace PSI.Views
         {
             InitializeComponent();
             BindingContext = new WaypointDetailViewModel();
+            WaypointDetailViewModel.map = map;
         }
     }
 }

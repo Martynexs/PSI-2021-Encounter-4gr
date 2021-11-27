@@ -1,4 +1,5 @@
-﻿using EncounterAPI.Models;
+﻿using Contracts;
+using EncounterAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -13,18 +14,18 @@ namespace EncounterAPI.Controllers
 {
     public class TokenController : Controller
     {
-        private readonly EncounterContext _context;
+        private readonly IRepositoryWrapper _repository;
 
-        public TokenController(EncounterContext context)
+        public TokenController(IRepositoryWrapper repositoryWrapper)
         {
-            _context = context;
+            _repository = repositoryWrapper;
         }
 
         [Route("/token")]
         [HttpPost]
         public async Task<IActionResult> Create(string username, string password)
         {
-            var user = await _context.Users.Where(u => u.Username == username).FirstOrDefaultAsync();
+            var user = await _repository.User.GetUserByUsername(username);
 
             if (user == default || !PasswordHasher.ComparePasswords(user.Password, password))
             {
@@ -36,7 +37,7 @@ namespace EncounterAPI.Controllers
 
         private async Task<dynamic> GenerateToken(string username)
         {
-            var user = await _context.Users.Where(u => u.Username == username).FirstAsync();
+            var user = await _repository.User.GetUserByUsername(username);
 
             var claims = new List<Claim>
             {

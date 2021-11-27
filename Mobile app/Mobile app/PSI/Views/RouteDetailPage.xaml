@@ -20,15 +20,36 @@
                 SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model1:Waypoint">
-                        <Label Text="{Binding Name}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                        <Label Text="{Binding Description}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
+                    <StackLayout Padding="5" x:DataType="model1:Route">
+                        <Frame>
+                            <StackLayout>
+                                <StackLayout Padding="10" x:DataType="model1:Waypoint">
+                                    <Image Source="{Binding PictureURL}" VerticalOptions="Start"/>
+                                    <Label FontSize="22"
+                                        TextColor="Black"
+                                        VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Waypoint name: "/>
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding Name}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label FontSize="16"
+                                        TextColor="Black"
+                                        VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Discription:"/>
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding Description}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

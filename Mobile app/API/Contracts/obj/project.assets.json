@@ -7493,23 +7493,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\valat\\.nuget\\packages\\": {},
+    "C:\\Users\\Vartotojas\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj",
+      "projectUniqueName": "C:\\Users\\Vartotojas\\source\\repos\\tik pabandyk neveikt\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj",
       "projectName": "Contracts",
-      "projectPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj",
-      "packagesPath": "C:\\Users\\valat\\.nuget\\packages\\",
-      "outputPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\obj\\",
+      "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\tik pabandyk neveikt\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj",
+      "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Vartotojas\\source\\repos\\tik pabandyk neveikt\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\valat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Vartotojas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -7524,8 +7524,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj": {
-              "projectPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj"
+            "C:\\Users\\Vartotojas\\source\\repos\\tik pabandyk neveikt\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\tik pabandyk neveikt\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj"
             }
           }
         }
@@ -7578,7 +7578,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
