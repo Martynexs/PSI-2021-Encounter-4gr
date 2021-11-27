@@ -14,7 +14,8 @@ namespace PSI.Views
             InitializeComponent();
             EditWaypointViewModel vm = new EditWaypointViewModel();
             BindingContext = vm;
-            EditWaypointViewModel.map.MapClicked += (_, e) => vm.LocationSelected(e);
+            EditWaypointViewModel.map = map;
+            map.MapClicked += (_, e) => vm.LocationSelected(e);
         }
 
         async void Cancel_Button_Clicked(object sender, EventArgs e)

@@ -259,7 +259,7 @@
                                         CornerRadius="30"
                                         Command="{Binding SaveCommand}"/>
                             </StackLayout>
-
+                            </StackLayout>
                         </StackLayout>
                     </Frame>
                 </StackLayout>
