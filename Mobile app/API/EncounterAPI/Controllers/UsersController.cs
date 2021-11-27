@@ -72,25 +72,50 @@ namespace EncounterAPI.Controllers
                 return BadRequest();
             }
 
-            _repository.User.UpdateUser(user);
+            var oldUser = await _repository.User.GetUserById(userId);
+            var authorizationResult = await _authorization.AuthorizeAsync(User, oldUser, "UserInfoPolicy");
 
-            try
+            if (authorizationResult.Succeeded)
             {
-                await _repository.SaveAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(userId))
+
+                if (user.Password == null)
                 {
-                    return NotFound();
+                    user.Password = oldUser.Password;
                 }
                 else
                 {
-                    throw;
+                    var password = PasswordHasher.HashPassword(user.Password);
+                    user.Password = Convert.ToBase64String(password);
                 }
-            }
 
-            return NoContent();
+                _repository.User.UpdateUser(user);
+
+                try
+                {
+                    await _repository.SaveAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(userId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return NoContent();
+            }
+            else if(User.Identity.IsAuthenticated)
+            {
+                return Forbid();
+            }
+            else
+            {
+                return Challenge();
+            }
         }
 
         // POST: api/Users
