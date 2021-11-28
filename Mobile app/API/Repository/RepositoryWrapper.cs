@@ -59,6 +59,57 @@ namespace Repository
             }
         }
 
+        private IQuizRepository _quiz;
+        public IQuizRepository Quiz
+        {
+            get
+            {
+                if (_quiz == null)
+                {
+                    _quiz = new QuizRepository(_repositoryContext);
+                }
+                return _quiz;
+            }
+        }
+
+        private IQuizAnswerRepository _quizAnswer;
+        public IQuizAnswerRepository QuizAnswer
+        {
+            get
+            {
+                if (_quizAnswer == null)
+                {
+                    _quizAnswer = new QuizAnswerRepository(_repositoryContext);
+                }
+                return _quizAnswer;
+            }
+        }
+
+        private IRouteCompletionRepository _routeCompletion;
+        public IRouteCompletionRepository RouteCompletion
+        {
+            get
+            {
+                if(_routeCompletion == null)
+                {
+                    _routeCompletion = new RouteCompletionRepository(_repositoryContext);
+                }
+                return _routeCompletion;
+            }
+        }
+
+        private IWaypointCompletionRepository _waypointCompletion;
+        public IWaypointCompletionRepository WaypointCompletion
+        {
+            get
+            {
+                if(_waypointCompletion == null)
+                {
+                    _waypointCompletion = new WaypointCompletionRepository(_repositoryContext);
+                }
+                return _waypointCompletion;
+            }
+        }
 
         public RepositoryWrapper(EncounterContext repositoryContext)
         {

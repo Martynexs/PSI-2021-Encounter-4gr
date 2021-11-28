@@ -3,14 +3,16 @@ using System;
 using EncounterAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EncounterAPI.Migrations
 {
     [DbContext(typeof(EncounterContext))]
-    partial class EncounterContextModelSnapshot : ModelSnapshot
+    [Migration("20211128161056_Point-System")]
+    partial class PointSystem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,16 +160,20 @@ namespace EncounterAPI.Migrations
                     b.Property<long>("Id")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("WaypointId")
+                    b.Property<long>("WaypointID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Points")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Question")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id", "WaypointId");
+                    b.HasKey("Id", "WaypointID");
 
-                    b.HasIndex("WaypointId");
+                    b.HasIndex("WaypointID")
+                        .IsUnique();
 
                     b.ToTable("Ouizzes");
                 });
@@ -203,9 +209,6 @@ namespace EncounterAPI.Migrations
 
                     b.Property<long>("UserId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastVisit")
-                        .HasColumnType("TEXT");
 
                     b.Property<int>("Points")
                         .HasColumnType("INTEGER");
@@ -278,13 +281,13 @@ namespace EncounterAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.Quiz", b =>
                 {
-                    b.HasOne("EncounterAPI.Models.Waypoint", "Wayoint")
-                        .WithMany("Quiz")
-                        .HasForeignKey("WaypointId")
+                    b.HasOne("EncounterAPI.Models.Waypoint", "wayoint")
+                        .WithOne("Quiz")
+                        .HasForeignKey("Entities.Models.Quiz", "WaypointID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Wayoint");
+                    b.Navigation("wayoint");
                 });
 
             modelBuilder.Entity("Entities.Models.QuizAnswers", b =>
