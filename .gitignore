@@ -15,3 +15,16 @@ CMakeSettings.json
 /Mobile app/Mobile app/PSI/obj
 /Mobile app/Mobile app/PSI.Android/bin
 /Mobile app/Mobile app/PSI.Android/obj
+/Mobile app/API/AuthorizationService/obj
+/Mobile app/API/AuthorizationService/bin
+/Mobile app/API/Contracts/obj
+/Mobile app/API/Contracts/bin
+/Mobile app/API/Entities/bin
+/Mobile app/API/Entities/obj
+/Mobile app/API/Repository/obj
+/Mobile app/API/Repository/bin
+/Mobile app/Mobile app/DataLibrary/.vs
+/Mobile app/Mobile app/DataLibrary/bin
+/Mobile app/Mobile app/DataLibrary/obj
+/Mobile app/Mobile app/PSI.iOS/obj
+/Mobile app/Mobile app/PSI.iOS/bin
