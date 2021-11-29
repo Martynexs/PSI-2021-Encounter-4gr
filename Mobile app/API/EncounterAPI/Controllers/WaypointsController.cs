@@ -7,6 +7,8 @@ using EncounterAPI.Models;
 using EncounterAPI.TypeExtensions;
 using EncounterAPI.Data_Transfer_Objects;
 using Contracts;
+using Entities.Data_Transfer_Objects;
+using Entities.TypeExtensions;
 
 namespace EncounterAPI.Controllers
 {
@@ -106,5 +108,21 @@ namespace EncounterAPI.Controllers
         {
             return _repository.Waypoint.GetWaypointById(id) == default;
         }
+
+        [HttpGet("{id}/Quiz")]
+        public async Task<ActionResult<QuizDTO>> GetQuizByWaypoint(long id)
+        {
+            var quiz = await _repository.Quiz.GetQuizByWaypointId(id);
+            if (quiz == default)
+            {
+                return NotFound();
+            }
+            var answers = await _repository.QuizAnswer.GetQuizAnswers(quiz.Id);
+            var result = quiz.ToDTO();
+            result.Answers = answers.Select(x => x.ToDTO()).ToList();
+            return result;
+        }
+
+
     }
 }
