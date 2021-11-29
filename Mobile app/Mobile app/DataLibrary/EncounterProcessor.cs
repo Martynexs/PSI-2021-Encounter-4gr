@@ -8,7 +8,7 @@ namespace DataLibrary
 {
     public class EncounterProcessor
     {
-        private const string _apiAdress = "https://encounterapi-kk3.conveyor.cloud";
+        private const string _apiAdress = "https://encounterapi.conveyor.cloud";
 
         private static readonly Lazy<EncounterProcessor> _encounterProcessor =
             new Lazy<EncounterProcessor>(() => new EncounterProcessor());
@@ -167,7 +167,7 @@ namespace DataLibrary
 
         public async Task<User> RegisterUser(User user)
         {
-            var url = $"{ _apiAdress }/Users";
+            var url = $"{ _apiAdress }/api/Users";
 
             var createdUser = await _apiHelper.HttpPost<User>(url, user);
             return createdUser;
@@ -181,6 +181,70 @@ namespace DataLibrary
             var token = logininfo.access_token;
             return token;
         }
+
+        public async Task<Quiz> GetWaypointQuiz(long waypointID)
+        {
+            var url = $"{ _apiAdress }/api/Waypoints/{ waypointID }/Quiz";
+
+            var quiz = await _apiHelper.HttpGet<Quiz>(url);
+            return quiz;
+        }
+
+        public async Task<Quiz> CreateQuiz(Quiz quiz)
+        {
+            var url = $"{ _apiAdress }/api/Quizzes";
+
+            var createdQuiz = await _apiHelper.HttpPost<Quiz>(url, quiz);
+            return createdQuiz;
+        }
+
+        public async Task UpdateQuiz(Quiz quiz)
+        {
+            var url = $"{ _apiAdress }/api/Quizzes/{ quiz.Id }";
+
+            await _apiHelper.HttpPut<Quiz>(url, quiz);
+        }
+
+        public async Task DeleteQuiz(long quizId)
+        {
+            var url = $"{ _apiHelper }/api/{quizId}";
+
+            await _apiHelper.HttpDelete(url);
+        }
+
+        public async Task<QuizAnswer> CreateQuizAnswer(QuizAnswer answer)
+        {
+            var url = $"{ _apiAdress }/api/QuizAnswers";
+
+            var createdAnswer = await _apiHelper.HttpPost<QuizAnswer>(url, answer);
+            return createdAnswer;
+        }
+
+        public async Task UpdateQuizAnswer(QuizAnswer answer)
+        {
+            var url = $"{ _apiAdress }/api/QuizAnswers/{ answer.Id }";
+
+            await _apiHelper.HttpPut<QuizAnswer>(url, answer);
+        }
+
+        public async Task DeleteQuizAnswer(long quizAnswerID)
+        {
+            var url = $"{ _apiAdress }/api/QuizAnswers/{ quizAnswerID }";
+
+            await _apiHelper.HttpDelete(url);
+        }
+
+        public async Task<QuizAnswer> GetQuizAnswer(long quizAnswerID)
+        {
+            var url = $"{ _apiAdress }/api/QuizAnswers/{ quizAnswerID }";
+
+            var answer = await _apiHelper.HttpGet<QuizAnswer>(url);
+            return answer;
+        }
+
+
+
+
 
     }
 }

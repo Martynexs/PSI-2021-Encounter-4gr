@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entities.Models;
+using System;
+using System.Collections.Generic;
 
 namespace EncounterAPI.Models
 {
@@ -18,5 +20,7 @@ namespace EncounterAPI.Models
         public decimal Price { get; set; }
         public WaypointType Type { get; set; }
         public string PictureURL { get; set; }
+        public int Points { get; set; }
+        public virtual List<Quiz> Quiz { get; set; }
     }
 }

@@ -8,6 +8,10 @@ namespace Contracts
         IWaypointRepository Waypoint { get; }
         IRatingRepository Rating { get; }
         IUserRepository User { get; }
+        IRouteCompletionRepository RouteCompletion { get; }
+        IWaypointCompletionRepository WaypointCompletion { get; }
+        IQuizRepository Quiz { get; }
+        IQuizAnswerRepository QuizAnswer { get; }
         Task SaveAsync();
     }
 }
