@@ -13,8 +13,8 @@ namespace PSI.ViewModels
 {
     public class RoutesViewModel : BaseViewModel
     {
-        private EncounterProcessor _encounterProcessor;
-        private Session _session;
+        private readonly EncounterProcessor _encounterProcessor;
+        private readonly Session _session;
         public ObservableCollection<Route> Routes { get; }
         public Command LoadRoutesCommand { get; }
         public Command LoadUserRoutesCommand { get; }

@@ -83,13 +83,12 @@ namespace Map3
         public List<LatLong> ExtractLocations(DirectionResponse directionResponse)
         {
             var locations = new List<LatLong>();
-            var legs = new List<Leg>();
             var steps = new List<Step>();
             var intersections = new List<Intersection>();
 
             var route = directionResponse.Routes[0];
 
-            legs = route.Legs.ToList();
+            var legs = route.Legs.ToList();
             foreach (var leg in legs)
             {
                 steps.AddRange(leg.Steps.ToList());

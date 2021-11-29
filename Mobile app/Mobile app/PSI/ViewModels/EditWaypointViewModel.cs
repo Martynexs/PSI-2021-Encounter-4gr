@@ -15,7 +15,7 @@ namespace PSI.ViewModels
     [QueryProperty(nameof(WaypointId), nameof(WaypointId))]
     class EditWaypointViewModel : BaseViewModel
     {
-        private EncounterProcessor _encounterProcessor;
+        private readonly EncounterProcessor _encounterProcessor;
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
         public Command MapSearchCommand { get; }
@@ -36,14 +36,14 @@ namespace PSI.ViewModels
 
         private string mapSearch;
         public static Map map;
-        private MapService mapService = new MapService();
+        private readonly MapService mapService = new MapService();
 
         public long Id { get; set; }
         public EditWaypointViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
-            MapSearchCommand = new Command(onMapSearch);
+            MapSearchCommand = new Command(OnMapSearch);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
             _encounterProcessor = EncounterProcessor.Instanse;
@@ -170,7 +170,7 @@ namespace PSI.ViewModels
             }
         }
 
-        public List<string> objectTypeNames
+        public List<string> ObjectTypeNames
         {
             get
             {
@@ -178,7 +178,7 @@ namespace PSI.ViewModels
             }
         }
 
-        private async void onMapSearch()
+        private async void OnMapSearch()
         {
             if (MapSearch == null || MapSearch.Length == 0)
             {

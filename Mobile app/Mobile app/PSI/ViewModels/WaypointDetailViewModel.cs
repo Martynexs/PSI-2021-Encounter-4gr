@@ -14,7 +14,7 @@ namespace PSI.ViewModels
     [QueryProperty(nameof(WaypointId), nameof(WaypointId))]
     class WaypointDetailViewModel : BaseViewModel
     {
-        private EncounterProcessor _encounterProcessor;
+        private readonly EncounterProcessor _encounterProcessor;
 
         public Command EditCommand { get; }
 
