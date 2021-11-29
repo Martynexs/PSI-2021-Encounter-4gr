@@ -10,7 +10,7 @@ namespace EncounterAPI.Models
         public DbSet<Rating> Ratings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(@"Data Source=C:\Users\Vartotojas\source\repos\EncounterDB.db");
+            => options.UseSqlite(@"Data Source=C:\Users\Juste\source\repos\EncounterDB.db");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
