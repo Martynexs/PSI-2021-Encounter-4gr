@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EncounterAPI.Migrations
 {
-    public partial class PointSystem : Migration
+    public partial class Pointssystem : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,17 +18,17 @@ namespace EncounterAPI.Migrations
                 name: "Ouizzes",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false),
-                    WaypointID = table.Column<long>(type: "INTEGER", nullable: false),
-                    Question = table.Column<string>(type: "TEXT", nullable: false),
-                    Points = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    WaypointId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Question = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ouizzes", x => new { x.Id, x.WaypointID });
+                    table.PrimaryKey("PK_Ouizzes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ouizzes_Waypoints_WaypointID",
-                        column: x => x.WaypointID,
+                        name: "FK_Ouizzes_Waypoints_WaypointId",
+                        column: x => x.WaypointId,
                         principalTable: "Waypoints",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -39,7 +40,8 @@ namespace EncounterAPI.Migrations
                 {
                     RouteId = table.Column<long>(type: "INTEGER", nullable: false),
                     UserId = table.Column<long>(type: "INTEGER", nullable: false),
-                    Points = table.Column<int>(type: "INTEGER", nullable: false)
+                    Points = table.Column<int>(type: "INTEGER", nullable: false),
+                    LastVisit = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,20 +64,20 @@ namespace EncounterAPI.Migrations
                 name: "QuizzAnswers",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false),
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     QuizId = table.Column<long>(type: "INTEGER", nullable: false),
-                    QuizWaypointId = table.Column<long>(type: "INTEGER", nullable: false),
                     Text = table.Column<string>(type: "TEXT", nullable: true),
                     IsCorrect = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_QuizzAnswers", x => new { x.Id, x.QuizId, x.QuizWaypointId });
+                    table.PrimaryKey("PK_QuizzAnswers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_QuizzAnswers_Ouizzes_QuizId_QuizWaypointId",
-                        columns: x => new { x.QuizId, x.QuizWaypointId },
+                        name: "FK_QuizzAnswers_Ouizzes_QuizId",
+                        column: x => x.QuizId,
                         principalTable: "Ouizzes",
-                        principalColumns: new[] { "Id", "WaypointID" },
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -105,15 +107,14 @@ namespace EncounterAPI.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ouizzes_WaypointID",
+                name: "IX_Ouizzes_WaypointId",
                 table: "Ouizzes",
-                column: "WaypointID",
-                unique: true);
+                column: "WaypointId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_QuizzAnswers_QuizId_QuizWaypointId",
+                name: "IX_QuizzAnswers_QuizId",
                 table: "QuizzAnswers",
-                columns: new[] { "QuizId", "QuizWaypointId" });
+                column: "QuizId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RouteCompletions_UserId",

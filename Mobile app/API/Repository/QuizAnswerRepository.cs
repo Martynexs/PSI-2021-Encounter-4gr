@@ -27,6 +27,26 @@ namespace Repository
             Delete(quizAnswer);
         }
 
+        public async Task DeleteQuizAnswerById(long id)
+        {
+            var answer = await GetQuizAnswerById(id);
+            Delete(answer);
+        }
+
+        public async Task DeleteQuizAnswersByQuizId(long quizId)
+        {
+            var answers = await FindByCondition(x => x.QuizId == quizId).ToListAsync();
+            foreach(var a in answers)
+            {
+                Delete(a);
+            }
+        }
+
+        public async Task<QuizAnswers> GetQuizAnswerById(long id)
+        {
+            return await FindByCondition(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<QuizAnswers>> GetQuizAnswers(long quizId)
         {
             return await FindByCondition(x => x.QuizId == quizId).ToListAsync();
@@ -35,6 +55,11 @@ namespace Repository
         public void UpdateAnswer(QuizAnswers quizAnswer)
         {
             Update(quizAnswer);
+        }
+
+        public bool AnswerExists(long id)
+        {
+            return FindByCondition(x => x.Id == id).Any();
         }
     }
 }

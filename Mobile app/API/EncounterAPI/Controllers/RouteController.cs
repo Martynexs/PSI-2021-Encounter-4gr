@@ -38,7 +38,7 @@ namespace EncounterAPI.Controllers
         public async Task<ActionResult<RouteDTO>> GetRouteModel(long id)
         {
             var route = await _repository.Route.GetRouteByIdAsync(id);
-            if (route == null)
+            if (route == default)
             {
                 return NotFound();
             }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EncounterAPI.Migrations
 {
     [DbContext(typeof(EncounterContext))]
-    [Migration("20211128161056_Point-System")]
-    partial class PointSystem
+    [Migration("20211129091438_Points-system")]
+    partial class Pointssystem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -158,22 +158,19 @@ namespace EncounterAPI.Migrations
             modelBuilder.Entity("Entities.Models.Quiz", b =>
                 {
                     b.Property<long>("Id")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("WaypointID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Points")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Question")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id", "WaypointID");
+                    b.Property<long>("WaypointId")
+                        .HasColumnType("INTEGER");
 
-                    b.HasIndex("WaypointID")
-                        .IsUnique();
+                    b.HasKey("Id");
+
+                    b.HasIndex("WaypointId");
 
                     b.ToTable("Ouizzes");
                 });
@@ -181,23 +178,21 @@ namespace EncounterAPI.Migrations
             modelBuilder.Entity("Entities.Models.QuizAnswers", b =>
                 {
                     b.Property<long>("Id")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("QuizId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("QuizWaypointId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsCorrect")
                         .HasColumnType("INTEGER");
 
+                    b.Property<long>("QuizId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Text")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id", "QuizId", "QuizWaypointId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("QuizId", "QuizWaypointId");
+                    b.HasIndex("QuizId");
 
                     b.ToTable("QuizzAnswers");
                 });
@@ -209,6 +204,9 @@ namespace EncounterAPI.Migrations
 
                     b.Property<long>("UserId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("LastVisit")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Points")
                         .HasColumnType("INTEGER");
@@ -281,20 +279,20 @@ namespace EncounterAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.Quiz", b =>
                 {
-                    b.HasOne("EncounterAPI.Models.Waypoint", "wayoint")
-                        .WithOne("Quiz")
-                        .HasForeignKey("Entities.Models.Quiz", "WaypointID")
+                    b.HasOne("EncounterAPI.Models.Waypoint", "Wayoint")
+                        .WithMany("Quiz")
+                        .HasForeignKey("WaypointId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("wayoint");
+                    b.Navigation("Wayoint");
                 });
 
             modelBuilder.Entity("Entities.Models.QuizAnswers", b =>
                 {
                     b.HasOne("Entities.Models.Quiz", "quiz")
                         .WithMany("Answers")
-                        .HasForeignKey("QuizId", "QuizWaypointId")
+                        .HasForeignKey("QuizId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

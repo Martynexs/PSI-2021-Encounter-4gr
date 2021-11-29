@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Models
+namespace Entities.Data_Transfer_Objects
 {
-    public class QuizAnswers
+    public class QuizAnswerDTO
     {
         public long Id { get; set; }
         public long QuizId { get; set; }
-        public virtual Quiz quiz { get; set; }
         public string Text { get; set; }
         public bool IsCorrect { get; set; }
     }

@@ -8,6 +8,7 @@ using EncounterAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Contracts;
+using EncounterAPI.Data_Transfer_Objects;
 
 namespace EncounterAPI.Controllers
 {
@@ -48,11 +49,11 @@ namespace EncounterAPI.Controllers
 
             var authorizationResult = await _authorization.AuthorizeAsync(User, user, "UserInfoPolicy");
 
-            if(authorizationResult.Succeeded)
+            if (authorizationResult.Succeeded)
             {
                 return user;
             }
-            else if(User.Identity.IsAuthenticated)
+            else if (User.Identity.IsAuthenticated)
             {
                 return Forbid();
             }
@@ -108,7 +109,7 @@ namespace EncounterAPI.Controllers
 
                 return NoContent();
             }
-            else if(User.Identity.IsAuthenticated)
+            else if (User.Identity.IsAuthenticated)
             {
                 return Forbid();
             }
@@ -131,6 +132,13 @@ namespace EncounterAPI.Controllers
             await _repository.SaveAsync();
 
             return CreatedAtAction("GetUser", new { username = user.Username }, user);
+        }
+
+        [HttpGet("{username}/StartedRoutes")]
+        [AllowAnonymous]
+        public async Task<ActionResult<RouteDTO>> GetUserStartedRoutes(string username)
+        {
+            return NotFound();
         }
 
         private bool UserExists(long userId)

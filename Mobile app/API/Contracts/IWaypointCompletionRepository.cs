@@ -10,6 +10,6 @@ namespace Contracts
     public interface IWaypointCompletionRepository : IRepositoryBase<WaypointCompletion>
     {
         Task<IEnumerable<WaypointCompletion>> GetWaypointCompletions(long routeId, long userId);
-        void CreateWaypointCompletion(WaypointCompletion waypointCompletion);
+        Task CreateWaypointCompletion(WaypointCompletion waypointCompletion);
     }
 }

@@ -156,16 +156,17 @@ namespace EncounterAPI.Migrations
             modelBuilder.Entity("Entities.Models.Quiz", b =>
                 {
                     b.Property<long>("Id")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("WaypointId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Question")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id", "WaypointId");
+                    b.Property<long>("WaypointId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("WaypointId");
 
@@ -175,23 +176,21 @@ namespace EncounterAPI.Migrations
             modelBuilder.Entity("Entities.Models.QuizAnswers", b =>
                 {
                     b.Property<long>("Id")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("QuizId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("QuizWaypointId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsCorrect")
                         .HasColumnType("INTEGER");
 
+                    b.Property<long>("QuizId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Text")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id", "QuizId", "QuizWaypointId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("QuizId", "QuizWaypointId");
+                    b.HasIndex("QuizId");
 
                     b.ToTable("QuizzAnswers");
                 });
@@ -291,7 +290,7 @@ namespace EncounterAPI.Migrations
                 {
                     b.HasOne("Entities.Models.Quiz", "quiz")
                         .WithMany("Answers")
-                        .HasForeignKey("QuizId", "QuizWaypointId")
+                        .HasForeignKey("QuizId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
