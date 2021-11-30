@@ -282,11 +282,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vartotojas\\source\\repos\\AB\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj",
       "projectName": "DataLibrary",
-      "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\AB\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj",
+      "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj",
       "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vartotojas\\source\\repos\\AB\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\obj\\",
+      "outputPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"

@@ -83,7 +83,7 @@ namespace EncounterAPI.Controllers
                 {
                     user.Password = oldUser.Password;
                 }
-                else
+                else if (user.Password != oldUser.Password)
                 {
                     var password = PasswordHasher.HashPassword(user.Password);
                     user.Password = Convert.ToBase64String(password);

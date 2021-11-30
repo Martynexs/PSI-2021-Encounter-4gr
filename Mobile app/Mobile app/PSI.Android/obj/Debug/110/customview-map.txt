@@ -1,61 +1,51 @@
+@string/appbar_scrolling_view_behavior;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\rootlayout.xml
 adaptive-icon;obj\Debug\110\res\mipmap-anydpi-v26\icon.xml
 adaptive-icon;obj\Debug\110\res\mipmap-anydpi-v26\icon_round.xml
+alpha;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\anim\enterfromleft.xml
+alpha;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\anim\exittoleft.xml
+androidx.appcompat.widget.Toolbar;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\fallbacktoolbardonotuse.xml
+androidx.appcompat.widget.Toolbar;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\rootlayout.xml
+androidx.appcompat.widget.Toolbar;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\shellcontent.xml
+androidx.appcompat.widget.Toolbar;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\toolbar.xml
+androidx.coordinatorlayout.widget.CoordinatorLayout;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\rootlayout.xml
+androidx.coordinatorlayout.widget.CoordinatorLayout;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\shellcontent.xml
+attr;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\values\attrs.xml
 background;obj\Debug\110\res\mipmap-anydpi-v26\icon.xml
 background;obj\Debug\110\res\mipmap-anydpi-v26\icon_round.xml
-Chronometer;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_custom.xml
-Chronometer;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_narrow_custom.xml
-Chronometer;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_lines_media.xml
-Chronometer;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_media_custom.xml
-color;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\values\values.xml
+cache-path;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\54\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 color;obj\Debug\110\res\values\colors.xml
-DateTimeView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_custom.xml
-DateTimeView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_narrow_custom.xml
-DateTimeView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_lines_media.xml
-DateTimeView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_media_custom.xml
+com.google.android.material.appbar.AppBarLayout;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\flyoutcontent.xml
+com.google.android.material.appbar.AppBarLayout;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\rootlayout.xml
+com.google.android.material.appbar.AppBarLayout;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\shellcontent.xml
+com.google.android.material.bottomnavigation.BottomNavigationView;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\bottomtablayout.xml
+com.google.android.material.tabs.TabLayout;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\fallbacktabbardonotuse.xml
+com.google.android.material.tabs.TabLayout;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\rootlayout.xml
+com.google.android.material.tabs.TabLayout;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\tabbar.xml
+declare-styleable;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\values\attrs.xml
+external-cache-path;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\54\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+external-path;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\54\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 foreground;obj\Debug\110\res\mipmap-anydpi-v26\icon.xml
 foreground;obj\Debug\110\res\mipmap-anydpi-v26\icon_round.xml
-FrameLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_custom.xml
-FrameLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_narrow_custom.xml
-FrameLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_media_custom.xml
-ImageButton;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_media_action.xml
-ImageButton;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_media_cancel_action.xml
-ImageView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media.xml
-ImageView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_custom.xml
-ImageView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_narrow.xml
-ImageView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_narrow_custom.xml
-ImageView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_media.xml
-ImageView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_media_custom.xml
-include;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media.xml
-include;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_custom.xml
-include;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_narrow.xml
-include;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_narrow_custom.xml
-include;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_media.xml
-include;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_media_custom.xml
-integer;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\values\values.xml
-item;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\values\values.xml
-item;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\values-v21\values-v21.xml
+FrameLayout;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\bottomtablayout.xml
+item;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\values\styles.xml
 item;obj\Debug\110\res\values\styles.xml
-LinearLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media.xml
-LinearLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_custom.xml
-LinearLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_narrow.xml
-LinearLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_narrow_custom.xml
-LinearLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_lines_media.xml
-LinearLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_media.xml
-LinearLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_media_custom.xml
-RelativeLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media.xml
-RelativeLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_custom.xml
-RelativeLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_narrow.xml
-RelativeLayout;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_narrow_custom.xml
-resources;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\values\values.xml
-resources;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\values-v21\values-v21.xml
-resources;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\values-v24\values-v24.xml
+LinearLayout;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\bottomtablayout.xml
+paths;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\54\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+resources;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\values\attrs.xml
+resources;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\values\styles.xml
+resources;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\values\strings.xml
 resources;obj\Debug\110\res\values\colors.xml
 resources;obj\Debug\110\res\values\styles.xml
-style;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\values\values.xml
-style;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\values-v21\values-v21.xml
-style;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\values-v24\values-v24.xml
+set;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\anim\enterfromleft.xml
+set;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\anim\enterfromright.xml
+set;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\anim\exittoleft.xml
+set;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\anim\exittoright.xml
+style;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\values\styles.xml
 style;obj\Debug\110\res\values\styles.xml
-TextView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_custom.xml
-TextView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_big_media_narrow_custom.xml
-TextView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_lines_media.xml
-TextView;C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\104\jl\res\layout\notification_template_media_custom.xml
+string;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\values\strings.xml
+translate;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\anim\enterfromleft.xml
+translate;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\anim\enterfromright.xml
+translate;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\anim\exittoleft.xml
+translate;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\anim\exittoright.xml
+xamarin.forms.platform.android.appcompat.FormsViewPager;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\rootlayout.xml
+xamarin.forms.platform.android.ShellFlyoutLayout;C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\lp\56\jl\res\layout\flyoutcontent.xml

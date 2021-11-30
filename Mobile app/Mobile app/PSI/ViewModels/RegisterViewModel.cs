@@ -76,11 +76,10 @@ namespace PSI.ViewModels
                 try
                 {
                     var user = new User();
-                    user.Name = userName;
+                    user.Username = userName;
                     user.Email = userEmail;
                     user.PhoneNumber = userPhone;
                     user.Password = userPassword;
-                    user.Name = userName;
                     await _encounterProcessor.RegisterUser(user);
                 }
                 catch (Exception)

@@ -2,15 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\Mobile app",
-    "\\Mobile app\\API",
-    "\\Mobile app\\API\\Entities",
     "\\Mobile app\\Mobile app",
     "\\Mobile app\\Mobile app\\PSI",
-    "\\Mobile app\\Mobile app\\PSI.Android",
-    "\\Mobile app\\Mobile app\\PSI.Android\\Resources",
-    "\\Mobile app\\Mobile app\\PSI.Android\\Resources\\values",
-    "\\Mobile app\\Mobile app\\PSI\\Views"
+    "\\Mobile app\\Mobile app\\PSI\\ViewModels"
   ],
-  "SelectedNode": "\\Mobile app\\Mobile app\\Mobile app.sln",
+  "SelectedNode": "\\Mobile app\\Mobile app\\PSI\\ViewModels\\RouteDetailViewModel.cs",
   "PreviewInSolutionExplorer": false
 }

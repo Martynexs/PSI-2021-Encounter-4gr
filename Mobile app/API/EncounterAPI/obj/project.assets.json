@@ -8074,11 +8074,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vartotojas\\source\\repos\\A\\Swashbucklers-Project\\Mobile app\\API\\EncounterAPI\\EncounterAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\EncounterAPI\\EncounterAPI.csproj",
       "projectName": "EncounterAPI",
-      "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\A\\Swashbucklers-Project\\Mobile app\\API\\EncounterAPI\\EncounterAPI.csproj",
+      "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\EncounterAPI\\EncounterAPI.csproj",
       "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vartotojas\\source\\repos\\A\\Swashbucklers-Project\\Mobile app\\API\\EncounterAPI\\obj\\",
+      "outputPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\EncounterAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -8099,17 +8099,17 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Vartotojas\\source\\repos\\A\\Swashbucklers-Project\\Mobile app\\API\\AuthorizationService\\AuthorizationService.csproj": {
-              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\A\\Swashbucklers-Project\\Mobile app\\API\\AuthorizationService\\AuthorizationService.csproj"
+            "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\AuthorizationService\\AuthorizationService.csproj": {
+              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\AuthorizationService\\AuthorizationService.csproj"
             },
-            "C:\\Users\\Vartotojas\\source\\repos\\A\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj": {
-              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\A\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj"
+            "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj": {
+              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj"
             },
-            "C:\\Users\\Vartotojas\\source\\repos\\A\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj": {
-              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\A\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj"
+            "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj"
             },
-            "C:\\Users\\Vartotojas\\source\\repos\\A\\Swashbucklers-Project\\Mobile app\\API\\Repository\\Repository.csproj": {
-              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\A\\Swashbucklers-Project\\Mobile app\\API\\Repository\\Repository.csproj"
+            "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\Repository\\Repository.csproj": {
+              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\Repository\\Repository.csproj"
             }
           }
         }

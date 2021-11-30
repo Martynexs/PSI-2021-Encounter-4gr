@@ -33,7 +33,7 @@
                         <StackLayout>
 
                             <StackLayout HorizontalOptions="Center" Padding="1,1,1,1">
-                                <Label Text="Change password"
+                                <Label Text="Change profile picture"
                                        TextColor="#FFC900"
                                        FontSize="Large"
                                        FontAttributes="Bold"/>
