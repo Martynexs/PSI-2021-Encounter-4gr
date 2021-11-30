@@ -116,7 +116,7 @@ namespace PSI.ViewModels
             if (_waypointList.Count != 0)
             {
                 objectsQueryOrderedByDistance = _waypointList.OrderBy(pin => pin.DistanceToUser);
-                Distances = objectsQueryOrderedByDistance.FirstOrDefault().DistanceToUser;
+                Distances = Math.Round(objectsQueryOrderedByDistance.FirstOrDefault().DistanceToUser,2);
             }
         }
         public async void LoadItemId(string routeId)
