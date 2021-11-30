@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Contracts;
 using EncounterAPI.Data_Transfer_Objects;
+using EncounterAPI.TypeExtensions;
 
 namespace EncounterAPI.Controllers
 {
@@ -83,7 +84,7 @@ namespace EncounterAPI.Controllers
                 {
                     user.Password = oldUser.Password;
                 }
-                else
+                else if(user.Password != oldUser.Password)
                 {
                     var password = PasswordHasher.HashPassword(user.Password);
                     user.Password = Convert.ToBase64String(password);
@@ -134,11 +135,18 @@ namespace EncounterAPI.Controllers
             return CreatedAtAction("GetUser", new { username = user.Username }, user);
         }
 
-        [HttpGet("{username}/StartedRoutes")]
+        [HttpGet("{userId}/StartedRoutes")]
         [AllowAnonymous]
-        public async Task<ActionResult<RouteDTO>> GetUserStartedRoutes(string username)
+        public async Task<ActionResult<IEnumerable<RouteDTO>>> GetUserStartedRoutes(long userId)
         {
-            return NotFound();
+            if(!UserExists(userId))
+            {
+                return NotFound();
+            }
+
+            var routes = await _repository.RouteCompletion.GetUserStartedRoutes(userId);
+
+            return routes.Select(x => x.ToDTO()).ToList();
         }
 
         private bool UserExists(long userId)

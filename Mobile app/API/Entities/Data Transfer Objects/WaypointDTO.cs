@@ -17,5 +17,6 @@ namespace EncounterAPI.Data_Transfer_Objects
         public decimal Price { get; set; }
         public WaypointType Type { get; set; }
         public string PictureURL { get; set; }
+        public int Points { get; set; }
     }
 }

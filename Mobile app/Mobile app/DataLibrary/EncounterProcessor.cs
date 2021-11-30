@@ -242,9 +242,44 @@ namespace DataLibrary
             return answer;
         }
 
+        public async Task<WaypointCompletion> PostWaypointCompletion(WaypointCompletion waypointCompletion)
+        {
+            var url = $"{ _apiAdress }/api/WaypointCompletion";
 
+            waypointCompletion = await _apiHelper.HttpPost<WaypointCompletion>(url, waypointCompletion);
+            return waypointCompletion;
+        }
 
+        public async Task<IEnumerable<WaypointCompletion>> GetWaypointCompletions(long routeId, long waypointId)
+        {
+            var url = $"{ _apiAdress }/api/WaypointCompletion/{routeId}/{waypointId}";
 
+            var waypoints = await _apiHelper.HttpGet<IEnumerable<WaypointCompletion>>(url);
+            return waypoints;
+        }
 
+        public async Task<IEnumerable<Route>> GetUsersStartedRoutes(long userId)
+        {
+            var url = $"{ _apiAdress }/api/Users/{userId}/StartedRoutes";
+
+            var routes = await _apiHelper.HttpGet<IEnumerable<Route>>(url);
+            return routes;
+        }
+
+        public async Task<RouteCompletion> PostRouteCompletion(RouteCompletion routeCompletion)
+        {
+            var url = $"{ _apiAdress }/api/RouteCompletion/{routeCompletion.RouteId}/{routeCompletion.UserId}";
+
+            routeCompletion = await _apiHelper.HttpPost<RouteCompletion>(url, routeCompletion);
+            return routeCompletion;
+        }
+
+        public async Task<RouteCompletion> GetRouteCompletion(long routeId, long userId)
+        {
+            var url = $"{ _apiAdress }/api/RouteCompletion/{routeId}/{userId}";
+
+            var routeCompletion = await _apiHelper.HttpGet<RouteCompletion>(url);
+            return routeCompletion;
+        }
     }
 }

@@ -46,5 +46,11 @@ namespace Repository
         {
             Update(routeCompletion);
         }
+
+        public async Task<IEnumerable<RouteModel>> GetUserStartedRoutes(long userId)
+        {
+            var routes = await FindByCondition(x => x.UserId == userId).Select(x => x.Route).ToListAsync();
+            return routes;
+        }
     }
 }
