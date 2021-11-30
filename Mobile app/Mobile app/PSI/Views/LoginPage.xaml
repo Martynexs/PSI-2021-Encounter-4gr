@@ -103,6 +103,7 @@
                     </Image.GestureRecognizers>
                 </Image>
             </Frame>
+            <Button Clicked="TestGoogle_ButtonClicked" Text="GGL-TEST"/>
         </StackLayout>
     </StackLayout>
     

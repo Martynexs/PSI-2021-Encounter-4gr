@@ -13,15 +13,15 @@ namespace PSI.Services
 
         public string FbReturnUrl()
         {
-            return EncounterProcessor._apiAdress + "/swagger/index.html";
+            return "https://windows.com";
         }
 
-        public string FbTokenApiUrl()
+        public string ConsentScreenUrl()
         {
             return "https://www.facebook.com/v12.0/dialog/oauth?client_id=1326689497764961&display=popup&response_type=token&redirect_uri=" + FbReturnUrl();
         }
 
-        public string ExtractTokenFromUrl(string url)
+        public string FindOutTokenFromReturnUrl(string url)
         {
             if (!url.Contains("#access_token"))
             {
