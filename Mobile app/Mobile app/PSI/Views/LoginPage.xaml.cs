@@ -80,7 +80,7 @@ namespace PSI.Views
 
                 if (testToken == "null" || testToken == null)
                 {
-                    testToken = "EAAS2nfg91GEBAMNG7flgrBC4xnFmCaKaDDbKSFwOdzZCqNEK465cINhBNFvU5TbF3gHPxAf5sFG4OJJBKP2jwzHrwka5HF6dH8auFFze7DRrz89dCSxY0IX1qihpeBN4HqWPoCsX9br4UGpZBYw2ZAViXNvs2VqgScrgsZATpelUMyOmsd51tHvmwLTq5GDzLAZA89dZCXzAZDZD";
+                    testToken = "EAAS2nfg91GEBABfO50JerwURoCtNaLz6J5nGLdq37C3LFboa3SjNcAsx6G2lqv4Gv7OltfZBZAdIE2WmfsTckQOdlm43aKRNX5ZBHryB9WXh2vytt6L8NiMwj272LDZCiOFern3b7jy9ZAogO0azuZB1AWrQBPT7B7bBHOYGzacCEpB3XyezZBVppDa4cB8NZCfy2ZCLLsz4Fh1jEWl0REK5x";
                 }
 
                 var profileData = await FacebookLoginService.Instance.GetFbProfileData(testToken);
@@ -100,7 +100,7 @@ namespace PSI.Views
 
                 if (testCode == "null" || testCode == null)
                 {
-                    testCode = "4%2F0AX4XfWhyAaGgYkuwaXP5En1mnVWQ2ZJs9rSV4RjP13YFtVM-8x7GJ1v-jdTE5EEG13dVkA";
+                    testCode = "4%2F0AX4XfWiCSBp8Brot_8Da54mp6RWLU6c50H6YBsA1BtUcX3vFOSplEMOFbn4ObA3VyUz8VQ";
                 }
 
                 var accessToken = await GoogleLoginService.Instance.GetToken(testCode);

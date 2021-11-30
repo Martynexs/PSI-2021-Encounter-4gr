@@ -13,7 +13,7 @@ namespace PSI.Services
 
         public string FbReturnUrl()
         {
-            return "https://windows.com";
+            return "https://encounter.is";
         }
 
         public string ConsentScreenUrl()
@@ -30,7 +30,7 @@ namespace PSI.Services
 
             var result = url.Replace(FbReturnUrl() + "#access_token", "");
 
-            return url.Remove(result.IndexOf("&expires_in"));
+            return url.Remove(result.IndexOf("&data_access_expiration_time"));
         }
 
         public async Task<FacebookProfileData> GetFbProfileData(string fbToken)
