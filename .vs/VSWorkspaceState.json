@@ -5,11 +5,12 @@
     "\\Mobile app\\API",
     "\\Mobile app\\API\\Entities",
     "\\Mobile app\\Mobile app",
-    "\\Mobile app\\Mobile app\\DataLibrary",
+    "\\Mobile app\\Mobile app\\PSI",
     "\\Mobile app\\Mobile app\\PSI.Android",
     "\\Mobile app\\Mobile app\\PSI.Android\\Resources",
-    "\\Mobile app\\Mobile app\\PSI.Android\\Resources\\values"
+    "\\Mobile app\\Mobile app\\PSI.Android\\Resources\\values",
+    "\\Mobile app\\Mobile app\\PSI\\Views"
   ],
-  "SelectedNode": "\\Mobile app\\API\\Entities\\EncounterContext.cs",
+  "SelectedNode": "\\Mobile app\\Mobile app\\Mobile app.sln",
   "PreviewInSolutionExplorer": false
 }

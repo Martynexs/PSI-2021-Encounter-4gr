@@ -19,8 +19,9 @@
                 SelectedItem="{Binding SelectedRoute , Mode=TwoWay}"
                 SelectionMode="Single">
             <CollectionView.ItemTemplate>
+                
                 <DataTemplate>
-                        <StackLayout Padding="5" x:DataType="model1:Route">
+                        <StackLayout Padding="5" x:DataType="model1:Route" >
                             <Frame>
                                 <StackLayout>
                                     <Label Text="{Binding Name}"
@@ -28,11 +29,27 @@
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
-                                    <Label Text="{Binding Location}" 
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
-                                    <Label Text="{Binding Rating, StringFormat='{0} ★'}"/>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Location: "/>
+                                                <Span Text="{Binding Location}"/>
+                                                <Span Text="      "/>
+                                                <Span Text="Distance: "/>
+                                                <Span Text="{Binding Distances}"/>
+                                                <Span Text="  "/>
+                                                <Span Text="km"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Rating: "/>
+                                                <Span Text="{Binding Rating, StringFormat='{0} ★'}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
                                 </StackLayout>
                             </Frame>
                         </StackLayout>

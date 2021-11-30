@@ -11,8 +11,7 @@
     </ContentPage.BindingContext>
 
     <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-        <Label Text="Encounter" TextColor="Black" FontSize="32" FontAttributes="Italic" Margin="10,0,10,0" HorizontalOptions="Center"/>
-        <Grid RowSpacing="20" Grid.Row="1" Margin="10,0,10,0">
+        <Grid RowSpacing="15" Grid.Row="1" Margin="10,0,10,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="50"/>
@@ -22,12 +21,14 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Entry Grid.Row="1" Placeholder="Email" PlaceholderColor="Black" FontSize="16"/>
-            <Entry Grid.Row="2" Placeholder="User Name" PlaceholderColor="Black" FontSize="16"/>
-            <Entry Grid.Row="3" Placeholder="Phone number" PlaceholderColor="Black" FontSize="16"/>
-            <Entry Grid.Row="4" Placeholder="Password" PlaceholderColor="Black" FontSize="16"/>
-            <Entry Grid.Row="5" Placeholder="Confirm password" PlaceholderColor="Black" FontSize="16"/>
+            <Label Grid.Row="0" Text="Encounter" TextColor="Black" FontSize="32" FontAttributes="Italic" Margin="10,0,10,0" HorizontalOptions="Center"/>
+            <Entry Grid.Row="1" Text="{Binding UserEmail}" Placeholder="Email" PlaceholderColor="Black" FontSize="16"/>
+            <Entry Grid.Row="2" Text="{Binding UserName}" Placeholder="User Name" PlaceholderColor="Black" FontSize="16"/>
+            <Entry Grid.Row="3" Text="{Binding UserPhone}" Placeholder="Phone number" PlaceholderColor="Black" FontSize="16"/>
+            <Entry Grid.Row="4" Text="{Binding UserPassword}" Placeholder="Password" PlaceholderColor="Black" FontSize="16"/>
+            <Entry Grid.Row="5" Text="{Binding UserConfirmPassword}" Placeholder="Confirm password" PlaceholderColor="Black" FontSize="16"/>
             <Button Text="Register" BackgroundColor="#FFC900" TextColor="White" HeightRequest="50" Margin="10,10,10,0" VerticalOptions="Start" Grid.Row="6" Command="{Binding RegisterCommand}"/>
+            <Button Text="Cancel" BackgroundColor="#FFC900" TextColor="White" HeightRequest="50" Margin="10,10,10,0" VerticalOptions="Start" Grid.Row="7" Command="{Binding CancelCommand}"/>
         </Grid>
     </StackLayout>
     

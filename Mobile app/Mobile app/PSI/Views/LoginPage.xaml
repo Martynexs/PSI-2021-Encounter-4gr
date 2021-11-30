@@ -30,7 +30,7 @@
             </Grid.RowDefinitions>
             
             <Entry Grid.Row="1" 
-                   Placeholder="Email or Phone Number"
+                   Placeholder="User name"
                    PlaceholderColor="Black"
                    Text="{Binding Username}"
                    FontSize="16"/>

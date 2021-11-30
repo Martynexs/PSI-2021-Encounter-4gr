@@ -744,23 +744,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\valat\\.nuget\\packages\\": {},
+    "C:\\Users\\Vartotojas\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj",
+      "projectUniqueName": "C:\\Users\\Vartotojas\\source\\repos\\AB\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj",
       "projectName": "PSI",
-      "projectPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj",
-      "packagesPath": "C:\\Users\\valat\\.nuget\\packages\\",
-      "outputPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\obj\\",
+      "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\AB\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj",
+      "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Vartotojas\\source\\repos\\AB\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\valat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Vartotojas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -775,8 +775,8 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj": {
-              "projectPath": "D:\\Uni 2021-2022\\PSI\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj"
+            "C:\\Users\\Vartotojas\\source\\repos\\AB\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj": {
+              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\AB\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj"
             }
           }
         }
@@ -828,7 +828,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -17,5 +17,6 @@ namespace DataLibrary.Models
         public decimal Price { get; set; }
         public WaypointType Type { get; set; }
         public string PictureURL { get; set; }
+        public double DistanceToUser { get; set; }
     }
 }

@@ -99,7 +99,7 @@
                                         TextColor="Black"
                                         BackgroundColor="#FFC900"
                                         CornerRadius="30"
-                                        Command="{Binding CloseCommand}"/>
+                                        Command="{Binding CancelCommand}"/>
 
                                 <Button Text="Save"
                                         TextColor="Black"
