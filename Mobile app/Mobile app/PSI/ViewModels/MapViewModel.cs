@@ -22,7 +22,7 @@ namespace Map3.ViewModels
         private string _maneuverinfo;
         private MapService services;
         private DirectionResponse dr;
-        private WaypointsCoordinatesService waypointsCoordinatesService;
+        private readonly WaypointsCoordinatesService waypointsCoordinatesService;
         private CancellationTokenSource _walkingCancelHandler;
         public static Map map;
         public Command GetRouteCommand { get; }
@@ -152,9 +152,11 @@ namespace Map3.ViewModels
 
         private async void RedrawPolylineFromTo(VisualWaypoint from, VisualWaypoint to)
         {
-            var fromTo = new List<VisualWaypoint>();
-            fromTo.Add(from);
-            fromTo.Add(to);
+            var fromTo = new List<VisualWaypoint>
+            {
+                from,
+                to
+            };
 
             var directionResponse = await services.GetDirectionResponseAsync(fromTo);
             UpdateDistanceAndTime(directionResponse);

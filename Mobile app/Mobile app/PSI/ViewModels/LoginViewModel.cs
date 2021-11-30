@@ -1,5 +1,6 @@
 ﻿using DataLibrary;
 using PSI.Views;
+using System.Net.Http;
 using Xamarin.Forms;
 
 namespace PSI.ViewModels
@@ -9,11 +10,12 @@ namespace PSI.ViewModels
         public Command LoginCommand { get; }
         public Command RegistrationCommand { get; }
 
-        private Session _session;
+        private readonly Session _session;
 
         public string Username { get; set; }
         public string Password { get; set; }
 
+        private readonly HttpClient _httpClient = new HttpClient();
 
         public LoginViewModel()
         {

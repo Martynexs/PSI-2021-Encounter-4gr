@@ -115,7 +115,7 @@
                                         <Picker Margin="4,0,4,0"
                                                 x:Name="ObjectTypePicker"
                                                 HorizontalOptions="FillAndExpand"
-                                                ItemsSource="{Binding objectTypeNames}"
+                                                ItemsSource="{Binding ObjectTypeNames}"
                                                 SelectedIndex="{Binding Type, Converter={StaticResource IntEnum}}"/>
                                     </StackLayout>
                                 </Frame>

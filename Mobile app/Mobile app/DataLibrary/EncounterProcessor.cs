@@ -8,7 +8,7 @@ namespace DataLibrary
 {
     public class EncounterProcessor
     {
-        private const string _apiAdress = "https://encounterapi.conveyor.cloud";
+        public const string _apiAdress = "https://encounterapi.conveyor.cloud/swagger/index.html";
 
         private static readonly Lazy<EncounterProcessor> _encounterProcessor =
             new Lazy<EncounterProcessor>(() => new EncounterProcessor());
