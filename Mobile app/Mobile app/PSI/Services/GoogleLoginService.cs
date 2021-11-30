@@ -26,7 +26,7 @@ namespace PSI.Services
         public string ConsentScreenUrl()
         {
             return "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?" +
-                "response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fencounter.is" +
+                "response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile&redirect_uri=https%3A%2F%2Fencounter.is" +
                 "&client_id=753305973135-cniqi79qed1ob3r178louts5nf2pjt6o.apps.googleusercontent.com&flowName=GeneralOAuthFlow";
         }
 

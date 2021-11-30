@@ -100,7 +100,7 @@ namespace PSI.Views
 
                 if (testCode == "null" || testCode == null)
                 {
-                    testCode = "4%2F0AX4XfWj_PhsRjzrqprF1aD53u99c4AQNDYPULwJmIxp13fuKGW8uRH4DknjVTdV7tmCikw";
+                    testCode = "4%2F0AX4XfWhyAaGgYkuwaXP5En1mnVWQ2ZJs9rSV4RjP13YFtVM-8x7GJ1v-jdTE5EEG13dVkA";
                 }
 
                 var accessToken = await GoogleLoginService.Instance.GetToken(testCode);
@@ -121,7 +121,7 @@ namespace PSI.Views
 
         private async void DoSuccessfulGoogleLogin(GoogleProfileData profile)
         {
-            await Application.Current.MainPage.DisplayAlert("Success!", "Hello, Google User system will store your GOOGLE-ID (" + profile.Id + ") to recognize you later.", "OK");
+            await Application.Current.MainPage.DisplayAlert("Success!", "Hello, " + profile.Name + ", system will store your GOOGLE-ID (" + profile.Id + ") to recognize you later.", "OK");
         }
     }
 }
