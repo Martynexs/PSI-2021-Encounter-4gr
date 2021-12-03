@@ -47,6 +47,10 @@ namespace PSI.Services
 
         public async Task<string> GetToken(string code)
         {
+            if (code == null)
+            {
+                return null;
+            }
             var requestUrl = "https://www.googleapis.com/oauth2/v4/token?code=" + code + "&client_id=" + _clientKey + "&client_secret=" + _clientSecret + "&redirect_uri=" + RedirectUrl()
                 + "&grant_type=authorization_code";
 
@@ -59,6 +63,10 @@ namespace PSI.Services
 
         public async Task<GoogleProfileData> GetGoogleProfileData(string token)
         {
+            if (token == null)
+            {
+                return null;
+            }
             //var url = "https://www.googleapis.com/plus/v1/people/me?access_token=" + token;
             //var url = "https://people.googleapis.com/v1/people/me?access_token=" + token + "&personFields=clientData";
             var url = "https://www.googleapis.com/oauth2/v2/userinfo?access_token=" + token;

@@ -35,6 +35,10 @@ namespace PSI.Services
 
         public async Task<FacebookProfileData> GetFbProfileData(string fbToken)
         {
+            if (fbToken == null)
+            {
+                return null;
+            }
             var url = "https://graph.facebook.com/v2.7/me/?fields=name,picture,email&access_token=" + fbToken;
 
             var resultJson = await _httpClient.GetStringAsync(url);
