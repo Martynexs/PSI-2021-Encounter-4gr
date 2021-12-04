@@ -11,5 +11,6 @@ namespace Contracts
     {
         Task<IEnumerable<WaypointCompletion>> GetWaypointCompletions(long routeId, long userId);
         Task CreateWaypointCompletion(WaypointCompletion waypointCompletion);
+        bool WaypointCompletionExists(long routeId, long userId);
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Contracts;
+using Entities.Data_Transfer_Objects;
 using Entities.Models;
+using Entities.TypeExtensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,16 +27,23 @@ namespace EncounterAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddWaypointCompletion(WaypointCompletion waypoint)
+        public async Task<ActionResult> AddWaypointCompletion(WaypointCompletionDTO waypoint)
         {
             var routeWaypoints = await _repository.Waypoint.GetWaypointsByRoute(waypoint.RouteCompletionRouteId);
-            if(!routeWaypoints.Where(x => x.Id == waypoint.WaypointId).Any())
+            if (!routeWaypoints.Where(x => x.Id == waypoint.WaypointId).Any())
             {
                 return BadRequest();
             }
-            await _repository.WaypointCompletion.CreateWaypointCompletion(waypoint);
+            await _repository.WaypointCompletion.CreateWaypointCompletion(waypoint.ToEFModel());
             await _repository.SaveAsync();
             return NoContent();
+        }
+
+        [HttpGet("{routeId}/{userId}")]
+        public async Task<ActionResult<IEnumerable<WaypointCompletionDTO>>> GetCompletedWaypoints(long routeId, long userId)
+        {
+            var completedWaypoints = await _repository.WaypointCompletion.GetWaypointCompletions(routeId, userId);
+            return completedWaypoints.Select(x => x.ToDTO()).ToList();
         }
     }
 }

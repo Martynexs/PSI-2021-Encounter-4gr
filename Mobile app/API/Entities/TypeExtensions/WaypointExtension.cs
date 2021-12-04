@@ -21,7 +21,8 @@ namespace EncounterAPI.TypeExtensions
                 Price = wp.Price,
                 Type = wp.Type,
                 PhoneNumber = wp.PhoneNumber,
-                PictureURL = wp.PictureURL
+                PictureURL = wp.PictureURL,
+                Points = wp.Points
             };
         }
 
@@ -41,7 +42,8 @@ namespace EncounterAPI.TypeExtensions
                 Price = waypointDTO.Price,
                 Type = waypointDTO.Type,
                 PhoneNumber = waypointDTO.PhoneNumber,
-                PictureURL = waypointDTO.PictureURL
+                PictureURL = waypointDTO.PictureURL,
+                Points = waypointDTO.Points
             };
         }
 
