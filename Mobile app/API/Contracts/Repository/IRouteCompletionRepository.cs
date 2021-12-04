@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using EncounterAPI.Models;
+using Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace Contracts
         Task<RouteCompletion> GetRouteCompletion(long routeId, long userId);
         Task<IEnumerable<RouteCompletion>> GetRouteCompletionsByRoute(long routeId);
         Task<IEnumerable<RouteCompletion>> GetRouteCompletionsByUser(long userId);
+        Task<IEnumerable<RouteModel>> GetUserStartedRoutes(long userId);
     }
 }
