@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\QuizPopup.xaml.cs">
+      <DependentUpon>QuizPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\RouteDetailPage.xaml.cs">
       <DependentUpon>RouteDetailPage.xaml</DependentUpon>
     </Compile>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLibrary.Models;
+using System;
 using System.Collections.Generic;
 using Xamarin.Essentials;
 
@@ -9,7 +10,7 @@ namespace PSI.Models
         private static WalkingSession Current;
         private readonly List<VisualWaypoint> GoalWaypointsLeft;
         private Location LastKnownLocation;
-        
+        private List<Quiz> QuizQuestions; // when quiz is active it's not null
 
         private WalkingSession(List<VisualWaypoint> waypoints)
         {
@@ -96,6 +97,21 @@ namespace PSI.Models
 
             Current.LastKnownLocation = currentLocation;
             return true;
+        }
+
+        public static void AssignQuiz(List<Quiz> questions)
+        {
+            Current.QuizQuestions = questions;
+        }
+
+        public static bool HasQuiz()
+        {
+            return Current.QuizQuestions != null;
+        }
+
+        public static List<Quiz> GetQuizQuestions()
+        {
+            return Current.QuizQuestions;
         }
     }
 }

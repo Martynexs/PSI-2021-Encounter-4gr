@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 x:Class="PSI.Views.QuizPopup"
+                 xmlns:vm="clr-namespace:PSI.ViewModels"
+                 x:DataType="vm:QuizViewModel"
+                 BackgroundColor="Yellow">
+
+    <popup:PopupPage.Animation>
+        <animations:ScaleAnimation 
+                PositionIn="Center"
+                PositionOut="Center"
+                ScaleIn="1.2"
+                ScaleOut="0.8"
+                DurationIn="400"
+                DurationOut="300"
+                EasingIn="SinOut"
+                EasingOut="SinIn"
+                HasBackgroundAnimation="True"/>
+    </popup:PopupPage.Animation>
+
+    <ScrollView>
+        <StackLayout Padding="0"
+                     Margin="0">
+            <Grid>
+                <StackLayout Margin="15,0,15,20">
+                    <StackLayout Margin="0,10,0,0">
+                        <Label Text="{Binding CurrentQuestionDisplayableIndex, StringFormat='CurrentQuestion: {0}'}" FontSize="Medium"/>
+                    </StackLayout>
+                    <StackLayout Margin="0,10,0,0">
+                        <Label Text="{Binding QuestionsCount, StringFormat='Total questions: {0}'}" FontSize="Medium"/>
+                    </StackLayout>
+                    <StackLayout Margin="0,10,0,0">
+                        <Label Text="{Binding CurrentQuestionText}" FontSize="Title"/>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</popup:PopupPage>

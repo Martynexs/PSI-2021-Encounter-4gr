@@ -57,5 +57,10 @@ namespace Repository
         {
             return FindByCondition(x => x.Id == id).Any();
         }
+
+        public async Task<IEnumerable<Quiz>> GetMultipleQuestionsByWaypointId(long waypointId)
+        {
+            return await FindByCondition(x => x.WaypointId == waypointId).ToListAsync();
+        }
     }
 }

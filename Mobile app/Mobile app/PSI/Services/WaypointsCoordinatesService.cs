@@ -22,6 +22,7 @@ namespace PSI.Services
             {
                 var ll = new VisualWaypoint
                 {
+                    Id = wp.Id,
                     Lat = wp.Latitude,
                     Long = wp.Longitude,
                     Name = wp.Name,

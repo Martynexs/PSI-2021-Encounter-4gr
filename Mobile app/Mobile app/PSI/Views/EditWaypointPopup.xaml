@@ -28,7 +28,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ScrollView>
+    <ScrollView InputTransparent="True"><!-- Necessary for map scrolling -->
 
         <StackLayout Padding="0"
                      Margin="0">

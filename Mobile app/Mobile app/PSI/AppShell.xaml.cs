@@ -16,6 +16,7 @@ namespace PSI
             Routing.RegisterRoute(nameof(NewWaypointPage), typeof(NewWaypointPage));
             Routing.RegisterRoute(nameof(RouteEditPopup), typeof(RouteEditPopup));
             Routing.RegisterRoute(nameof(EditWaypointPopup), typeof(EditWaypointPopup));
+            Routing.RegisterRoute(nameof(QuizPopup), typeof(QuizPopup));
             Routing.RegisterRoute(nameof(Map), typeof(Map));
             Routing.RegisterRoute(nameof(UploadProfilePhotoPage), typeof(UploadProfilePhotoPage));
             Routing.RegisterRoute(nameof(EditUserPasswordPopup), typeof(EditUserPasswordPopup));

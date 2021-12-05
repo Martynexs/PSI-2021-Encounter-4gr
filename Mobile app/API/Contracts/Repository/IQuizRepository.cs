@@ -14,5 +14,6 @@ namespace Contracts
         void DeleteQuiz(Quiz quiz);
         Task DeleteById(long id);
         bool QuizExists(long id);
+        Task<IEnumerable<Quiz>> GetMultipleQuestionsByWaypointId(long waypointId);
     }
 }

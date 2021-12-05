@@ -10,19 +10,23 @@ using Map = Xamarin.Forms.Maps.Map;
 using PSI.ViewModels;
 using Map3.Views;
 using System.Threading;
+using DataLibrary;
+using PSI.Views;
 
 namespace Map3.ViewModels
 {
     [QueryProperty(nameof(SelectedRouteId), nameof(SelectedRouteId))]
     public class MapViewModel : BaseViewModel
     {
+        private EncounterProcessor _encounterProcessor;
+        private MapService _mapService;
+        private WaypointsCoordinatesService waypointsCoordinatesService;
+
         private bool _walkingActive;
         private double _routeduration;
         private double _routedistance;
         private string _maneuverinfo;
-        private MapService services;
         private DirectionResponse dr;
-        private WaypointsCoordinatesService waypointsCoordinatesService;
         private CancellationTokenSource _walkingCancelHandler;
         public static Map map;
         public Command GetRouteCommand { get; }
@@ -34,7 +38,8 @@ namespace Map3.ViewModels
         public MapViewModel()
         {
             map = new Map();
-            services = new MapService();
+            _encounterProcessor = EncounterProcessor.Instanse;
+            _mapService = new MapService();
             dr = new DirectionResponse();
             waypointsCoordinatesService = new WaypointsCoordinatesService();
             GetRouteCommand = new Command(async () => await AddPolylineAsync());
@@ -117,13 +122,30 @@ namespace Map3.ViewModels
         {
             var deviceLocation = await Geolocation.GetLocationAsync();
 
+            if (WalkingSession.HasQuiz())
+            {
+                return; // freeze until quiz finishes
+            }
+
             if (!WalkingSession.CheckMoved(deviceLocation))
             {
-                return;
+                return; // do nothing since user doesn't move
             }
 
             if (WalkingSession.IsGoalWaypointReached(deviceLocation))
             {
+                var currentWaypoint = WalkingSession.CurrentGoalWaypoint();
+                var questions = await _encounterProcessor.GetMultipleWaypointQuestions(currentWaypoint.Id);
+                WalkingSession.AssignQuiz(questions);
+
+                if (WalkingSession.HasQuiz())
+                {
+                    await DisplayAlert("Quiz found!", "You found " + currentWaypoint.Name + " and here's a task for you! Check your knowledge before proceeding!", "ok");
+                    // This will pop the current page off the navigation stack
+                    await Shell.Current.GoToAsync($"{nameof(QuizPopup)}");
+                    return;
+                }
+
                 if (WalkingSession.IsTheLastGoalWaypoint())
                 {
                     await DisplayAlert("Finish!", "You completed the route!", "ok");
@@ -132,9 +154,8 @@ namespace Map3.ViewModels
                 }
                 else
                 {
-                    var currentWaypoint = WalkingSession.CurrentGoalWaypoint();
                     var nextWaypoint = WalkingSession.MoveToNextGoalWaypoint();
-                    await DisplayAlert("Good job!", "You reached " + currentWaypoint.Name + " now please go to " + nextWaypoint.Name, "ok");
+                    await DisplayAlert("Good job!", "You completed " + currentWaypoint.Name + " now please go to " + nextWaypoint.Name, "ok");
                     RedrawPolylineFromTo(currentWaypoint, nextWaypoint);
                     return;
                 }
@@ -156,12 +177,12 @@ namespace Map3.ViewModels
             fromTo.Add(from);
             fromTo.Add(to);
 
-            var directionResponse = await services.GetDirectionResponseAsync(fromTo);
+            var directionResponse = await _mapService.GetDirectionResponseAsync(fromTo);
             UpdateDistanceAndTime(directionResponse);
             UpdateManeuver(directionResponse);
-            var polylineLocations = services.ExtractLocations(directionResponse);
+            var polylineLocations = _mapService.ExtractLocations(directionResponse);
             map.MapElements.Clear();
-            services.DrawPolyline(polylineLocations, map);
+            _mapService.DrawPolyline(polylineLocations, map);
 
             var mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(fromTo), Distance.FromMeters(Math.Max(directionResponse.Routes[0].Distance / 2, 50)));
             map.MoveToRegion(mapSpan);
@@ -190,7 +211,7 @@ namespace Map3.ViewModels
 
                     List<VisualWaypoint> apiWaypoints = await waypointsCoordinatesService.LoadWaypointsFromAPI(SelectedRouteId);
 
-                    dr = await services.GetDirectionResponseAsync(apiWaypoints);
+                    dr = await _mapService.GetDirectionResponseAsync(apiWaypoints);
 
                     if (dr == null)
                     {
@@ -201,10 +222,10 @@ namespace Map3.ViewModels
                     UpdateDistanceAndTime(dr);
                     ManeuverInfo = "";
 
-                    locations = services.ExtractLocations(dr);
+                    locations = _mapService.ExtractLocations(dr);
 
-                    services.DrawPins(apiWaypoints, map);
-                    services.DrawPolyline(locations, map);
+                    _mapService.DrawPins(apiWaypoints, map);
+                    _mapService.DrawPolyline(locations, map);
 
                     var mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(apiWaypoints), Distance.FromKilometers(6));
                     map.MoveToRegion(mapSpan);
