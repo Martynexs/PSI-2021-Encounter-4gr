@@ -833,3 +833,11 @@ D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\AuthorizationService.dll
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\AuthorizationService.pdb
 >>>>>>> API-Refactoring
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Autofac.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Autofac.Extensions.DependencyInjection.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Autofac.Extras.DynamicProxy.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Castle.Core.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Serilog.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Serilog.Sinks.File.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Services.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\EncounterAPI\bin\Debug\net5.0\Services.pdb

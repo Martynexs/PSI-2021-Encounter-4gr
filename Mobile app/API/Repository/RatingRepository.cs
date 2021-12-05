@@ -43,5 +43,6 @@ namespace Repository
             Update(rating);
             Utilities.UpdateRouteRating(rating.RouteId, RepositoryContext);
         }
+
     }
 }

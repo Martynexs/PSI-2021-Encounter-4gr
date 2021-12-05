@@ -8,6 +8,7 @@ using EncounterAPI.Models;
 using EncounterAPI.Data_Transfer_Objects;
 using EncounterAPI.TypeExtensions;
 using Contracts;
+using Contracts.Services;
 
 namespace EncounterAPI.Controllers
 {
@@ -16,17 +17,20 @@ namespace EncounterAPI.Controllers
     public class RatingsController : ControllerBase
     {
         private readonly IRepositoryWrapper _repository;
+        private readonly IRatingsService _ratingsService;
 
-        public RatingsController(IRepositoryWrapper repositoryWrapper)
+        public RatingsController(IRepositoryWrapper repositoryWrapper, IRatingsService ratingsService)
         {
             _repository = repositoryWrapper;
+            _ratingsService = ratingsService;
         }
 
         // GET: api/Ratings
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RatingDTO>>> GetRatings()
         {
-            var ratings = await _repository.Rating.GetAllRatings();
+            //var ratings = await _repository.Rating.GetAllRatings();
+            var ratings = await _ratingsService.GetAllRatings();
             return ratings.Select(r => r.ToDTO()).ToList();
         }
 
@@ -34,7 +38,8 @@ namespace EncounterAPI.Controllers
         [HttpGet("{RouteId}/{UserId}")]
         public async Task<ActionResult<RatingDTO>> GetRating(long RouteId, long UserId)
         {
-            var rating = await _repository.Rating.GetRating(RouteId, UserId);
+            //var rating = await _repository.Rating.GetRating(RouteId, UserId);
+            var rating = await _ratingsService.GetRating(RouteId, UserId);
 
             if (rating == default)
             {
@@ -58,13 +63,16 @@ namespace EncounterAPI.Controllers
 
             if(RatingExists(RouteId, UserId))
             {
-                _repository.Rating.UpdateRating(createdRating);
+                // _repository.Rating.UpdateRating(createdRating);
+                await _ratingsService.UpdateRating(createdRating);
             }
             else
             {
-                _repository.Rating.CreateRating(createdRating);
+                // _repository.Rating.CreateRating(createdRating);
+                await _ratingsService.CreateRating(createdRating);
             }
 
+            /*
             try
             {
                 await _repository.SaveAsync();
@@ -77,6 +85,7 @@ namespace EncounterAPI.Controllers
             {
                 throw;
             }
+            */
 
             return NoContent();
         }

@@ -9,6 +9,15 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using AuthorizationService;
 using Microsoft.AspNetCore.Authorization;
+using Serilog;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using EncounterAPI.Middleware;
+using Repository;
+using Contracts;
+using Autofac.Extras.DynamicProxy;
+using Services;
+using Contracts.Services;
 
 namespace EncounterAPI
 {
@@ -20,12 +29,19 @@ namespace EncounterAPI
         }
 
         public IConfiguration Configuration { get; }
+        public ILifetimeScope AutofacContainer { get; private set; }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File("log-.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
             services.ConfigureRepositoryWrapper();
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EncounterAPI", Version = "v1" });
@@ -86,6 +102,26 @@ namespace EncounterAPI
                 );
         }
 
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterType<RepositoryWrapper>().As<IRepositoryWrapper>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
+
+            builder.RegisterType<RatingsService>().As<IRatingsService>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
+
+            builder.RegisterType<WaypointCompletionService>().As<IWaypointCompletionService>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
+
+
+            builder.Register(x => Log.Logger).SingleInstance();
+            builder.RegisterType<LoggingInterceptor>().SingleInstance();
+        }
+
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -95,6 +131,10 @@ namespace EncounterAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EncounterAPI v1"));
             }
+
+            this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+
+            app.UseMiddleware<ErrorHandler>();
 
             app.UseHttpsRedirection();
 
