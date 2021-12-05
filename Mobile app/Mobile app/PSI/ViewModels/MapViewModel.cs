@@ -12,39 +12,63 @@ using Map3.Views;
 using System.Threading;
 using DataLibrary;
 using PSI.Views;
+using DataLibrary.Models;
 
 namespace Map3.ViewModels
 {
     [QueryProperty(nameof(SelectedRouteId), nameof(SelectedRouteId))]
+    [QueryProperty(nameof(ReloadFromWalkingSession), nameof(ReloadFromWalkingSession))]
     public class MapViewModel : BaseViewModel
     {
         private EncounterProcessor _encounterProcessor;
         private MapService _mapService;
         private WaypointsCoordinatesService waypointsCoordinatesService;
 
+        private long _selectedRouteId;
+        private bool _reloadFromWalkingSession;
         private bool _walkingActive;
+        private bool _quizCompleted;
         private double _routeduration;
         private double _routedistance;
         private string _maneuverinfo;
         private DirectionResponse dr;
         private CancellationTokenSource _walkingCancelHandler;
         public static Map map;
-        public Command GetRouteCommand { get; }
         public Command GoWalkingCommand { get; }
         public Command QuitWalkingCommand { get; }
-
-        public long SelectedRouteId { get; set; }
 
         public MapViewModel()
         {
             map = new Map();
             _encounterProcessor = EncounterProcessor.Instanse;
             _mapService = new MapService();
+            _quizCompleted = false;
             dr = new DirectionResponse();
             waypointsCoordinatesService = new WaypointsCoordinatesService();
-            GetRouteCommand = new Command(async () => await AddPolylineAsync());
             GoWalkingCommand = new Command(async () => await InitializeWalkingProcess());
             QuitWalkingCommand = new Command(async () => await QuitWalkingProcess());
+        }
+
+        public long SelectedRouteId
+        {
+            get => _selectedRouteId;
+            set
+            {
+                _selectedRouteId = value;
+                OnPropertyChanged();
+                LoadFullRoute();
+            }
+        }
+
+        public bool ReloadFromWalkingSession
+        {
+            get => _reloadFromWalkingSession;
+            set
+            {
+                _reloadFromWalkingSession = value;
+                OnPropertyChanged();
+                ReloadAfterQuiz();
+            }
         }
 
         public double RouteDuration
@@ -72,8 +96,28 @@ namespace Map3.ViewModels
             await Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);
         }
 
+        private void ReloadAfterQuiz()
+        {
+            if (!ReloadFromWalkingSession)
+            {
+                return;
+            }
+
+            if (WalkingSession.CurrentGoalWaypoint() == null)
+            {
+                return;
+            }
+
+            _quizCompleted = true;
+            _walkingCancelHandler = new CancellationTokenSource();
+            map.Pins.Clear();
+            _mapService.DrawPins(WalkingSession.GetLeftWaypoints(), map);
+            HandleUserWalkingPeriodically(10);
+        }
+
         public async Task InitializeWalkingProcess()
         {
+            _quizCompleted = false;
             if (!WalkingSession.HasGoalWaypointsLeft())
             {
                 await DisplayAlert("Error:", "No waypoints to walk, please choose the route first.", "ok");
@@ -127,7 +171,7 @@ namespace Map3.ViewModels
                 return; // freeze until quiz finishes
             }
 
-            if (!WalkingSession.CheckMoved(deviceLocation))
+            if (!WalkingSession.CheckMoved(deviceLocation) && !_quizCompleted)
             {
                 return; // do nothing since user doesn't move
             }
@@ -135,7 +179,17 @@ namespace Map3.ViewModels
             if (WalkingSession.IsGoalWaypointReached(deviceLocation))
             {
                 var currentWaypoint = WalkingSession.CurrentGoalWaypoint();
-                var questions = await _encounterProcessor.GetMultipleWaypointQuestions(currentWaypoint.Id);
+
+                List<Quiz> questions;
+                if (_quizCompleted)
+                {
+                    questions = null;
+                    _quizCompleted = false; // clear quiz usage marker
+                } else
+                {
+                    questions = await _encounterProcessor.GetMultipleWaypointQuestions(currentWaypoint.Id);
+                }
+                
                 WalkingSession.AssignQuiz(questions);
 
                 if (WalkingSession.HasQuiz())
@@ -155,6 +209,8 @@ namespace Map3.ViewModels
                 else
                 {
                     var nextWaypoint = WalkingSession.MoveToNextGoalWaypoint();
+                    map.Pins.Clear();
+                    _mapService.DrawPins(WalkingSession.GetLeftWaypoints(), map);
                     await DisplayAlert("Good job!", "You completed " + currentWaypoint.Name + " now please go to " + nextWaypoint.Name, "ok");
                     RedrawPolylineFromTo(currentWaypoint, nextWaypoint);
                     return;
@@ -188,7 +244,7 @@ namespace Map3.ViewModels
             map.MoveToRegion(mapSpan);
         }
 
-        public async Task AddPolylineAsync()
+        public async Task LoadFullRoute()
         {
             List<LatLong> locations;
             if (!IsBusy)
@@ -229,7 +285,7 @@ namespace Map3.ViewModels
 
                     var mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(apiWaypoints), Distance.FromKilometers(6));
                     map.MoveToRegion(mapSpan);
-                    WalkingSession.ResetTo(apiWaypoints);
+                    WalkingSession.ResetTo(apiWaypoints, SelectedRouteId);
                 }
 
                 catch (Exception)

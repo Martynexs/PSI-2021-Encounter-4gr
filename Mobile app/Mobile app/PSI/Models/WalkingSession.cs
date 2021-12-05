@@ -8,13 +8,15 @@ namespace PSI.Models
     public class WalkingSession
     {
         private static WalkingSession Current;
+        private long RouteId;
         private readonly List<VisualWaypoint> GoalWaypointsLeft;
         private Location LastKnownLocation;
         private List<Quiz> QuizQuestions; // when quiz is active it's not null
 
-        private WalkingSession(List<VisualWaypoint> waypoints)
+        private WalkingSession(List<VisualWaypoint> waypoints, long routeId)
         {
             GoalWaypointsLeft = waypoints;
+            RouteId = routeId;
         }
 
         public static VisualWaypoint CurrentGoalWaypoint()
@@ -31,9 +33,9 @@ namespace PSI.Models
             return Current != null && Current.GoalWaypointsLeft != null && Current.GoalWaypointsLeft.Count > 0;
         }
 
-        public static void ResetTo(List<VisualWaypoint> goalWaypointsLeft)
+        public static void ResetTo(List<VisualWaypoint> goalWaypointsLeft, long routeId)
         {
-            Current = new WalkingSession(goalWaypointsLeft);
+            Current = new WalkingSession(goalWaypointsLeft, routeId);
         }
 
         public static void Finish()
@@ -97,6 +99,24 @@ namespace PSI.Models
 
             Current.LastKnownLocation = currentLocation;
             return true;
+        }
+
+        public static List<VisualWaypoint> GetLeftWaypoints()
+        {
+            if (Current == null)
+            {
+                return null;
+            }
+            return Current.GoalWaypointsLeft;
+        }
+
+        public static long GetCurrentRouteId()
+        {
+            if (Current == null)
+            {
+                return -1;
+            }
+            return Current.RouteId;
         }
 
         public static void AssignQuiz(List<Quiz> questions)
