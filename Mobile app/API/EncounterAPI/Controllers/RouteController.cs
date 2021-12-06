@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Contracts;
 using AuthorizationService;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace EncounterAPI.Controllers
 {
@@ -18,11 +20,13 @@ namespace EncounterAPI.Controllers
     {
         private IRepositoryWrapper _repository;
         private IAuthorizationService _authorization;
+        private readonly ILogger<RouteController> _logger;
 
-        public RouteController(IRepositoryWrapper repoWrapper, IAuthorizationService authorization)
+        public RouteController(IRepositoryWrapper repoWrapper, IAuthorizationService authorization, ILogger<RouteController> logger)
         {
             _repository = repoWrapper;
             _authorization = authorization;
+            _logger = logger;
         }
 
         // GET: api/Route

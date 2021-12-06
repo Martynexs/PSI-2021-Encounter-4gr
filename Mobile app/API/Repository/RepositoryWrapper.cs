@@ -111,6 +111,7 @@ namespace Repository
             }
         }
 
+
         public RepositoryWrapper(EncounterContext repositoryContext)
         {
             _repositoryContext = repositoryContext;
