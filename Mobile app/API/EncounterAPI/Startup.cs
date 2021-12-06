@@ -141,9 +141,9 @@ namespace EncounterAPI
                 .InstancePerDependency();
 
 
-            builder.RegisterType<RouteCompletionRepository>().As<IRouteCompletionRepository>();
-               // .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
-               // .InstancePerDependency();
+            builder.RegisterType<RouteCompletionRepository>().As<IRouteCompletionRepository>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
             
 
             builder.RegisterType<WaypointCompletionRepository>().As<IWaypointCompletionRepository>()

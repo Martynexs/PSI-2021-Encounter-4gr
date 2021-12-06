@@ -14,7 +14,7 @@ namespace EncounterAPI.Middleware
                 invocation.Proceed();
 
                 Log.Logger.Information($"Method {invocation.Method.Name} " +
-                    $"called with these parameters: {JsonConvert.SerializeObject(invocation.Arguments)}" +
+                    $"called with these parameters: {JsonConvert.SerializeObject(invocation.Arguments, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore })}" +
                     $"returned this response: {JsonConvert.SerializeObject(invocation.ReturnValue, Formatting.None, new JsonSerializerSettings(){ReferenceLoopHandling = ReferenceLoopHandling.Ignore})}");
             }
             catch (Exception ex)
