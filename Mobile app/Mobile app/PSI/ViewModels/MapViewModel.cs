@@ -13,6 +13,7 @@ using System.Threading;
 using DataLibrary;
 using PSI.Views;
 using DataLibrary.Models;
+using System.Linq;
 
 namespace Map3.ViewModels
 {
@@ -91,6 +92,12 @@ namespace Map3.ViewModels
         {
             await Application.Current.MainPage.DisplayAlert(title, message, cancel);
         }
+
+        public async Task<string> DisplayActionSheet(string title, string cancel, string destruction, string[] buttons)
+        {
+            return await Application.Current.MainPage.DisplayActionSheet(title, cancel, destruction, buttons);
+        }
+
         public async Task DisplayAlert(string title, string message, string accept, string cancel)
         {
             await Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);
@@ -129,6 +136,13 @@ namespace Map3.ViewModels
             _walkingActive = true;
             Location deviceLocation = await Geolocation.GetLocationAsync();
 
+            VisualWaypoint pickedWaypoint = null;
+            while (pickedWaypoint == null)
+            {
+                pickedWaypoint = await PickNextWaypoint(deviceLocation);
+            }
+            WalkingSession.ChooseFirstWaypoint(pickedWaypoint);
+
             if (!WalkingSession.IsGoalWaypointReached(deviceLocation))
             {
                 VisualWaypoint firstGoal = WalkingSession.CurrentGoalWaypoint();
@@ -166,7 +180,7 @@ namespace Map3.ViewModels
 
         private async Task HandleUserWalking()
         {
-            var deviceLocation = await Geolocation.GetLocationAsync();
+            Location deviceLocation = await Geolocation.GetLocationAsync();
 
             if (WalkingSession.HasQuiz())
             {
@@ -190,6 +204,10 @@ namespace Map3.ViewModels
                 } else
                 {
                     questions = await _encounterProcessor.GetMultipleWaypointQuestions(currentWaypoint.Id);
+                    if (questions.Count == 0)
+                    {
+                        questions = null;
+                    }
                 }
                 
                 WalkingSession.AssignQuiz(questions);
@@ -210,7 +228,17 @@ namespace Map3.ViewModels
                 }
                 else
                 {
-                    var nextWaypoint = WalkingSession.MoveToNextGoalWaypoint();
+                    VisualWaypoint pickedWaypoint = null;
+                    if (WalkingSession.GetLeftWaypoints().Count == 1)
+                    {
+                        pickedWaypoint = WalkingSession.GetLeftWaypoints()[0];
+                    }
+
+                    while (pickedWaypoint == null)
+                    {
+                        pickedWaypoint = await PickNextWaypoint(deviceLocation);
+                    }
+                    var nextWaypoint = WalkingSession.MoveToNextGoalWaypoint(pickedWaypoint);
                     map.Pins.Clear();
                     _mapService.DrawPins(WalkingSession.GetLeftWaypoints(), map);
                     await DisplayAlert("Good job!", "You completed " + currentWaypoint.Name + " now please go to " + nextWaypoint.Name, "ok");
@@ -227,6 +255,23 @@ namespace Map3.ViewModels
                 RedrawPolylineFromTo(from, to);
             }
             return;
+        }
+
+        private async Task<VisualWaypoint> PickNextWaypoint(Location deviceLocation)
+        {
+            List<string> pickedStrings = new List<string>();
+            foreach (VisualWaypoint wp in WalkingSession.GetLeftWaypoints())
+            {
+                double airDistance = Location.CalculateDistance(deviceLocation.Latitude, deviceLocation.Longitude, wp.Lat, wp.Long, DistanceUnits.Kilometers);
+                string visualString = wp.Name + " (" + Math.Round(airDistance, 2) + "km)";
+                wp.PickString = visualString;
+                pickedStrings.Add(visualString);
+            }
+            string[] pickedStringsArray = pickedStrings.ToArray();
+            string resultString = await DisplayActionSheet(title: "Pick a waypoint (straight line distance)", cancel: "Cancel", destruction: "Retry", buttons: pickedStringsArray);
+
+            VisualWaypoint resultWaypoint = WalkingSession.GetLeftWaypoints().Where(w => w.PickString.Equals(resultString)).FirstOrDefault(); 
+            return resultWaypoint;
         }
 
         private async void RedrawPolylineFromTo(VisualWaypoint from, VisualWaypoint to)

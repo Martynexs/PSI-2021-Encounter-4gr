@@ -124,9 +124,9 @@ namespace Map3
                     Type = PinType.Place,
                     Label = item.Name,
                     Address = item.Description,
-                    Position = new Position(item.Lat, item.Long),
+                    Position = new Position(item.Lat, item.Long)
                 };
-                map.Pins.Add(WaypointPins);
+                map.Pins.Add(WaypointPins);                
             }
         }
 

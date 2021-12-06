@@ -9,13 +9,14 @@ namespace PSI.Models
     {
         private static WalkingSession Current;
         private long RouteId;
-        private readonly List<VisualWaypoint> GoalWaypointsLeft;
-        private Location LastKnownLocation;
-        private List<Quiz> QuizQuestions; // when quiz is active it's not null
+        private VisualWaypoint _nextWaypoint;
+        private readonly List<VisualWaypoint> _goalWaypointsLeft;
+        private Location _lastKnownLocation;
+        private List<Quiz> _quizQuestions; // when quiz is active it's not null
 
         private WalkingSession(List<VisualWaypoint> waypoints, long routeId)
         {
-            GoalWaypointsLeft = waypoints;
+            _goalWaypointsLeft = waypoints;
             RouteId = routeId;
         }
 
@@ -25,12 +26,12 @@ namespace PSI.Models
             {
                 return null;
             }
-            return Current.GoalWaypointsLeft[0];
+            return Current._nextWaypoint;
         }
 
         public static bool HasGoalWaypointsLeft()
         {
-            return Current != null && Current.GoalWaypointsLeft != null && Current.GoalWaypointsLeft.Count > 0;
+            return Current != null && Current._goalWaypointsLeft != null && Current._goalWaypointsLeft.Count > 0;
         }
 
         public static void ResetTo(List<VisualWaypoint> goalWaypointsLeft, long routeId)
@@ -58,25 +59,41 @@ namespace PSI.Models
             return (Math.Abs(deviceLocation.Latitude - currentGoalWaypoint.Lat) < 0.001) && (Math.Abs(deviceLocation.Longitude - currentGoalWaypoint.Long) < 0.001);
         }
 
-        public static VisualWaypoint MoveToNextGoalWaypoint()
+        public static VisualWaypoint ChooseFirstWaypoint(VisualWaypoint selectedWaypoint)
         {
             if (!HasGoalWaypointsLeft())
             {
                 return null;
             }
 
-            Current.GoalWaypointsLeft.RemoveAt(0);
-
-            if (Current.GoalWaypointsLeft.Count == 0)
+            if (Current._goalWaypointsLeft.Count == 0)
             {
                 return null;
             }
-            return Current.GoalWaypointsLeft[0];
+            Current._nextWaypoint = selectedWaypoint;
+            return selectedWaypoint;
+        }
+
+        public static VisualWaypoint MoveToNextGoalWaypoint(VisualWaypoint selectedWaypoint)
+        {
+            if (!HasGoalWaypointsLeft())
+            {
+                return null;
+            }
+
+            Current._goalWaypointsLeft.Remove(selectedWaypoint);
+
+            if (Current._goalWaypointsLeft.Count == 0)
+            {
+                return null;
+            }
+            Current._nextWaypoint = selectedWaypoint;
+            return selectedWaypoint;
         }
 
         public static bool IsTheLastGoalWaypoint()
         {
-            return Current != null && Current.GoalWaypointsLeft != null && Current.GoalWaypointsLeft.Count == 1;
+            return Current != null && Current._goalWaypointsLeft != null && Current._goalWaypointsLeft.Count == 1;
         }
 
         public static bool CheckMoved(Location currentLocation)
@@ -86,18 +103,18 @@ namespace PSI.Models
                 return false;
             }
 
-            if (Current.LastKnownLocation == null)
+            if (Current._lastKnownLocation == null)
             {
-                Current.LastKnownLocation = currentLocation;
+                Current._lastKnownLocation = currentLocation;
                 return true;
             }
 
-            if (currentLocation.Latitude == Current.LastKnownLocation.Latitude && currentLocation.Longitude == Current.LastKnownLocation.Longitude)
+            if (currentLocation.Latitude == Current._lastKnownLocation.Latitude && currentLocation.Longitude == Current._lastKnownLocation.Longitude)
             {
                 return false;
             }
 
-            Current.LastKnownLocation = currentLocation;
+            Current._lastKnownLocation = currentLocation;
             return true;
         }
 
@@ -107,7 +124,7 @@ namespace PSI.Models
             {
                 return null;
             }
-            return Current.GoalWaypointsLeft;
+            return Current._goalWaypointsLeft;
         }
 
         public static long GetCurrentRouteId()
@@ -121,17 +138,17 @@ namespace PSI.Models
 
         public static void AssignQuiz(List<Quiz> questions)
         {
-            Current.QuizQuestions = questions;
+            Current._quizQuestions = questions;
         }
 
         public static bool HasQuiz()
         {
-            return Current.QuizQuestions != null;
+            return Current._quizQuestions != null;
         }
 
         public static List<Quiz> GetQuizQuestions()
         {
-            return Current.QuizQuestions;
+            return Current._quizQuestions;
         }
     }
 }
