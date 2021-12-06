@@ -116,6 +116,38 @@ namespace EncounterAPI
                 .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
                 .InstancePerDependency();
 
+            builder.RegisterType<RouteRepository>().As<IRouteRepository>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
+
+            builder.RegisterType<WaypointRepository>().As<IWaypointRepository>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
+
+            builder.RegisterType<UserRopository>().As<IUserRepository>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
+
+            builder.RegisterType<RatingRepository>().As<IRatingRepository>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
+
+            builder.RegisterType<QuizRepository>().As<IQuizRepository>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
+
+            builder.RegisterType<QuizAnswerRepository>().As<IQuizAnswerRepository>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
+
+            builder.RegisterType<RouteCompletionRepository>().As<IRouteCompletionRepository>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
+
+            builder.RegisterType<WaypointCompletionRepository>().As<IWaypointCompletionRepository>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
+
 
             builder.Register(x => Log.Logger).SingleInstance();
             builder.RegisterType<LoggingInterceptor>().SingleInstance();
