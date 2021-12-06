@@ -7,19 +7,15 @@
              xmlns:model1="clr-namespace:DataLibrary.Models;assembly=DataLibrary"
              x:Name="BrowseItemsPage">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="My Routes" Command="{Binding LoadUserRoutesCommand}"/>
-        <ToolbarItem Text="New" Command="{Binding AddRouteCommand}" />
-    </ContentPage.ToolbarItems>
     <StackLayout>
         <Entry Placeholder="Search" WidthRequest="320" Text="{Binding SearchText}"/>
-            <RefreshView x:DataType="local:RoutesViewModel" Command="{Binding LoadRoutesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <RefreshView x:DataType="local:RoutesViewModel" Command="{Binding LoadRoutesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Routes}"
                 SelectedItem="{Binding SelectedRoute , Mode=TwoWay}"
                 SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
                         <StackLayout Padding="5" x:DataType="model1:Route">
                             <Frame>
                                 <StackLayout>
@@ -36,9 +32,9 @@
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </RefreshView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </StackLayout>
 </ContentPage>

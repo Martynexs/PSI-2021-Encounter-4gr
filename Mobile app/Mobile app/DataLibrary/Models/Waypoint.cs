@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace DataLibrary.Models
 {
@@ -17,5 +18,6 @@ namespace DataLibrary.Models
         public decimal Price { get; set; }
         public WaypointType Type { get; set; }
         public string PictureURL { get; set; }
+        public string Color { get; set; }
     }
 }

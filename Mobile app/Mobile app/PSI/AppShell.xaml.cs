@@ -10,6 +10,7 @@ namespace PSI
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(RouteDetailPage), typeof(RouteDetailPage));
+            Routing.RegisterRoute(nameof(MyRouteDetailPage), typeof(MyRouteDetailPage));
             Routing.RegisterRoute(nameof(NewRoutePage), typeof(NewRoutePage));
             Routing.RegisterRoute(nameof(WaypointInfo), typeof(WaypointInfo));
             Routing.RegisterRoute(nameof(AboutRoute), typeof(AboutRoute));

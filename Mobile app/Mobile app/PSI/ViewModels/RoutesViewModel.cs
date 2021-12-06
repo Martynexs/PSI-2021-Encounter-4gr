@@ -27,13 +27,11 @@ namespace PSI.ViewModels
 
         public RoutesViewModel()
         {
-            Title = "Routes";
+            Title = "All routes";
 
             Routes = new ObservableCollection<Route>();
 
             LoadRoutesCommand = new Command(async () => await ExecuteLoadRoutesCommand());
-
-            LoadUserRoutesCommand = new Command(LoadUserRoutes);
 
             AddRouteCommand = new Command(AddRoute);
 
@@ -88,6 +86,13 @@ namespace PSI.ViewModels
         }
         private async void OnRouteSelected(Route route)
         {
+            RouteCompletion routeCompletion = new RouteCompletion()
+            {
+                UserId = _session.CurrentUser.Id,
+                RouteId = route.Id,
+                LastVisit = DateTime.Now
+            };
+            await _encounterProcessor.PostRouteCompletion(routeCompletion);
             await Shell.Current.GoToAsync($"{nameof(RouteDetailPage)}?{nameof(WaypointsViewModel.RoutesId)}={route.Id}");
         }
 
@@ -99,44 +104,11 @@ namespace PSI.ViewModels
         {
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
-
-        private async void LoadUserRoutes()
-        {
-            _userRoutesOnly = !_userRoutesOnly;
-
-            if (_userRoutesOnly)
-            {
-                IsBusy = true;
-                try
-                {
-                    Routes.Clear();
-                    var items = await _encounterProcessor.GetUserRoutes(_session.CurrentUser.Id);
-                    foreach (var item in items)
-                    {
-                        Routes.Add(item);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                }
-                finally
-                {
-                    IsBusy = false;
-                }
-            }
-        }
-
-
         private List<Route> SearchRoutes(List<Route> routes)
         {
             var smthg = routes;
             var searchedRoutes = routes.Where(r => r.Name.Contains(SearchText)).Select(r => r);
             return searchedRoutes.ToList();
         }
-
-
-
-
     }
 }

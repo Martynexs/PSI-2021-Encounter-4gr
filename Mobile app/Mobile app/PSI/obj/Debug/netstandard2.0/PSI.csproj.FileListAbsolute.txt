@@ -232,3 +232,8 @@ C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobi
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\EditUserPasswordPopup.xaml.g.cs
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\ProfilePage.xaml.g.cs
 D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\UploadProfilePhotoPage.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\EditUserPasswordPopup.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\ProfilePage.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\UploadProfilePhotoPage.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\MyRouteDetailPage.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\MyRoutesPage.xaml.g.cs
