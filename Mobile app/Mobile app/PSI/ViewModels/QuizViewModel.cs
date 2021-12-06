@@ -14,11 +14,18 @@ namespace PSI.ViewModels
     public class QuizViewModel : BaseViewModel
     {
         private readonly List<Quiz> _quizQuestions;
+        private bool _multipleShown;
+        private bool _singleShown;
+        private bool _proceedShown;
+        private bool _submitShown;
         private int _currentIdx;
+        private int _currentQuestionDisplayableIndex;
         private string _currentQuestionText;
-        public ObservableCollection<VisualAnswer> SelectableAnswers { get; }
+        private ObservableCollection<VisualAnswer> _selectableAnswers;
 
         public Command SubmitAnswerCommand { get; }
+
+        public Command ProceedCommand { get; }
 
         public Command SkipQuestionCommand { get; }
 
@@ -32,8 +39,9 @@ namespace PSI.ViewModels
             SelectableAnswers = new ObservableCollection<VisualAnswer>();
 
             LoadQuestion(0);
-            SubmitAnswerCommand = new Command(async () => await ConfirmQuizStep());
+            SubmitAnswerCommand = new Command(async () => await SubmitAnswerStep());
             SkipQuestionCommand = new Command(async () => await SkipQuestion());
+            ProceedCommand = new Command(async () => await ProceedAnswerStep());
         }
 
         public async Task DisplayAlert(string title, string message, string cancel)
@@ -44,14 +52,22 @@ namespace PSI.ViewModels
         public int CurrentIdx
         {
             get => _currentIdx;
-            set => SetProperty(ref _currentIdx, value);
+            set {
+                SetProperty(ref _currentIdx, value);
+                CurrentQuestionDisplayableIndex = value + 1;
+            }
         }
 
         public int CurrentQuestionDisplayableIndex
         {
-            get => CurrentIdx + 1;
+            get => _currentQuestionDisplayableIndex;
+            set => SetProperty(ref _currentQuestionDisplayableIndex, value);
         }
 
+        public ObservableCollection<VisualAnswer> SelectableAnswers {
+            get => _selectableAnswers;
+            set => SetProperty(ref _selectableAnswers, value);
+        }
 
         public int QuestionsCount
         {
@@ -64,29 +80,91 @@ namespace PSI.ViewModels
             set => SetProperty(ref _currentQuestionText, value);
         }
 
+        public bool MultipleShown
+        {
+            get => _multipleShown;
+            set => SetProperty(ref _multipleShown, value);
+        }
+
+        public bool SingleShown
+        {
+            get => _singleShown;
+            set => SetProperty(ref _singleShown, value);
+        }
+
+        public bool ProceedShown
+        {
+            get => _proceedShown;
+            set => SetProperty(ref _proceedShown, value);
+        }
+
+        public bool SubmitShown
+        {
+            get => _submitShown;
+            set => SetProperty(ref _submitShown, value);
+        }
+
         public async Task SkipQuestion()
         {
+            SubmitShown = true;
+            ProceedShown = false;
             await GoToNextQuizStep();
         }
 
-        public async Task ConfirmQuizStep()
+        public async Task SubmitAnswerStep()
         {
-            VisualAnswer selected = GetSingleSelectedAnswer();
-            if (selected == null)
+            if (SingleShown)
             {
-                await DisplayAlert("Oops", "Please choose the answer", "ok");
+                VisualAnswer selected = GetSingleSelectedAnswer();
+                if (selected == null)
+                {
+                    await DisplayAlert("Oops", "Please choose the answer", "ok");
+                    return;
+                }
+
+                if (selected.IsCorrect)
+                {
+                    await DisplayAlert("Yahoo!", "You got this one correct!", "ok");
+                }
+                else
+                {
+                    await DisplayAlert("Error!", "No no no, it's wrong answer, better luck next time!", "ok");
+                }
+                SubmitShown = false;
+                ProceedShown = true;
+                ColorifyAnswers();
                 return;
             }
 
-            if (selected.IsCorrect)
+            if (MultipleShown)
             {
-                await DisplayAlert("Yahoo!", "You got this one correct!", "ok");
-            } else
-            {
-                await DisplayAlert("Error!", "No no no, it's wrong answer, better luck next time!", "ok");
-            }
+                List<VisualAnswer> selected = GetSelectedAnswers();
+                if (selected == null || selected.Count == 0)
+                {
+                    await DisplayAlert("Oops", "Please choose at least one answer", "ok");
+                    return;
+                }
 
+                await DisplayAlert("Ok", "Answer submitted", "ok");
+                SubmitShown = false;
+                ProceedShown = true;
+                ColorifyAnswers();
+            }            
+        }
+
+        public async Task ProceedAnswerStep()
+        {
+            SubmitShown = true;
+            ProceedShown = false;
             await GoToNextQuizStep();
+        }
+
+        private void ColorifyAnswers()
+        {
+            foreach (VisualAnswer a in SelectableAnswers)
+            {
+                a.Color = a.IsCorrect ? "green" : "red";
+            }
         }
 
         private async Task GoToNextQuizStep()
@@ -124,11 +202,22 @@ namespace PSI.ViewModels
                     IsMarked = false
                 });
             }
+
+            bool multipleShown = GetCorrectAnswers().Count > 1;
+            MultipleShown = multipleShown;
+            SingleShown = !multipleShown;
+            SubmitShown = true;
+            ProceedShown = false;
         }
 
         private List<VisualAnswer> GetSelectedAnswers()
         {
             return SelectableAnswers.Where(x => x.IsMarked).ToList();
+        }
+
+        private List<VisualAnswer> GetCorrectAnswers()
+        {
+            return SelectableAnswers.Where(x => x.IsCorrect).ToList();
         }
 
         private VisualAnswer GetSingleSelectedAnswer()

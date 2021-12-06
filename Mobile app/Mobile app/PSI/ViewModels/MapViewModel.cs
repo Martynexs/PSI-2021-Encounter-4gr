@@ -105,9 +105,11 @@ namespace Map3.ViewModels
 
             if (WalkingSession.CurrentGoalWaypoint() == null)
             {
+                ClearWalkingState();
                 return;
             }
 
+            _walkingActive = true;
             _quizCompleted = true;
             _walkingCancelHandler = new CancellationTokenSource();
             map.Pins.Clear();
@@ -319,7 +321,6 @@ namespace Map3.ViewModels
         private void ClearWalkingState()
         {
             WalkingSession.Finish();
-            _walkingCancelHandler.Cancel();
             if (_walkingCancelHandler != null)
             {
                 _walkingCancelHandler.Cancel();
