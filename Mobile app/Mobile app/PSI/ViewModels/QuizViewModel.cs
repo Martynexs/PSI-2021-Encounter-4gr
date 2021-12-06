@@ -18,6 +18,7 @@ namespace PSI.ViewModels
         private bool _singleShown;
         private bool _proceedShown;
         private bool _submitShown;
+        private int _points;
         private int _currentIdx;
         private int _currentQuestionDisplayableIndex;
         private string _currentQuestionText;
@@ -37,6 +38,7 @@ namespace PSI.ViewModels
                 _quizQuestions.Add(qq);
             }
             SelectableAnswers = new ObservableCollection<VisualAnswer>();
+            Points = 0;
 
             LoadQuestion(0);
             SubmitAnswerCommand = new Command(async () => await SubmitAnswerStep());
@@ -111,6 +113,12 @@ namespace PSI.ViewModels
             await GoToNextQuizStep();
         }
 
+        public int Points
+        {
+            get => _points;
+            set => SetProperty(ref _points, value);
+        }
+
         public async Task SubmitAnswerStep()
         {
             if (SingleShown)
@@ -132,7 +140,7 @@ namespace PSI.ViewModels
                 }
                 SubmitShown = false;
                 ProceedShown = true;
-                ColorifyAnswers();
+                ColorifyAnswersAndGivePoints();
                 return;
             }
 
@@ -148,7 +156,7 @@ namespace PSI.ViewModels
                 await DisplayAlert("Ok", "Answer submitted", "ok");
                 SubmitShown = false;
                 ProceedShown = true;
-                ColorifyAnswers();
+                ColorifyAnswersAndGivePoints();
             }            
         }
 
@@ -159,11 +167,30 @@ namespace PSI.ViewModels
             await GoToNextQuizStep();
         }
 
-        private void ColorifyAnswers()
+        private void ColorifyAnswersAndGivePoints()
         {
+            List<VisualAnswer> selectedAnswers = GetSelectedAnswers();
             foreach (VisualAnswer a in SelectableAnswers)
             {
                 a.Color = a.IsCorrect ? "green" : "red";
+
+                bool chosen = selectedAnswers.Find(x => x.Id == a.Id) != null;
+                if (chosen)
+                {
+                    if (a.IsCorrect)
+                    {
+                        a.PtsEarned = " (+2pts)";
+                        Points += 2;
+                    } else
+                    {
+                        a.PtsEarned = " (minus 3pts)";
+                        Points -= 3;
+                    }
+                }
+                else
+                {
+                    a.PtsEarned = " (0pts)";
+                }
             }
         }
 
@@ -180,7 +207,7 @@ namespace PSI.ViewModels
             SelectableAnswers.Clear();
             CurrentQuestionText = "";
             WalkingSession.AssignQuiz(null);
-            await DisplayAlert("Quiz completed", "Great, you finished the quiz, let's go back to map.", "ok");
+            await DisplayAlert("Quiz completed", "Great, you finished the quiz and earned " + Points + "pts, let's go back to map.", "ok");
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync($"{nameof(Map)}?{nameof(MapViewModel.ReloadFromWalkingSession)}={true}");

@@ -7,6 +7,7 @@ namespace PSI.Models
     public class VisualAnswer : QuizAnswer, INotifyPropertyChanged
     {
         private string _color;
+        private string _ptsEarned;
 
         public VisualAnswer()
         {
@@ -19,6 +20,16 @@ namespace PSI.Models
         public string Color { get => _color;
             set {
                 _color = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string PtsEarned
+        {
+            get => _ptsEarned;
+            set
+            {
+                _ptsEarned = value;
                 OnPropertyChanged();
             }
         }

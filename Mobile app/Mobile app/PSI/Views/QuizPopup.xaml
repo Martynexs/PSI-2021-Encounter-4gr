@@ -26,6 +26,9 @@
             <Grid>
                 <StackLayout Margin="15,0,15,20">
                     <StackLayout Margin="0,10,0,0">
+                        <Label Text="{Binding Points, StringFormat='Earned points: {0}'}" FontSize="Medium"/>
+                    </StackLayout>
+                    <StackLayout Margin="0,10,0,0">
                         <Label Text="{Binding CurrentQuestionDisplayableIndex, StringFormat='CurrentQuestion: {0}'}" FontSize="Medium"/>
                     </StackLayout>
                     <StackLayout Margin="0,10,0,0">
@@ -38,8 +41,9 @@
                     <StackLayout Margin="0,10,0,0" BindableLayout.ItemsSource="{Binding SelectableAnswers}" IsVisible="{Binding SingleShown}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout x:DataType="model1:VisualAnswer" Margin="0,0,0,0">
+                                <StackLayout x:DataType="model1:VisualAnswer" Margin="0,0,0,0" Orientation="Horizontal">
                                     <RadioButton GroupName="answ" Content="{Binding Text}" IsChecked="{Binding IsMarked}" TextColor="{Binding Color}"/>
+                                    <Label Text="{Binding PtsEarned}"/>
                                 </StackLayout>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
@@ -51,6 +55,7 @@
                                 <StackLayout x:DataType="model1:VisualAnswer" Margin="0,0,0,0" Orientation="Horizontal">
                                     <CheckBox IsChecked="{Binding IsMarked}"/>
                                     <Label Text="{Binding Text}" TextColor="{Binding Color}"/>
+                                    <Label Text="{Binding PtsEarned}"/>
                                 </StackLayout>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
@@ -74,7 +79,17 @@
                             TextColor="Black"
                             BackgroundColor="#FFC900"
                             CornerRadius="30"
-                            Command="{Binding SkipQuestionCommand}"/>
+                            Command="{Binding SkipQuestionCommand}" IsVisible="{Binding SubmitShown}"/>
+                        <StackLayout IsVisible="{Binding MultipleShown}">
+                            <Label Text="For every correct selected answer: plus 2pts" FontSize="Small"/>
+                            <Label Text="For every selected wrong answer: minus 3pts" FontSize="Small"/>
+                            <Label Text="Skipping question gives 0pts" FontSize="Small"/>
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding SingleShown}">
+                            <Label Text="For selected correct answer: plus 2pts" FontSize="Small"/>
+                            <Label Text="For selected wrong answer: minus 3pts" FontSize="Small"/>
+                            <Label Text="Skipping question gives 0pts" FontSize="Small"/>
+                        </StackLayout>
                     </StackLayout>
 
                 </StackLayout>
