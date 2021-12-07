@@ -12,10 +12,6 @@ namespace Repository
         {
             get
             {
-                if(_route == null)
-                {
-                    _route = new RouteRepository(_repositoryContext);
-                }
                 return _route;
             } 
         }
@@ -25,10 +21,6 @@ namespace Repository
         {
             get
             {
-                if(_waypoint == null)
-                {
-                    _waypoint = new WaypointRepository(_repositoryContext);
-                }
                 return _waypoint;
             }
         }
@@ -38,10 +30,6 @@ namespace Repository
         {
             get
             {
-                if (_rating == null)
-                {
-                    _rating = new RatingRepository(_repositoryContext);
-                }
                 return _rating;
             }
         }
@@ -51,10 +39,6 @@ namespace Repository
         {
             get
             {
-                if(_user == null)
-                {
-                    _user = new UserRopository(_repositoryContext);
-                }
                 return _user;
             }
         }
@@ -64,10 +48,6 @@ namespace Repository
         {
             get
             {
-                if (_quiz == null)
-                {
-                    _quiz = new QuizRepository(_repositoryContext);
-                }
                 return _quiz;
             }
         }
@@ -77,10 +57,6 @@ namespace Repository
         {
             get
             {
-                if (_quizAnswer == null)
-                {
-                    _quizAnswer = new QuizAnswerRepository(_repositoryContext);
-                }
                 return _quizAnswer;
             }
         }
@@ -90,10 +66,6 @@ namespace Repository
         {
             get
             {
-                if(_routeCompletion == null)
-                {
-                    _routeCompletion = new RouteCompletionRepository(_repositoryContext);
-                }
                 return _routeCompletion;
             }
         }
@@ -103,17 +75,30 @@ namespace Repository
         {
             get
             {
-                if(_waypointCompletion == null)
-                {
-                    _waypointCompletion = new WaypointCompletionRepository(_repositoryContext);
-                }
                 return _waypointCompletion;
             }
         }
 
-        public RepositoryWrapper(EncounterContext repositoryContext)
+
+        public RepositoryWrapper(EncounterContext repositoryContext,
+                                 IRouteRepository routeRepository,
+                                 IWaypointRepository waypointRepository,
+                                 IUserRepository userRepository,
+                                 IRatingRepository ratingRepository,
+                                 IQuizRepository quizRepository,
+                                 IQuizAnswerRepository quizAnswerRepository,
+                                 IRouteCompletionRepository routeCompletionRepository,
+                                 IWaypointCompletionRepository waypointCompletionRepository)
         {
             _repositoryContext = repositoryContext;
+            _route = routeRepository;
+            _waypoint = waypointRepository;
+            _user = userRepository;
+            _rating = ratingRepository;
+            _quiz = quizRepository;
+            _quizAnswer = quizAnswerRepository;
+            _routeCompletion = routeCompletionRepository;
+            _waypointCompletion = waypointCompletionRepository;
         }
 
         public async Task SaveAsync()

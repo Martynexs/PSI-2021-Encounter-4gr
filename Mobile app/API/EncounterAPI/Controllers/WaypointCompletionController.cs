@@ -1,12 +1,10 @@
 ﻿using Contracts;
+using Contracts.Services;
 using Entities.Data_Transfer_Objects;
 using Entities.Models;
 using Entities.TypeExtensions;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,11 +17,13 @@ namespace EncounterAPI.Controllers
     {
         private IRepositoryWrapper _repository;
         private IAuthorizationService _authorization;
+        private IWaypointCompletionService _waypointCompletionService;
 
-        public WaypointCompletionController(IRepositoryWrapper repoWrapper, IAuthorizationService authorization)
+        public WaypointCompletionController(IRepositoryWrapper repoWrapper, IAuthorizationService authorization, IWaypointCompletionService waypointCompletionService)
         {
             _repository = repoWrapper;
             _authorization = authorization;
+            _waypointCompletionService = waypointCompletionService;
         }
 
         [HttpPost]
@@ -34,15 +34,14 @@ namespace EncounterAPI.Controllers
             {
                 return BadRequest();
             }
-            await _repository.WaypointCompletion.CreateWaypointCompletion(waypoint.ToEFModel());
-            await _repository.SaveAsync();
+            await _waypointCompletionService.CreateWaypointCompletion(waypoint.ToEFModel());
             return NoContent();
         }
 
         [HttpGet("{routeId}/{userId}")]
         public async Task<ActionResult<IEnumerable<WaypointCompletionDTO>>> GetCompletedWaypoints(long routeId, long userId)
         {
-            var completedWaypoints = await _repository.WaypointCompletion.GetWaypointCompletions(routeId, userId);
+            var completedWaypoints = await _waypointCompletionService.GetWaypointCompletions(routeId, userId);
             return completedWaypoints.Select(x => x.ToDTO()).ToList();
         }
     }

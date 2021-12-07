@@ -150,7 +150,7 @@ namespace EncounterAPI.Controllers
 
         private bool UserExists(long userId)
         {
-            return _repository.User.GetUserById(userId) == default;
+            return _repository.User.FindByCondition(x => x.ID == userId).Any();
         }
     }
 }

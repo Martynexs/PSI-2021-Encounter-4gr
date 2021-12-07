@@ -258,9 +258,9 @@ namespace DataLibrary
             return waypointCompletion;
         }
 
-        public async Task<IEnumerable<WaypointCompletion>> GetWaypointCompletions(long routeId, long waypointId)
+        public async Task<IEnumerable<WaypointCompletion>> GetWaypointCompletions(long routeId, long userId)
         {
-            var url = $"{ _apiAdress }/api/WaypointCompletion/{routeId}/{waypointId}";
+            var url = $"{ _apiAdress }/api/WaypointCompletion/{routeId}/{userId}";
 
             var waypoints = await _apiHelper.HttpGet<IEnumerable<WaypointCompletion>>(url);
             return waypoints;
