@@ -1,49 +1,32 @@
-﻿using DataLibrary.Models;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using PSI.ViewModels;
 
 namespace PSI.Models
 {
-    public class VisualAnswer : QuizAnswer, INotifyPropertyChanged
+    public class VisualAnswer : BaseViewModel
     {
         private string _color;
         private string _ptsEarned;
+        private bool _allowSelecting;
 
-        public VisualAnswer()
-        {
-            Color = "black";
-        }
-
+        public long Id { get; set; }
+        public string Text { get; set; }
+        public bool IsCorrect { get; set; }
         public bool IsMarked { get; set; }
 
-
-        public string Color { get => _color;
-            set {
-                _color = value;
-                OnPropertyChanged();
-            }
+        public string Color {
+            get => _color;
+            set { _color = value; OnPropertyChanged(); }
         }
-
         public string PtsEarned
         {
             get => _ptsEarned;
-            set
-            {
-                _ptsEarned = value;
-                OnPropertyChanged();
-            }
+            set { _ptsEarned = value; OnPropertyChanged(); }
         }
 
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        public bool AllowSelecting
         {
-            var changed = PropertyChanged;
-            if (changed == null)
-                return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            get => _allowSelecting;
+            set { _allowSelecting = value; OnPropertyChanged(); }
         }
-        #endregion
     }
 }

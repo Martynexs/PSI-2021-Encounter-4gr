@@ -16,34 +16,46 @@ namespace PSI.ViewModels
         private readonly List<Quiz> _quizQuestions;
         private bool _multipleShown;
         private bool _singleShown;
-        private bool _proceedShown;
+        private bool _continueShown;
         private bool _submitShown;
-        private int _points;
-        private int _currentIdx;
-        private int _currentQuestionDisplayableIndex;
         private string _currentQuestionText;
+        private int _currentQuestionDisplayableIndex;
         private ObservableCollection<VisualAnswer> _selectableAnswers;
 
         public Command SubmitAnswerCommand { get; }
 
-        public Command ProceedCommand { get; }
+        public Command ContinueCommand { get; }
 
         public Command SkipQuestionCommand { get; }
 
         public QuizViewModel()
         {
-            _quizQuestions = new List<Quiz>();
-            foreach (Quiz qq in WalkingSession.GetQuizQuestions())
-            {
-                _quizQuestions.Add(qq);
-            }
+            _quizQuestions = WalkingSession.GetQuizQuestions();
             SelectableAnswers = new ObservableCollection<VisualAnswer>();
-            Points = 0;
-
-            LoadQuestion(0);
-            SubmitAnswerCommand = new Command(async () => await SubmitAnswerStep());
+            if (WalkingSession.GetQuizCurrentQuestionAnswered())
+            {
+                StartQuestion(WalkingSession.GetQuizCurrentIndex());
+                SelectableAnswers.Clear();
+                foreach (VisualAnswer sa in WalkingSession.GetQuizSelectableAnswers())
+                {
+                    SelectableAnswers.Add(sa);
+                }
+                SubmitShown = false;
+                ContinueShown = true;
+            } 
+            else
+            {
+                StartQuestion(WalkingSession.GetQuizCurrentIndex());
+                SubmitShown = true;
+                ContinueShown = false;
+            }
+            bool multipleShown = GetCorrectAnswers().Count() > 1;
+            MultipleShown = multipleShown;
+            SingleShown = !multipleShown;
+            
+            SubmitAnswerCommand = new Command(async () => await SubmitAnswer());
             SkipQuestionCommand = new Command(async () => await SkipQuestion());
-            ProceedCommand = new Command(async () => await ProceedAnswerStep());
+            ContinueCommand = new Command(async () => await Continue());
         }
 
         public async Task DisplayAlert(string title, string message, string cancel)
@@ -51,11 +63,11 @@ namespace PSI.ViewModels
             await Application.Current.MainPage.DisplayAlert(title, message, cancel);
         }
 
-        public int CurrentIdx
+        public int CurrentIndex
         {
-            get => _currentIdx;
+            get => WalkingSession.GetQuizCurrentIndex();
             set {
-                SetProperty(ref _currentIdx, value);
+                WalkingSession.SetQuizCurrentIndex(value);
                 CurrentQuestionDisplayableIndex = value + 1;
             }
         }
@@ -68,7 +80,10 @@ namespace PSI.ViewModels
 
         public ObservableCollection<VisualAnswer> SelectableAnswers {
             get => _selectableAnswers;
-            set => SetProperty(ref _selectableAnswers, value);
+            set
+            {
+                SetProperty(ref _selectableAnswers, value);
+            }
         }
 
         public int QuestionsCount
@@ -94,10 +109,10 @@ namespace PSI.ViewModels
             set => SetProperty(ref _singleShown, value);
         }
 
-        public bool ProceedShown
+        public bool ContinueShown
         {
-            get => _proceedShown;
-            set => SetProperty(ref _proceedShown, value);
+            get => _continueShown;
+            set => SetProperty(ref _continueShown, value);
         }
 
         public bool SubmitShown
@@ -109,18 +124,22 @@ namespace PSI.ViewModels
         public async Task SkipQuestion()
         {
             SubmitShown = true;
-            ProceedShown = false;
-            await GoToNextQuizStep();
+            ContinueShown = false;
+            await Continue();
         }
 
-        public int Points
+        public int EarnedPoints
         {
-            get => _points;
-            set => SetProperty(ref _points, value);
+            get => WalkingSession.GetQuizEarnedPoints();
+            set {
+                WalkingSession.SetQuizEarnedPoints(value);
+                OnPropertyChanged();
+            }
         }
 
-        public async Task SubmitAnswerStep()
+        public async Task SubmitAnswer()
         {
+            WalkingSession.SetQuizCurrentQuestionAnswered(true);
             if (SingleShown)
             {
                 VisualAnswer selected = GetSingleSelectedAnswer();
@@ -136,10 +155,10 @@ namespace PSI.ViewModels
                 }
                 else
                 {
-                    await DisplayAlert("Error!", "No no no, it's wrong answer, better luck next time!", "ok");
+                    await DisplayAlert("Oops!", "No no no, it's wrong answer, better luck next time!", "ok");
                 }
                 SubmitShown = false;
-                ProceedShown = true;
+                ContinueShown = true;
                 ColorifyAnswersAndGivePoints();
                 return;
             }
@@ -153,69 +172,65 @@ namespace PSI.ViewModels
                     return;
                 }
 
-                await DisplayAlert("Ok", "Answer submitted", "ok");
+                await DisplayAlert("Ok", "Answers submitted, check your results", "ok");
                 SubmitShown = false;
-                ProceedShown = true;
+                ContinueShown = true;
                 ColorifyAnswersAndGivePoints();
-            }            
-        }
-
-        public async Task ProceedAnswerStep()
-        {
-            SubmitShown = true;
-            ProceedShown = false;
-            await GoToNextQuizStep();
+            }      
         }
 
         private void ColorifyAnswersAndGivePoints()
         {
             List<VisualAnswer> selectedAnswers = GetSelectedAnswers();
-            foreach (VisualAnswer a in SelectableAnswers)
+            foreach (VisualAnswer answ in SelectableAnswers)
             {
-                a.Color = a.IsCorrect ? "green" : "red";
+                answ.AllowSelecting = false;
+                answ.Color = answ.IsCorrect ? "green" : "red";
 
-                bool chosen = selectedAnswers.Find(x => x.Id == a.Id) != null;
+                bool chosen = selectedAnswers.Find(x => x.Id == answ.Id) != null;
                 if (chosen)
                 {
-                    if (a.IsCorrect)
+                    if (answ.IsCorrect)
                     {
-                        a.PtsEarned = " (+2pts)";
-                        Points += 2;
+                        answ.PtsEarned = " (+2pts)";
+                        EarnedPoints += 2;
                     } else
                     {
-                        a.PtsEarned = " (minus 3pts)";
-                        Points -= 3;
+                        answ.PtsEarned = " (minus 3pts)";
+                        EarnedPoints += -3;
                     }
                 }
                 else
                 {
-                    a.PtsEarned = " (0pts)";
+                    answ.PtsEarned = " (0pts)";
                 }
             }
+            WalkingSession.SetQuizSelectableAnswers(new List<VisualAnswer>(SelectableAnswers));
         }
 
-        private async Task GoToNextQuizStep()
+        private async Task Continue()
         {
+            WalkingSession.SetQuizCurrentQuestionAnswered(false);
             if (HasMoreQuestions())
             {
-                LoadQuestion(CurrentIdx + 1);
+                StartQuestion(CurrentIndex + 1);
                 return;
             }
             
             // Quiz finished:
-            CurrentIdx = 0;
+            CurrentIndex = 0;
             SelectableAnswers.Clear();
             CurrentQuestionText = "";
-            WalkingSession.AssignQuiz(null);
-            await DisplayAlert("Quiz completed", "Great, you finished the quiz and earned " + Points + "pts, let's go back to map.", "ok");
+            await DisplayAlert("Quiz completed", "Great, you finished the quiz and earned " + EarnedPoints + "pts, let's go back to map.", "ok");
 
+            WalkingSession.FinishQuiz();
             // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(Map)}?{nameof(MapViewModel.ReloadFromWalkingSession)}={true}");
+            await Shell.Current.GoToAsync($"{nameof(Map)}?{nameof(MapViewModel.SelectedRouteId)}={WalkingSession.GetCurrentRouteId()}");
         }
 
-        private void LoadQuestion(int index)
+        private void StartQuestion(int index)
         {
-            CurrentIdx = index;
+            CurrentIndex = index;
             SelectableAnswers.Clear();
             CurrentQuestionText = _quizQuestions[index].Question;
             foreach (QuizAnswer ans in _quizQuestions[index].Answers)
@@ -223,10 +238,11 @@ namespace PSI.ViewModels
                 SelectableAnswers.Add(new VisualAnswer()
                 {
                     Id = ans.Id,
-                    QuizId = ans.QuizId,
                     IsCorrect = ans.IsCorrect,
                     Text = ans.Text,
-                    IsMarked = false
+                    IsMarked = false,
+                    AllowSelecting = true,
+                    Color = "Black"
                 });
             }
 
@@ -234,7 +250,7 @@ namespace PSI.ViewModels
             MultipleShown = multipleShown;
             SingleShown = !multipleShown;
             SubmitShown = true;
-            ProceedShown = false;
+            ContinueShown = false;
         }
 
         private List<VisualAnswer> GetSelectedAnswers()
@@ -249,22 +265,22 @@ namespace PSI.ViewModels
 
         private VisualAnswer GetSingleSelectedAnswer()
         {
-            List<VisualAnswer> chosenAnswers = GetSelectedAnswers();
-            if (chosenAnswers == null || chosenAnswers.Count == 0)
+            List<VisualAnswer> markedAnswers = GetSelectedAnswers();
+            if (markedAnswers == null || markedAnswers.Count == 0)
             {
                 return null;
             }
 
-            if (chosenAnswers.Count == 1)
+            if (markedAnswers.Count == 1)
             {
-                return chosenAnswers[0];
+                return markedAnswers[0];
             }
-            throw new InvalidOperationException("Single answer expected, but found many, exactly: " + chosenAnswers.Count);
+            throw new InvalidOperationException("Single answer expected, but found many, exactly: " + markedAnswers.Count);
         }
 
         private bool HasMoreQuestions()
         {
-            return (CurrentIdx + 1) < _quizQuestions.Count;
+            return (CurrentIndex + 1) < _quizQuestions.Count;
         }
     }
 }
