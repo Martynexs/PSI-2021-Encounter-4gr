@@ -4,12 +4,10 @@
              xmlns:local="clr-namespace:PSI.ViewModels" xmlns:model="clr-namespace:PSI.Models" 
              xmlns:model1="clr-namespace:DataLibrary.Models;assembly=DataLibrary"
              x:Class="PSI.Views.RouteDetailPage"
-             Title="{Binding Waypoints}">
+             Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Delete" Command="{Binding RouteDeleteCommand}" />
         <ToolbarItem Text="About" Command="{Binding RouteInfoCommand}"/>
-        <ToolbarItem Text="Add waypoint" Command="{Binding AddWaypointCommand}" />
         <ToolbarItem Text="Open map" Command="{Binding OpenMapCommand}"/>
     </ContentPage.ToolbarItems>
 
@@ -66,6 +64,26 @@
                                     </Grid>
                                 </Grid>
                             </Grid>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Discription:"/>
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding Description}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label FontSize="16"
+                                        FontAttributes="Bold"
+                                        TextColor="Green"
+                                        VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Color}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </StackLayout>
                         </Frame>
                     </StackLayout>
                 </DataTemplate>

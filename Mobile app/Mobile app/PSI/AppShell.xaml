@@ -68,6 +68,9 @@
         <Tab Title="Route" Icon="Routes.png">
             <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:RoutesPage}" />
         </Tab>
+        <Tab Title="My routes" Icon="MyRoutes.png">
+            <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:MyRoutesPage}" />
+        </Tab>
     </FlyoutItem>
 
     <FlyoutItem Title="Profile" Icon="Profile.png">

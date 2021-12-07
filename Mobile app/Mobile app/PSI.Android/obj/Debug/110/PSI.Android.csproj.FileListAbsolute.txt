@@ -7800,3 +7800,4 @@ C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\P
 C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\stamp\_GenerateJavaStubs.stamp
 C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI.Android\obj\Debug\110\res\drawable\myroutes.png

@@ -1461,11 +1461,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\PSI.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\PSI.iOS.csproj",
       "projectName": "PSI.iOS",
-      "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\PSI.iOS.csproj",
+      "projectPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\PSI.iOS.csproj",
       "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\obj\\",
+      "outputPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -1486,8 +1486,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj": {
-              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj"
+            "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj": {
+              "projectPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj"
             }
           }
         }
