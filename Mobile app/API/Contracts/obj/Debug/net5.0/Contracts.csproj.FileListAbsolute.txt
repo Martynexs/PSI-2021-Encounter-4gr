@@ -1,0 +1,108 @@
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.AssemblyReference.cache
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfoInputs.cache
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfo.cs
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CoreCompileInputs.cache
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.deps.json
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.json
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.dev.json
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\ref\Contracts.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.pdb
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Entities.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Entities.pdb
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CopyComplete
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\ref\Contracts.dll
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.pdb
+D:\Uni 2021-2022\PSI\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.genruntimeconfig.cache
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.deps.json
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.json
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.dev.json
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.dll
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\ref\Contracts.dll
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.pdb
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Entities.dll
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Entities.pdb
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.AssemblyReference.cache
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfoInputs.cache
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfo.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CopyComplete
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.dll
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\ref\Contracts.dll
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.pdb
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.genruntimeconfig.cache
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.deps.json
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.json
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.dev.json
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.dll
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\ref\Contracts.dll
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.pdb
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Entities.dll
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Entities.pdb
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.AssemblyReference.cache
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfoInputs.cache
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfo.cs
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CopyComplete
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.dll
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\ref\Contracts.dll
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.pdb
+C:\Users\Vartotojas\source\repos\123\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.genruntimeconfig.cache
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.deps.json
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.json
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.dev.json
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.dll
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\ref\Contracts.dll
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.pdb
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Entities.dll
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Entities.pdb
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.AssemblyReference.cache
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfoInputs.cache
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfo.cs
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CopyComplete
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.dll
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\ref\Contracts.dll
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.pdb
+C:\Users\Vartotojas\source\repos\tik pabandyk neveikt\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.genruntimeconfig.cache
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.deps.json
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.json
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.dev.json
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.dll
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\ref\Contracts.dll
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.pdb
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Entities.dll
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Entities.pdb
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.AssemblyReference.cache
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfoInputs.cache
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfo.cs
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CopyComplete
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.dll
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\ref\Contracts.dll
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.pdb
+C:\Users\Vartotojas\source\repos\Veikimas\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.genruntimeconfig.cache
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.deps.json
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.json
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.dev.json
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.dll
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\ref\Contracts.dll
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Contracts.pdb
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Entities.dll
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\bin\Debug\net5.0\Entities.pdb
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.AssemblyReference.cache
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfoInputs.cache
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfo.cs
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CopyComplete
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.dll
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\ref\Contracts.dll
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.pdb
+C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\API\Contracts\obj\Debug\net5.0\Contracts.genruntimeconfig.cache

@@ -1,0 +1,1 @@
+<resources><style name="MainTheme" parent="MainTheme.Base"><item name="android:timePickerDialogTheme">@style/AppCompatDialogStyle</item></style><style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog"><item name="colorAccent">#FFC900</item></style></resources>
