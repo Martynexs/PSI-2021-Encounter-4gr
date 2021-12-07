@@ -60,30 +60,20 @@
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                             </Label>
+                                            <Label FontSize="16"
+                                        FontAttributes="Bold"
+                                        TextColor="Green"
+                                        VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Color}"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
                                         </Grid>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="Discription:"/>
-                                                <Span Text=" "/>
-                                                <Span Text="{Binding Description}"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label FontSize="16"
-                                        FontAttributes="Bold"
-                                        TextColor="Green"
-                                        VerticalOptions="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding Color}"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </StackLayout>
-                            </StackLayout>
                         </Frame>
                     </StackLayout>
                 </DataTemplate>
