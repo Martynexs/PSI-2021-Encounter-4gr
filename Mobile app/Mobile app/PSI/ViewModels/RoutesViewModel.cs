@@ -1,4 +1,4 @@
-﻿using DataLibrary;
+using DataLibrary;
 using DataLibrary.Models;
 using PSI.Views;
 using System;
@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PSI.ViewModels
@@ -16,6 +17,8 @@ namespace PSI.ViewModels
         private EncounterProcessor _encounterProcessor;
         private Session _session;
         public ObservableCollection<Route> Routes { get; }
+
+        private List<Waypoint> _waypointList = new List<Waypoint>();
         public Command LoadRoutesCommand { get; }
         public Command LoadUserRoutesCommand { get; }
         public Command AddRouteCommand { get; }
@@ -41,6 +44,29 @@ namespace PSI.ViewModels
             _session = Session.Instanse;
         }
 
+        IOrderedEnumerable<Waypoint> objectsQueryOrderedByDistance;
+        public async Task Distance(Route route)
+        {
+            _waypointList = await _encounterProcessor.GetWaypoints(route.Id);
+            var request = new GeolocationRequest(GeolocationAccuracy.Default);
+            var location = await Geolocation.GetLocationAsync(request);
+
+            foreach (var pin in _waypointList)
+            {
+
+                    pin.DistanceToUser = Location.CalculateDistance(location.Latitude, location.Longitude, pin.Latitude, pin.Longitude, DistanceUnits.Kilometers);
+            }
+            if( _waypointList.Count != 0)
+            {
+                objectsQueryOrderedByDistance = _waypointList.OrderBy(pin => pin.DistanceToUser);
+                route.Distances = Math.Round(objectsQueryOrderedByDistance.FirstOrDefault().DistanceToUser,2);
+                Routes.Add(route);
+            }
+            else
+            {
+                Routes.Add(route);
+            }
+        }
         async Task ExecuteLoadRoutesCommand()
         {
             if (!_userRoutesOnly)
@@ -56,7 +82,8 @@ namespace PSI.ViewModels
 
                     foreach (var route in routes)
                     {
-                        Routes.Add(route);
+                        await Distance(route);
+                        //Routes.Add(route);
                     }
                 }
                 catch (Exception ex)
