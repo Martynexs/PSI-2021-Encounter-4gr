@@ -25,7 +25,11 @@ androidgeneratejnimarshalmethods=false
 os=windows_nt
 androidincludedebugsymbols=true
 androidpackagenamingpolicy=lowercasecrc64
+<<<<<<< HEAD
 _nugetassetstimestamp=637738707426146344
+=======
+_nugetassetstimestamp=637744334829985213
+>>>>>>> Bandom-mergeint-2.0
 typemapkind=strings-asm
 androidsupportedabis=arm64-v8a
 armeabi-v7a

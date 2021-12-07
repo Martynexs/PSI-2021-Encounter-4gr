@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Mobile app",
-    "\\Mobile app\\Mobile app",
-    "\\Mobile app\\Mobile app\\PSI",
-    "\\Mobile app\\Mobile app\\PSI\\ViewModels"
+    ""
   ],
-  "SelectedNode": "\\Mobile app\\Mobile app\\PSI\\ViewModels\\RouteDetailViewModel.cs",
+  "SelectedNode": "\\Mobile app.sln",
   "PreviewInSolutionExplorer": false
 }
