@@ -11,5 +11,6 @@ namespace Entities.Data_Transfer_Objects
         public long WaypointId { get; set; }
         public long RouteCompletionUserId { get; set; }
         public long RouteCompletionRouteId { get; set; }
+        public int Points { get; set; }
     }
 }

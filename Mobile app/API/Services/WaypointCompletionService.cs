@@ -38,25 +38,15 @@ namespace Services
         {
             var routeCompletion = await _repository.RouteCompletions.FindAsync(waypointCompletion.RouteCompletionRouteId, waypointCompletion.RouteCompletionUserId);
 
-            var pt = _repository.WaypointCompletions.Join(_repository.Waypoints,
-                                                                cpl => cpl.WaypointId,
-                                                                wp => wp.Id,
-                                                                (cpl, wp) => new
-                                                                {
-                                                                    WaypointId = cpl.WaypointId,
-                                                                    RouteId = cpl.RouteCompletionRouteId,
-                                                                    UserId = cpl.RouteCompletionUserId,
-                                                                    Points = wp.Points
-                                                                });
-            var points = (from pts in pt
-                          where pts.RouteId == routeCompletion.RouteId && pts.UserId == routeCompletion.UserId
-                          group pts by pts.RouteId into grp
-                          select new
-                          {
-                              Sum = grp.Sum(x => x.Points)
-                          }).First().Sum;
+            var points = (from wc in _repository.WaypointCompletions
+                         where wc.RouteCompletionRouteId == routeCompletion.RouteId && wc.RouteCompletionUserId == routeCompletion.UserId
+                         group wc by wc.RouteCompletionUserId into grp
+                         select new
+                         {
+                             Sum = grp.Sum(x => x.Points)
+                         }).First();
 
-            routeCompletion.Points = points;
+            routeCompletion.Points = points.Sum;
         }
     }
 }

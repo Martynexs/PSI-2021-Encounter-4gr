@@ -39,6 +39,7 @@ namespace Entities.TypeExtensions
                 RouteCompletionRouteId = waypointCompletion.RouteCompletionRouteId,
                 RouteCompletionUserId = waypointCompletion.RouteCompletionUserId,
                 WaypointId = waypointCompletion.WaypointId,
+                Points = waypointCompletion.Points
             };
         }
 
@@ -49,6 +50,7 @@ namespace Entities.TypeExtensions
                 RouteCompletionRouteId = waypointCompletionDTO.RouteCompletionRouteId,
                 RouteCompletionUserId = waypointCompletionDTO.RouteCompletionUserId,
                 WaypointId = waypointCompletionDTO.WaypointId,
+                Points = waypointCompletionDTO.Points
             };
         }
     }

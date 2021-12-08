@@ -11,6 +11,7 @@ using Contracts;
 using AuthorizationService;
 using Microsoft.Extensions.Logging;
 using System;
+using Contracts.Services;
 
 namespace EncounterAPI.Controllers
 {
@@ -20,13 +21,15 @@ namespace EncounterAPI.Controllers
     {
         private IRepositoryWrapper _repository;
         private IAuthorizationService _authorization;
+        private IScoresService _scoresService;
         private readonly ILogger<RouteController> _logger;
 
-        public RouteController(IRepositoryWrapper repoWrapper, IAuthorizationService authorization, ILogger<RouteController> logger)
+        public RouteController(IRepositoryWrapper repoWrapper, IAuthorizationService authorization, ILogger<RouteController> logger, IScoresService scoresService)
         {
             _repository = repoWrapper;
             _authorization = authorization;
             _logger = logger;
+            _scoresService = scoresService;
         }
 
         // GET: api/Route
@@ -78,6 +81,19 @@ namespace EncounterAPI.Controllers
             var query = await _repository.Waypoint.GetWaypointsByRoute(id);
             return query.Select(wp => wp.ToDTO()).ToList();
         }
+
+        [HttpGet("{id}/Leaderboard")]
+        public async Task<ActionResult<IEnumerable<dynamic>>> GetRouteLeaderBoard(long id)
+        {
+            if(!RouteModelExists(id))
+            {
+                return NotFound();
+            }
+
+            var rez = await _scoresService.GetRouteLeaderboard(id);
+            return rez.ToList();
+        }
+
 
 
         // PUT: api/Route/5
