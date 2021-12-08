@@ -83,16 +83,14 @@ namespace Map3
         public List<LatLong> ExtractLocations(DirectionResponse directionResponse)
         {
             var locations = new List<LatLong>();
-            var legs = new List<Leg>();
-            var steps = new List<Step>();
             var intersections = new List<Intersection>();
 
             var route = directionResponse.Routes[0];
 
-            legs = route.Legs.ToList();
+            var legs = route.Legs.ToList();
             foreach (var leg in legs)
             {
-                steps.AddRange(leg.Steps.ToList());
+                var steps = leg.Steps.ToList();
 
                 foreach (var step in steps)
                 {
@@ -126,9 +124,9 @@ namespace Map3
                     Type = PinType.Place,
                     Label = item.Name,
                     Address = item.Description,
-                    Position = new Position(item.Lat, item.Long),
+                    Position = new Position(item.Lat, item.Long)
                 };
-                map.Pins.Add(WaypointPins);
+                map.Pins.Add(WaypointPins);                
             }
         }
 

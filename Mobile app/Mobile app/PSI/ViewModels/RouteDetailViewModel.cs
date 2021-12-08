@@ -4,6 +4,10 @@ using System;
 using System.Diagnostics;
 using DataLibrary.Models;
 using Xamarin.Forms;
+using Xamarin.Essentials;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PSI.ViewModels
 {
@@ -13,6 +17,8 @@ namespace PSI.ViewModels
     {
         private EncounterProcessor _encounterProcessor;
         private Session _session;
+
+        private List<Waypoint> _waypointList = new List<Waypoint>();
         public Command RouteEditCommand { get; }
 
         public Command SubmitRatingCommand { get; }
@@ -32,6 +38,7 @@ namespace PSI.ViewModels
         private string description;
         private string location;
         private double rating;
+        private double distances;
 
         public long Id { get; set; }
         public RouteDetailViewModel()
@@ -68,6 +75,12 @@ namespace PSI.ViewModels
             set => SetProperty(ref rating, value);
         }
 
+        public double Distances
+        {
+            get => distances;
+            set => SetProperty(ref distances, value);
+        }
+
         public long RouteId
         {
             get
@@ -88,8 +101,27 @@ namespace PSI.ViewModels
             await Shell.Current.GoToAsync($"{nameof(RouteEditPopup)}?{nameof(EditRouteViewModel.RouteId)}={routeId}");
 
         }
+
+        IOrderedEnumerable<Waypoint> objectsQueryOrderedByDistance;
+        public async void Distance()
+        {
+           _waypointList = await _encounterProcessor.GetWaypoints(routeId);
+            var request = new GeolocationRequest(GeolocationAccuracy.Default);
+                var location = await Geolocation.GetLocationAsync(request);
+
+                foreach (var pin in _waypointList)
+                {
+                    pin.DistanceToUser = Xamarin.Essentials.Location.CalculateDistance(location.Latitude, location.Longitude,pin.Latitude, pin.Longitude, DistanceUnits.Kilometers);
+                }
+            if (_waypointList.Count != 0)
+            {
+                objectsQueryOrderedByDistance = _waypointList.OrderBy(pin => pin.DistanceToUser);
+                Distances = Math.Round(objectsQueryOrderedByDistance.FirstOrDefault().DistanceToUser,2);
+            }
+        }
         public async void LoadItemId(string routeId)
         {
+            Distance();
             try
             {
                 var route = await _encounterProcessor.GetRoute(long.Parse(routeId));

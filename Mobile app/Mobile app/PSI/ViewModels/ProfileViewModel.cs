@@ -32,10 +32,7 @@ namespace PSI.ViewModels
 
             _encounterProcessor = EncounterProcessor.Instanse;
             _session = Session.Instanse;
-            Name = _session.CurrentUser.Name;
-            Email = _session.CurrentUser.Email;
-            Photo = _session.CurrentUser.ProfilePicture;
-            Phone = _session.CurrentUser.PhoneNumber;
+            LoadUserInfo();
         }
         public string Name
         {
@@ -76,15 +73,15 @@ namespace PSI.ViewModels
         {
             try
             {
-                var user = await _encounterProcessor.GetUser(_session.CurrentUser.Name);
-                Name = user.Name;
+                var user = await _encounterProcessor.GetUser(_session.CurrentUser.Username);
+                Name = user.Username;
                 Email = user.Email;
                 Photo = user.ProfilePicture;
-                //Phone = user.OpeningHours;
+                Phone = user.PhoneNumber;
             }
             catch (Exception)
             {
-                Debug.WriteLine("Failed to Load Waypoint");
+                Debug.WriteLine("Failed to Load User");
             }
         }
 
@@ -92,7 +89,7 @@ namespace PSI.ViewModels
         {
             try
             {
-                var user = await _encounterProcessor.GetUser(_session.CurrentUser.Name);
+                var user = await _encounterProcessor.GetUser(_session.CurrentUser.Username);
                 user.ProfilePicture = Photo;
                 await _encounterProcessor.UpdateUser(_session.CurrentUser.Id, user);
                 await Shell.Current.GoToAsync("..");
@@ -102,6 +99,8 @@ namespace PSI.ViewModels
             {
                 Debug.WriteLine("Failed to Load Waypoint");
             }
+            await Shell.Current.GoToAsync("..");
+            LoadUserInfo();
         }
     }
 }

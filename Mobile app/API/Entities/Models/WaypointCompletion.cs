@@ -12,6 +12,7 @@ namespace Entities.Models
         public long WaypointId { get; set; }
         public long RouteCompletionUserId { get; set; }
         public long RouteCompletionRouteId { get; set; }
+        public int Points { get; set; }
         public virtual Waypoint Waypoint {get; set;}
         public virtual RouteCompletion RouteCompletion { get; set; }
     }

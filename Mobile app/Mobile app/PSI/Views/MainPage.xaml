@@ -1,30 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PSI.Views.MainPage"
-             xmlns:vm="clr-namespace:PSI.ViewModels"
-             Title="{Binding Title}"
-             BackgroundImage="Main.jpg">
-    
-    <ContentPage.BindingContext>
-        <vm:MainViewModel/>
-    </ContentPage.BindingContext>
-    
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="Accent">#FFC900</Color>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:PSI.ViewModels" xmlns:model1="clr-namespace:DataLibrary.Models;assembly=DataLibrary"
+             Title="{Binding Title}">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-            </StackLayout>
-        </StackLayout>
-    </Grid>
+    <StackLayout>
+        <RefreshView x:DataType="local:UsersStartedRoutesViewModel" Command="{Binding LoadRoutesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Routes}"
+                SelectedItem="{Binding SelectedRoute , Mode=TwoWay}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="5" x:DataType="model1:Route">
+                            <Frame>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}"
+                                FontAttributes="Bold"
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                                    <Label Text="{Binding Location}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                                    <Label Text="{Binding Rating, StringFormat='{0} ★'}"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </StackLayout>
 
 </ContentPage>

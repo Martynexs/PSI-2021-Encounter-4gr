@@ -8,5 +8,6 @@
         public string Description { get; set; }
         public string Location { get; set; }
         public double Rating { get; set; }
+        public double Distances { get; set; }
     }
 }

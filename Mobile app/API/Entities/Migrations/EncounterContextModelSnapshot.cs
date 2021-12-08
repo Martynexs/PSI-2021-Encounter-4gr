@@ -227,6 +227,9 @@ namespace EncounterAPI.Migrations
                     b.Property<long>("WaypointId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("Points")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("RouteCompletionRouteId", "RouteCompletionUserId", "WaypointId");
 
                     b.HasIndex("WaypointId");

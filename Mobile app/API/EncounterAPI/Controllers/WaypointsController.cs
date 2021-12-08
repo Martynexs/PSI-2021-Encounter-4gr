@@ -9,6 +9,7 @@ using EncounterAPI.Data_Transfer_Objects;
 using Contracts;
 using Entities.Data_Transfer_Objects;
 using Entities.TypeExtensions;
+using Entities.Models;
 
 namespace EncounterAPI.Controllers
 {
@@ -123,6 +124,25 @@ namespace EncounterAPI.Controllers
             return result;
         }
 
+        [HttpGet("{id}/QuizQuestions")]
+        public async Task<ActionResult<List<QuizDTO>>> GetMultipleQuestionsByWaypoint(long id)
+        {
+            IEnumerable<Quiz> questions = await _repository.Quiz.GetMultipleQuestionsByWaypointId(id);
+            if (questions == null)
+            {
+                return NotFound();
+            }
+
+            List<QuizDTO> result = new();
+            foreach (Quiz q in questions)
+            {
+                QuizDTO qd = q.ToDTO();
+                IEnumerable<QuizAnswers> answers = await _repository.QuizAnswer.GetQuizAnswers(q.Id);
+                qd.Answers = answers.Select(x => x.ToDTO()).ToList();
+                result.Add(qd);
+            }
+            return result;
+        }
 
     }
 }

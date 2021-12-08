@@ -8,7 +8,7 @@ namespace DataLibrary
 {
     public class EncounterProcessor
     {
-        private const string _apiAdress = "https://encounterapi.conveyor.cloud";
+        private const string _apiAdress = "https://encounterapi-rt3.conveyor.cloud";
 
         private static readonly Lazy<EncounterProcessor> _encounterProcessor =
             new Lazy<EncounterProcessor>(() => new EncounterProcessor());
@@ -188,6 +188,14 @@ namespace DataLibrary
 
             var quiz = await _apiHelper.HttpGet<Quiz>(url);
             return quiz;
+        }
+
+        public async Task<List<Quiz>> GetMultipleWaypointQuestions(long waypointID)
+        {
+            string url = $"{ _apiAdress }/api/Waypoints/{ waypointID }/QuizQuestions";
+
+            List<Quiz> quizzes = await _apiHelper.HttpGet<List<Quiz>>(url);
+            return quizzes;
         }
 
         public async Task<Quiz> CreateQuiz(Quiz quiz)

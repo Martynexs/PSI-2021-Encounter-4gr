@@ -10,36 +10,50 @@ using Map = Xamarin.Forms.Maps.Map;
 using PSI.ViewModels;
 using Map3.Views;
 using System.Threading;
+using DataLibrary;
+using PSI.Views;
+using DataLibrary.Models;
+using System.Linq;
 
 namespace Map3.ViewModels
 {
     [QueryProperty(nameof(SelectedRouteId), nameof(SelectedRouteId))]
     public class MapViewModel : BaseViewModel
     {
-        private bool _walkingActive;
+        private readonly EncounterProcessor _encounterProcessor;
+        private readonly MapService _mapService;
+        private readonly WaypointsCoordinatesService waypointsCoordinatesService;
+
+        private long _selectedRouteId;
         private double _routeduration;
         private double _routedistance;
         private string _maneuverinfo;
-        private MapService services;
         private DirectionResponse dr;
-        private WaypointsCoordinatesService waypointsCoordinatesService;
         private CancellationTokenSource _walkingCancelHandler;
         public static Map map;
-        public Command GetRouteCommand { get; }
         public Command GoWalkingCommand { get; }
         public Command QuitWalkingCommand { get; }
-
-        public long SelectedRouteId { get; set; }
 
         public MapViewModel()
         {
             map = new Map();
-            services = new MapService();
+            _encounterProcessor = EncounterProcessor.Instanse;
+            _mapService = new MapService();
             dr = new DirectionResponse();
             waypointsCoordinatesService = new WaypointsCoordinatesService();
-            GetRouteCommand = new Command(async () => await AddPolylineAsync());
             GoWalkingCommand = new Command(async () => await InitializeWalkingProcess());
             QuitWalkingCommand = new Command(async () => await QuitWalkingProcess());
+        }
+
+        public long SelectedRouteId
+        {
+            get => _selectedRouteId;
+            set
+            {
+                _selectedRouteId = value;
+                OnPropertyChanged();
+                LoadRouteState(value);
+            }
         }
 
         public double RouteDuration
@@ -62,34 +76,83 @@ namespace Map3.ViewModels
         {
             await Application.Current.MainPage.DisplayAlert(title, message, cancel);
         }
-        public async Task DisplayAlert(string title, string message, string accept, string cancel)
+
+        public async Task<string> DisplayActionSheet(string title, string cancel, string destruction, string[] buttons)
+        {
+            return await Application.Current.MainPage.DisplayActionSheet(title, cancel, destruction, buttons);
+        }
+
+        private async Task DisplayAlert(string title, string message, string accept, string cancel)
         {
             await Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);
         }
 
-        public async Task InitializeWalkingProcess()
+        private async Task SwitchToQuizWindow()
         {
-            if (!WalkingSession.HasGoalWaypointsLeft())
+            await Shell.Current.GoToAsync($"{nameof(QuizPopup)}");
+        }
+
+        private async void LoadRouteState(long selectedRoute)
+        {
+            if (!WalkingSession.IsWalkingStarted()
+                || WalkingSession.GetCurrentRouteId() != selectedRoute
+                || WalkingSession.GetCurrentGoalWaypoint() == null)
             {
-                await DisplayAlert("Error:", "No waypoints to walk, please choose the route first.", "ok");
+                LoadFullRoute();
+                WalkingSession.FinishAndClear();
                 return;
             }
 
-            _walkingActive = true;
+            if (WalkingSession.IsQuizStarted())
+            {
+                await DisplayAlert("Ooops", "You accidentally quit the quiz, don't worry we'll get you back.", "ok");
+                await SwitchToQuizWindow();
+                return;
+            }
+
+            // Walking already in this route? Refresh it:
+            map.Pins.Clear();
+            _mapService.DrawPins(WalkingSession.GetAllWaypoints(), map);
+            HandleUserWalkingPeriodically(10);
+        }
+
+        public async Task InitializeWalkingProcess()
+        {
+            if (WalkingSession.IsWalkingStarted())
+            {
+                await DisplayAlert("Error", "Sorry, you're already walking", "ok");
+                return;
+            }
+            
+            if (!WalkingSession.HasGoalWaypointsLeft())
+            {
+                await DisplayAlert("Error", "No waypoints to walk, please choose the route first.", "ok");
+                return;
+            }
+
+            WalkingSession.Start();
+            
             Location deviceLocation = await Geolocation.GetLocationAsync();
+
+            VisualWaypoint pickedWaypoint = null;
+            while (pickedWaypoint == null)
+            {
+                pickedWaypoint = await PickNextWaypoint(deviceLocation);
+            }
+            WalkingSession.SetPickedWaypoint(pickedWaypoint);
 
             if (!WalkingSession.IsGoalWaypointReached(deviceLocation))
             {
-                VisualWaypoint firstGoal = WalkingSession.CurrentGoalWaypoint();
+                VisualWaypoint firstGoal = WalkingSession.GetCurrentGoalWaypoint();
                 await DisplayAlert("Info", "Hello, to start the route you need to reach first waypoint " + firstGoal.Name + ". Please follow directions.", "Ok");
             }
 
-            _walkingCancelHandler = new CancellationTokenSource();
             HandleUserWalkingPeriodically(10);
         }
 
         private async void HandleUserWalkingPeriodically(int intervalSeconds)
         {
+            _walkingCancelHandler = new CancellationTokenSource();
             while (true)
             {
                 Task task = Task.Delay(TimeSpan.FromSeconds(intervalSeconds), _walkingCancelHandler.Token);
@@ -102,39 +165,83 @@ namespace Map3.ViewModels
                     }
                     else
                     {
-                        ClearWalkingState();
+                        ClearWalkingState(false);
                         return;
                     }
                 }
                 catch (TaskCanceledException)
                 {
-                    ClearWalkingState();
+                    ClearWalkingState(false);
                 }
             }
         }
 
         private async Task HandleUserWalking()
         {
-            var deviceLocation = await Geolocation.GetLocationAsync();
+            Location deviceLocation = await Geolocation.GetLocationAsync();
 
-            if (!WalkingSession.CheckMoved(deviceLocation))
+            if (WalkingSession.HasQuiz())
             {
+                _walkingCancelHandler.Cancel(); // no walking, quiz is active
                 return;
+            }
+
+            if (!WalkingSession.CheckMoved(deviceLocation) && !WalkingSession.HasQuizJustFinished())
+            {
+                return; // do nothing since user doesn't move
             }
 
             if (WalkingSession.IsGoalWaypointReached(deviceLocation))
             {
+                var currentWaypoint = WalkingSession.GetCurrentGoalWaypoint();
+
+                // Expect quiz:
+                List<Quiz> questions;
+                if (!WalkingSession.HasQuizJustFinished())
+                {
+                    questions = await _encounterProcessor.GetMultipleWaypointQuestions(currentWaypoint.Id);
+                }
+                else
+                {
+                    questions = null;
+                    WalkingSession.ClearQuizJustFinishedMarker();
+                }
+                
+                
+                if (questions != null && questions.Count > 0)
+                {
+                    WalkingSession.StartQuiz(questions);
+                    await DisplayAlert("Quiz found!", "You found " + currentWaypoint.Name + " and here's a task for you! Check your knowledge before proceeding!", "ok");
+                    await SwitchToQuizWindow();
+                    return;
+                }
+                
+                // No quiz, deal as usual:
                 if (WalkingSession.IsTheLastGoalWaypoint())
                 {
                     await DisplayAlert("Finish!", "You completed the route!", "ok");
-                    ClearWalkingState();
+                    ClearWalkingState(true);
+                    LoadFullRoute();
                     return;
                 }
                 else
                 {
-                    var currentWaypoint = WalkingSession.CurrentGoalWaypoint();
-                    var nextWaypoint = WalkingSession.MoveToNextGoalWaypoint();
-                    await DisplayAlert("Good job!", "You reached " + currentWaypoint.Name + " now please go to " + nextWaypoint.Name, "ok");
+                    WalkingSession.MarkCurrentGoalWaypointReached();
+
+                    VisualWaypoint pickedWaypoint = null;
+
+                    // One waypoint left, choose for user, since it's no point to ask choosing from one option:
+                    if (WalkingSession.GetLeftWaypoints().Count == 1)
+                    {
+                        pickedWaypoint = WalkingSession.GetLeftWaypoints()[0];
+                    }
+
+                    while (pickedWaypoint == null)
+                    {
+                        pickedWaypoint = await PickNextWaypoint(deviceLocation);
+                    }
+                    var nextWaypoint = WalkingSession.MoveToNextWaypoint(pickedWaypoint);
+                    await DisplayAlert("Good job!", "Now please go to " + nextWaypoint.Name, "ok");
                     RedrawPolylineFromTo(currentWaypoint, nextWaypoint);
                     return;
                 }
@@ -144,10 +251,27 @@ namespace Map3.ViewModels
                 var from = new VisualWaypoint();
                 from.Lat = deviceLocation.Latitude;
                 from.Long = deviceLocation.Longitude;
-                VisualWaypoint to = WalkingSession.CurrentGoalWaypoint();
+                VisualWaypoint to = WalkingSession.GetCurrentGoalWaypoint();
                 RedrawPolylineFromTo(from, to);
             }
             return;
+        }
+
+        private async Task<VisualWaypoint> PickNextWaypoint(Location deviceLocation)
+        {
+            List<string> pickedStrings = new List<string>();
+            foreach (VisualWaypoint wp in WalkingSession.GetLeftWaypoints())
+            {
+                double airDistance = Location.CalculateDistance(deviceLocation.Latitude, deviceLocation.Longitude, wp.Lat, wp.Long, DistanceUnits.Kilometers);
+                string visualString = wp.Name + " (" + Math.Round(airDistance, 2) + "km)";
+                wp.PickString = visualString;
+                pickedStrings.Add(visualString);
+            }
+            string[] pickedStringsArray = pickedStrings.ToArray();
+            string resultString = await DisplayActionSheet(title: "Pick a waypoint (straight line distance)", cancel: "", destruction: "", buttons: pickedStringsArray);
+
+            VisualWaypoint resultWaypoint = WalkingSession.GetLeftWaypoints().FirstOrDefault(w => w.PickString.Equals(resultString));
+            return resultWaypoint;
         }
 
         private async void RedrawPolylineFromTo(VisualWaypoint from, VisualWaypoint to)
@@ -156,18 +280,18 @@ namespace Map3.ViewModels
             fromTo.Add(from);
             fromTo.Add(to);
 
-            var directionResponse = await services.GetDirectionResponseAsync(fromTo);
+            var directionResponse = await _mapService.GetDirectionResponseAsync(fromTo);
             UpdateDistanceAndTime(directionResponse);
             UpdateManeuver(directionResponse);
-            var polylineLocations = services.ExtractLocations(directionResponse);
+            var polylineLocations = _mapService.ExtractLocations(directionResponse);
             map.MapElements.Clear();
-            services.DrawPolyline(polylineLocations, map);
+            _mapService.DrawPolyline(polylineLocations, map);
 
             var mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(fromTo), Distance.FromMeters(Math.Max(directionResponse.Routes[0].Distance / 2, 50)));
             map.MoveToRegion(mapSpan);
         }
 
-        public async Task AddPolylineAsync()
+        public async void LoadFullRoute()
         {
             List<LatLong> locations;
             if (!IsBusy)
@@ -190,7 +314,7 @@ namespace Map3.ViewModels
 
                     List<VisualWaypoint> apiWaypoints = await waypointsCoordinatesService.LoadWaypointsFromAPI(SelectedRouteId);
 
-                    dr = await services.GetDirectionResponseAsync(apiWaypoints);
+                    dr = await _mapService.GetDirectionResponseAsync(apiWaypoints);
 
                     if (dr == null)
                     {
@@ -201,14 +325,14 @@ namespace Map3.ViewModels
                     UpdateDistanceAndTime(dr);
                     ManeuverInfo = "";
 
-                    locations = services.ExtractLocations(dr);
+                    locations = _mapService.ExtractLocations(dr);
 
-                    services.DrawPins(apiWaypoints, map);
-                    services.DrawPolyline(locations, map);
+                    _mapService.DrawPins(apiWaypoints, map);
+                    _mapService.DrawPolyline(locations, map);
 
                     var mapSpan = MapSpan.FromCenterAndRadius(GetVisualCenterPosition(apiWaypoints), Distance.FromKilometers(6));
                     map.MoveToRegion(mapSpan);
-                    WalkingSession.ResetTo(apiWaypoints);
+                    WalkingSession.InitializeWaypointsBeforeWalking(apiWaypoints, SelectedRouteId);
                 }
 
                 catch (Exception)
@@ -224,32 +348,33 @@ namespace Map3.ViewModels
 
         public async Task QuitWalkingProcess()
         {
-            if (!_walkingActive)
+            if (!WalkingSession.IsWalkingStarted())
             {
                 await DisplayAlert("Error", "You're not walking, there's nothing to stop.", "ok");
                 return;
             }
 
-            ClearWalkingState();
+            ClearWalkingState(true);
 
-            var currentLocation = await Geolocation.GetLocationAsync();
-            MapSpan.FromCenterAndRadius(new Position(currentLocation.Latitude, currentLocation.Longitude), Distance.FromKilometers(6));
+            LoadFullRoute();
 
             await DisplayAlert("Info", "You quit this route without finishing it. Keep exploring other routes!", "ok");
         }
 
 
-        private void ClearWalkingState()
+        private void ClearWalkingState(bool clearWalkingSession)
         {
-            WalkingSession.Finish();
-            _walkingCancelHandler.Cancel();
+            if (clearWalkingSession)
+            {
+                WalkingSession.FinishAndClear();
+            }
+           
             if (_walkingCancelHandler != null)
             {
                 _walkingCancelHandler.Cancel();
             }
             map.MapElements.Clear();
             map.Pins.Clear();
-            _walkingActive = false;
             RouteDistance = 0;
             RouteDuration = 0;
             ManeuverInfo = "";

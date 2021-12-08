@@ -22,6 +22,8 @@ namespace DataLibrary
         {
             Authentication_token = await _api.GetAuthenticationToken(username, password);
 
+            Console.WriteLine("tokenas   " + Authentication_token);
+
             if (Authentication_token == null) 
                 return null;
 

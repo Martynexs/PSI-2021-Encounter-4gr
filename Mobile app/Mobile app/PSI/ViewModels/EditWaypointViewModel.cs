@@ -47,7 +47,6 @@ namespace PSI.ViewModels
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
             _encounterProcessor = EncounterProcessor.Instanse;
-            _encounterProcessor = EncounterProcessor.Instanse;
         }
         private bool ValidateSave()
         {

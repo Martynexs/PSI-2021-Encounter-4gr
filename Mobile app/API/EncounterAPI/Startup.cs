@@ -150,6 +150,9 @@ namespace EncounterAPI
                 .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
                 .InstancePerDependency();
 
+            builder.RegisterType<ScoresService>().As<IScoresService>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggingInterceptor))
+                .InstancePerDependency();
 
             builder.Register(x => Log.Logger).SingleInstance();
             builder.RegisterType<LoggingInterceptor>().SingleInstance();

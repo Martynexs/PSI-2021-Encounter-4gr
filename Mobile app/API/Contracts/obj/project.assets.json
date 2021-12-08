@@ -7499,11 +7499,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vartotojas\\source\\repos\\tik pabandyk neveikt\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj",
+      "projectUniqueName": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj",
       "projectName": "Contracts",
-      "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\tik pabandyk neveikt\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj",
+      "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\Contracts.csproj",
       "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vartotojas\\source\\repos\\tik pabandyk neveikt\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\obj\\",
+      "outputPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\Contracts\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -7524,8 +7524,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Vartotojas\\source\\repos\\tik pabandyk neveikt\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj": {
-              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\tik pabandyk neveikt\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj"
+            "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\API\\Entities\\Entities.csproj"
             }
           }
         }

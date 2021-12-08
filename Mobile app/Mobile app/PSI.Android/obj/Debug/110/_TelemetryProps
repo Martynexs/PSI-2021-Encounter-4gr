@@ -23,6 +23,10 @@ AndroidDexTool=d8
 AndroidLinkTool=
 AndroidEnableProfiledAot=
 AndroidInstallAfterBuild=True
-AndroidSessionId=93935abc-559e-4814-b1eb-bec6cf89df7f
+<<<<<<< HEAD
+AndroidSessionId=8ba48746-897f-4de7-b575-5b6f894fc910
+=======
+AndroidSessionId=b8c7d608-6572-4666-b264-4113eb109b24
+>>>>>>> Bandom-mergeint-2.0
 BuildConfiguration=Debug
 TemplateName={6968b3a4-1835-46a3-ac5c-1ae33b475983}

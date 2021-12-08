@@ -15,7 +15,7 @@ namespace EncounterAPI.Models
         public DbSet<WaypointCompletion> WaypointCompletions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(@"Data Source=D:\Database\EncounterDB.db");
+            => options.UseSqlite(@"Data Source=C:\Users\Juste\source\repos\EncounterDB.db");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
