@@ -92,11 +92,7 @@ mono_aot_mode_name:
 	.section	.rodata.env.str.8,"aMS",%progbits,1
 	.type	.L.env.str.8, %object
 .L.env.str.8:
-<<<<<<< HEAD
-	.asciz	"924a7296-6e55-4014-b454-4402f90551ad"
-=======
-	.asciz	"fbb34962-1e78-4d4f-9f7c-53afc75e40c0"
->>>>>>> Bandom-mergeint-2.0
+	.asciz	"442a45f6-1e1c-40ba-9c74-1ee36af09828"
 	.size	.L.env.str.8, 37
 	.section	.rodata.env.str.9,"aMS",%progbits,1
 	.type	.L.env.str.9, %object

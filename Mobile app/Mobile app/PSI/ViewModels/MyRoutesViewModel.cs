@@ -44,7 +44,7 @@ namespace PSI.ViewModels
         }
         private async void OnRouteSelected(Route route)
         {
-            await Shell.Current.GoToAsync($"{nameof(MyRouteDetailPage)}?{nameof(WaypointsViewModel.RoutesId)}={route.Id}");
+            await Shell.Current.GoToAsync($"{nameof(MyRouteDetailPage)}?{nameof(MyRoutesAboutViewModel.RoutesId)}={route.Id}");
         }
         public void OnAppearing()
         {

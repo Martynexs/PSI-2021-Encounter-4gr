@@ -45,7 +45,7 @@ namespace PSI.ViewModels
         }
 
         IOrderedEnumerable<Waypoint> objectsQueryOrderedByDistance;
-        public async void Distance(Route route)
+        public async Task Distance(Route route)
         {
             _waypointList = await _encounterProcessor.GetWaypoints(route.Id);
             var request = new GeolocationRequest(GeolocationAccuracy.Default);
@@ -82,7 +82,7 @@ namespace PSI.ViewModels
 
                     foreach (var route in routes)
                     {
-                        Distance(route);
+                        await Distance(route);
                         //Routes.Add(route);
                     }
                 }

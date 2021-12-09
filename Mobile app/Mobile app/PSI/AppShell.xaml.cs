@@ -10,6 +10,8 @@ namespace PSI
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(RouteDetailPage), typeof(RouteDetailPage));
+            Routing.RegisterRoute(nameof(MyRouteAboutPage), typeof(MyRouteAboutPage));
+            Routing.RegisterRoute(nameof(MyRouteWaypointPage), typeof(MyRouteWaypointPage));
             Routing.RegisterRoute(nameof(MyRouteDetailPage), typeof(MyRouteDetailPage));
             Routing.RegisterRoute(nameof(NewRoutePage), typeof(NewRoutePage));
             Routing.RegisterRoute(nameof(WaypointInfo), typeof(WaypointInfo));
@@ -21,6 +23,12 @@ namespace PSI
             Routing.RegisterRoute(nameof(Map), typeof(Map));
             Routing.RegisterRoute(nameof(UploadProfilePhotoPage), typeof(UploadProfilePhotoPage));
             Routing.RegisterRoute(nameof(EditUserPasswordPopup), typeof(EditUserPasswordPopup));
+            Routing.RegisterRoute(nameof(QuizPage), typeof(QuizPage));
+            Routing.RegisterRoute(nameof(NewQuizQuestionPage), typeof(NewQuizQuestionPage));
+            Routing.RegisterRoute(nameof(NewQuizAnswerPage), typeof(NewQuizAnswerPage));
+            Routing.RegisterRoute(nameof(QuizAnswerPage), typeof(QuizAnswerPage));
+            Routing.RegisterRoute(nameof(EditQuizPopup), typeof(EditQuizPopup));
+            Routing.RegisterRoute(nameof(EditAnswerPopup), typeof(EditAnswerPopup));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

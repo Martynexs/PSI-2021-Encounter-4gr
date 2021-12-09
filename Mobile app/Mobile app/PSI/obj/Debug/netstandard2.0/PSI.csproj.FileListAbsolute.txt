@@ -333,3 +333,12 @@ C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\P
 C:\Users\Vartotojas\source\repos\t\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\PSI.pdb
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\MyRouteDetailPage.xaml.g.cs
 C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\MyRoutesPage.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\EditAnswerPopup.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\EditQuizPopup.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\MyRouteAboutPage.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\MyRouteWaypointPage.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\NewQuizAnswerPage.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\NewQuizQuestionPage.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\QuizAnswerPage.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\QuizPage.xaml.g.cs
+C:\Users\Vartotojas\Source\Repos\Swashbucklers-Project\Mobile app\Mobile app\PSI\obj\Debug\netstandard2.0\Views\QuizPopup.xaml.g.cs

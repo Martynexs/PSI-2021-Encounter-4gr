@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PSI.Views.MyRouteAboutPage"
+             Title="{Binding Title}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Command="{Binding EditCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Spacing="10" Padding="15">
+            <Label Text="Route name:" FontSize="Small" FontAttributes="Italic"/>
+            <Label Text="{Binding Name}" FontSize="Large"/>
+            <Label Text="Location:" FontSize="Small" FontAttributes="Italic" />
+            <Label Text="{Binding Location}" FontSize="Large"/>
+            <Label Text="Description:" FontSize="Small" FontAttributes="Italic"/>
+            <Label Text="{Binding Description}" FontSize="Large"/>
+            <Label Text="Distance:" FontSize="Small" FontAttributes="Italic"/>
+            <Label Text="{Binding Distances}" FontSize="Large"/>
+            <Label Text="Rating:" FontSize="Small" FontAttributes="Italic"/>
+            <Label Text="{Binding Rating, StringFormat='Total rating: {0:F1} ★'}" FontSize="Medium"/>
+            <Label Text="{Binding UserRating, StringFormat='Your rating: {0} ★'}" FontSize="Medium"/>
+            <Slider Maximum="5" Minimum="1"  MinimumTrackColor="Purple" MaximumTrackColor="Yellow" Value="{Binding UserRating, Mode=TwoWay}" DragCompletedCommand="{Binding SubmitRatingCommand}"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

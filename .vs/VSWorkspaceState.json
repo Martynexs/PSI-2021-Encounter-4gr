@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Mobile app",
+    "\\Mobile app\\Mobile app",
+    "\\Mobile app\\Mobile app\\PSI",
+    "\\Mobile app\\Mobile app\\PSI\\Views"
   ],
-  "SelectedNode": "\\Mobile app.sln",
+  "SelectedNode": "\\Mobile app\\Mobile app\\PSI\\Views\\WaypointInfo.xaml",
   "PreviewInSolutionExplorer": false
 }

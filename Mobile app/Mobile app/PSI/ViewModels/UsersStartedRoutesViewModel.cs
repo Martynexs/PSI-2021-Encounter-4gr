@@ -28,7 +28,7 @@ namespace PSI.ViewModels
 
         public UsersStartedRoutesViewModel()
         {
-            Title = "Encounter";
+            Title = "Encounter                  Continue routes";
 
             Routes = new ObservableCollection<Route>();
 

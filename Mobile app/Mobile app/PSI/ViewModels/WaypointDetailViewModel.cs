@@ -18,6 +18,7 @@ namespace PSI.ViewModels
 
         public Command EditCommand { get; }
 
+        public Command QuizCommand { get; }
         public Command WaypointDeleteCommand { get; }
 
         private long waypointId;
@@ -44,6 +45,7 @@ namespace PSI.ViewModels
             _encounterProcessor = EncounterProcessor.Instanse;
             EditCommand = new Command(OnEdit);
             WaypointDeleteCommand = new Command(OnWaypointDeleteClicked);
+            QuizCommand = new Command(OnQuiz);
         }
 
         public string CoordinatesText
@@ -133,6 +135,12 @@ namespace PSI.ViewModels
         {
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync($"{nameof(EditWaypointPopup)}?{nameof(EditWaypointViewModel.WaypointId)}={waypointId}");
+        }
+
+        private async void OnQuiz()
+        {
+            // This will pop the current page off the navigation stack
+            await Shell.Current.GoToAsync($"{nameof(QuizPage)}?{nameof(QuizzesViewModel.WaypointId)}={waypointId}");
         }
 
         private async void OnWaypointDeleteClicked(object obj)

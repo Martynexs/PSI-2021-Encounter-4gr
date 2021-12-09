@@ -160,7 +160,5 @@ namespace PSI.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Failed to submit rating", "Please try again", "OK");
             }
         }
-
-
     }
 }

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:PSI.ViewModels" xmlns:model1="clr-namespace:DataLibrary.Models;assembly=DataLibrary"
+             x:Class="PSI.Views.QuizAnswerPage"
+             Title="{Binding Title}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Command="{Binding EditQuizCommand}"/>
+        <ToolbarItem Text="Delete" Command="{Binding DeleteQuizCommand}"/>
+        <ToolbarItem Text="Add answer" Command="{Binding AddAnswerCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <RefreshView x:DataType="local:QuizzesAnswersViewModel" Command="{Binding LoadQuizzesAnswersCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Answer}"
+                SelectedItem="{Binding SelectedAnswer , Mode=TwoWay}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="5" x:DataType="model1:QuizAnswer">
+                            <Frame>
+                                <StackLayout>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Answer: "/>
+                                                <Span Text="{Binding Text}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Is it correct?: "/>
+                                                <Span Text="{Binding IsCorrect}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:PSI.ViewModels" xmlns:model1="clr-namespace:DataLibrary.Models;assembly=DataLibrary"
+             x:Class="PSI.Views.QuizPage"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add quiz" Command="{Binding AddQuizCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout>
+        <RefreshView x:DataType="local:QuizzesViewModel" Command="{Binding LoadQuizzesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Quizzes}"
+                SelectedItem="{Binding SelectedQuiz , Mode=TwoWay}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="5" x:DataType="model1:Quiz">
+                            <Frame>
+                                <StackLayout>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Question: "/>
+                                                <Span Text="{Binding Question}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </StackLayout>
+</ContentPage>

@@ -190,6 +190,14 @@ namespace DataLibrary
             return quiz;
         }
 
+        public async Task<Quiz> GetQuizById(long quizId)
+        {
+            var url = $"{ _apiAdress }/api/Quizzes/{ quizId }";
+
+            var quiz = await _apiHelper.HttpGet<Quiz>(url);
+            return quiz;
+        }
+
         public async Task<List<Quiz>> GetMultipleWaypointQuestions(long waypointID)
         {
             string url = $"{ _apiAdress }/api/Waypoints/{ waypointID }/QuizQuestions";
@@ -215,7 +223,7 @@ namespace DataLibrary
 
         public async Task DeleteQuiz(long quizId)
         {
-            var url = $"{ _apiHelper }/api/{quizId}";
+            var url = $"{ _apiAdress }/api/Quizzes/{quizId}";
 
             await _apiHelper.HttpDelete(url);
         }

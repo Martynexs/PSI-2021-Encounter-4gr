@@ -1,19 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.Android\\PSI.Android.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj",
-        "projectName": "DataLibrary",
-        "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj",
-        "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\obj\\",
-=======
     "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.Android\\PSI.Android.csproj": {}
   },
   "projects": {
@@ -25,7 +12,6 @@
         "projectPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj",
         "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\obj\\",
->>>>>>> Bandom-mergeint-2.0
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -87,16 +73,6 @@
         }
       }
     },
-<<<<<<< HEAD
-    "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.Android\\PSI.Android.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.Android\\PSI.Android.csproj",
-        "projectName": "PSI.Android",
-        "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.Android\\PSI.Android.csproj",
-        "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.Android\\obj\\",
-=======
     "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.Android\\PSI.Android.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -105,7 +81,6 @@
         "projectPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.Android\\PSI.Android.csproj",
         "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI.Android\\obj\\",
->>>>>>> Bandom-mergeint-2.0
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -126,13 +101,8 @@
         "frameworks": {
           "monoandroid11.0": {
             "projectReferences": {
-<<<<<<< HEAD
-              "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj": {
-                "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj"
-=======
               "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj": {
                 "projectPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj"
->>>>>>> Bandom-mergeint-2.0
               }
             }
           }
@@ -165,16 +135,6 @@
         }
       }
     },
-<<<<<<< HEAD
-    "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj",
-        "projectName": "PSI",
-        "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj",
-        "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\obj\\",
-=======
     "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -183,7 +143,6 @@
         "projectPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\PSI.csproj",
         "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\PSI\\obj\\",
->>>>>>> Bandom-mergeint-2.0
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -204,13 +163,8 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-<<<<<<< HEAD
-              "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj": {
-                "projectPath": "C:\\Users\\Vartotojas\\source\\repos\\t\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj"
-=======
               "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj": {
                 "projectPath": "C:\\Users\\Vartotojas\\Source\\Repos\\Swashbucklers-Project\\Mobile app\\Mobile app\\DataLibrary\\DataLibrary.csproj"
->>>>>>> Bandom-mergeint-2.0
               }
             }
           }
