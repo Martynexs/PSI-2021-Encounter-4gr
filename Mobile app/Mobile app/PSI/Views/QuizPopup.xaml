@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -6,7 +6,7 @@
                  x:Class="PSI.Views.QuizPopup"
                  xmlns:vm="clr-namespace:PSI.ViewModels" xmlns:model1="clr-namespace:PSI.Models"
                  x:DataType="vm:QuizViewModel"
-                 BackgroundColor="Yellow">
+                 BackgroundColor="White">
 
     <popup:PopupPage.Animation>
         <animations:ScaleAnimation 
@@ -25,24 +25,39 @@
         <StackLayout Padding="0" Margin="0">
             <Grid>
                 <StackLayout Margin="15,0,15,20">
-                    <StackLayout Margin="0,10,0,0">
-                        <Label Text="{Binding EarnedPoints, StringFormat='Earned points: {0}'}" FontSize="Medium"/>
+                    <StackLayout Margin="0,5,0,0">
+                        <Label Grid.Row="1" FontSize="Title"
+                                        TextColor="Black"
+                                        VerticalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Question:"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding CurrentQuestionText}" FontSize="Title"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                     </StackLayout>
-                    <StackLayout Margin="0,10,0,0">
-                        <Label Text="{Binding CurrentQuestionDisplayableIndex, StringFormat='CurrentQuestion: {0}'}" FontSize="Medium"/>
-                    </StackLayout>
-                    <StackLayout Margin="0,10,0,0">
-                        <Label Text="{Binding QuestionsCount, StringFormat='Total questions: {0}'}" FontSize="Medium"/>
-                    </StackLayout>
-                    <StackLayout Margin="0,10,0,0">
-                        <Label Text="{Binding CurrentQuestionText}" FontSize="Title"/>
+                    
+                    <StackLayout Margin="0,10,0,0" BindableLayout.ItemsSource="{Binding SelectableAnswers}" IsVisible="{Binding MultipleShown}">
+                        <Label Text="Possible answers:"/>
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout x:DataType="model1:VisualAnswer" Margin="0,0,0,0" Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding IsMarked}" Color="#FFC900" IsEnabled="{Binding AllowSelecting}"/>
+                                    <Label Text="{Binding Text}" TextColor="{Binding Color}" FontSize="Medium"/>
+                                    <Label Text="{Binding PtsEarned}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
                     </StackLayout>
 
                     <StackLayout Margin="0,10,0,0" BindableLayout.ItemsSource="{Binding SelectableAnswers}" IsVisible="{Binding SingleShown}">
-                        <BindableLayout.ItemTemplate>
+                        <Label  Text="Possible answers:" FontSize="Medium" TextColor="Black"/>
+                        <BindableLayout.ItemTemplate Margin="0,10,0,0">
                             <DataTemplate>
                                 <StackLayout x:DataType="model1:VisualAnswer" Margin="0,0,0,0" Orientation="Horizontal">
-                                    <RadioButton GroupName="answ" IsChecked="{Binding IsMarked}" IsEnabled="{Binding AllowSelecting}"/>
+                                    <RadioButton GroupName="answ" IsChecked="{Binding IsMarked}" IsEnabled="{Binding AllowSelecting}" BackgroundColor="White" />
                                     <Label Text="{Binding Text}" TextColor="{Binding Color}" FontSize="Medium"/>
                                     <Label Text="{Binding PtsEarned}"/>
                                 </StackLayout>
@@ -50,16 +65,24 @@
                         </BindableLayout.ItemTemplate>
                     </StackLayout>
 
-                    <StackLayout Margin="0,10,0,0" BindableLayout.ItemsSource="{Binding SelectableAnswers}" IsVisible="{Binding MultipleShown}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout x:DataType="model1:VisualAnswer" Margin="0,0,0,0" Orientation="Horizontal">
-                                    <CheckBox IsChecked="{Binding IsMarked}" IsEnabled="{Binding AllowSelecting}"/>
-                                    <Label Text="{Binding Text}" TextColor="{Binding Color}" FontSize="Medium"/>
-                                    <Label Text="{Binding PtsEarned}"/>
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
+                    <StackLayout Margin="0,10,0,0">
+                        <Label Text="{Binding EarnedPoints, StringFormat='Total earned points: {0}'}"  TextColor="Black" FontSize="Medium"/>
+                    </StackLayout>
+
+                    <StackLayout Margin="0,0,0,0">
+                        <Label Grid.Row="1" FontSize="Medium"
+                                        TextColor="Black"
+                                        VerticalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Question:"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding CurrentQuestionDisplayableIndex, StringFormat='{0}'}" FontSize="Medium"/>
+                                    <Span Text=" of "/>
+                                    <Span Text="{Binding QuestionsCount, StringFormat='{0}'}" FontSize="Medium"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                     </StackLayout>
 
                     <StackLayout VerticalOptions="Center" Margin="0,10,0,0">
@@ -81,19 +104,20 @@
                             BackgroundColor="#FFC900"
                             CornerRadius="30"
                             Command="{Binding SkipQuestionCommand}" IsVisible="{Binding SubmitShown}"/>
-                        
-                        <StackLayout IsVisible="{Binding MultipleShown}">
-                            <Label Text="For every correct selected answer: plus 2pts" FontSize="Small"/>
-                            <Label Text="For every selected wrong answer: minus 3pts" FontSize="Small"/>
-                            <Label Text="Skipping question gives 0pts" FontSize="Small"/>
+
+                        <StackLayout IsVisible="{Binding MultipleShown}"  Margin="0,10,0,0">
+                            <Label Text="How to earn points?" FontSize="Small" TextColor="Black"/>
+                            <Label Text="Correct answer: 2 points" FontSize="Small" TextColor="Black"/>
+                            <Label Text="Wrong answer: 3 points" FontSize="Small" TextColor="Black"/>
+                            <Label Text="Skip question: 0 points" FontSize="Small" TextColor="Black"/>
                         </StackLayout>
-                        <StackLayout IsVisible="{Binding SingleShown}">
-                            <Label Text="For selected correct answer: plus 2pts" FontSize="Small"/>
-                            <Label Text="For selected wrong answer: minus 3pts" FontSize="Small"/>
-                            <Label Text="Skipping question gives 0pts" FontSize="Small"/>
+                        <StackLayout IsVisible="{Binding SingleShown}"  Margin="0,10,0,0">
+                            <Label Text="How to earn points?" FontSize="Small" TextColor="Black"/>
+                            <Label Text="Correct answer: 2 points" FontSize="Small" TextColor="Black"/>
+                            <Label Text="Wrong answer: 3 points" FontSize="Small" TextColor="Black"/>
+                            <Label Text="Skip question: 0 points" FontSize="Small" TextColor="Black"/>
                         </StackLayout>
                     </StackLayout>
-
                 </StackLayout>
             </Grid>
         </StackLayout>
